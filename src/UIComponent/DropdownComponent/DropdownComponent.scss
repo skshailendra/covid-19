@@ -28,12 +28,14 @@
         background-color: #fff;
         border-bottom: 1px solid #c1c1c1;
     }
-
+    // efefef
     &__select-list{
         padding: 0;
         margin-top: 10px;
         border-radius: 6px;
-        background-color: rgb(230, 223, 223);
+        background-color:$white;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.05);
+        border:1px solid #dedede;
         position: absolute;
         top: 42px;
         left: 0;
@@ -43,6 +45,9 @@
 
     &__option{
         padding:0.6em 0 0.6em 1em;
+    }
+    &__active{
+        background-color: #f5f0f0;
     }
     &__option:hover{
         background-color: #f5f0f0;

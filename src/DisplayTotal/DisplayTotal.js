@@ -1,4 +1,4 @@
-import React , {useState, useEffect}from 'react';
+import React , {useState, useEffect, useContext}from 'react';
 import './DisplayTotal.scss';
 import caseTimeSeries from '../data/caseTimeSeries';
 import {
@@ -6,10 +6,13 @@ import {
   } from 'recharts';
 import { faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FetchDataContext} from '../context/fetch-data';
 const DisplayTotal = props =>{
+
+    const fetchCovidData = useContext(FetchDataContext);
+    const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const [latestData,setLatestData] = useState([]);
     const [dailyData, setDailyData] = useState();
-    const [casesTimeSeries,setCasesTimeSeries] = useState([]);
     const [tinyLineChart,setTinyLineChart] = useState([]);
     const dataJsonUrl = 'https://api.covid19india.org/data.json';
     const requestOption = {
@@ -42,14 +45,6 @@ const DisplayTotal = props =>{
         console.log(newFilterArray);
         setTinyLineChart(newFilterArray);
     };
-    useEffect(()=>{
-        const dataCall = (async ()=>{
-            const data = await fetchData();
-            setDailyData(data);
-            setCasesTimeSeries(data.cases_time_series);
-        })();
-        //dataCall();
-    },[]);
     useEffect(()=>{
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
             const length = casesTimeSeries.length;

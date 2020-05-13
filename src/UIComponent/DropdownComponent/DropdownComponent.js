@@ -48,7 +48,7 @@ const DropdownComponent = props =>{
                     <ul className="dropdown__select-list" onClick={e=>selectDropdown(e)}>
                         {
                             cases.map((item)=>(
-                                <li className="dropdown__option">
+                                <li className={`dropdown__option ${item.value === value?'dropdown__active':''}` }>
                                     {item.value}
                                 </li>
                             ))

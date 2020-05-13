@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import FetchDataProvider from './context/fetch-data';
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <FetchDataProvider>
+      <App />
+    </FetchDataProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

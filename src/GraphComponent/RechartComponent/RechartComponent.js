@@ -1,11 +1,11 @@
 
-import React, { useEffect, useState, useReducer} from 'react';
+import React, { useEffect, useState, useReducer, useContext} from 'react';
 import './RechartComponent.scss';
 import {
   XAxis, YAxis, CartesianGrid, Tooltip,BarChart,Bar
   } from 'recharts';
 
- 
+import {FetchDataContext} from '../../context/fetch-data';
 const httpReducer = (httpState, action) =>{
   switch(action.type){
     case 'SEND' :
@@ -14,7 +14,8 @@ const httpReducer = (httpState, action) =>{
 };
 const RechartComponent = props =>{
     const [latestData,setLatestData] = useState([]);
-    const [casesTimeSeries,setCasesTimeSeries] = useState([]);
+    const fetchCovidData = useContext(FetchDataContext);
+    const casesTimeSeries = fetchCovidData.casesTimeSeries;
 
     let filterArray = [];
     const dataJsonUrl = 'https://api.covid19india.org/data.json';
@@ -31,12 +32,7 @@ const RechartComponent = props =>{
       }
     };
     useEffect(()=>{
-        const dataCall = (async ()=>{
-            const data = await fetchData();
-            setCasesTimeSeries(data.cases_time_series);
-        })();
-    },[]);
-    useEffect(()=>{
+      console.log("called use");
       if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
         filterArray = casesTimeSeries.filter( (data)=>data.date.includes("May"));
         // const newFilterArray = filterArray.map((data,idx)=>{
