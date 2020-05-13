@@ -1,0 +1,72 @@
+@import '../../Globals//variables/variables.scss';
+
+.line-chart-container{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+}
+
+.line-chart {
+    background-color: $white;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.05);
+    padding:2em;
+    margin-bottom: 2em;
+    border-radius: 5px;
+    position: relative;
+}
+
+.dropdown{
+    width:25%;
+    & * {
+        list-style-type: none;
+    }
+    &__wrap{
+        width: 100%;
+        position: relative;
+    }
+    &__value{
+        
+    }
+    &__default-option{
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__icon{
+        height:0.8em;
+        width: 1.5em;
+    }
+    &__default{
+        margin: 0;
+        padding: 1em;
+        border-radius: 6px;
+        background-color: #fff;
+        border-bottom: 1px solid #c1c1c1;
+    }
+
+    &__select-list{
+        padding: 0;
+        margin-top: 10px;
+        border-radius: 6px;
+        background-color: rgb(230, 223, 223);
+        position: absolute;
+        top: 42px;
+        left: 0;
+        width: 100%;
+        z-index:10;
+    }
+
+    &__option{
+        padding:0.6em 0 0.6em 1em;
+    }
+    &__option:hover{
+        background-color: #f5f0f0;
+        translate: all .3s;
+        cursor: pointer;
+    }
+}
+
+.verticle-line{
+    border:1px solid red;
+}

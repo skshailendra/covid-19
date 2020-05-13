@@ -1,0 +1,75 @@
+@import '../../Globals/variables/variables.scss';
+
+.header{
+    height: 4em;
+   // background-color: #d46acc;  #f97b7b
+    background-color: $white;
+    border-bottom: 1px solid #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1em;
+    font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", "-apple-system", "BlinkMacSystemFont", "Roboto", "Helvetica Neue", sans-serif;
+}
+
+// Logo
+
+.logo {
+    height: 1.25em;
+    margin-left: 1em;
+    flex:0 0 14%;  // new added
+}
+
+///////////////////////////////////
+// User Nav
+
+.user-nav{
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    // & > * {
+    //     padding:0 1.5em;
+    //     cursor: pointer;
+    //     height:100%;
+    //     display: flex;
+    //     align-items: center;
+    // }
+    // & > *:hover {
+    //     background-color: #7c95f3;
+
+    // }
+    &__icon-box{
+        padding:0 1.5em;
+        cursor: pointer;
+        height:100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+        
+    }
+
+    &__icon-box:hover{
+        background-color: #dfe3f0;
+    }
+    &__icon{
+            width: 1.70em;
+            height:1.70em;
+        
+    }
+    
+    &__notification{
+        font-size: .8em;
+        height: 1em;
+        width: 1em;
+        border-radius: 50%;
+        background-color: #fa3e3e;
+        color:$white;
+        position: absolute;
+        top:1em;
+        right: 1.6em;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

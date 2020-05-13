@@ -1,0 +1,38 @@
+@import '../Globals//variables/variables.scss';
+
+// Overview Seclector
+
+.overview {
+    display: flex;
+    background-color: $white;
+    border:1px solid $light-border-black;
+    justify-content: space-between;
+    align-items: center;
+    padding:0.125em 1em;
+    &__location{
+        display: flex;
+        align-items: center;
+        margin-right: auto;
+
+    }
+
+    &__heading{
+        
+    }
+    &__location-save{
+
+    }
+
+    &__save-text{
+
+    }
+    &__refresh{
+
+    }
+    &__icon{
+
+    }
+    &__last-update{
+
+    }
+}
