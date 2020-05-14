@@ -1,29 +1,21 @@
 
-import React, { useEffect, useReducer} from 'react';
+import React, { useEffect, useReducer, useCallback} from 'react';
 import './DropdownComponent.scss';
 import { faChevronDown,faChevronUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import useDropdown from '../../hooks/dropdown-type';
 const initialState ={
   value:'Active',
   showSelectOption:false,
-  cases: [
-    {
-      type:"confirmed",
-      value:"Confirmed"
-    },
-    {
-      type:"active",
-      value:"Active"
-    },
-    {
-      type:"deceased",
-      value:"Deceased"
-    }
-  ]
+  traverseDropdown:[]
 }
 const dropDownReducer = (currentValue, action)=>{
   switch(action.type){
+    case 'CREATE':
+      return {
+        ...currentValue,
+        traverseDropdown:action.traverseDropdown
+      }
     case 'SET':
         return {
           ...currentValue,
@@ -38,12 +30,21 @@ const dropDownReducer = (currentValue, action)=>{
       throw new Error("Please select dropdown value");
   }
 };
-const DropdownComponent = props =>{
+const DropdownComponent = React.memo(props =>{
+    const {type}  = props;debugger;
     const [dropDownValue, dispatchDropdown] = useReducer(dropDownReducer, initialState);
+    const {getDropdownData,data} = useDropdown();
     const selectDropdown =(e)=>{
-        console.log("selectDropdown");
-        dispatchDropdown({type:'SET',selected:e.target.innerHTML});
-      };
+      dispatchDropdown({type:'SET',selected:e.target.innerHTML});
+    };
+
+    useEffect(()=>{
+      getDropdownData(type);
+    },[]);
+
+    useEffect(()=>{
+      dispatchDropdown({type:'CREATE',traverseDropdown:data});
+    },[data]);
     return(
         <>
             <div className="dropdown">
@@ -61,7 +62,7 @@ const DropdownComponent = props =>{
                     { dropDownValue.showSelectOption &&
                     <ul className="dropdown__select-list" onClick={e=>selectDropdown(e)}>
                         {
-                            dropDownValue.cases.map((item)=>(
+                            dropDownValue.traverseDropdown.map((item)=>(
                                 <li key={item.type} className={`dropdown__option ${item.value === dropDownValue.value?'dropdown__active':''}` }>
                                     {item.value}
                                 </li>
@@ -73,6 +74,6 @@ const DropdownComponent = props =>{
             </div>
         </>
     )
-}
+});
 
 export default DropdownComponent;

@@ -19,7 +19,8 @@ const MainContent = props =>{
             <div className="description">
                 <div className="user-paragraph">
                     {/* <LineChart /> */}
-                    <DropdownComponent/>
+                    <DropdownComponent type ={"months"}/>
+                    <DropdownComponent type ={"casetype"}/>
                     <RechartComponent/>
                    
                 </div>
