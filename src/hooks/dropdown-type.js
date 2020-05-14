@@ -2,7 +2,7 @@ import { useReducer, useCallback} from 'react';
 
 const initialState = {
     data:null,
-   
+    selectedValue:null
 }
 const  casesType= [
     {
@@ -43,9 +43,9 @@ const month = [
 const dropDownReducer = (currDropdown , action)=>{
     switch(action.type){
         case "MONTHS":
-            return {...currDropdown,data:action.months}
+            return {...currDropdown,data:action.months, selectedValue:month[0].value}
         case "CASETYPE":
-            return {...currDropdown,data:action.casesType}
+            return {...currDropdown,data:action.casesType,selectedValue:'Active'}
         default:
             return []
     }
@@ -72,6 +72,7 @@ const useDropdown = ()=>{
     });
     return {
         data:dropDownType.data,
+        selectedValue:dropDownType.selectedValue,
         getDropdownData:getDropdownData
     }
 };

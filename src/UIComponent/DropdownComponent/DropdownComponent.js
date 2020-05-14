@@ -5,7 +5,7 @@ import { faChevronDown,faChevronUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useDropdown from '../../hooks/dropdown-type';
 const initialState ={
-  value:'Active',
+  value:'',
   showSelectOption:false,
   traverseDropdown:[]
 }
@@ -14,6 +14,7 @@ const dropDownReducer = (currentValue, action)=>{
     case 'CREATE':
       return {
         ...currentValue,
+        value:action.value,
         traverseDropdown:action.traverseDropdown
       }
     case 'SET':
@@ -33,7 +34,7 @@ const dropDownReducer = (currentValue, action)=>{
 const DropdownComponent = React.memo(props =>{
     const {type}  = props;debugger;
     const [dropDownValue, dispatchDropdown] = useReducer(dropDownReducer, initialState);
-    const {getDropdownData,data} = useDropdown();
+    const {getDropdownData,data,selectedValue} = useDropdown();
     const selectDropdown =(e)=>{
       dispatchDropdown({type:'SET',selected:e.target.innerHTML});
     };
@@ -43,7 +44,7 @@ const DropdownComponent = React.memo(props =>{
     },[]);
 
     useEffect(()=>{
-      dispatchDropdown({type:'CREATE',traverseDropdown:data});
+      dispatchDropdown({type:'CREATE',traverseDropdown:data, value:selectedValue});
     },[data]);
     return(
         <>

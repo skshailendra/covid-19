@@ -24,7 +24,6 @@ const FetchDataProvider = props=>{
     useEffect(()=>{
         const dataCall = async ()=>{
             const data = await fetchData();
-            console.log("called....",data);
             setCasesTimeSeries(data.cases_time_series);
         };
         dataCall();

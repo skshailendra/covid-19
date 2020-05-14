@@ -17,10 +17,11 @@ const MainContent = props =>{
             <Overview/>
             <DisplayTotal/>
             <div className="description">
-                <div className="user-paragraph">
-                    {/* <LineChart /> */}
-                    <DropdownComponent type ={"months"}/>
-                    <DropdownComponent type ={"casetype"}/>
+                <div className="description-graph">
+                    <div className="dropdown-container">
+                        <DropdownComponent type ={"casetype"}/>
+                        <DropdownComponent type ={"months"}/>
+                    </div>
                     <RechartComponent/>
                    
                 </div>
