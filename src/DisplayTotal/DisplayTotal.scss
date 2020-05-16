@@ -8,6 +8,7 @@
     flex-wrap: wrap;
     @media screen and (max-width: $bp-medium) {
         padding:.6em;
+        flex-wrap: nowrap;
     }
     &__block{
         background-color: $white;

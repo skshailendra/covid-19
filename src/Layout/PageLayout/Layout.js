@@ -14,10 +14,10 @@ const Layout = props =>{
                 </div>
             </div>
             <div className="layout">
-                <div className="sidebarLayout">
+                <div className="sidebar-layout">
                     <Sidebar/>
                 </div>
-                <div className="mainContentLayout">
+                <div className="main-content-layout">
                 <RoutingComponent/>
                 </div>
             </div>

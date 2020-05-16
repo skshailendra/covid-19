@@ -7,9 +7,9 @@
 }
 .sidebar-layout{
     display: flex;
-    flex-basis: 15%;
+    flex-basis: 13%;
     @media screen and (max-width: $bp-medium) {
-        background-color: red;
+        // background-color: red;
     }
     
 }
