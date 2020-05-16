@@ -41,24 +41,24 @@ const MainContent = props =>{
                             </div>
                         </figcaption>
                     </div>
-                    {/* <div className="review">
-                        <p className="review__text">
-                            Hello world how are you this is shailendrs blog Hello world how are you fsfas asdfa sfasf afafaf aff af aHello world how are you fsfas asdfa sfasf afafaf aff af a
-                        </p>
-                        <figcaption className="review__user">
-                            <img src="img/corona_2.jpg" alt="User1" className="review__photo"/>
-                            <div className="review__user-box">
-                                <p cla="review__user-name">Shailendra</p>
-                                <p cla="review__user-date">Feb,23 </p>
-                            </div>
-                            <div className="review__user-rating">
-                                7.8
-                            </div>
-                        </figcaption>
-                    </div>
-                    <div className="review__button">
-                        <button className="btn-inline"> Show All <span>&rarr;</span></button>
-                    </div> */}
+                        {/* <div className="review">
+                            <p className="review__text">
+                                Hello world how are you this is shailendrs blog Hello world how are you fsfas asdfa sfasf afafaf aff af aHello world how are you fsfas asdfa sfasf afafaf aff af a
+                            </p>
+                            <figcaption className="review__user">
+                                <img src="img/corona_2.jpg" alt="User1" className="review__photo"/>
+                                <div className="review__user-box">
+                                    <p cla="review__user-name">Shailendra</p>
+                                    <p cla="review__user-date">Feb,23 </p>
+                                </div>
+                                <div className="review__user-rating">
+                                    7.8
+                                </div>
+                            </figcaption>
+                        </div>
+                        <div className="review__button">
+                            <button className="btn-inline"> Show All <span>&rarr;</span></button>
+                        </div> */}
                     
                 </div>
             </div>
