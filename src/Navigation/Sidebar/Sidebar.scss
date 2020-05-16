@@ -76,6 +76,14 @@
         & > span{
             color:$light-black;
         }
+        @media screen and (max-width: $bp-small) {
+            margin: 0 3px;
+            // & > svg{
+            //     width: .8em;
+            //     height:.8em;
+            //     margin:0 .75em 0 0;
+            // }
+        }
     }
 
     &__link--active {
@@ -86,6 +94,10 @@
         & > svg{
             color:#fff;
         }
+        @media screen and (max-width: $bp-small) {
+            background-color :  #e4749eed;
+        }
+       
     }
     &__text{
         color:#7f7f7f;

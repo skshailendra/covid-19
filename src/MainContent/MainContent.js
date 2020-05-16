@@ -8,6 +8,7 @@ import { faHome, faStar, faSync,faStoreAltSlash } from "@fortawesome/free-solid-
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 import BarGraph from '../GraphComponent/BarGraph/BarGraph';
 import BarChartComponent from '../GraphComponent/BarChartComponent/BarChartComponent';
+import LineChartComponent from '../GraphComponent/LineChartComponent/LineChartComponent';
 import Overview from '../Overview/Overview';
 import DisplayTotal from '../DisplayTotal/DisplayTotal';
 import DropdownComponent from '../UIComponent/DropdownComponent/DropdownComponent';
@@ -19,7 +20,7 @@ const MainContent = props =>{
             <DisplayTotal/>
             <div className="description">
                 <BarChartComponent/>
-                <BarChartComponent/>
+                <LineChartComponent/>
             </div>
         </>
     );

@@ -56,7 +56,10 @@
         display: flex;
         align-items: center;
         position: relative;
-        
+        @media screen and (max-width: $bp-small) {
+            padding: .4em .9em;
+        }
+       
     }
 
     &__icon-box:hover{
@@ -65,7 +68,9 @@
     &__icon{
             width: 1.70em;
             height:1.70em;
-        
+            @media screen and (max-width: $bp-small) {
+                height:1.2em;
+            }
     }
     
     &__notification{

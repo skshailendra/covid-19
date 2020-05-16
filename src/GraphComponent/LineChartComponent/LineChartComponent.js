@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import './BarChartComponent.scss';
-import BarGraph from '../BarGraph/BarGraph';
+import './LineChartComponent.scss';
+import LineGraph from '../LineGraph/LineGraph';
 import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownComponent';
-const BarChartComponent = props =>{
+const LineChartComponent = props =>{
     const [filterData, setFilter ] = useState('');
 
     const onSelectDropdown = (value)=>{
@@ -10,16 +10,16 @@ const BarChartComponent = props =>{
     }
     return (
         <> 
-            <div className="bar-description-graph">
-                <div className="bar-dropdown-container">
-                    <h3 className="bar-caseheading">Case: </h3>
+            <div className="line-description-graph">
+                <div className="line-dropdown-container">
+                    <h3 className="line-caseheading">Case: </h3>
                     <DropdownComponent type ={"casetype"} selectDropdown = {e=>onSelectDropdown(e)}/>
                     <DropdownComponent type ={"months"} selectDropdown = {e=>onSelectDropdown(e)}/>
                 </div>
-                <BarGraph filterData= {filterData}/>
+                <LineGraph/>
             </div>
         </>
     );
 };
 
-export default BarChartComponent;
+export default LineChartComponent;

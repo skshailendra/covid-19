@@ -37,6 +37,8 @@ const DropdownComponent = React.memo(props =>{
     const {getDropdownData,data,selectedValue} = useDropdown();
     const selectDropdown =(e)=>{
       dispatchDropdown({type:'SET',selected:e.target.innerHTML});
+      // Callback Event
+      props.selectDropdown({selected:e.target.innerHTML});
     };
 
     useEffect(()=>{

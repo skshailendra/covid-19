@@ -6,6 +6,10 @@ const initialState = {
 }
 const  casesType= [
     {
+        type:"all",
+        value:"All"
+    },
+    {
       type:"confirmed",
       value:"Confirmed"
     },
@@ -19,6 +23,10 @@ const  casesType= [
     }
 ];
 const month = [
+    {
+        type:'all',
+        value:"-All-"
+    },
     {
         type:'may',
         value:"May"
