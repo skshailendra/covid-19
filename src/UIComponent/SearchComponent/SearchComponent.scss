@@ -5,6 +5,11 @@
     margin-right: auto;  // new added
     align-items: center;
     position: relative;
+    @media screen and (max-width: $bp-medium) {
+        order:1;
+        flex: 0 0 90%;
+        margin-left: 1.5em;
+    }
 }
 .search {
     display: flex;
@@ -64,9 +69,9 @@
     position: absolute;
     top:2.2em;
     left: 0;
-    background-color: #fff;
+    background-color: rgb(172, 216, 241);
     border-radius: 5px;
-    z-index:10;
+    z-index:30;
     width: 85%;
     &__list{
         list-style-type: none;

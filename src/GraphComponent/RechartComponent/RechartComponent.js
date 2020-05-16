@@ -36,7 +36,7 @@ const RechartComponent = props =>{
       setChartWidth(700);setChartHeight(400);
     }
     if(device && device.isLargeDevice){
-      setChartWidth(900);setChartHeight(400);
+      setChartWidth(600);setChartHeight(400);
     }
     if(device && device.isMediumLargeDevice){
       setChartWidth(600);setChartHeight(300);

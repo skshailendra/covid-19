@@ -94,11 +94,15 @@
       //  margin-right: 2em;
         
     }
-    @media screen and (max-width: $bp-medium) {
+    @media screen and (max-width: $bp-large) {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    @media screen and (max-width: $bp-small) {
+        flex-wrap: nowrap;
         overflow-x: scroll;
-
         &__text{
             display: none;
         }

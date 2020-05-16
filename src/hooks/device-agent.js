@@ -17,13 +17,13 @@ const getWindowsDimension = ()=>{
         }
     }
     // Small Device  i.e. smart phones
-    if(width >= 320 && width <= 400) {
+    if(width >= 320 && width <= 420) {
         return {
             width: width,isExtraSmallDevice: false,isSmallDevice:true,isMediumDevice:false,isLargeDevice:false,isMediumLargeDevice:false,isExtraLargeDevice: false
         }
     }
     // Medium Device i.e Tablet ipad 
-    if(width > 400 && width <=768){
+    if(width > 420 && width <=768){
         return {
             width: width,isExtraSmallDevice: false,isSmallDevice:false,isMediumDevice:true,isLargeDevice:false,isMediumLargeDevice:false,isExtraLargeDevice: false
         }
