@@ -32,7 +32,7 @@ const dropDownReducer = (currentValue, action)=>{
   }
 };
 const DropdownComponent = React.memo(props =>{
-    const {type}  = props;debugger;
+    const {type}  = props;
     const [dropDownValue, dispatchDropdown] = useReducer(dropDownReducer, initialState);
     const {getDropdownData,data,selectedValue} = useDropdown();
     const selectDropdown =(e)=>{
@@ -46,6 +46,10 @@ const DropdownComponent = React.memo(props =>{
     useEffect(()=>{
       dispatchDropdown({type:'CREATE',traverseDropdown:data, value:selectedValue});
     },[data]);
+
+    useEffect(()=>{
+      //console.log("value changes ");
+    },[dropDownValue.value]);
     return(
         <>
             <div className="dropdown">

@@ -7,9 +7,12 @@
     font-size: 1em;
     background-color: whitesmoke;
     flex-wrap: wrap;
+    @media screen and (max-width: $bp-medium) {
+        flex-direction: column;
+    }
 }
 .description-graph{
-    flex:0 0 60%;
+   // flex:0 0 60%;
     background-color: #fff;
 }
 .dropdown-container{

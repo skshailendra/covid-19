@@ -26,7 +26,7 @@ const MainContent = props =>{
                    
                 </div>
                 <div className="user-reviews">
-                    <figure className="review">
+                    <div className="review">
                         <p className="review__text">
                             Hello world how are you fsfas asdfa sfasf afafaf aff af aHello world how are you fsfas asdfa sfasf afafaf aff af a
                         </p>
@@ -40,8 +40,8 @@ const MainContent = props =>{
                                 7.8
                             </div>
                         </figcaption>
-                    </figure>
-                    <figure className="review">
+                    </div>
+                    {/* <div className="review">
                         <p className="review__text">
                             Hello world how are you this is shailendrs blog Hello world how are you fsfas asdfa sfasf afafaf aff af aHello world how are you fsfas asdfa sfasf afafaf aff af a
                         </p>
@@ -55,10 +55,10 @@ const MainContent = props =>{
                                 7.8
                             </div>
                         </figcaption>
-                    </figure>
-                    <figure className="review__button">
+                    </div>
+                    <div className="review__button">
                         <button className="btn-inline"> Show All <span>&rarr;</span></button>
-                    </figure>
+                    </div> */}
                     
                 </div>
             </div>

@@ -10,6 +10,10 @@
     align-items: center;
     font-size: 1em;
     font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", "-apple-system", "BlinkMacSystemFont", "Roboto", "Helvetica Neue", sans-serif;
+
+    @media screen and (max-width: $bp-medium) {
+        flex-wrap: wrap;
+    }
 }
 
 // Logo

@@ -42,7 +42,7 @@ const DisplayTotal = props =>{
         const newFilterArray = filterArray.map((data,idx)=>{
             return data = convertToInt(data);        
         });
-        console.log(newFilterArray);
+       // console.log(newFilterArray);
         setTinyLineChart(newFilterArray);
     };
     useEffect(()=>{
@@ -56,27 +56,27 @@ const DisplayTotal = props =>{
                 increaseCount:todaysData.dailyconfirmed,
                 styleClass:"confirmed-case",
                 arrowColor:"#f31a1a",
-                label : "Total Confirmed",
+                label : "Confirmed",
             };
             const recoveredObj = {
                 totalCount:todaysData.totalrecovered,
                 increaseCount:todaysData.dailyrecovered,
                 styleClass:"recovered-case",
                 arrowColor:"#92de92",
-                label : "Total Recovered",
+                label : "Recovered",
             };
             const activeObj = {
                 totalCount:todaysData.totalactive,
                 increaseCount:null,
                 styleClass:"active-case",
-                label : "Total Active",
+                label : "Active",
             };
             const deceasedObj = {
                 totalCount:todaysData.totaldeceased,
                 increaseCount:todaysData.dailydeceased,
                 styleClass:"deceased-case",
                 arrowColor:"#ad9797",
-                label : "Total Deceased",
+                label : "Deceased",
             };
             const latestData = [];
             latestData.push(confirmedObj,recoveredObj,activeObj,deceasedObj);
@@ -93,7 +93,7 @@ const DisplayTotal = props =>{
                     latestData.map((data,key)=> 
                         (
                         <div className={`display-total__block`} key = {key}>
-                            <div className="display-total__text">
+                            <div className={`display-total__text display-total__${data.styleClass} `}>
                                 {data.label}
                             </div>
                             <div className={`display-total__count-block display-total__${data.styleClass}`}>

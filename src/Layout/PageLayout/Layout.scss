@@ -1,9 +1,17 @@
+@import '../../Globals//variables/variables.scss';
 .layout{
     display: flex;
+    @media screen and (max-width: $bp-large) {
+        flex-direction: column;
+    }
 }
 .sidebar-layout{
     display: flex;
     flex-basis: 15%;
+    @media screen and (max-width: $bp-medium) {
+        background-color: red;
+    }
+    
 }
 .main-content-layout{
     flex:1;

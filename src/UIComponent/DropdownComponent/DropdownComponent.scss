@@ -54,6 +54,9 @@
         translate: all .3s;
         cursor: pointer;
     }
+    @media screen and (max-width: $bp-medium) {
+        font-size: .8em;
+    }
 }
 
 .verticle-line{

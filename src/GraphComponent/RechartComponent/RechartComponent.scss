@@ -13,6 +13,10 @@
     margin-bottom: 2em;
     border-radius: 5px;
     position: relative;
+    @media screen and (max-width: $bp-medium) {
+        padding: 0;
+        flex-wrap: wrap;
+    }
 }
 
 .dropdown{

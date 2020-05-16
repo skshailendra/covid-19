@@ -21,7 +21,6 @@ const SearchComponent = props =>{
         setSearchFocus(false);
         setSearchValue('');
     }
-    console.log("dd")
     return (
         <>
             <div className="search-wrap">
