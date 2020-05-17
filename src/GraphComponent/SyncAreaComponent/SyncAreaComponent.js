@@ -1,13 +1,11 @@
 import React, {useEffect, useState,useContext} from 'react';
-import './BarChartComponent.scss';
-import BarGraph from '../BarGraph/BarGraph';
+import './SyncAreaComponent.scss';
+import SynchronizedAreaChart from '../SynchronizedAreaChart/SynchronizedAreaChart';
 import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownComponent';
 import {FetchDataContext} from '../../context/fetch-data';
-import TinyGraph from '../TinyGraph/TinyGraph';
-import TinyAreaGraph from '../TinyAreaGraph/TinyAreaGraph';
 
-const BarChartComponent = props =>{
-    const [filterData, setFilterData ] = useState({month:"May" , caseType:'all'});
+const SyncAreaComponent = props =>{
+    const [filterData, setFilterData ] = useState({month:"May"});
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const [latestData,setLatestData] = useState([]);
@@ -16,8 +14,6 @@ const BarChartComponent = props =>{
         console.log("value.. ",value);
         if(value && value.type === "months"){
             setFilterData({...filterData,month:value.selectedtype});
-        }else{
-            setFilterData({...filterData,caseType:value.selectedtype})
         }
     }
     const createFilterArray = ()=>{
@@ -28,24 +24,22 @@ const BarChartComponent = props =>{
     }
     useEffect(()=>{
         console.log("common");
-        createFilterArray();
-        //setLatestData(casesTimeSeries);
+        setLatestData(casesTimeSeries);
     },[casesTimeSeries,filterData]);
-    // useEffect(()=>{
-    //     createFilterArray();
-    // },[filterData]);
+    useEffect(()=>{
+        createFilterArray();
+    },[filterData]);
     return (
         <> 
-            <div className="bar-description-graph">
-                <div className="bar-dropdown-container">
-                    <h3 className="bar-caseheading">Total Cases: </h3>
-                    <DropdownComponent type ={"casetype"} selectDropdown = {e=>onSelectDropdown(e)}/>
+            <div className="sync-description-graph">
+                <div className="sync-dropdown-container">
+                    <h3 className="sync-caseheading">Daily Cases </h3>
                     <DropdownComponent type ={"months"} selectDropdown = {e=>onSelectDropdown(e)}/>
                 </div>
-                <BarGraph latestData= {latestData} filterCaseType = {filterData.caseType}/>
+                <SynchronizedAreaChart latestData= {latestData} />
             </div>
         </>
     );
 };
 
-export default BarChartComponent;
+export default SyncAreaComponent;

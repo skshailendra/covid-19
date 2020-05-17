@@ -4,6 +4,7 @@ import BarChartComponent from '../GraphComponent/BarChartComponent/BarChartCompo
 import LineChartComponent from '../GraphComponent/LineChartComponent/LineChartComponent';
 import Overview from '../Overview/Overview';
 import DisplayTotal from '../DisplayTotal/DisplayTotal';
+import SyncAreaComponent from '../GraphComponent/SyncAreaComponent/SyncAreaComponent';
 const MainContent = props =>{
     
     return (
@@ -12,7 +13,8 @@ const MainContent = props =>{
             <DisplayTotal/>
             <div className="description">
                 <BarChartComponent/>
-                <LineChartComponent/>
+                {/* <LineChartComponent/> */}
+                <SyncAreaComponent/>
             </div>
         </>
     );

@@ -1,7 +1,7 @@
 @import '../../Globals/variables/variables.scss';
 
-.bar-description-graph{
-    flex:0 0 60%;
+.sync-description-graph{
+   // flex:0 0 60%;
     background-color: #fff;
     box-shadow: 0px 3px 10px #e4e4e4;
     display: flex;
@@ -11,7 +11,7 @@
         margin-bottom:2em;
     }
 }
-.bar-dropdown-container{
+.sync-dropdown-container{
     background-color: ghostwhite;
     display: flex;
     justify-content: space-between;
@@ -19,7 +19,7 @@
     padding: 0em 1em;
     margin-bottom:2em;
 }
-.bar-caseheading{
+.sync-caseheading{
     font-size: 1em;
     line-height: 2em;
 }

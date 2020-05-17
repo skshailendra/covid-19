@@ -21,17 +21,20 @@ const fetchData = async()=>{
 };
 const FetchDataProvider = props=>{
     const [casesTimeSeries,setCasesTimeSeries] = useState([]);
+    const [statewise,setStatewise] = useState([]);
     useEffect(()=>{
         const dataCall = async ()=>{
             const data = await fetchData();
             setCasesTimeSeries(data.cases_time_series);
+            setStatewise(data.statewise);
         };
         dataCall();
     },[]);
 
     return(
         <FetchDataContext.Provider value={{
-            casesTimeSeries: casesTimeSeries
+            casesTimeSeries: casesTimeSeries,
+            statewise: statewise
         }}>
             {props.children}
         </FetchDataContext.Provider>

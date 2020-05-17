@@ -8,141 +8,99 @@ import { faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {FetchDataContext} from '../context/fetch-data';
 import PieGraph from '../GraphComponent/PieGraph/PieGraph';
+import LineChartComponent from '../GraphComponent/LineChartComponent/LineChartComponent';
+
+import TinyAreaGraph from '../GraphComponent/TinyAreaGraph/TinyAreaGraph';
+import TinyGraph from '../GraphComponent/TinyGraph/TinyGraph';
 const DisplayTotal = props =>{
 
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
+    const statewise = fetchCovidData.statewise[0];
     const [latestData,setLatestData] = useState([]);
-    const [dailyData, setDailyData] = useState();
-    const [tinyLineChart,setTinyLineChart] = useState([]);
-    const dataJsonUrl = 'https://api.covid19india.org/data.json';
-    const requestOption = {
-        method:"GET"
-    };
     let filterArray = [];
-    const fetchData = async()=>{
-        const response = await fetch(dataJsonUrl,requestOption);
-        if(response.ok){
-            let resJson = await response.json();
-            return resJson;
-        }else{
-            throw Error("Unable to fetch the data");
-        }
-    };
-    const convertToInt = (data)=>{
-        for (let itr in data){
-            if(data.hasOwnProperty(itr) && typeof data[itr] === 'string' && !data[itr].includes("May")){
-               data[itr] = parseInt(data[itr]);
-            }
-        }
-        return data;
-    }
-    const filterData = () =>{
-        
-        filterArray = casesTimeSeries.filter( (data)=>data.date.includes("May"));
-        const newFilterArray = filterArray.map((data,idx)=>{
-            return data = convertToInt(data);        
-        });
-       // console.log(newFilterArray);
-        setTinyLineChart(newFilterArray);
-    };
+
     useEffect(()=>{
+        console.log("displa");
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
-            const length = casesTimeSeries.length;
-            const todaysData = casesTimeSeries[length-1];
-            todaysData.totalactive = (parseInt(todaysData.totalconfirmed) - (parseInt(todaysData.totalrecovered) + parseInt(todaysData.totaldeceased)) ).toString();
-
-            const confirmedObj = {
-                totalCount:todaysData.totalconfirmed,
-                increaseCount:todaysData.dailyconfirmed,
-                styleClass:"confirmed-case",
-                arrowColor:"#f31a1a",
-                label : "Confirmed",
-            };
-            const recoveredObj = {
-                totalCount:todaysData.totalrecovered,
-                increaseCount:todaysData.dailyrecovered,
-                styleClass:"recovered-case",
-                arrowColor:"#92de92",
-                label : "Recovered",
-            };
-            const activeObj = {
-                totalCount:todaysData.totalactive,
-                increaseCount:null,
-                styleClass:"active-case",
-                label : "Active",
-            };
-            const deceasedObj = {
-                totalCount:todaysData.totaldeceased,
-                increaseCount:todaysData.dailydeceased,
-                styleClass:"deceased-case",
-                arrowColor:"#ad9797",
-                label : "Deceased",
-            };
-            const latestData = [];
-            latestData.push(confirmedObj,recoveredObj,activeObj,deceasedObj);
-            setLatestData(latestData);
-
-            filterData();
+            filterArray = casesTimeSeries.filter( (item)=>item.date.includes("May"));
+            setLatestData(filterArray);
         }
-    },[casesTimeSeries]); 
+        //setLatestData(casesTimeSeries);
+        
+    },[casesTimeSeries]);
+    useEffect(()=>{
+        console.log("statewise",statewise);
+    },[statewise]);
     
     return (
     <>  
-            <div className="display-total">
-                {latestData && 
-                    latestData.map((data,key)=> 
-                        (
-                        <div className={`display-total__block`} key = {key}>
-                            <div className={`display-total__text display-total__${data.styleClass} `}>
-                                {data.label}
+            <div className="container">
+                <div className="display-total">
+                    {statewise && 
+                        <>
+                        <div className={`display-total__block`}>
+                            <div className={`display-total__text`}>
+                                {"Confirmed"}
                             </div>
-                            <div className={`display-total__count-block display-total__${data.styleClass}`}>
+                            <div className={`display-total__count-block`}>
                                 <div className="display-total__count">
-                                    {data.totalCount}
+                                    {statewise.confirmed}
                                 </div>
-                                {data.increaseCount && 
+                                
                                 <div className="display-total__increase">
-                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" color={data.arrowColor} className="display-total__icon"/>
-                                    [+{data.increaseCount}]
+                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
+                                    [+{statewise.deltaconfirmed}]
                                 </div>
-                                }
+                                
                             </div>
+                            <TinyAreaGraph latestData= {latestData}/>
                         </div>
-                        )
-                    )
-                }
-                         
-            </div>
-            <div className="pie-chart-container">
-                 <PieGraph/>
-                </div>          
-            {/* <div className="line">
-                {
-                    tinyLineChart && <>
-                    <div className={`line__block`}>
-                        <LineChart width={265} height={100} data={tinyLineChart} compact={true}>             
-                            <Line dot ={false} type='monotone' dataKey='dailyconfirmed' stroke='#8884d8' strokeWidth={2} />                            
-                        </LineChart>  
-                    </div>
-                    <div className={`line__block`}>
-                    <LineChart width={265} height={100} data={tinyLineChart}>             
-                        <Line dot ={false} type='monotone' dataKey='dailyrecovered' stroke='#82ca9d' strokeWidth={2} />                            
-                    </LineChart>   
-                    </div>
-                    <div className={`line__block`}>
-                    <LineChart width={265} height={100}data={tinyLineChart}>             
-                        <Line dot ={false} type='monotone' dataKey='dailyrecovered' stroke='#8884d8' strokeWidth={2} />                            
-                    </LineChart>  
-                    </div> 
-                    <div className={`line__block`}>
-                    <LineChart width={265} height={100}data={tinyLineChart}>             
-                        <Line dot ={false} type='monotone' dataKey='dailydeceased' stroke='#9e9191' strokeWidth={2} />                            
-                    </LineChart>   
-                    </div>
-                    </>
-                }
-            </div> */}
+
+                        <div className={`display-total__block`}>
+                            <div className={`display-total__text`}>
+                                {"Confirmed"}
+                            </div>
+                            <div className={`display-total__count-block`}>
+                                <div className="display-total__count">
+                                    {statewise.confirmed}
+                                </div>
+                                
+                                <div className="display-total__increase">
+                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
+                                    [+{statewise.deltaconfirmed}]
+                                </div>
+                                
+                            </div>
+                            <TinyAreaGraph latestData= {latestData}/>
+                        </div>   
+
+                        <div className={`display-total__block`}>
+                            <div className={`display-total__text`}>
+                                {"Confirmed"}
+                            </div>
+                            <div className={`display-total__count-block`}>
+                                <div className="display-total__count">
+                                    {statewise.confirmed}
+                                </div>
+                                
+                                <div className="display-total__increase">
+                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
+                                    [+{statewise.deltaconfirmed}]
+                                </div>
+                                
+                            </div>
+                            <TinyAreaGraph latestData= {latestData}/>
+                        </div>
+                        </>   
+                    }
+                    
+                </div>
+                <div className="line-chart-container">
+                    {/* <PieGraph/> */}
+                    <LineChartComponent/>
+                </div>
+            </div>   
         </>
     );
 };
