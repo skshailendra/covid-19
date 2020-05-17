@@ -69,13 +69,13 @@
     position: absolute;
     top:2.2em;
     left: 0;
-    background-color: rgb(172, 216, 241);
+    background-color: #fffdfd;
     border-radius: 5px;
     z-index:30;
     width: 85%;
     &__list{
         list-style-type: none;
-        padding: 0;
+        padding: 1em;
         margin: 0;
         box-shadow: 3px 5px rgba(0, 0, 0, 0.05);
     }
@@ -101,3 +101,29 @@
 
     }
 }
+
+.btn-inline{
+    border:none;
+    padding: 0;
+    color:red;
+    font-size: inherit;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    display: inline-block;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all .2s;
+
+    & span{
+        margin-left: 3px;
+        transition: margin-left .2s;
+    }
+
+    &:hover{
+        color:#ff6060;
+
+        span{
+            margin-left: 8px;
+        }
+    }
+} 

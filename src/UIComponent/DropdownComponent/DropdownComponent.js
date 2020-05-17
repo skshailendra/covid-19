@@ -38,7 +38,7 @@ const DropdownComponent = React.memo(props =>{
     const selectDropdown =(e)=>{
       dispatchDropdown({type:'SET',selected:e.target.innerHTML});
       // Callback Event
-      props.selectDropdown({selected:e.target.innerHTML});
+      props.selectDropdown({selected:e.target.innerHTML, selectedtype:e.target.dataset.value,type:type,});
     };
 
     useEffect(()=>{
@@ -46,19 +46,15 @@ const DropdownComponent = React.memo(props =>{
     },[]);
 
     useEffect(()=>{
-      dispatchDropdown({type:'CREATE',traverseDropdown:data, value:selectedValue});
+      dispatchDropdown({type:'CREATE',traverseDropdown:data, value:selectedValue,selectedValue:selectedValue});
     },[data]);
-
-    useEffect(()=>{
-      //console.log("value changes ");
-    },[dropDownValue.value]);
     return(
         <>
             <div className="dropdown">
                 <div className="dropdown__wrap">
                     <ul className="dropdown__default" onClick={e =>dispatchDropdown({type:'TOGGLE'})}>
                         <li className="dropdown__default-option">           
-                            <div className="dropdown__value">{dropDownValue.value}</div>
+                            <div className="dropdown__value" >{dropDownValue.value}</div>
                             {/* <span className="verticle-line"></span> */}
                             {dropDownValue.showSelectOption ? 
                             <FontAwesomeIcon icon={faChevronUp}  color="#ea7e0b" className="dropdown__icon"/>:
@@ -70,7 +66,7 @@ const DropdownComponent = React.memo(props =>{
                     <ul className="dropdown__select-list" onClick={e=>selectDropdown(e)}>
                         {
                             dropDownValue.traverseDropdown.map((item)=>(
-                                <li key={item.type} className={`dropdown__option ${item.value === dropDownValue.value?'dropdown__active':''}` }>
+                                <li key={item.type} data-value={item.type} className={`dropdown__option ${item.value === dropDownValue.value?'dropdown__active':''}` }>
                                     {item.value}
                                 </li>
                             ))

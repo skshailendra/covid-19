@@ -7,6 +7,7 @@ import {
 import { faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {FetchDataContext} from '../context/fetch-data';
+import PieGraph from '../GraphComponent/PieGraph/PieGraph';
 const DisplayTotal = props =>{
 
     const fetchCovidData = useContext(FetchDataContext);
@@ -110,8 +111,12 @@ const DisplayTotal = props =>{
                         </div>
                         )
                     )
-                }                
+                }
+                         
             </div>
+            <div className="pie-chart-container">
+                 <PieGraph/>
+                </div>          
             {/* <div className="line">
                 {
                     tinyLineChart && <>

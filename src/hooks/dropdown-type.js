@@ -10,42 +10,38 @@ const  casesType= [
         value:"All"
     },
     {
-      type:"confirmed",
+      type:"totalconfirmed",
       value:"Confirmed"
     },
     {
-      type:"active",
-      value:"Active"
+      type:"totalrecovered",
+      value:"Recovered"
     },
     {
-      type:"deceased",
+      type:"totaldeceased",
       value:"Deceased"
     }
 ];
 const month = [
     {
-        type:'all',
-        value:"-All-"
-    },
-    {
-        type:'may',
+        type:'May',
         value:"May"
     },
     {
-        type:'april',
+        type:'April',
         value:"April"
     },
     {
-        type:'march',
+        type:'March',
         value:"March"
     },
     {
-        type:'feb',
+        type:'Feb',
         value:"February"
     },
     {
-        type:'jan',
-        value:"january"
+        type:'Jan',
+        value:"January"
     }
 ];
 const dropDownReducer = (currDropdown , action)=>{
@@ -53,7 +49,7 @@ const dropDownReducer = (currDropdown , action)=>{
         case "MONTHS":
             return {...currDropdown,data:action.months, selectedValue:month[0].value}
         case "CASETYPE":
-            return {...currDropdown,data:action.casesType,selectedValue:'Active'}
+            return {...currDropdown,data:action.casesType,selectedValue:'All'}
         default:
             return []
     }

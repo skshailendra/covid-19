@@ -90,3 +90,9 @@
         background-color: $white;
     }
 }
+.pie-chart-container{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+}

@@ -61,6 +61,10 @@ const SearchComponent = props =>{
                                 <div className="search-result__count">
                                     23455
                                 </div>
+                                <figure className="review__button">
+                                  <button className="btn-inline"> Show All <span>&rarr;</span></button>
+                                </figure>
+
                             </li>
                         </ul>
                     </div>
