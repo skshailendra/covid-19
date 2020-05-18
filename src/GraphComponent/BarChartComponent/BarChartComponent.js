@@ -4,7 +4,7 @@ import BarGraph from '../BarGraph/BarGraph';
 import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownComponent';
 import {FetchDataContext} from '../../context/fetch-data';
 import TinyGraph from '../TinyGraph/TinyGraph';
-import TinyAreaGraph from '../TinyAreaGraph/TinyAreaGraph';
+import PieChartComponent from '../PieChartComponent/PieChartComponent';
 
 const BarChartComponent = props =>{
     const [filterData, setFilterData ] = useState({month:"May" , caseType:'all'});
@@ -43,6 +43,7 @@ const BarChartComponent = props =>{
                     <DropdownComponent type ={"months"} selectDropdown = {e=>onSelectDropdown(e)}/>
                 </div>
                 <BarGraph latestData= {latestData} filterCaseType = {filterData.caseType}/>
+                <PieChartComponent/>
             </div>
         </>
     );

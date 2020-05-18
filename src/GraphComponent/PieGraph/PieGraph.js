@@ -12,16 +12,22 @@ const PieGraph = props =>{
     const [chartWidth, setChartWidth] = useState(800);
     const [chartHeight, setChartHeight] = useState(400);
     const [activeIndex, setActiveIndex] = useState(0);
+    const [latestData,setLatestData] = useState(props.latestData);
+    
+    // const data = [{name: 'Confirmed', value: 90648}, 
+		// 					{name: 'Recovered', value: 34257},
+    //           {name: 'Death', value: 2871}
+    //          ];
+    // useEffect(()=>{
+    //   console.log("pie graph",latestData);
+    //   console.log("props",props);
+
+    // },latestData);
+    const COLORS = ['#ea8888', '#00C49F', '#989898'];
+
     const onPieEnter = (data, index) =>{
       setActiveIndex(index);
     };
-    const data = [{name: 'Confirmed', value: 90648}, 
-							{name: 'Recovered', value: 34257},
-              {name: 'Death', value: 2871}
-             ];
-            
-    const COLORS = ['#ea8888', '#00C49F', '#989898'];
-
     const renderActiveShape = (props) => {
       const RADIAN = Math.PI / 180;
       const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
@@ -32,7 +38,7 @@ const PieGraph = props =>{
       const sy = cy + (outerRadius + 10) * sin;
       const mx = cx + (outerRadius + 30) * cos;
       const my = cy + (outerRadius + 30) * sin;
-      const ex = mx ;
+      const ex = mx + (cos >= 0 ? 1 : -1) * 22;
       const ey = my ;
       const textAnchor = cos >= 0 ? 'start' : 'end';
     
@@ -54,7 +60,7 @@ const PieGraph = props =>{
             startAngle={startAngle}
             endAngle={endAngle}
             innerRadius={outerRadius + 6}
-            outerRadius={outerRadius + 10}
+            outerRadius={outerRadius + 8}
             fill={fill}
           />
           <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none"/>
@@ -71,8 +77,6 @@ const PieGraph = props =>{
       const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
       const x  = cx + radius * Math.cos(-midAngle * RADIAN);
       const y = cy  + radius * Math.sin(-midAngle * RADIAN);
-      debugger;
-    console.log("x",x , y,cx,cy);
       return (
         <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="central">
           {`${(percent * 100).toFixed(0)}%`}
@@ -102,21 +106,21 @@ const PieGraph = props =>{
     return (
         <>
              <div className="pie-chart">
-             <PieChart width={350} height={300}>
+             <PieChart width={600} height={300}>
         <Pie 
         	activeIndex={activeIndex}
           activeShape={renderActiveShape} 
-          data={data} 
-          cx={150} 
-          cy={150} 
+          data={props.latestData} 
+          cx={300} 
+          cy={130} 
           innerRadius={60}
           outerRadius={80} 
           fill="#8884d8"
           onMouseEnter={onPieEnter}
         
           >
-        	{
-          	data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
+        	{props.latestData &&
+          	props.latestData.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
           }
           </Pie>
        </PieChart>

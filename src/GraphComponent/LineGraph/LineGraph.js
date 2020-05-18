@@ -35,7 +35,7 @@ const LineGraph = props =>{
     },[filterData]); 
   useEffect(()=>{
     if(device && device.isExtraLargeDevice){
-      setChartWidth(530);setChartHeight(400);
+      setChartWidth(800);setChartHeight(400);
     }
     if(device && device.isLargeDevice){
       setChartWidth(600);setChartHeight(400);
@@ -50,7 +50,7 @@ const LineGraph = props =>{
       setChartWidth(300);setChartHeight(300);
     }
     console.log(device);
-    console.log("chartwidth",chartWidth);
+    console.log("linewidth",chartWidth);
   },[device]);
     return (
         <>
