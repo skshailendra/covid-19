@@ -108,7 +108,8 @@ const PieGraph = props =>{
              <div className="pie-chart">
              <PieChart width={600} height={300}>
         <Pie 
-        	activeIndex={activeIndex}
+          activeIndex={activeIndex}
+          dataKey="value"
           activeShape={renderActiveShape} 
           data={props.latestData} 
           cx={300} 
@@ -120,7 +121,7 @@ const PieGraph = props =>{
         
           >
         	{props.latestData &&
-          	props.latestData.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
+          	props.latestData.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)
           }
           </Pie>
        </PieChart>
