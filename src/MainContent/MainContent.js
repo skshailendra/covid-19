@@ -9,7 +9,7 @@ const MainContent = props =>{
     
     return (
         <>
-            <Overview/>
+            {/* <Overview/> */}
             <DisplayTotal/>
             <div className="description">
                 <BarChartComponent/>

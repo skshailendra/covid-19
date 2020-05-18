@@ -54,43 +54,43 @@ const DisplayTotal = props =>{
                                 </div>
                                 
                             </div>
-                            <TinyAreaGraph latestData= {latestData}/>
+                            <TinyAreaGraph latestData= {latestData} dataKey={"dailyconfirmed"} fillcolor={"red"}/>
                         </div>
 
                         <div className={`display-total__block`}>
                             <div className={`display-total__text`}>
-                                {"Confirmed"}
+                                {"Recovered"}
                             </div>
                             <div className={`display-total__count-block`}>
                                 <div className="display-total__count">
-                                    {statewise.confirmed}
+                                    {statewise.recovered}
                                 </div>
                                 
                                 <div className="display-total__increase">
                                     <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
-                                    [+{statewise.deltaconfirmed}]
+                                    [+{statewise.deltarecovered}]
                                 </div>
                                 
                             </div>
-                            <TinyAreaGraph latestData= {latestData}/>
+                            <TinyAreaGraph latestData= {latestData} dataKey={"dailyrecovered"} fillcolor={"green"}/>
                         </div>   
 
                         <div className={`display-total__block`}>
                             <div className={`display-total__text`}>
-                                {"Confirmed"}
+                                {"Deaths"}
                             </div>
                             <div className={`display-total__count-block`}>
                                 <div className="display-total__count">
-                                    {statewise.confirmed}
+                                    {statewise.deaths}
                                 </div>
                                 
                                 <div className="display-total__increase">
                                     <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
-                                    [+{statewise.deltaconfirmed}]
+                                    [+{statewise.deltadeaths}]
                                 </div>
                                 
                             </div>
-                            <TinyAreaGraph latestData= {latestData}/>
+                            <TinyAreaGraph latestData= {latestData} dataKey={"dailydeceased"} fillcolor={"grey"}/>
                         </div>
                         </>   
                     }

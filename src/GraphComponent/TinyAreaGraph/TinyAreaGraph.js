@@ -39,7 +39,7 @@ const TinyAreaGraph = props =>{
                 <div className="tiny-chart">
                 <AreaChart width={200} height={60} data={props.latestData}
                       margin={{top: 5, right: 0, left: 0, bottom: 5}}>
-                  <Area type='monotone' dataKey='dailyconfirmed' stroke='#8884d8' fill='#8884d8' />
+                  <Area type='monotone' dataKey={props.dataKey} stroke='#8884d8' fill={props.fillcolor} />
                 </AreaChart>
                 </div>
             </div>
