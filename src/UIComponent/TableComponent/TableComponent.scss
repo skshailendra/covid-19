@@ -1,0 +1,100 @@
+@import '../../Globals//variables/variables.scss';
+.table{
+   // display: flex;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0px 6px 16px #e4e4e4;
+    font-family:  "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    font-size: inherit;
+    margin-top: 1em;
+    border-radius: 5px;
+    overflow: hidden; 
+    &__body{
+        background-color: #fff;
+        padding:1em;
+    }
+    &__row-heading{
+        display: flex;
+        padding: 12px 2px 3px 2px;
+        justify-content: space-between;
+        border-bottom: 2px solid #efeaea;
+    }
+    &__row{
+        display: flex;
+        padding:1em 16px 16px 3px;
+        justify-content: space-between;
+        border-bottom: 1px solid #efecec;
+        font-size: .9em;
+    }
+    &__row:hover{
+        background-color: whitesmoke;
+    }
+    &__column{
+        display: flex;
+        flex:1;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    &__heading{
+        display: flex;
+        flex:1;
+        padding: .8em 0px;
+        cursor: default;
+        font-weight: 600;
+    }
+    &__heading:hover{
+        background-color: whitesmoke;
+    }
+    &__icon{
+        width:1em;
+        height: .7em;
+    }
+    &__data__stats{
+        display: flex;
+        align-items: center;
+    }
+    &__body-content{
+        font-size: 1.2em;
+        margin-right: 4px;
+    }
+    &__body-content-delta{
+        font-size: .9em;
+    }
+}
+.show-button{
+    border: none;
+    background-color: #fff;
+    border-radius:50%;
+    cursor: pointer;
+    &:focus{
+        outline: none;
+    }
+    &:active{
+        transform:translateY(1px);
+    }
+}   
+.btn-inline2{
+    border:none;
+    padding: 0;
+    color:red;
+    font-size: inherit;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+   // display: inline-block;
+    background-color: transparent;
+    cursor: pointer;
+    //transition: all .2s;
+
+    // & span{
+    //     margin-left: 3px;
+    //     transition: margin-left .2s;
+    // }
+
+    &:hover{
+        color:#ff6060;
+
+        // span{
+        //     margin-left: 5px;
+        // }
+    }
+} 

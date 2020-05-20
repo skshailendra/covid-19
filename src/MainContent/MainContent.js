@@ -6,6 +6,7 @@ import PieGraph from '../GraphComponent/PieGraph/PieGraph';
 import Overview from '../Overview/Overview';
 import DisplayTotal from '../DisplayTotal/DisplayTotal';
 import SyncAreaComponent from '../GraphComponent/SyncAreaComponent/SyncAreaComponent';
+import TableComponent from '../UIComponent/TableComponent/TableComponent';
 const MainContent = props =>{
     
     return (
@@ -17,6 +18,7 @@ const MainContent = props =>{
                 {/* <LineChartComponent/> */}
                 {/* <PieGraph/> */}
                 <SyncAreaComponent/>
+                <TableComponent/>
             </div>
         </>
     );

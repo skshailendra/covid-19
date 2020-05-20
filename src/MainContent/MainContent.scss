@@ -8,6 +8,8 @@
     background-color: whitesmoke;
     flex-wrap: wrap;
     justify-content: space-between;
+    border-bottom: 1px solid red;
+    margin-bottom: 1em;
     @media screen and (max-width: $bp-medium) {
         flex-direction: column;
     }
