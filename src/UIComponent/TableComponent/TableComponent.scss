@@ -18,16 +18,29 @@
         padding: 12px 2px 3px 2px;
         justify-content: space-between;
         border-bottom: 2px solid #efeaea;
+        font-size: 0.9em;
+        font-weight: 500;
+        color: $font-light-black;
+    }
+    &__row-heading-district{
+        //color:#b59595;
+        font-size: 15px;
     }
     &__row{
         display: flex;
         padding:1em 16px 16px 3px;
         justify-content: space-between;
         border-bottom: 1px solid #efecec;
-        font-size: .9em;
+        font-size: .8em;
+        font-weight: 500;
+        color: $font-light-black;
+        cursor: pointer;
     }
     &__row:hover{
         background-color: whitesmoke;
+    }
+    &__row-district{
+        background-color: #fbfffb;
     }
     &__column{
         display: flex;
@@ -52,6 +65,19 @@
     &__data__stats{
         display: flex;
         align-items: center;
+        
+    }
+    &__data__confirmed{
+        color:$confirmed-text;
+    }
+    &__data__active{
+        color:$active-text;
+    }
+    &__data__recovered{
+        color:$recovered-text;
+    }
+    &__data__deceased{
+        color:$deceased-text;
     }
     &__body-content{
         font-size: 1.2em;
@@ -59,6 +85,7 @@
     }
     &__body-content-delta{
         font-size: .9em;
+        margin-right: 9px;
     }
 }
 .show-button{
