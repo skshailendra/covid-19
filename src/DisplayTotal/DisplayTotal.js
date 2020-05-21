@@ -96,8 +96,7 @@ const DisplayTotal = props =>{
                     }
                     
                 </div>
-                <div className="line-chart-container">
-                    {/* <PieGraph/> */}
+                <div className="display-line-chart-container">
                     <LineChartComponent/>
                 </div>
             </div>   

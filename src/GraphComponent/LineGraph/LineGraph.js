@@ -54,7 +54,7 @@ const LineGraph = props =>{
   },[device]);
     return (
         <>
-            <div className="line-chart-container">
+            
                 <div className="line-chart">
                       <LineChart width={chartWidth} height={chartHeight} data={latestData}
                             margin={{top: 5, right: 30, left: 20, bottom: 5}}>
@@ -68,7 +68,6 @@ const LineGraph = props =>{
                       <Line type="monotone" dataKey="dailydeceased" stroke="#82ca9d" />
                       </LineChart>        
                 </div>
-            </div>
         </>
     );
 }

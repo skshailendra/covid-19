@@ -6,7 +6,8 @@
 .display-total{
     display: flex;
     background-color: whitesmoke;
-    padding:1em 1em 0 1em ;
+    //padding:1em 1em 0 1em ;
+    padding: 1em;
     justify-content: space-between;
     flex-direction: column;
     @media screen and (max-width: $bp-medium) {
@@ -93,10 +94,11 @@
         background-color: $white;
     }
 }
-.line-chart-container{
+.display-line-chart-container{
     display: flex;
     flex-wrap: wrap;
-    background-color: #fff;
+    //background-color: #fff;
     flex-direction: column-reverse;
     flex: 0 0 70%;
+    padding:1em 1em 1em 0;
 }
