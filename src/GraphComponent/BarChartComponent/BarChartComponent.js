@@ -3,7 +3,6 @@ import './BarChartComponent.scss';
 import BarGraph from '../BarGraph/BarGraph';
 import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownComponent';
 import {FetchDataContext} from '../../context/fetch-data';
-import TinyGraph from '../TinyGraph/TinyGraph';
 import PieChartComponent from '../PieChartComponent/PieChartComponent';
 
 const BarChartComponent = props =>{
