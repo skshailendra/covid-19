@@ -36,7 +36,7 @@ const LineGraph = props =>{
             <LineChart width={chartWidth} height={chartHeight} data={props.latestData}
                  scale="auto" >
             <XAxis dataKey="date"/>
-            <YAxis  domain={[0, 'dataMax + 1000']}/>
+            <YAxis  domain={['auto', 'dataMax + 1000']}/>
             <CartesianGrid vertical={false}  strokeDasharray="3 3"/>
             <Tooltip/>
             <Legend />
