@@ -1,0 +1,30 @@
+.map{
+    display: flex;
+    flex-wrap: wrap;
+}
+.indiamap{
+    border:1px solid grey;
+    min-height: 100vh;
+    flex:0 0 50%;
+    padding: 1em;
+}
+
+svg{
+    //width:100%;
+    background-color: whitesmoke;
+}
+.state{
+    stroke-width: 1px;
+    stroke: #8ba8a9;
+}
+.state:hover{
+    cursor: pointer;
+    stroke-width: 3px;
+    stroke: #d63434;
+}
+
+.indiastate{
+    border:1px solid grey;
+    flex:1;
+    background-color: forestgreen;
+}

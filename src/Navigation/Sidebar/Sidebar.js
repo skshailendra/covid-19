@@ -29,7 +29,7 @@ const Sidebar = React.memo(props =>{
                         
                     </li>
                     <li className="side-nav__items">
-                        <NavLink to='/announcement' exact className="side-nav__link" activeClassName="side-nav__link--active">
+                        <NavLink to='/map' exact className="side-nav__link" activeClassName="side-nav__link--active">
                             <FontAwesomeIcon icon={faMapMarkerAlt} color="#6883e6" className="side-nav__icon"/>
                             <div className="side-nav__text">
                                 <span>Map</span>
