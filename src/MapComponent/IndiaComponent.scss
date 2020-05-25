@@ -5,7 +5,7 @@
 .indiamap{
     border:1px solid grey;
     min-height: 100vh;
-    flex:0 0 50%;
+    flex:0 0 40%;
     padding: 1em;
 }
 
@@ -27,4 +27,9 @@ svg{
     border:1px solid grey;
     flex:1;
     background-color: forestgreen;
+}
+
+.district{
+    stroke-width: 1px;
+    stroke: #8ba8a9;
 }

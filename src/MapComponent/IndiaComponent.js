@@ -41,7 +41,7 @@ const IndiaComponent = props=>{
     useEffect(()=>{
         if(indiaJson &&  fetchCovidData.statewise.length>0){
         indiaSvg = select(indiaSvgRef.current)
-                    .attr("viewBox", `0 0 700 600`);
+                    .attr("viewBox", `0 0 600 800`);
         const indianStates = indiaJson.objects["india-states"];
         var states = feature(indiaJson, indianStates);
         states.features.map((featurestate)=>{
@@ -90,26 +90,39 @@ const IndiaComponent = props=>{
     },[selectedState]);
     useEffect(()=>{
         if(selectedState && stateJson){
+            let filterState;
             stateSvg = select(stateSvgRef.current)
                         .attr("viewBox", `0 0 500 600`);
             const statesDistrict = stateJson.objects[`${selectedState.toLowerCase().split(' ').join("")}_district`];
-            const district = feature(stateJson, statesDistrict);
-            console.log("statejson",district);
-            console.log("distric",fetchCovidData.stateDistrict);
-            // district.features.map((featurestate)=>{
-            //     featurestate.properties["confirmed"] = parseInt(fetchCovidData.stateDistrict.districtData.filter((data)=> data.state === featurestate.properties["st_nm"])[0].confirmed);
-                
-            // });
+            const featureDistrict = feature(stateJson, statesDistrict);
+            // console.log("featureDistrict",featureDistrict);
+            // console.log("fetchCovidData distric",fetchCovidData.stateDistrict);
+            featureDistrict.features.map((featurestate)=>{
+                filterState = fetchCovidData.stateDistrict.filter((data)=> data.state === featurestate.properties["st_nm"])[0];
+
+                featurestate.properties["confirmed"] = filterState["districtData"].filter((distrctname)=>
+                    distrctname.district === featurestate.properties["district"]
+                )[0].confirmed;
+            });
+            console.log("featureDistrict",featureDistrict);
+
+            const minProp = min(featureDistrict.features, feature => feature.properties['confirmed']);
+            const maxProp = max(featureDistrict.features, feature => feature.properties['confirmed']);
+            console.log("minProp",minProp);
+            console.log("maxProp",maxProp);
+            const colorScale = scaleLinear().domain([minProp, maxProp]).range(["#ccc", "red"]);
+
            // projects geo-coordinates on a 2D plane
             const projection = geoMercator()
-                                .fitSize([400, 400], district);
+                                .fitSize([400, 400], featureDistrict);
             const pathGenerator = geoPath().projection(projection);    
             var svgdistrict = stateSvg.selectAll(".district")
-            .data(district.features)
+            .data(featureDistrict.features)
             .enter()
             .append('path')
             .attr('class',"district")
             .transition()   
+            .attr("fill",feature=>colorScale(feature.properties['confirmed']))
             .attr('d',d=>pathGenerator(d));
         }
         return(()=>{
