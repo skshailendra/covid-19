@@ -1,7 +1,6 @@
 import React, {useRef, useEffect, useState,useContext} from 'react';
 import './IndiaComponent.scss';
 import { select, selectAll,geoPath, geoMercator, min, max, scaleLinear } from "d3";
-import indiajson from '../map/india.json';
 import {feature}from "topojson-client";
 import {FetchDataContext} from '../context/fetch-data';
 const IndiaComponent = props=>{
@@ -43,8 +42,8 @@ const IndiaComponent = props=>{
         if(indiaJson &&  fetchCovidData.statewise.length>0){
         indiaSvg = select(indiaSvgRef.current)
                     .attr("viewBox", `0 0 700 600`);
-        const indianStates = indiajson.objects["india-states"];
-        var states = feature(indiajson, indianStates);
+        const indianStates = indiaJson.objects["india-states"];
+        var states = feature(indiaJson, indianStates);
         states.features.map((featurestate)=>{
             featurestate.properties["confirmed"] = parseInt(fetchCovidData.statewise.filter((data)=> data.state === featurestate.properties["st_nm"])[0].confirmed);
             
