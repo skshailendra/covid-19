@@ -1,6 +1,6 @@
 import React, {useRef, useEffect, useState,useContext} from 'react';
 import './IndiaComponent.scss';
-import { select, selectAll,geoPath, geoMercator, min, max, scaleLinear } from "d3";
+import { select, selectAll,geoPath, geoMercator, min, max, scaleLinear ,geoTransverseMercator} from "d3";
 import {feature}from "topojson-client";
 import {FetchDataContext} from '../context/fetch-data';
 const IndiaComponent = props=>{
@@ -17,7 +17,8 @@ const IndiaComponent = props=>{
     const [indiaJson,setIndiaJson] = useState();
     const [selectedState, setSelectedState] = useState('');
     const [stateJson,setStateJson] = useState();
-
+    const [hoverState, setHoverState] = useState('');
+    const [hoverDistrict, setHoverDistrict] = useState('');
     const fetchData = async(dataJsonUrl)=>{
         const response = await fetch(dataJsonUrl,requestOption);
         if(response.ok){
@@ -41,7 +42,9 @@ const IndiaComponent = props=>{
     useEffect(()=>{
         if(indiaJson &&  fetchCovidData.statewise.length>0){
         indiaSvg = select(indiaSvgRef.current)
-                    .attr("viewBox", `0 0 600 800`);
+                    .attr("width",500)
+                    .attr("height",500)
+                    .attr("viewBox", `0 0 500 600`);
         const indianStates = indiaJson.objects["india-states"];
         var states = feature(indiaJson, indianStates);
         states.features.map((featurestate)=>{
@@ -63,9 +66,13 @@ const IndiaComponent = props=>{
             .enter()
             .append('path')
             .on("click", feature => {
-                console.log(feature);
-                //stateSvgRef.current = null;
+                console.log("----",feature);
                 setSelectedState(feature["id"] );
+                setHoverDistrict('');
+            })
+            .on("mouseenter", feature => {
+                console.log(feature);
+                setHoverState(feature.properties["st_nm"])         
             })
             .attr('class',"state")
             .transition()   
@@ -90,19 +97,23 @@ const IndiaComponent = props=>{
     },[selectedState]);
     useEffect(()=>{
         if(selectedState && stateJson){
-            let filterState;
+            let filterState,filterDistrict;
             stateSvg = select(stateSvgRef.current)
-                        .attr("viewBox", `0 0 500 600`);
+                        .attr("width",500)
+                        .attr("height",500)
+                        .attr("viewBox", `0 0 400 500`);
             const statesDistrict = stateJson.objects[`${selectedState.toLowerCase().split(' ').join("")}_district`];
             const featureDistrict = feature(stateJson, statesDistrict);
-            // console.log("featureDistrict",featureDistrict);
-            // console.log("fetchCovidData distric",fetchCovidData.stateDistrict);
             featureDistrict.features.map((featurestate)=>{
                 filterState = fetchCovidData.stateDistrict.filter((data)=> data.state === featurestate.properties["st_nm"])[0];
 
-                featurestate.properties["confirmed"] = filterState["districtData"].filter((distrctname)=>
+                filterDistrict = filterState["districtData"].filter((distrctname)=>
                     distrctname.district === featurestate.properties["district"]
-                )[0].confirmed;
+                )[0];
+                featurestate.properties["confirmed"] = filterDistrict.confirmed;
+                featurestate.properties["recovered"] = filterDistrict.recovered;
+                featurestate.properties["active"] = filterDistrict.active;
+                featurestate.properties["deceased"] = filterDistrict.deceased;
             });
             console.log("featureDistrict",featureDistrict);
 
@@ -120,10 +131,16 @@ const IndiaComponent = props=>{
             .data(featureDistrict.features)
             .enter()
             .append('path')
+            .on("mouseenter", feature => {
+                console.log("dis--",feature);
+                setHoverDistrict(feature.properties)         
+            })
             .attr('class',"district")
             .transition()   
             .attr("fill",feature=>colorScale(feature.properties['confirmed']))
             .attr('d',d=>pathGenerator(d));
+
+
         }
         return(()=>{
             // Remove old selection before new Useeffect 
@@ -134,12 +151,56 @@ const IndiaComponent = props=>{
         <>
             <div className="map">
                 <div className="indiamap">
-                    <svg ref={indiaSvgRef}></svg>
-                </div>
-                {selectedState && 
-                    <div className="indiastate">
-                        <svg ref={stateSvgRef}></svg>
+                    <div className="indiamap__heading-container">
+                            <p className="indiamap__heading">India Map</p>
+                            <p className="indiamap__detail-message">Select a State for more details</p>
+                        {/* <div className="indiamap__detail-message">
+                            
+                        </div> */}
                     </div>
+                    <div className="indiamap__hoverstate">
+                        <p>{hoverState}</p>
+                    </div>
+                    <svg ref={indiaSvgRef}></svg>
+                   
+                </div>
+                {selectedState &&
+                    <>
+                        <div className="indiastate">
+                            <div className="indiamap__heading-container">
+                                <p className="indiamap__heading">District(s) of {selectedState}</p>
+                            </div>
+                            <svg ref={stateSvgRef}></svg> 
+                            {hoverDistrict && 
+                            <>
+                            <div className="indiastate__hoverdistrict">
+                                <span>{"District:  "}</span>
+                                <span className="indiastate__hoverdistrictname">{hoverDistrict.district}</span>
+                            </div>
+                            <div className="district-stats">
+                                
+                                <div className="district-stats__confirmed">
+                                    <p>Confirmed</p>
+                                    <p>{hoverDistrict.confirmed}</p>
+                                </div>
+                                <div className="district-stats__active">
+                                    <p>Active</p>
+                                    <p>{hoverDistrict.active}</p>
+                                </div>
+                                <div className="district-stats__recovered">
+                                    <p>Recovered</p>
+                                    <p>{hoverDistrict.recovered}</p>
+                                </div>
+                                <div className="district-stats__deceased">
+                                    <p>Deceased</p>
+                                    <p>{hoverDistrict.deceased}</p>
+                                </div>
+                            </div>
+                            </>
+                            }                   
+                        </div>
+                       
+                    </>
                 }      
             </div>
             

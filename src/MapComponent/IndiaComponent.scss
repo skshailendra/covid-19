@@ -1,18 +1,55 @@
+@import '../Globals//variables/variables.scss';
 .map{
     display: flex;
     flex-wrap: wrap;
+    padding: 1em;
+    justify-content: space-between;
 }
 .indiamap{
-    border:1px solid grey;
-    min-height: 100vh;
     flex:0 0 40%;
     padding: 1em;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.05);
+    background: #fff;
+    border-radius: 5px;
+    margin-right: 1em;
+    border: 1px solid #dedede;
+    > svg{
+        //width:100%;
+        background-color: #fff;
+    }
+    &__heading-container{
+        margin-bottom: 1em;
+        font-family: inherit;
+        color:$deceased-text;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__heading{
+        font-size: 1.6em;
+        margin : 4px;
+        font-weight: 500;
+    }
+    &__hoverstate{
+        display: flex;
+        justify-content: flex-end;
+        font-size: 1.3em;
+        color: #ed3833;
+        font-weight: 500;
+        
+    }
+
+    &__detail-message{
+        font-size: .8em;
+        font-family: inherit;
+        color:$deceased-text;
+        margin: 0;
+        font-weight: 500;
+    }
 }
 
-svg{
-    //width:100%;
-    background-color: whitesmoke;
-}
+
 .state{
     stroke-width: 1px;
     stroke: #8ba8a9;
@@ -24,12 +61,55 @@ svg{
 }
 
 .indiastate{
-    border:1px solid grey;
+    border: 1px solid #dedede;
     flex:1;
-    background-color: forestgreen;
+    padding: 1em;
+    background-color: #fff;
+    border-radius: 5px;
+    > svg{
+        //width:100%;
+        background-color: #fff;
+    }
+
+    &__hoverdistrict{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 1em;
+        color: #564c50;
+        font-weight: 500;
+    }
+
+    &__hoverdistrictname{
+        font-size: 1.2em;
+        margin-left: 5px;
+    }
 }
 
 .district{
     stroke-width: 1px;
     stroke: #8ba8a9;
+    cursor: pointer;
+}
+
+.district-stats{
+    display: flex;
+    justify-content: space-around;
+    padding: 0 1.5em;
+    &__confirmed{
+        flex: 0 25%;
+        color: red;
+    }
+    &__active{
+        flex: 0 25%;
+        color: #1b1bef;
+    }
+    &__recovered{
+        flex: 0 25%;
+        color: #088608;
+    }
+    &__deceased{
+        flex: 0 25%;
+        color: #737171;
+    }
 }
