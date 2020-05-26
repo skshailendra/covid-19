@@ -60,19 +60,28 @@ const IndiaComponent = props=>{
         const projection = geoMercator()
                             .fitSize([width, height], states);
         const pathGenerator = geoPath().projection(projection);                            
-        
+        let prevSelectedState = ''; 
         indiaSvg.selectAll(".states")
             .data(states.features)
             .enter()
             .append('path')
-            .on("click", feature => {
+            .on("click",  (feature,i, nodes) => {
                 console.log("----",feature);
+                if(prevSelectedState){
+                    select(prevSelectedState).classed("stateselected",false);
+                } 
+                select(nodes[i]).classed("stateselected",true);
+                prevSelectedState = nodes[i];
                 setSelectedState(feature["id"] );
                 setHoverDistrict('');
             })
-            .on("mouseenter", feature => {
+            .on("mouseenter", (feature,i, nodes) => {
                 console.log(feature);
                 setHoverState(feature.properties["st_nm"])         
+            })
+            .on("mouseout", (feature,i, nodes) => {
+                console.log(feature);
+                setHoverState('');
             })
             .attr('class',"state")
             .transition()   
@@ -158,11 +167,19 @@ const IndiaComponent = props=>{
                             
                         </div> */}
                     </div>
+                    {selectedState && 
+                    <div className="indiamap__selectedstate">
+                         <p className="indiamap__selectedlabel">{"Selected state"}</p>
+                        <p className="indiamap__selectedtext">{selectedState}</p>
+                    </div>
+                    }
+                    <svg ref={indiaSvgRef}></svg>
+                    { hoverState &&
                     <div className="indiamap__hoverstate">
+                        <p className="indiamap__hoverlabel">{"You are on"}</p>
                         <p>{hoverState}</p>
                     </div>
-                    <svg ref={indiaSvgRef}></svg>
-                   
+                    }
                 </div>
                 {selectedState &&
                     <>
@@ -201,6 +218,11 @@ const IndiaComponent = props=>{
                         </div>
                        
                     </>
+                }
+                {!selectedState && 
+                    <div className="blankmessage">
+                        Select a state from map
+                    </div>
                 }      
             </div>
             

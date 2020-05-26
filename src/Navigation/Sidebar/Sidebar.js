@@ -36,7 +36,7 @@ const Sidebar = React.memo(props =>{
                             </div>
                         </NavLink>
                     </li>
-                    <li className="side-nav__items">
+                    {/* <li className="side-nav__items">
                         <NavLink to='/faq' exact className="side-nav__link"
                         activeClassName="side-nav__link--active">
                             <FontAwesomeIcon icon={faChartLine} color="#f5a616"className="side-nav__icon"/>
@@ -44,7 +44,7 @@ const Sidebar = React.memo(props =>{
                                 <span>Analysis</span>
                             </div>
                         </NavLink>
-                    </li>
+                    </li> */}
                 </ul>
                 {/* <div className="sidebar-theme">
                     <span>Made with </span>

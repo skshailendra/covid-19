@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     padding: 1em;
     justify-content: space-between;
+    
 }
 .indiamap{
     flex:0 0 40%;
@@ -13,6 +14,7 @@
     border-radius: 5px;
     margin-right: 1em;
     border: 1px solid #dedede;
+    position: relative;
     > svg{
         //width:100%;
         background-color: #fff;
@@ -31,13 +33,41 @@
         margin : 4px;
         font-weight: 500;
     }
-    &__hoverstate{
+    &__selectedstate{
         display: flex;
         justify-content: flex-end;
         font-size: 1.3em;
-        color: #ed3833;
         font-weight: 500;
+        align-items: flex-end;
+        flex-direction: column;
         
+    }
+    &__selectedlabel{
+        color: #947f7e;
+        margin: 0;
+        font-size: .6em;
+    }
+    &__selectedtext{
+        color: #ed3833;
+        margin: 0;
+        text-decoration: underline;
+    }
+    &__hoverstate{
+        font-size: .9em;
+        color: #2f4820b5;
+        font-weight: 500;
+        position: absolute;
+        top: 14em;
+        left: 2em;
+        text-align: center;
+        
+        > p{
+            margin:0;
+            padding:0
+        }
+    }
+    &__hoverlabel{
+        font-size: .7em;
     }
 
     &__detail-message{
@@ -60,6 +90,10 @@
     stroke: #d63434;
 }
 
+.stateselected{
+    fill: #5f57869c;
+    stroke-width: 1px;
+}
 .indiastate{
     border: 1px solid #dedede;
     flex:1;
@@ -112,4 +146,22 @@
         flex: 0 25%;
         color: #737171;
     }
+}
+
+.blankmessage{
+    flex: 1;
+    padding: 1em;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.05);
+    background: #fff;
+    border-radius: 5px;
+    margin-right: 1em;
+    border: 1px solid #dedede;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #73717136;
+    font-weight: 500;
+    font-size: 1.8em;
+    font-family: inherit;
 }
