@@ -11,6 +11,36 @@ const TableComponent = React.memo(props =>{
     const fetchCovidData = useContext(FetchDataContext);
     const [stateData,setStateData] = useState([]);
     const [stateDistrict,setStateDistrict] = useState([]);
+    const [sortTable, setSortTable] = useState({asc:true, label:''});
+    const [districtSortTable, setDistrictSortTable] = useState({asc:true, label:'',code:null,state:null});
+    const heading = [
+      {
+        label:'Confirmed'
+      },
+      {
+        label:'Active'
+      },
+      {
+        label:'Recovered'
+      },
+      {
+        label:'Deaths'
+      }
+    ];
+    const districtHeading = [
+      {
+        label:'Confirmed'
+      },
+      {
+        label:'Active'
+      },
+      {
+        label:'Recovered'
+      },
+      {
+        label:'Deceased'
+      }
+    ];
     useEffect(()=>{
       console.log("table data",fetchCovidData);
       if(fetchCovidData){
@@ -19,8 +49,41 @@ const TableComponent = React.memo(props =>{
       }
     },[fetchCovidData]);
 
+    useEffect(()=>{
+      if(sortTable && sortTable.label){
+        const tempArr = [...stateData];
+        tempArr.sort(sortable);
+        setStateData(tempArr);
+      }
+    },[sortTable]);
+    useEffect(()=>{
+      if(districtSortTable.label){
+        const tempArr = [...stateData];
+        tempArr[districtSortTable.code].districtList.districtData.sort(districtsortable);
+        setStateData(tempArr);
+      }
+    },[districtSortTable]);
+    const districtsortable = (a, b) =>{
+      return (parseInt(a[districtSortTable.label]) - parseInt(b[districtSortTable.label])) * (districtSortTable.asc ?1 :-1);
+    };
+    const sortable = (a, b) =>{
+      return (parseInt(a[sortTable.label]) - parseInt(b[sortTable.label])) * (sortTable.asc ?1 :-1);
+    };
+    const sortTableHandler = (e, heading)=>{
+      if(sortTable.label.toLowerCase() === heading.label.toLowerCase()){
+        setSortTable({...sortTable, asc:!sortTable.asc});
+      }else{
+        setSortTable({asc:true, label : heading.label.toLowerCase()})
+      }
+    }
+    const districtSortTableHandler = (e, heading,code)=>{
+      if(districtSortTable.label.toLowerCase() === heading.label.toLowerCase()){
+        setDistrictSortTable({...districtSortTable, asc:!districtSortTable.asc , code:code});
+      }else{
+        setDistrictSortTable({asc:true, label : heading.label.toLowerCase(), code:code})
+      }
+    }
     const showDistrict = (e,code,state)=>{
-      console.log("called..",e,code,state);
       state.showExpand = !state.showExpand;
       const tempArr = [...stateData];
       const districtList = stateDistrict.filter(stDst=>stDst.statecode === state.statecode);
@@ -35,29 +98,21 @@ const TableComponent = React.memo(props =>{
                   <div className="table__heading">
                     <div className="table__heading-content">State/UT</div>
                   </div>
-                  <div className="table__heading">
-                    <div className="table__heading-content">Confirmed</div>
-                    <div className="table__icon-container">
-                      <FontAwesomeIcon icon={faArrowUp}  size="sm" className="table__icon"/>
-                      {/* <FontAwesomeIcon icon={faArrowDown}  size="sm" className="table__icon"/> */}
-                    </div>
-                   
-                  </div>
-                  <div className="table__heading">
-                    <div className="table__heading-content">Recovered</div>
-                  </div>
-                  <div className="table__heading">
-                    <div className="table__heading-content">Active</div>
-                  </div>
-                  <div className="table__heading">
-                    <div className="table__heading-content">Deceased</div>
-                  </div>
-                  {/* <div className="table__heading">
-                    <div className="table__heading-content"></div>
-                    <div className="table__icon-container">
-                      Details
-                    </div>
-                  </div> */}
+                  {
+                    heading.map((head,key)=>(
+                      <div key={key} className="table__heading" onClick={e=>sortTableHandler(e, head)}>
+                        <div className="table__heading-content" >{head.label}</div>
+                        {head.label.toLowerCase() === sortTable.label.toLowerCase() && 
+                        <div className="table__icon-container">
+                          { sortTable.asc ? 
+                          <FontAwesomeIcon icon={faArrowUp}  size="sm" className="table__icon"/>
+                          :
+                          <FontAwesomeIcon icon={faArrowDown}  size="sm" className="table__icon"/>}
+                        </div>
+                        }
+                      </div>
+                    ))
+                  }
                 </div>
                 {
                   stateData && 
@@ -112,23 +167,22 @@ const TableComponent = React.memo(props =>{
                       <div className="table__heading">
                         <div className="table__heading-content">District</div>
                       </div>
-                      <div className="table__heading">
-                        <div className="table__heading-content">Confirmed</div>
-                        <div className="table__icon-container">
-                          <FontAwesomeIcon icon={faArrowUp}  size="sm" className="table__icon"/>
-                          {/* <FontAwesomeIcon icon={faArrowDown}  size="sm" className="table__icon"/> */}
-                        </div>
-                       
-                      </div>
-                      <div className="table__heading">
-                        <div className="table__heading-content">Recovered</div>
-                      </div>
-                      <div className="table__heading">
-                        <div className="table__heading-content">Active</div>
-                      </div>
-                      <div className="table__heading">
-                        <div className="table__heading-content">Deceased</div>
-                      </div>
+                      {
+                        districtHeading.map((head,key)=>(
+                          <div key={key} className="table__heading" onClick={e=>districtSortTableHandler(e, head, code)}>
+                            <div className="table__heading-content" >{head.label}</div>
+                            {head.label.toLowerCase() === districtSortTable.label.toLowerCase() && 
+                            <div className="table__icon-container">
+                              { districtSortTable.asc ? 
+                              <FontAwesomeIcon icon={faArrowUp}  size="sm" className="table__icon"/>
+                              :
+                              <FontAwesomeIcon icon={faArrowDown}  size="sm" className="table__icon"/>}
+                            </div>
+                            }
+                          </div>
+                        ))
+                      }
+                     
                       {/* <div className="table__heading">
                         <div className="table__heading-content"></div>
                         <div className="table__icon-container">
