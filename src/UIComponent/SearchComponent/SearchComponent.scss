@@ -95,10 +95,26 @@
         cursor: pointer;
     }
     &__name{
-
+        display: flex;
+        flex-direction: column;
     }
     &__count{
+        display: flex;
+        flex-direction: column;
+    }
+    &__district-name{
+        font-size: 1em;
 
+    }
+    &__dist-state-name{
+        font-size: .7em;
+    }
+    &__status-text{
+        font-size: .7em;
+        color:red;
+    }
+    &__status-count{
+        color: red;
     }
 }
 
