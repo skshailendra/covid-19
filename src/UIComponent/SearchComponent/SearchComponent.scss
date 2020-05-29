@@ -134,6 +134,25 @@
     &__search-detail-icon{
         margin-right: .7em;
     }
+    &__noresult{
+        font-size: .8em;
+        font-weight: 500;
+        color: #584646;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__suggestion{
+        font-size: .9em;
+        font-weight: 500;
+        color: #352f2f;
+        padding:0;
+        margin:0;
+    }
+    &__suggestion-text{
+        color: #9759da;
+    }
 }
 
 .btn-inline{
