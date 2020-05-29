@@ -91,6 +91,9 @@ const SearchComponent = props =>{
                                 <li key={idx} className="search-result__item">
                                     {search.isDistrict && 
                                     <>
+                                    <div className="search-result__search-detail-icon">
+                                        <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
+                                    </div>
                                     <div className="search-result__name">
                                         <span className="search-result__district-name">
                                         {search.district}
@@ -112,6 +115,9 @@ const SearchComponent = props =>{
                                     }
                                     {!search.isDistrict && 
                                     <>
+                                    <div className="search-result__search-detail-icon">
+                                        <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="sm" className="search__icon"/>
+                                    </div>
                                     <div className="search-result__state-name">
                                         {search.state}
                                     </div>
@@ -122,42 +128,21 @@ const SearchComponent = props =>{
                                         <span className="search-result__status-count">
                                             {search.confirmed}
                                         </span>
-                                        
                                     </div>
+                                    
                                     </>
                                     }
                                     
                                 </li>
                             ))
                             }
-                            {/* <li className="search-result__item">
-                                <div className="search-result__name">
-                                    Maharastra
+                            {
+                                searchRef.current.value && searchList.length == 0 
+                                && 
+                                <div>
+                                    <span>No result Found</span>
                                 </div>
-                                <div className="search-result__count">
-                                    23455
-                                </div>
-                            </li>
-                            <li className="search-result__item">
-                                <div className="search-result__name">
-                                    Up
-                                </div>
-                                <div className="search-result__count">
-                                    23455
-                                </div>
-                            </li>
-                            <li className="search-result__item">
-                                <div className="search-result__name">
-                                    MP
-                                </div>
-                                <div className="search-result__count">
-                                    23455
-                                </div>
-                                <figure className="review__button">
-                                  <button className="btn-inline"> Show All <span>&rarr;</span></button>
-                                </figure>
-
-                            </li> */}
+                            }
                         </ul>
                     </div>
                     }
