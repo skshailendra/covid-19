@@ -1,5 +1,5 @@
 
-import React, { useEffect, useReducer, useCallback} from 'react';
+import React, { useEffect, useReducer, useCallback, useRef} from 'react';
 import './DropdownComponent.scss';
 import { faChevronDown,faChevronUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +9,7 @@ const initialState ={
   showSelectOption:false,
   traverseDropdown:[]
 }
+
 const dropDownReducer = (currentValue, action)=>{
   switch(action.type){
     case 'CREATE':
@@ -27,6 +28,10 @@ const dropDownReducer = (currentValue, action)=>{
         return {
           ...currentValue, showSelectOption:!currentValue.showSelectOption
         }
+    case 'CLOSE':
+          return {
+            ...currentValue, showSelectOption:false
+          }
     default :
       throw new Error("Please select dropdown value");
   }
@@ -35,14 +40,27 @@ const DropdownComponent = React.memo(props =>{
     const {type}  = props;
     const [dropDownValue, dispatchDropdown] = useReducer(dropDownReducer, initialState);
     const {getDropdownData,data,selectedValue} = useDropdown();
+    const dropdownList = useRef();
     const selectDropdown =(e)=>{
       dispatchDropdown({type:'SET',selected:e.target.innerHTML});
       // Callback Event
       props.selectDropdown({selected:e.target.innerHTML, selectedtype:e.target.dataset.value,type:type,});
     };
 
+    const clickOutside = (e)=>{
+      console.log("dropdown outside ");
+      if(dropdownList.current && !dropdownList.current.contains(e.target)){
+        dispatchDropdown({type:'CLOSE'})
+      }
+    }
     useEffect(()=>{
+      window.addEventListener("click",clickOutside);
       getDropdownData(type);
+      return ()=>{
+        console.log("dropdown cleanup ");
+        window.removeEventListener("click",clickOutside);
+        //console.log("clean up ");
+      }
     },[]);
 
     useEffect(()=>{
@@ -51,7 +69,7 @@ const DropdownComponent = React.memo(props =>{
     return(
         <>
             <div className="dropdown">
-                <div className="dropdown__wrap">
+                <div ref={dropdownList} className="dropdown__wrap">
                     <ul className="dropdown__default" onClick={e =>dispatchDropdown({type:'TOGGLE'})}>
                         <li className="dropdown__default-option">           
                             <div className="dropdown__value" >{dropDownValue.value}</div>
@@ -63,7 +81,7 @@ const DropdownComponent = React.memo(props =>{
                         </li>
                     </ul>
                     { dropDownValue.showSelectOption &&
-                    <ul className="dropdown__select-list" onClick={e=>selectDropdown(e)}>
+                    <ul  className="dropdown__select-list" onClick={e=>selectDropdown(e)}>
                         {
                             dropDownValue.traverseDropdown.map((item)=>(
                                 <li key={item.type} data-value={item.type} className={`dropdown__option ${item.value === dropDownValue.value?'dropdown__active':''}` }>
