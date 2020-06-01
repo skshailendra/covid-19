@@ -20,9 +20,15 @@
     flex:1;
     background:whitesmoke;
     transition: margin 500ms ease-in;
+    @media screen and (max-width: $bp-large) {
+        margin-left: 0
+    }
 }
 .main-content-layout.main-content-side-open{
     margin-left: 11em;
+    @media screen and (max-width: $bp-large) {
+        margin-left: 0
+    }
 }
 .footer-layout{
 

@@ -9,15 +9,21 @@ import Backdrop from '../../UIComponent/Backdrop/Backdrop';
 const Layout = props =>{
     const [sideDrawerOpen,setSideDrawerOpen] = useState(false);
     const [mainContentLayout,setMainContentLayout] = useState("main-content-layout");
+    const [backdrop,setBackdrop]  = useState('');
     const toggleClickHandler = ()=>{
         const temp = !sideDrawerOpen;
         setSideDrawerOpen(!sideDrawerOpen);
+    }
+    const backdropHandler = ()=>{
+        setBackdrop('');
+        setSideDrawerOpen(false);
     }
 
     useEffect(()=>{
         let copyMain = "main-content-layout";
         if(sideDrawerOpen){
             copyMain = "main-content-layout main-content-side-open"; 
+            setBackdrop(<Backdrop clickBackdrop={backdropHandler}/>)
         }
        setMainContentLayout(copyMain);
     },[sideDrawerOpen]);
@@ -27,7 +33,7 @@ const Layout = props =>{
         <>
             <HeaderComponent clickSideDrawer={toggleClickHandler}/>
             <Sidebar sidebarOpen={sideDrawerOpen}/>
-            {/* <Backdrop/> */}
+            {backdrop}
             <div className="layout">
                 {/* <div className="side-drawer-layout">
                     
