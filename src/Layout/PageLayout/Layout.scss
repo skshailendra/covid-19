@@ -1,21 +1,28 @@
 @import '../../Globals//variables/variables.scss';
 .layout{
     display: flex;
+    margin-top: 4em;
     @media screen and (max-width: $bp-large) {
         flex-direction: column;
     }
 }
 .sidebar-layout{
-    display: flex;
-    flex-basis: 15%;
+    
+    width: 5em;
     @media screen and (max-width: $bp-small) {
         margin-top:1em;
     }
     
 }
-.main-content-layout{
+
+.main-content-layout{   
+    margin-left: 5em; 
     flex:1;
     background:whitesmoke;
+    transition: margin 500ms ease-in;
+}
+.main-content-layout.main-content-side-open{
+    margin-left: 11em;
 }
 .footer-layout{
 
