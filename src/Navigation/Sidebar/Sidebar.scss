@@ -13,7 +13,7 @@
    z-index:20;
    background:red;
    transform: translateX(-100%);
-   transition: transform 500ms ease-in;
+   transition: transform 100ms ease-out;
 
    font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", "-apple-system", "BlinkMacSystemFont", "Roboto", "Helvetica Neue", sans-serif;
    @media screen and (min-width: $bp-extralarge) {
@@ -25,7 +25,7 @@
     z-index:20;
     background:red;
     transform:none;
-    transition: width 500ms ease-in;
+    transition: width 300ms ease-in;
    }
 }
 .sidebar.open{
