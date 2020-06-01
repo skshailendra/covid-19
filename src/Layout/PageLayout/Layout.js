@@ -32,7 +32,7 @@ const Layout = props =>{
     return (
         <>
             <HeaderComponent clickSideDrawer={toggleClickHandler}/>
-            <Sidebar sidebarOpen={sideDrawerOpen}/>
+            <Sidebar sidebarOpen={sideDrawerOpen} closeSideBar={backdropHandler}/>
             {backdrop}
             <div className="layout">
                 {/* <div className="side-drawer-layout">

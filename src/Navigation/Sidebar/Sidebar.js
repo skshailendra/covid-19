@@ -17,7 +17,7 @@ const Sidebar = React.memo(props =>{
     return (
         <>
             <nav className={`sidebar ${sideBarOpen}`}>
-                <ul className="side-nav">
+                <ul className="side-nav" onClick={props.closeSideBar}>
                     <li className={`side-nav__items`}>
                         <NavLink to='/' exact className={`side-nav__link ${sideBarOpen}`} activeClassName="side-nav__link--active">
                             <FontAwesomeIcon icon={faHome}  color="#ff8c96" className="side-nav__icon"/>
