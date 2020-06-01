@@ -22,20 +22,20 @@ const HeaderComponent = props=>{
                     </NavLink>
                 </div>
                 <SearchComponent/>
-                <nav className="user-nav">
+                {/* <nav className="user-nav">
                     <div className="user-nav__icon-box">
                         <FontAwesomeIcon icon={faInfoCircle}  size="lg" color="fff" className="user-nav__icon"/>
                     </div>
-                    {/* <div className="user-nav__icon-box">
+                    <div className="user-nav__icon-box">
                         <FontAwesomeIcon icon={faBell}  size="lg"  color="fff" 
                         className="user-nav__icon"/>
                         <span className="user-nav__notification"></span>
-                    </div> */}
+                    </div>
                     <div className="user-nav__icon-box">
                         <FontAwesomeIcon icon={faShareAlt}  size="lg" color="fff" 
                         className="user-nav__icon"/>
                     </div>
-                </nav>
+                </nav> */}
             </header>
         </>
     )
