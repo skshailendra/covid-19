@@ -1,19 +1,33 @@
 @import "../../Globals/variables/variables.scss";
 
+
 .sidebar {
+   width:5em;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   width: 100%;
+   position: fixed;
+   top:4em;
+   left: 0;
+   height: calc(100vh - 4em);
+   z-index:1000;
    font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", "-apple-system", "BlinkMacSystemFont", "Roboto", "Helvetica Neue", sans-serif;
+   transition: width 500ms ease-in;
+}
+.sidebar.open{
+    width:11em;
 }
 .side-nav{
     list-style-type: none;
     margin:0;
     padding:0;
     color:$light-black;
+    height:100%;
+    
     &__items{
         position: relative;
+        display: flex;
+        flex-direction: column;
         & > span{
             color:$white;
         }
@@ -26,76 +40,35 @@
                 margin-bottom: 0;
             }
         }
+       
     }
-
-    // &__items::before{
-    //     content:"";
-    //     position: absolute;
-    //     top:0;
-    //     left:0;
-    //     height:100%;
-    //     width:3px;
-    //     color:#7f7f7f;
-    //    // color:$light-black;
-    //     //background-color: #7c95f3;
-    //     // background-color :#85bfaa;
-    //     // transform: scaleY(0);
-    //     // transition: transform .2s,
-    //     //             width .4s cubic-bezier(1,0,0,1) .2s,
-    //     //             background-color .1s;
-
-    // }
-
-    &__items:hover::before
-    {
-        transform: scaleY(1);
-        width: 100%;
-    }
-
-    // &__items:active::before{
-    //     background-color: rgb(200, 214, 243);
-    // }
-
-    &__link:link,
-    &__visited{
+    &__link{
         display: flex;
         align-items: center;
         text-decoration: none;
         padding:.675em 1.5em;
         position: relative;
         z-index: 10;
-        font-weight: bold;
         line-height: 1.5em;
         font-size: 1em;
-        margin: .7em .7em;
-        & > svg{
-            width: 1.10em;
-            height:1.10em;
+        font-family: inherit;
+        font-weight: 500;
+        color: #585252;
+        & > .svg-inline--fa{
+            width: 1.20em;
+            height:1.9em;
             margin:0 .75em 0 0;
-        }
-        // & > span{
-        //     color:$light-black;
-        // }
-        @media screen and (max-width: $bp-small) {
-            margin: 0 3px;
-            // & > svg{
-            //     width: .8em;
-            //     height:.8em;
-            //     margin:0 .75em 0 0;
-            // }
         }
     }
 
     &__link:hover
     {
-        background-color:red;
-        border-radius: 5px;
-        color: $white;
+        background-color:#dfe3f0;    
     }
     &__link--active {
         background-color : #ce5c5c;
         color:#fff;
-        border-radius: 5px;
+        font-weight: 900;
         & > svg{
             color:#fff;
         }
@@ -105,23 +78,34 @@
        
     }
     &__text{
+        //display: none;
+        font-size: .9em;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 400ms ease-out 200ms;
     }
     &__icon {
       //  margin-right: 2em;
-        
+        width: 1em;
     }
-    @media screen and (max-width: $bp-large) {
+    @media screen and (max-width: $bp-medium) {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
-        justify-content: space-between;
     }
-    @media screen and (max-width: $bp-small) {
-        flex-wrap: nowrap;
-        overflow-x: scroll;
-        &__text{
-            display: none;
-        }
-    }
+    // @media screen and (max-width: $bp-small) {
+    //     flex-wrap: nowrap;
+    //     overflow-x: scroll;
+    //     &__text{
+    //         display: none;
+    //     }
+    // }
    
+}
+
+.side-nav__text.open{
+    //flex-direction: row;
+    //display: block;
+    visibility: visible;
+    opacity: 1;
 }

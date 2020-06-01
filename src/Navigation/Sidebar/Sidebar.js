@@ -1,37 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './Sidebar.scss';
 import {NavLink} from 'react-router-dom';
 import { faHome, faMapMarkerAlt , faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 
 const Sidebar = React.memo(props =>{
-
+    const [sideBarLayout,setSideBarLayout] = useState("sidebar");
+    const [sideBarOpen,setSideBarOpen] = useState("");
+    useEffect(()=>{
+        let copySidebar = '';
+        if(props.sidebarOpen){
+            copySidebar= "open";
+        }
+        setSideBarOpen(copySidebar);
+    },[props.sidebarOpen]);
     return (
         <>
-            <nav className="sidebar">
+            <nav className={`sidebar ${sideBarOpen}`}>
                 <ul className="side-nav">
-                    <li className="side-nav__items">
-                        <NavLink to='/' exact className="side-nav__link" activeClassName="side-nav__link--active">
+                    <li className={`side-nav__items`}>
+                        <NavLink to='/' exact className={`side-nav__link ${sideBarOpen}`} activeClassName="side-nav__link--active">
                             <FontAwesomeIcon icon={faHome}  color="#ff8c96" className="side-nav__icon"/>
-                            <div className="side-nav__text">
+                            <div className={`side-nav__text ${sideBarOpen}`}>
                                 <span>Home</span>
                             </div>
                         </NavLink>
                         
                     </li>
                     <li className="side-nav__items">
-                        <NavLink to='/analysis' exact className="side-nav__link" activeClassName="side-nav__link--active">
+                        <NavLink to='/analysis' exact className={`side-nav__link ${sideBarOpen}`} activeClassName="side-nav__link--active">
                             <FontAwesomeIcon icon={faChartLine}  color="#f5a616" className="side-nav__icon"/>
-                            <div className="side-nav__text">
+                            <div className={`side-nav__text ${sideBarOpen}`}>
                                 <span>Analysis</span>
                             </div>
                         </NavLink>
                         
                     </li>
                     <li className="side-nav__items">
-                        <NavLink to='/map' exact className="side-nav__link" activeClassName="side-nav__link--active">
+                        <NavLink to='/map' exact className={`side-nav__link ${sideBarOpen}`} activeClassName="side-nav__link--active">
                             <FontAwesomeIcon icon={faMapMarkerAlt} color="#6883e6" className="side-nav__icon"/>
-                            <div className="side-nav__text">
+                            <div className={`side-nav__text ${sideBarOpen}`}>
                                 <span>Map</span>
                             </div>
                         </NavLink>
