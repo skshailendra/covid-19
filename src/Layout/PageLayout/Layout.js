@@ -1,4 +1,4 @@
-import React ,{useState, useEffect}from 'react';
+import React ,{useState}from 'react';
 import Sidebar from '../../Navigation/Sidebar/Sidebar';
 import RoutingComponent from '../../RoutingComponent/RoutingComponent';
 import HeaderComponent from '../../Navigation/HeaderComponent/HeaderComponent';
@@ -7,38 +7,26 @@ import FooterComponent from '../../Navigation/FooterComponent/FooterComponent';
 import Backdrop from '../../UIComponent/Backdrop/Backdrop';
 
 const Layout = props =>{
-    const [sideDrawerOpen,setSideDrawerOpen] = useState(false);
-    const [mainContentLayout,setMainContentLayout] = useState("main-content-layout");
-    const [backdrop,setBackdrop]  = useState('');
+    const [sideDrawerOpen,setSideDrawerOpen] = useState(false); 
     const toggleClickHandler = ()=>{
-        const temp = !sideDrawerOpen;
         setSideDrawerOpen(!sideDrawerOpen);
-    }
+    };
     const backdropHandler = ()=>{
-        setBackdrop('');
         setSideDrawerOpen(false);
-    }
-
-    useEffect(()=>{
-        let copyMain = "main-content-layout";
-        if(sideDrawerOpen){
-            copyMain = "main-content-layout main-content-side-open"; 
-            setBackdrop(<Backdrop clickBackdrop={backdropHandler}/>)
-        }
-       setMainContentLayout(copyMain);
-    },[sideDrawerOpen]);
-  
-    
+    };  
+    console.log("layout called");
     return (
         <>
             <HeaderComponent clickSideDrawer={toggleClickHandler}/>
-            <Sidebar sidebarOpen={sideDrawerOpen} closeSideBar={backdropHandler}/>
-            {backdrop}
+            <Sidebar propsSidebarOpen={sideDrawerOpen} closeSideBar={backdropHandler}/>
+            {sideDrawerOpen && 
+                <Backdrop clickBackdrop={backdropHandler} />
+            }
             <div className="layout">
                 {/* <div className="side-drawer-layout">
                     
                 </div> */}
-                <div className={mainContentLayout}>
+                <div className={`main-content-layout ${sideDrawerOpen ? "main-content-side-open":""}`}>
                 <RoutingComponent/>
                 </div>
             </div>
