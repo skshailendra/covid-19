@@ -5,7 +5,7 @@ import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownCompo
 import {FetchDataContext} from '../../context/fetch-data';
 
 const SyncAreaComponent = props =>{
-    const [filterData, setFilterData ] = useState({month:"May"});
+    const [filterData, setFilterData ] = useState({month:"June"});
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const [latestData,setLatestData] = useState([]);
@@ -13,22 +13,24 @@ const SyncAreaComponent = props =>{
     const onSelectDropdown = (value)=>{
         console.log("value.. ",value);
         if(value && value.type === "months"){
+            value.selectedtype = value.selectedtype === 'All' ? '' : value.selectedtype;
             setFilterData({...filterData,month:value.selectedtype});
         }
     }
     const createFilterArray = ()=>{
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
             filterArray = casesTimeSeries.filter( (item)=>item.date.includes(filterData.month));
+            filterArray.map((item) => {
+                item.dailyconfirmed = parseInt(item.dailyconfirmed);
+                item.dailydeceased = parseInt(item.dailydeceased);
+                item.dailyrecovered = parseInt(item.dailyrecovered);
+            });
             setLatestData(filterArray);
         }
     }
     useEffect(()=>{
-        console.log("common");
-        setLatestData(casesTimeSeries);
-    },[casesTimeSeries,filterData]);
-    useEffect(()=>{
         createFilterArray();
-    },[filterData]);
+    },[casesTimeSeries,filterData]);
     return (
         <> 
             <div className="sync-description-graph">
