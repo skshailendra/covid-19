@@ -24,6 +24,10 @@ const  casesType= [
 ];
 const month = [
     {
+        type:'June',
+        value:"June"
+    },
+    {
         type:'May',
         value:"May"
     },
@@ -42,6 +46,10 @@ const month = [
     {
         type:'Jan',
         value:"January"
+    },
+    {
+        type:'All',
+        value:"All"
     }
 ];
 const dropDownReducer = (currDropdown , action)=>{

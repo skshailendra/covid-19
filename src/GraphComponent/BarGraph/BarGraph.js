@@ -15,13 +15,10 @@ const BarGraph = props =>{
     const {filterCaseType} = props;
     useEffect(()=>{
       if(device && device.isExtraLargeDevice){
-        setChartWidth(530);setChartHeight(400);
-      }
-      if(device && device.isLargeDevice){
         setChartWidth(600);setChartHeight(400);
       }
-      if(device && device.isMediumLargeDevice){
-        setChartWidth(600);setChartHeight(300);
+      if(device && device.isLargeDevice){
+        setChartWidth(530);setChartHeight(400);
       }
       if(device && device.isMediumDevice){
         setChartWidth(600);setChartHeight(400);
@@ -30,7 +27,7 @@ const BarGraph = props =>{
         setChartWidth(300);setChartHeight(300);
       }
       console.log(device);
-      console.log("chartwidth",chartWidth);
+      console.log("bar chartwidth",chartWidth);
     },[device]);
     const caseType = ()=>{
       console.log(filterCaseType);
