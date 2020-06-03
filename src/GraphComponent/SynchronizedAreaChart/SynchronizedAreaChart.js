@@ -54,7 +54,7 @@ const SynchronizedAreaChart = props =>{
             <div className="sync-area-chart-container">
                 <div className="sync-area-chart">
                   <AreaChart width={chartWidth} height={chartHeight} data={props.latestData} syncId="anyId"
-                        margin={{top: 10, right: 20, left: 0, bottom: 0}}>
+                        margin={{top: 10, right: 20, left: 10, bottom: 0}}>
                     <CartesianGrid strokeDasharray="3 3"/>
                     <XAxis dataKey="date"/>
                     <YAxis/>
@@ -62,7 +62,7 @@ const SynchronizedAreaChart = props =>{
                     <Area type='monotone' dataKey='dailyconfirmed' stroke='#8884d8' fill='#8884d8' />
                   </AreaChart>
                   <AreaChart width={chartWidth} height={chartHeight} data={props.latestData} syncId="anyId"
-                        margin={{top: 50, right: 20, left: 0, bottom: 0}}>
+                        margin={{top: 50, right: 20, left: 10, bottom: 0}}>
                     <CartesianGrid strokeDasharray="3 3"/>
                     <XAxis dataKey="date"/>
                     <YAxis/>
@@ -70,7 +70,7 @@ const SynchronizedAreaChart = props =>{
                     <Area type='monotone' dataKey='dailyrecovered' stroke='#82ca9d' fill='#82ca9d' />
                   </AreaChart>
                   <AreaChart width={chartWidth} height={chartHeight} data={props.latestData} syncId="anyId"
-                        margin={{top: 50, right: 20, left: 0, bottom: 0}}>
+                        margin={{top: 50, right: 20, left: 10, bottom: 0}}>
                     <CartesianGrid strokeDasharray="3 3"/>
                     <XAxis dataKey="date"/>
                     <YAxis/>

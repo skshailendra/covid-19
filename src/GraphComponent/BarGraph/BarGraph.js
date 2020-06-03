@@ -2,10 +2,9 @@
 import React, { useEffect, useState} from 'react';
 import './BarGraph.scss';
 import {
-  XAxis, YAxis, CartesianGrid, Tooltip,BarChart,Bar,
+  XAxis, YAxis, Tooltip,BarChart,Bar,
   } from 'recharts';
 
-import {FetchDataContext} from '../../context/fetch-data';
 import useDeviceAgent from '../../hooks/device-agent';
 
 const BarGraph = props =>{

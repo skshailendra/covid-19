@@ -12,8 +12,9 @@ const PieGraph = props =>{
     const [chartWidth, setChartWidth] = useState(800);
     const [chartHeight, setChartHeight] = useState(400);
     const [activeIndex, setActiveIndex] = useState(0);
-    const [latestData,setLatestData] = useState(props.latestData);
-    
+    const [chartCx, setChartCx] = useState(200);
+    const [chartCy, setChartCy] = useState(180);
+    const totcx = 170,totcy = 50;
     // const data = [{name: 'Confirmed', value: 90648}, 
 		// 					{name: 'Recovered', value: 34257},
     //           {name: 'Death', value: 2871}
@@ -34,17 +35,26 @@ const PieGraph = props =>{
         fill, payload, percent, value } = props;
       const sin = Math.sin(-RADIAN * midAngle);
       const cos = Math.cos(-RADIAN * midAngle);
-      const sx = cx + (outerRadius + 10) * cos;
-      const sy = cy + (outerRadius + 10) * sin;
-      const mx = cx + (outerRadius + 30) * cos;
-      const my = cy + (outerRadius + 30) * sin;
-      const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+      const sx = cx + (outerRadius + 5) * cos;
+      const sy = cy + (outerRadius + 5) * sin;
+      const mx = cx + (outerRadius + 5) * cos;
+      const my = cy + (outerRadius + 20) * sin;
+      const ex = mx + (cos >= 0 ? 1 : -1) * 15;
+
+      if(device && !device.isSmallDevice){
+        const sx = cx + (outerRadius + 10) * cos;
+        const sy = cy + (outerRadius + 10) * sin;
+        const mx = cx + (outerRadius + 30) * cos;
+        const my = cy + (outerRadius + 30) * sin;
+        const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+      }
       const ey = my ;
       const textAnchor = cos >= 0 ? 'start' : 'end';
     
       return (
+
         <g>
-          <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>{payload.name}</text>
+          <text x={cx} y={cy} dy={8} textAnchor="middle" className="payloadName" fill={fill}>{payload.name}</text>
           <Sector
             cx={cx}
             cy={cy}
@@ -65,8 +75,15 @@ const PieGraph = props =>{
           />
           <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none"/>
           <circle cx={ex} cy={ey} r={1.5} fill={fill} stroke="none"/>
-          <text x={ex} y={ey} textAnchor={textAnchor} fill="#333">{`Total ${value}`}</text>
-          <text x={ex} y={ey} dy={18} textAnchor={textAnchor} fill="green">
+          {
+            (device && !device.isSmallDevice) &&
+            <text x={ex} y={ey} textAnchor={textAnchor} fill="#333">{`Total ${value}`}</text>
+          }
+          {
+          (device && device.isSmallDevice) &&
+          <text x={totcx} y={totcy} textAnchor={textAnchor} className="total" fill="#333">{`Total: ${value}`}</text>
+          }
+            <text x={ex} y={ey} dy={18} textAnchor={textAnchor} fill="green">
             {`(${(percent * 100).toFixed(2)}%)`}
           </text>
         </g>
@@ -90,13 +107,12 @@ const PieGraph = props =>{
       if(device && device.isLargeDevice){
         setChartWidth(600);setChartHeight(400);
       }
-      if(device && device.isMediumLargeDevice){
-        setChartWidth(600);setChartHeight(300);
-      }
       if(device && device.isMediumDevice){
+        setChartCx(250);setChartCy(200);
         setChartWidth(600);setChartHeight(400);
       }
       if(device && device.isSmallDevice){
+        setChartCx(140);setChartCy(200);
         setChartWidth(300);setChartHeight(400);
       }
       console.log(device);
@@ -106,14 +122,14 @@ const PieGraph = props =>{
     return (
         <>
              <div className="pie-chart">
-             <PieChart width={600} height={300}>
+             <PieChart width={chartWidth} height={chartHeight}>
         <Pie 
           activeIndex={activeIndex}
           dataKey="value"
           activeShape={renderActiveShape} 
           data={props.latestData} 
-          cx={300} 
-          cy={130} 
+          cx={chartCx}
+          cy={chartCy} 
           innerRadius={60}
           outerRadius={80} 
           fill="#8884d8"
