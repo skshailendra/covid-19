@@ -19,18 +19,18 @@
 }
 
 .main-content-layout{   
-    margin-left: 5em; 
+    margin-left: 0; 
     flex:1;
     background:whitesmoke;
     transition: margin 500ms ease-in;
-    @media screen and (max-width: $bp-large) {
-        margin-left: 0
+    @media screen and (min-width: $bp-extralarge) {
+        margin-left: 5em
     }
 }
 .main-content-layout.main-content-side-open{
-    margin-left: 11em;
-    @media screen and (max-width: $bp-large) {
-        margin-left: 0
+    margin-left: 0;
+    @media screen and (min-width: $bp-extralarge) {
+        margin-left: 11em;
     }
 }
 .footer-layout{

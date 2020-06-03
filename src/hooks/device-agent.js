@@ -10,42 +10,37 @@ const deviceAgentReducer = (currDevice , action)=>{
 };
 const getWindowsDimension = ()=>{
     const width = document.documentElement.clientWidth;
-    // Extra Small Device i.e old smart phones
-    if(width < 320){
+
+    // Small Device  i.e. mobile phones
+    if(width < 768) {
         return {
-            width: width,isExtraSmallDevice: true,isSmallDevice:true,isMediumDevice:false,isLargeDevice:false,
-        }
-    }
-    // Small Device  i.e. smart phones
-    if(width >= 320 && width <= 420) {
-        return {
-            width: width,isExtraSmallDevice: false,isSmallDevice:true,isMediumDevice:false,isLargeDevice:false,isMediumLargeDevice:false,isExtraLargeDevice: false
+            width: width,isSmallDevice:true,isMediumDevice:false,isLargeDevice:false,isExtraLargeDevice: false
         }
     }
     // Medium Device i.e Tablet ipad 
-    if(width > 420 && width <=768){
+    if(width >= 768 && width <=1024){
         return {
-            width: width,isExtraSmallDevice: false,isSmallDevice:false,isMediumDevice:true,isLargeDevice:false,isMediumLargeDevice:false,isExtraLargeDevice: false
+            width: width,isSmallDevice:false,isMediumDevice:true,isLargeDevice:false,isExtraLargeDevice: false
         }
     }
     // Large Device  i.e landscape, monitor 
-    if(width > 768 && width <=1024){
+    if(width > 1024 && width <=1200){
         return {
-            width: width,isExtraSmallDevice: false,isSmallDevice:false,isMediumDevice:false,isLargeDevice:true,isMediumLargeDevice:false,isExtraLargeDevice: false
+            width: width,isSmallDevice:false,isMediumDevice:false,isLargeDevice:true,isExtraLargeDevice: false
         }
     }
-    // Medium Large i.e laptops
-    if(width > 1024  && width <=1399){
+    // Extra Large i.e laptops
+    if(width > 1200 ){
         return {
-            width: width,isExtraSmallDevice: false,isSmallDevice:false,isMediumDevice:false,isLargeDevice:false,isMediumLargeDevice:true,isExtraLargeDevice: false
+            width: width,isSmallDevice:false,isMediumDevice:false,isLargeDevice:false,isExtraLargeDevice: true
         }
     }
     // Extra Large 
-    if(width >1400){ 
-        return {
-            width: width,isExtraSmallDevice: false,isSmallDevice:false,isMediumDevice:false,isLargeDevice:false,isMediumLargeDevice:false,isExtraLargeDevice: true
-        }
-    }
+    // if(width >1200){ 
+    //     return {
+    //         width: width,isSmallDevice:false,isMediumDevice:false,isLargeDevice:false,isExtraLargeDevice: true
+    //     }
+    // }
 };
 const useDeviceAgent = ()=>{
     const [deviceAgent,dispatchDeviceAgent] = useReducer(deviceAgentReducer, getWindowsDimension());
