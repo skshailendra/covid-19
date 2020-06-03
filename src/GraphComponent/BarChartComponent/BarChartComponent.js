@@ -6,7 +6,7 @@ import {FetchDataContext} from '../../context/fetch-data';
 import PieChartComponent from '../PieChartComponent/PieChartComponent';
 
 const BarChartComponent = props =>{
-    const [filterData, setFilterData ] = useState({month:"May" , caseType:'all'});
+    const [filterData, setFilterData ] = useState({month:"June" , caseType:'all'});
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const [latestData,setLatestData] = useState([]);
@@ -14,6 +14,7 @@ const BarChartComponent = props =>{
     const onSelectDropdown = (value)=>{
         console.log("value.. ",value);
         if(value && value.type === "months"){
+            value.selectedtype = value.selectedtype === 'All' ? '' : value.selectedtype;
             setFilterData({...filterData,month:value.selectedtype});
         }else{
             setFilterData({...filterData,caseType:value.selectedtype})
@@ -22,6 +23,14 @@ const BarChartComponent = props =>{
     const createFilterArray = ()=>{
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
             filterArray = casesTimeSeries.filter( (item)=>item.date.includes(filterData.month));
+            filterArray.map((item) => {
+                item.dailyconfirmed = parseInt(item.dailyconfirmed);
+                item.dailydeceased = parseInt(item.dailydeceased);
+                item.dailyrecovered = parseInt(item.dailyrecovered);
+                item.dailyconfirmed = parseInt(item.totalconfirmed);
+                item.dailydeceased = parseInt(item.totaldeceased);
+                item.dailyrecovered = parseInt(item.totalrecovered);
+            });
             setLatestData(filterArray);
         }
     }
