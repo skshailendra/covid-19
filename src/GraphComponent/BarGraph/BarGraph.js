@@ -18,7 +18,7 @@ const BarGraph = props =>{
         setChartWidth(600);setChartHeight(400);
       }
       if(device && device.isLargeDevice){
-        setChartWidth(530);setChartHeight(400);
+        setChartWidth(600);setChartHeight(400);
       }
       if(device && device.isMediumDevice){
         setChartWidth(600);setChartHeight(400);
@@ -39,11 +39,11 @@ const BarGraph = props =>{
             )
         case 'totalrecovered':
           return (
-            <Bar dataKey="dailyrecovered" fill="green" />
+            <Bar dataKey="dailyrecovered" fill="#206111" />
           )
         case 'totaldeceased':
             return (
-              <Bar dataKey="dailydeceased" fill="yellow" />
+              <Bar dataKey="dailydeceased" fill="#525050" />
             )
         default:
           return (
@@ -64,8 +64,8 @@ const BarGraph = props =>{
                        
                         
                         {props.filterCaseType =='all'&&<Bar dataKey="dailyconfirmed" fill="red" />}
-                        {props.filterCaseType =='all' &&<Bar dataKey="dailyrecovered" fill="green" />}
-                        {props.filterCaseType =='all' &&<Bar dataKey="dailydeceased" fill="yellow" /> }
+                        {props.filterCaseType =='all' &&<Bar dataKey="dailyrecovered" fill="#206111" />}
+                        {props.filterCaseType =='all' &&<Bar dataKey="dailydeceased" fill="#525050" /> }
                         {props.filterCaseType != 'all' &&
                           caseType()
                         }
