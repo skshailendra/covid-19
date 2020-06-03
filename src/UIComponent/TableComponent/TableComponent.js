@@ -5,7 +5,7 @@ import './TableComponent.scss';
 import { faArrowUp,faArrowDown,faChevronDown,faChevronCircleRight, faChevronRight, faChevronCircleDown} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {NavLink} from 'react-router-dom';
-
+import useDeviceAgent from '../../hooks/device-agent';
 const TableComponent = React.memo(props =>{
     //const {type}  = props;
     const fetchCovidData = useContext(FetchDataContext);
@@ -13,6 +13,7 @@ const TableComponent = React.memo(props =>{
     const [stateDistrict,setStateDistrict] = useState([]);
     const [sortTable, setSortTable] = useState({asc:true, label:''});
     const [districtSortTable, setDistrictSortTable] = useState({asc:true, label:'',code:null,state:null});
+    const [mobileTable, setMobileTable] = useState(false);
     const heading = [
       {
         label:'Confirmed'
@@ -41,9 +42,19 @@ const TableComponent = React.memo(props =>{
         label:'Deceased'
       }
     ];
+    const {device} = useDeviceAgent();
+    useEffect(()=>{
+      if(device && (device.isSmallDevice || device.isMediumDevice)){
+        setMobileTable(true);
+      }else{
+        setMobileTable(false);
+      }
+      console.log("table setMobileTable",mobileTable);
+    },[device]);
     useEffect(()=>{
       console.log("table data",fetchCovidData);
-      if(fetchCovidData){
+      if(fetchCovidData && fetchCovidData.statewise.length > 0 && fetchCovidData.stateDistrict.length ){
+       
         setStateData(fetchCovidData.statewise.slice(1));
         setStateDistrict(fetchCovidData.stateDistrict);
       }
@@ -98,7 +109,7 @@ const TableComponent = React.memo(props =>{
                   <div className="table__heading">
                     <div className="table__heading-content">State/UT</div>
                   </div>
-                  {
+                  { !mobileTable &&
                     heading.map((head,key)=>(
                       <div key={key} className="table__heading" onClick={e=>sortTableHandler(e, head)}>
                         <div className="table__heading-content" >{head.label}</div>
@@ -113,9 +124,14 @@ const TableComponent = React.memo(props =>{
                       </div>
                     ))
                   }
+                  { mobileTable &&
+                    <div className="table__heading">
+                      <div className="table__heading-content">State Data</div>
+                    </div>
+                  }
                 </div>
                 {
-                  stateData && 
+                  stateData && !mobileTable &&
                   stateData.map((state,code)=>(
                   <React.Fragment key={code}>
                     <div className="table__row" key={code} onClick={e=>showDistrict(e,code,state)} >
@@ -182,13 +198,6 @@ const TableComponent = React.memo(props =>{
                           </div>
                         ))
                       }
-                     
-                      {/* <div className="table__heading">
-                        <div className="table__heading-content"></div>
-                        <div className="table__icon-container">
-                          Details
-                        </div>
-                      </div> */}
                     </div>
                     }
 
@@ -228,10 +237,66 @@ const TableComponent = React.memo(props =>{
                       ))
                       }
 
+                    </React.Fragment>
+                  ))
+                }
+                {
+                  stateData && mobileTable &&
+                  stateData.map((state,code)=>(
+                  <React.Fragment key={code}>
+                    <div className="table__row" key={code} onClick={e=>showDistrict(e,code,state)} >
+                      <div className="table__column">
+                          <div className="table__body-content-delta">
+                            {state.showExpand ?
+                            <FontAwesomeIcon icon={faChevronCircleDown} size="lg" color="#b8b4e7" className="table__body__icon"/>
+                            : <FontAwesomeIcon icon={faChevronCircleRight} size="lg" color="#b8b4e7" className="table__body__icon"/>
+                            }
+                          </div>
+                          <div className="table__body-content">{state.state}</div>
+                      </div>
+                      <div className="table__column">
+                        <div className="table__data__stats ">
+                          <div className=" table__body-content table__data__confirmed ">{state.confirmed}</div>
+                          <div className="table__body-content table__data__recovered">{state.recovered}</div>
+                          <div className="table__body-content table__data__deceased">{state.deaths}</div>
+                        </div>
+                      </div>
+                    </div>
+                    {state.showExpand && 
+                      <div className="table__row-heading table__row-heading-district">
+                        <div className="table__heading">
+                          <div className="table__heading-content">District</div>
+                        </div>
+                        
+                        <div className="table__heading" >
+                          <div className="table__heading-content">District Data</div>
+                        </div>
+                    </div>
+                    }
+
+                    {
+                      state.districtList  && 
+                      state.districtList.districtData.map((district,index)=>(
+                        <div className="table__row table__row-district" key={index}>
+                          <div className="table__column">
+                            <div className="table__body-content">{district.district}</div>
+                          </div>
+                          <div className="table__column">
+                            <div className="table__data__stats">
+                              <div className="table__body-content table__data__confirmed">{district.confirmed}</div>
+                              <div className="table__body-content table__data__recovered">{district.recovered}</div>
+                              <div className="table__body-content table__data__deceased">{district.deceased}</div>
+                            </div>         
+                          </div>
+                        </div>
+                      ))
+                      }
+
                     </React.Fragment >
                   ))
 
                 }
+
               </div>
           </div>
         </>
