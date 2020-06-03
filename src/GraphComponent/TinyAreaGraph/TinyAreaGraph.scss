@@ -1,20 +1,8 @@
 @import '../../Globals//variables/variables.scss';
 
-.bar-chart-container{
-    flex:1;
-    display: flex;
-    flex-direction: column;
+.tiny-chart-container{
 }
 
-.bar-chart {
-    background-color: $white;
-    //box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.05);
-    padding:2em;
-    //margin-bottom: 2em;
-    border-radius: 5px;
-    position: relative;
-    @media screen and (max-width: $bp-medium) {
-        padding: 0;
-        flex-wrap: wrap;
-    }
+.tiny-chart {
+
 }
