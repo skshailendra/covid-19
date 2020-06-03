@@ -6,7 +6,7 @@ import {FetchDataContext} from '../../context/fetch-data';
 import PieChartComponent from '../PieChartComponent/PieChartComponent';
 
 const BarChartComponent = props =>{
-    const [filterData, setFilterData ] = useState({month:"June" , caseType:'all'});
+    const [filterData, setFilterData ] = useState({month:"" , caseType:'all'});
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const [latestData,setLatestData] = useState([]);
@@ -22,26 +22,22 @@ const BarChartComponent = props =>{
     }
     const createFilterArray = ()=>{
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
+        
             filterArray = casesTimeSeries.filter( (item)=>item.date.includes(filterData.month));
             filterArray.map((item) => {
                 item.dailyconfirmed = parseInt(item.dailyconfirmed);
                 item.dailydeceased = parseInt(item.dailydeceased);
                 item.dailyrecovered = parseInt(item.dailyrecovered);
-                item.dailyconfirmed = parseInt(item.totalconfirmed);
-                item.dailydeceased = parseInt(item.totaldeceased);
-                item.dailyrecovered = parseInt(item.totalrecovered);
+                item.totalconfirmed = parseInt(item.totalconfirmed);
+                item.totalconfirmed = parseInt(item.totaldeceased);
+                item.totalconfirmed = parseInt(item.totalrecovered);
             });
             setLatestData(filterArray);
         }
     }
     useEffect(()=>{
-        console.log("common");
         createFilterArray();
-        //setLatestData(casesTimeSeries);
     },[casesTimeSeries,filterData]);
-    // useEffect(()=>{
-    //     createFilterArray();
-    // },[filterData]);
     return (
         <> 
             <div className="bar-description-graph">
