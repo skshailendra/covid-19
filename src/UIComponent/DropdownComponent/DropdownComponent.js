@@ -47,19 +47,18 @@ const DropdownComponent = React.memo(props =>{
       props.selectDropdown({selected:e.target.innerHTML, selectedtype:e.target.dataset.value,type:type,});
     };
 
-    const clickOutside = (e)=>{
+    const clickOutside = useCallback((e)=>{
       console.log("dropdown outside ");
       if(dropdownList.current && !dropdownList.current.contains(e.target)){
         dispatchDropdown({type:'CLOSE'})
       }
-    }
+    });
     useEffect(()=>{
       window.addEventListener("click",clickOutside);
       getDropdownData(type);
       return ()=>{
         console.log("dropdown cleanup ");
         window.removeEventListener("click",clickOutside);
-        //console.log("clean up ");
       }
     },[]);
 
@@ -72,6 +71,7 @@ const DropdownComponent = React.memo(props =>{
     },[data]);
     return(
         <>
+            
             <div className="dropdown">
                 <div ref={dropdownList} className="dropdown__wrap">
                     <ul className="dropdown__default" onClick={e =>dispatchDropdown({type:'TOGGLE'})}>
