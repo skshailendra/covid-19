@@ -5,7 +5,7 @@ import {FetchDataContext} from '../../context/fetch-data';
 import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownComponent';
 const LineChartComponent = props =>{
 
-    const [filterData, setFilterData ] = useState({month:"June"});
+    const [filterData, setFilterData ] = useState({month:""});
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const [latestData,setLatestData] = useState([]);

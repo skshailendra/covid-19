@@ -64,7 +64,11 @@ const DropdownComponent = React.memo(props =>{
     },[]);
 
     useEffect(()=>{
-      dispatchDropdown({type:'CREATE',traverseDropdown:data, value:selectedValue,selectedValue:selectedValue});
+      if(data){
+        dispatchDropdown({type:'CREATE',traverseDropdown:data, value:selectedValue,selectedValue:selectedValue});
+        // Callback Event
+        props.selectDropdown({selected:selectedValue, selectedtype:selectedValue,type:type});
+      }
     },[data]);
     return(
         <>
