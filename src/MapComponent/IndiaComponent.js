@@ -179,7 +179,7 @@ const IndiaComponent = props=>{
             // Remove old selection before new Useeffect 
             selectAll(".indiastate path").remove();
         })
-    },[stateJson,device])
+    },[stateJson,device]);
     return (
         <>
             <div className="map">

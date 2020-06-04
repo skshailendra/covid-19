@@ -37,9 +37,11 @@ const DisplayTotal = props =>{
                 item.dailyconfirmed = parseInt(item.dailyconfirmed);
                 item.dailydeceased  = parseInt(item.dailydeceased);
                 item.dailyrecovered = parseInt(item.dailyrecovered);
+                item.dailyactive    = item.dailyconfirmed - (item.dailyrecovered + item.dailydeceased);   
                 item.totalconfirmed = parseInt(item.totalconfirmed);
-                item.totalconfirmed = parseInt(item.totaldeceased);
-                item.totalconfirmed = parseInt(item.totalrecovered);
+                item.totaldeceased = parseInt(item.totaldeceased);
+                item.totalrecovered = parseInt(item.totalrecovered);
+                item.totalactive =    item.totalconfirmed - (item.totalrecovered + item.totaldeceased);
             });
             setLatestData(filterArray);
         }
@@ -85,7 +87,18 @@ const DisplayTotal = props =>{
                                 
                             </div>
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyrecovered"} fillcolor={"green"}/>
-                        </div>   
+                        </div>
+                        {/* <div className={`display-total__block`}>
+                            <div className={`display-total__text`}>
+                                {"Active"}
+                            </div>
+                            <div className={`display-total__count-block`}>
+                                <div className="display-total__count">
+                                    {statewise.active}
+                                </div>
+                            </div>
+                            <TinyAreaGraph latestData= {latestData} dataKey={"dailyactive"} fillcolor={"green"}/>
+                        </div>     */}
 
                         <div className={`display-total__block`}>
                             <div className={`display-total__text`}>

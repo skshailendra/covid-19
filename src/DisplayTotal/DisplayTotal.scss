@@ -96,10 +96,10 @@
     }
 }
 .display-line-chart-container{
-    display: flex;
-    flex-wrap: wrap;
+    //display: flex;
+    //flex-wrap: wrap;
     //background-color: #fff;
-    flex-direction: column-reverse;
+    //flex-direction: column-reverse;
     flex: 0 0 70%;
     padding: .6em;
     @media screen and (min-width: $bp-extralarge) {
