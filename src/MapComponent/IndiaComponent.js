@@ -209,7 +209,8 @@ const IndiaComponent = props=>{
                     <>
                         <div className="indiastate">
                             <div className="indiamap__heading-container">
-                                <p className="indiamap__heading">District(s) of {selectedState}</p>
+                                <p className="indiamap__heading">Districts of {selectedState}</p>
+                                <p className="indiamap__detail-message">Select a District for more details</p>
                             </div>
                             <svg ref={stateSvgRef}></svg> 
                             {hoverDistrict && 
