@@ -43,7 +43,7 @@ const IndiaComponent = props=>{
     useEffect(()=>{
         let viewBoxWidth ,viewBoxHeight;
         if(indiaJson &&  fetchCovidData.statewise.length>0){
-            console.log("devic changes ");
+            
             if(device && device.isSmallDevice){
                 mapWidth = 300 ;mapHeight = 300 ;
                 viewBoxWidth = 300;viewBoxHeight = 300;
@@ -52,7 +52,7 @@ const IndiaComponent = props=>{
                 viewBoxWidth = 500; viewBoxHeight = 600;
             }
             
-        console.log("mapwidth", mapWidth,mapHeight);
+        
         
         indiaSvg = select(indiaSvgRef.current)
                     .attr("width",mapWidth)
@@ -79,7 +79,7 @@ const IndiaComponent = props=>{
             .enter()
             .append('path')
             .on("click",  (feature,i, nodes) => {
-                console.log("----",feature);
+                
                 if(prevSelectedState){
                     select(prevSelectedState).classed("stateselected",false);
                 } 
@@ -89,11 +89,11 @@ const IndiaComponent = props=>{
                 setHoverDistrict('');
             })
             .on("mouseenter", (feature,i, nodes) => {
-                console.log(feature);
+                
                 setHoverState(feature.properties["st_nm"])         
             })
             .on("mouseout", (feature,i, nodes) => {
-                console.log(feature);
+                
                 setHoverState('');
             })
             .attr('class',"state")
@@ -103,7 +103,7 @@ const IndiaComponent = props=>{
             
         }
         return (()=>{
-            console.log("mapclean up run");
+            
             selectAll(".indiamap path").remove();
         })
     },[indiaJson,device]);
@@ -122,7 +122,7 @@ const IndiaComponent = props=>{
         if(selectedState && stateJson){
             let viewBoxWidth ,viewBoxHeight;
             let filterState,filterDistrict;
-            console.log("devic changes ");
+            
             if(device && device.isSmallDevice){
                 mapWidth = 300 ;mapHeight = 300 ;
                 viewBoxWidth = 400;viewBoxHeight = 400;
@@ -148,12 +148,12 @@ const IndiaComponent = props=>{
                 featurestate.properties["active"] = filterDistrict.active;
                 featurestate.properties["deceased"] = filterDistrict.deceased;
             });
-            console.log("featureDistrict",featureDistrict);
+            
 
             const minProp = min(featureDistrict.features, feature => feature.properties['confirmed']);
             const maxProp = max(featureDistrict.features, feature => feature.properties['confirmed']);
-            console.log("minProp",minProp);
-            console.log("maxProp",maxProp);
+            
+            
             const colorScale = scaleLinear().domain([minProp, maxProp]).range(["#ccc", "red"]);
 
            // projects geo-coordinates on a 2D plane
@@ -165,7 +165,7 @@ const IndiaComponent = props=>{
             .enter()
             .append('path')
             .on("mouseenter", feature => {
-                console.log("dis--",feature);
+                
                 setHoverDistrict(feature.properties)         
             })
             .attr('class',"district")

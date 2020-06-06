@@ -11,7 +11,6 @@ const LineChartComponent = props =>{
     const [latestData,setLatestData] = useState([]);
     let filterArray = [];
     const onSelectDropdown = useCallback((value)=>{
-        console.log("value.. ",value);
         if(value && value.type === "months"){
             value.selectedtype = value.selectedtype === 'All' ? '' : value.selectedtype;
             setFilterData({...filterData,month:value.selectedtype});
@@ -29,7 +28,6 @@ const LineChartComponent = props =>{
         }
     }
     useEffect(()=>{
-        console.log("Line component");
         createFilterArray();
     },[casesTimeSeries,filterData]);
     return (

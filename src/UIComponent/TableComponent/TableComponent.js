@@ -49,10 +49,8 @@ const TableComponent = React.memo(props =>{
       }else{
         setMobileTable(false);
       }
-      console.log("table setMobileTable",mobileTable);
     },[device]);
     useEffect(()=>{
-      console.log("table data",fetchCovidData);
       if(fetchCovidData && fetchCovidData.statewise.length > 0 && fetchCovidData.stateDistrict.length ){
        
         setStateData(fetchCovidData.statewise.slice(1));

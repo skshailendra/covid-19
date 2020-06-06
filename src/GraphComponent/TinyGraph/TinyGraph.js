@@ -29,8 +29,7 @@ const TinyGraph = props =>{
       if(device && device.isSmallDevice){
         setChartWidth(300);setChartHeight(300);
       }
-      console.log(device);
-      console.log("chartwidth",chartWidth);
+      
     },[device]);
     
     return (

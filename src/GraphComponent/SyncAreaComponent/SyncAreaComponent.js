@@ -11,7 +11,6 @@ const SyncAreaComponent = props =>{
     const [latestData,setLatestData] = useState([]);
     let filterArray = [];
     const onSelectDropdown = (value)=>{
-        console.log("value.. ",value);
         if(value && value.type === "months"){
             value.selectedtype = value.selectedtype === 'All' ? '' : value.selectedtype;
             setFilterData({...filterData,month:value.selectedtype});

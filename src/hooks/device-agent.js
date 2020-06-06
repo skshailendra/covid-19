@@ -52,7 +52,7 @@ const useDeviceAgent = ()=>{
         dispatchDeviceAgent({type:'DEVICE', device:getWindowsDimension()});
         window.addEventListener("resize", getDevice);
         return ()=>{
-            console.log("destroy");
+           
             window.removeEventListener('resize', getDevice)
         };
     },[]);
