@@ -18,8 +18,6 @@ const useDatetime = ()=>{
     }
     useEffect(()=>{
         if(statewise){
-            //setLastUpdatedTime(statewise.lastupdatedtime);
-            console.log("overview ",statewise.lastupdatedtime);
             formatDateTime();
         }
     },[statewise])

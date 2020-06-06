@@ -15,15 +15,6 @@ const PieGraph = props =>{
     const [chartCx, setChartCx] = useState(200);
     const [chartCy, setChartCy] = useState(180);
     const totcx = 170,totcy = 50;
-    // const data = [{name: 'Confirmed', value: 90648}, 
-		// 					{name: 'Recovered', value: 34257},
-    //           {name: 'Death', value: 2871}
-    //          ];
-    // useEffect(()=>{
-    //   console.log("pie graph",latestData);
-    //   console.log("props",props);
-
-    // },latestData);
     const COLORS = ['#ea8888', '#00C49F', '#989898'];
 
     const onPieEnter = (data, index) =>{
@@ -115,8 +106,6 @@ const PieGraph = props =>{
         setChartCx(140);setChartCy(200);
         setChartWidth(300);setChartHeight(400);
       }
-      console.log(device);
-      console.log("chartwidth",chartWidth);
     },[device]);
     
     return (

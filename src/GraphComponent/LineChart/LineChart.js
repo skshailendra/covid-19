@@ -55,7 +55,6 @@ const LineChart = props =>{
             setCovidData(data);
         };
     },[]);
-    console.log("Line Chart");
     return (
         <>
             <div className="line-chart-container">

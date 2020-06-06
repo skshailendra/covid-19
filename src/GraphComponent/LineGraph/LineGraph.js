@@ -24,7 +24,6 @@ const LineGraph = props =>{
     if(device && device.isSmallDevice){
       setChartWidth(300);setChartHeight(350);
     }
-    console.log("linewidth",chartWidth);
   },[device]);
     return (
         <>
@@ -32,7 +31,7 @@ const LineGraph = props =>{
             <LineChart width={chartWidth} height={chartHeight} data={props.latestData}
                  scale="auto" >
             <XAxis dataKey="date"/>
-            <YAxis  domain={['auto',  dataMax => {console.log("dataMax",dataMax); return (dataMax)}]}/>
+            <YAxis  domain={['auto',  dataMax => {return (dataMax)}]}/>
             <CartesianGrid vertical={false}  strokeDasharray="3 3"/>
             <Tooltip/>
             <Legend />

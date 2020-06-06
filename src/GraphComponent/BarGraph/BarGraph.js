@@ -25,11 +25,8 @@ const BarGraph = props =>{
       if(device && device.isSmallDevice){
         setChartWidth(300);setChartHeight(300);
       }
-      console.log(device);
-      console.log("bar chartwidth",chartWidth);
     },[device]);
     const caseType = ()=>{
-      console.log(filterCaseType);
       switch(filterCaseType) {
 
         case 'totalconfirmed':

@@ -48,7 +48,7 @@ const DropdownComponent = React.memo(props =>{
     };
 
     const clickOutside = useCallback((e)=>{
-      console.log("dropdown outside ");
+      
       if(dropdownList.current && !dropdownList.current.contains(e.target)){
         dispatchDropdown({type:'CLOSE'})
       }
@@ -57,7 +57,7 @@ const DropdownComponent = React.memo(props =>{
       window.addEventListener("click",clickOutside);
       getDropdownData(type);
       return ()=>{
-        console.log("dropdown cleanup ");
+        
         window.removeEventListener("click",clickOutside);
       }
     },[]);

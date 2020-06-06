@@ -20,17 +20,16 @@ const SynchronizedAreaChart = props =>{
   //let chartHeight = 250;
   let filterArray = [];
   useEffect(()=>{
-    console.log("redraw");
     if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
       filterArray = casesTimeSeries.filter( (data)=>data.date.includes("May"));
       setLatestData(filterArray);
     }
     return ()=>{
-      console.log("Cleanup runss");
+
     }
   },[casesTimeSeries,chartWidth]); 
   useEffect(()=>{
-      console.log("filterData", filterData);
+
       
   },[filterData]); 
   useEffect(()=>{
@@ -46,8 +45,6 @@ const SynchronizedAreaChart = props =>{
     if(device && device.isSmallDevice){
       setChartWidth(300);setChartHeight(300);
     }
-    console.log(device);
-    console.log("chartwidth",chartWidth);
   },[device]);
     return (
         <>
