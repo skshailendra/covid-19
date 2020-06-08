@@ -30,17 +30,25 @@ const BarGraph = props =>{
       switch(filterCaseType) {
 
         case 'totalconfirmed':
+        case 'Confirmed':
           return (            
-              <Bar dataKey="dailyconfirmed" fill="red" />
+              <Bar  barSize={15} dataKey= {props.dataKey.dailyconfirmed}  fill="red" />
             )
         case 'totalrecovered':
+        case 'Recovered':
           return (
-            <Bar dataKey="dailyrecovered" fill="#206111" />
+            <Bar dataKey={props.dataKey.dailyrecovered}  fill="#206111" />
           )
         case 'totaldeceased':
+        case 'Deceased':
             return (
-              <Bar dataKey="dailydeceased" fill="#525050" />
+              <Bar dataKey={props.dataKey.dailydeceased} fill="#525050" />
             )
+        case 'totalactive':
+        case 'Active':
+              return (
+                <Bar dataKey={props.dataKey.totalactive} fill="blue" />
+              )
         default:
           return (
            <>
@@ -54,7 +62,7 @@ const BarGraph = props =>{
                 <div className="bar-chart">
                         <BarChart width={chartWidth} height={chartHeight} data={props.latestData}>
                         
-                        <XAxis dataKey="date"/>
+                        <XAxis dataKey={props.xDataKey}/>
                         <YAxis />
                         <Tooltip />
                        

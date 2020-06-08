@@ -41,9 +41,9 @@ const StackBarGraph = props =>{
                             <YAxis type="category" dataKey={props.datakey} />
                             <Tooltip/>
                             <Legend />
-                            <Bar  barSize={18} dataKey="confirmed" stackId="a" fill="red" />
-                            <Bar  barSize={18} dataKey="recovered" stackId="a" fill="#82ca9d" />
-                            <Bar  barSize={18} dataKey="active" stackId="a" fill="blue" />
+                            <Bar  barSize={20} dataKey="confirmed" stackId="a" fill="#e26868" />
+                            <Bar  barSize={20} dataKey="recovered" stackId="a" fill="#78b16b" />
+                            <Bar  barSize={20} dataKey="active" stackId="a" fill="#7e78f7" />
                             {/* <Bar  barSize={18} dataKey="deaths" stackId="a" fill="grey" /> */}
                         </BarChart>
                       }
