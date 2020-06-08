@@ -29,10 +29,10 @@ const StackBarGraph = props =>{
         <>
             <div className="stack-bar-chart-container">
                 <div className="stack-bar-chart">  
-                      {device && !device.isSmallDevice &&
+                      {device && (device.isExtraLargeDevice || device.isLargeDevice) && 
                         <BarChart ref={stackBarGraph}
-                            width={chartWidth} 
-                            height={chartHeight} 
+                            width={700} 
+                            height={600} 
                             data={props.latestData}
                             layout="vertical"
                             margin={{top: 5, right: 0, left: 20, bottom: 5}}
@@ -46,11 +46,29 @@ const StackBarGraph = props =>{
                             <Bar  barSize={18} dataKey="active" stackId="a" fill="blue" />
                             {/* <Bar  barSize={18} dataKey="deaths" stackId="a" fill="grey" /> */}
                         </BarChart>
-                        }
+                      }
+                       {device && device.isMediumDevice &&
+                        <BarChart ref={stackBarGraph}
+                            width={550} 
+                            height={600} 
+                            data={props.latestData}
+                            layout="vertical"
+                            margin={{top: 5, right: 0, left: 20, bottom: 5}}
+                          >
+                            <XAxis type="number"/>
+                            <YAxis type="category" dataKey={props.datakey} />
+                            <Tooltip/>
+                            <Legend />
+                            <Bar  barSize={18} dataKey="confirmed" stackId="a" fill="red" />
+                            <Bar  barSize={18} dataKey="recovered" stackId="a" fill="#82ca9d" />
+                            <Bar  barSize={18} dataKey="active" stackId="a" fill="blue" />
+                            {/* <Bar  barSize={18} dataKey="deaths" stackId="a" fill="grey" /> */}
+                        </BarChart>
+                      }
                         {device && device.isSmallDevice &&
                         <BarChart ref={stackBarGraph}
-                            width={chartWidth} 
-                            height={chartHeight} 
+                            width={300} 
+                            height={550} 
                             data={props.latestData}
                             layout="vertical"
                             margin={{top: 5, right: 0, left: 20, bottom: 5}}
@@ -60,9 +78,9 @@ const StackBarGraph = props =>{
                             <CartesianGrid strokeDasharray="6 6"/>
                             <Tooltip/>
                             <Legend />
-                            <Bar  barSize={barSize} dataKey="confirmed" stackId="a" fill="red" />
-                            <Bar  barSize={barSize} dataKey="recovered" stackId="a" fill="#82ca9d" />
-                            <Bar  barSize={barSize} dataKey="active" stackId="a" fill="blue" />
+                            <Bar  barSize={15} dataKey="confirmed" stackId="a" fill="red" />
+                            <Bar  barSize={15} dataKey="recovered" stackId="a" fill="#82ca9d" />
+                            <Bar  barSize={15} dataKey="active" stackId="a" fill="blue" />
                             {/* <Bar  barSize={barSize} dataKey="deaths" stackId="a" fill="grey" /> */}
                         </BarChart>
                         }
