@@ -56,9 +56,8 @@ const AllDistrictState = props =>{
         if(fetchCovidData.stateDistrict.length > 0 && filterData.statecode){
             
             let filterArray = fetchCovidData.stateDistrict.slice(1).filter( (item)=>item.statecode === filterData.statecode)[0];
-            filterArray.districtData = filterArray.districtData.sort(sortable);
-            debugger;
-            setLatestData(filterArray);
+            filterArray.districtData = filterArray.districtData.sort(sortable);            
+            setLatestData({...filterArray,filterArray});
         }
     }
 
@@ -103,8 +102,12 @@ const AllDistrictState = props =>{
                                 <p>Top 4 Effected District</p>
                             </div>
                         </div>
-                        <ul className="all-district__list">
-                            {latestData.districtData.map((state,idx)=>(
+                        <div className="all-district__all-list">
+                            <div className="all-district__all-list-label">
+                                <p>All District List:</p>
+                            </div>
+                            <ul className="all-district__list">                            
+                                {latestData.districtData.map((state,idx)=>(
                                 <li key={idx} className="all-district__list-items"> 
                                     <div className="all-district__name">{state.district}</div>
                                     {filterData.caseType.toLowerCase() === "confirmed" &&
@@ -129,9 +132,11 @@ const AllDistrictState = props =>{
 
 
                                 </li>
-                            ))
-                            }
-                        </ul>                        
+                                ))
+                                }
+                            </ul> 
+                        </div>
+                                               
                 </div>
                
                 </>

@@ -48,7 +48,23 @@
     &__states{
 
     }
-
+    &__all-list{
+        margin-top: 1.4em;
+        @media screen and (min-width: $bp-large) {
+            margin-top: 0;
+        }
+    }
+    &__all-list-label{
+        padding-left: 1.4em;
+        display: flex;
+        font-size: .9em;
+        color: #6b5f5f;
+        font-weight: 600;
+        @media screen and (min-width: $bp-medium) {
+            font-size: .9em;
+            font-weight: 500;
+        }
+    }
     &__list{
         display: flex;
         flex-wrap: wrap;
