@@ -47,15 +47,6 @@ const AllDistrictState = props =>{
         if(fetchCovidData.stateDistrict.length > 0){
          
             let filterArray = fetchCovidData.stateDistrict.slice(1).filter( (item)=>item.statecode === filterData.statecode)[0];
-            console.log(filterArray);
-            // filterArray.map((item) => {
-            //     item.dailyconfirmed = parseInt(item.dailyconfirmed);
-            //     item.dailydeceased = parseInt(item.dailydeceased);
-            //     item.dailyrecovered = parseInt(item.dailyrecovered);
-            //     item.totalconfirmed = parseInt(item.totalconfirmed);
-            //     item.totalconfirmed = parseInt(item.totaldeceased);
-            //     item.totalconfirmed = parseInt(item.totalrecovered);
-            // });
             setLatestData(filterArray);
         }
     }
@@ -94,11 +85,11 @@ const AllDistrictState = props =>{
             <div className="all-states-graph">
                 <div className="all-states-dropdown-container">
                     <h3 className="all-states-graph__caseheading">Statewise Data: </h3>
-                    <DropdownComponent type ={"custom"} list = {casesType} selectDropdown = {e=>onSelectDropdown(e)}/>
-                    {/* <DropdownComponent type ={"months"} selectDropdown = {e=>onSelectDropdown(e)}/> */}
                     {stateList.length > 0 &&
                     <DropdownComponent type ={"states"} list = {stateList} selectDropdown = {e=>onSelectDropdown(e)}/>
                     }
+                    <DropdownComponent type ={"custom"} list = {casesType} selectDropdown = {e=>onSelectDropdown(e)}/>
+                   
                 </div>
                 {  latestData && latestData.districtData && 
                 <div className="all-district">
