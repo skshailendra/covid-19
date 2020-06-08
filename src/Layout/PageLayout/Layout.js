@@ -14,7 +14,6 @@ const Layout = props =>{
     const backdropHandler = ()=>{
         setSideDrawerOpen(false);
     };  
-    console.log("layout called");
     return (
         <>
             <HeaderComponent clickSideDrawer={toggleClickHandler}/>

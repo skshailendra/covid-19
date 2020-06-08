@@ -4,7 +4,7 @@ import {FetchDataContext} from '../../context/fetch-data';
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 import { faSearch,faTimesCircle,faFrown,faFrownOpen, faSadCry,faSadTear } from "@fortawesome/free-solid-svg-icons";
 import './SearchComponent.scss';
-
+import {Link} from 'react-router-dom';
 const SearchComponent = props =>{
     const [searchFocus, setSearchFocus] = useState(false);
     const [searchValue, setSearchValue] = useState('');
@@ -27,7 +27,7 @@ const SearchComponent = props =>{
     }
 
     const clickOutside = (e)=>{
-        console.log("outside ",e);
+        
         if(searchRef.current && !searchRef.current.contains(e.target)){
             setSearchFocus(false);
         }
@@ -42,7 +42,6 @@ const SearchComponent = props =>{
         window.addEventListener("click",clickOutside);
         return ()=>{
             window.removeEventListener("click",clickOutside);
-            //console.log("clean up ");
         }
     },[]);
     useEffect(()=>{
@@ -53,8 +52,6 @@ const SearchComponent = props =>{
     },[fetchCovidData]);
 
     useEffect(() => {
-        //console.log("search value..",searchRef.current.value);
-        
         const optimizeSearch = setTimeout(()=>{
             if(searchRef.current.value !== ''){
             const filterStateData = stateData.filter( (data)=>{
@@ -74,7 +71,6 @@ const SearchComponent = props =>{
                         filDist.state = data.state;
                         filDist.statecode = data.statecode;
                     })
-                    //console.log("-------",filterDistrictList)
                     tempDistrictList.push(...filterDistrictList);
                 }           
             });
@@ -84,13 +80,11 @@ const SearchComponent = props =>{
                 setSearchList([]);
             }
         },50);
-        return()=>{
-            console.log("Clear old timeout");       
+        return()=>{      
             clearTimeout(optimizeSearch);
         }
     },[searchValue]);
     useEffect(()=>{
-        console.log("called..");
         // No result Found Case
         if(searchList.length === 0  && searchValue !==''){
             setNoResult(true);
@@ -121,7 +115,8 @@ const SearchComponent = props =>{
                             {
                             searchList && 
                             searchList.map((search,idx)=>(
-                                <li key={idx} className="search-result__item">
+                                <Link key={idx} className="search-result__link" to={`/state/${search.statecode}` }>
+                                <li  className="search-result__item">
                                     {search.isDistrict && 
                                     <>
                                     <div className="search-result__search-detail-icon">
@@ -167,6 +162,7 @@ const SearchComponent = props =>{
                                     }
                                     
                                 </li>
+                                </Link>
                             ))
                             }
                             {

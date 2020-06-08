@@ -1,13 +1,12 @@
 import React , {useState, useEffect, useContext}from 'react';
-import './DisplayTotal.scss';
+import './StateWiseDisplayTotal.scss';
 import { faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {FetchDataContext} from '../context/fetch-data';
-import LineChartComponent from '../GraphComponent/LineChartComponent/LineChartComponent';
-
-
+import BarChartComponentState from '../GraphComponent/BarChartComponentState/BarChartComponentState';
+import {withRouter} from 'react-router-dom';
 import TinyAreaGraph from '../GraphComponent/TinyAreaGraph/TinyAreaGraph';
-const DisplayTotal = props =>{
+const StateWiseDisplayTotal = props =>{
 
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
@@ -51,21 +50,21 @@ const DisplayTotal = props =>{
 
     return (
     <>  
-            <div className="container">
-                <div className="display-total">
+            <div className="statewise-container">
+                <div className="statewise-display-total">
                     {statewise && 
                         <>
-                        <div className={`display-total__block`}>
-                            <div className={`display-total__text`}>
+                        <div className={`statewise-display-total__block`}>
+                            <div className={`statewise-display-total__text`}>
                                 {"Confirmed"}
                             </div>
-                            <div className={`display-total__count-block`}>
-                                <div className="display-total__count">
+                            <div className={`statewise-display-total__count-block`}>
+                                <div className="statewise-display-total__count">
                                     {statewise.confirmed}
                                 </div>
                                 
-                                <div className="display-total__increase">
-                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
+                                <div className="statewise-display-total__increase">
+                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" className="statewise-display-total__icon"/>
                                     [+{statewise.deltaconfirmed}]
                                 </div>
                                 
@@ -73,46 +72,45 @@ const DisplayTotal = props =>{
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyconfirmed"} fillcolor={"red"}/>
                         </div>
 
-                        <div className={`display-total__block`}>
-                            <div className={`display-total__text`}>
+                        <div className={`statewise-display-total__block`}>
+                            <div className={`statewise-display-total__text`}>
                                 {"Recovered"}
                             </div>
-                            <div className={`display-total__count-block`}>
-                                <div className="display-total__count">
+                            <div className={`statewise-display-total__count-block`}>
+                                <div className="statewise-display-total__count">
                                     {statewise.recovered}
                                 </div>
                                 
-                                <div className="display-total__increase">
-                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
+                                <div className="statewise-display-total__increase">
+                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" className="statewise-display-total__icon"/>
                                     [+{statewise.deltarecovered}]
                                 </div>
                                 
                             </div>
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyrecovered"} fillcolor={"green"}/>
                         </div>
-                        {/* <div className={`display-total__block`}>
-                            <div className={`display-total__text`}>
+                        <div className={`statewise-display-total__block`}>
+                            <div className={`statewise-display-total__text`}>
                                 {"Active"}
                             </div>
-                            <div className={`display-total__count-block`}>
-                                <div className="display-total__count">
+                            <div className={`statewise-display-total__count-block`}>
+                                <div className="statewise-display-total__count">
                                     {statewise.active}
                                 </div>
                             </div>
-                            <TinyAreaGraph latestData= {latestData} dataKey={"dailyactive"} fillcolor={"green"}/>
-                        </div>     */}
-
-                        <div className={`display-total__block`}>
-                            <div className={`display-total__text`}>
+                            <TinyAreaGraph latestData= {latestData} dataKey={"dailyactive"} fillcolor={"blue"}/>
+                        </div>    
+                        <div className={`statewise-display-total__block`}>
+                            <div className={`statewise-display-total__text`}>
                                 {"Deaths"}
                             </div>
-                            <div className={`display-total__count-block`}>
-                                <div className="display-total__count">
+                            <div className={`statewise-display-total__count-block`}>
+                                <div className="statewise-display-total__count">
                                     {statewise.deaths}
                                 </div>
                                 
-                                <div className="display-total__increase">
-                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
+                                <div className="statewise-display-total__increase">
+                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" className="statewise-display-total__icon"/>
                                     [+{statewise.deltadeaths}]
                                 </div>
                                 
@@ -124,11 +122,11 @@ const DisplayTotal = props =>{
                     
                 </div>
                 <div className="display-line-chart-container">
-                    <LineChartComponent/>
+                    <BarChartComponentState/>
                 </div>
             </div>   
         </>
     );
 };
 
-export default DisplayTotal;
+export default withRouter(StateWiseDisplayTotal);

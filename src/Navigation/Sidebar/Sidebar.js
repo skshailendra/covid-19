@@ -6,7 +6,6 @@ import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 
 const Sidebar = React.memo(props =>{
     const {propsSidebarOpen} = props;
-    console.log("sidebar");
     return (
         <>
             <nav className={`sidebar ${propsSidebarOpen ? "open": ""}`}>
@@ -26,15 +25,6 @@ const Sidebar = React.memo(props =>{
                         
                     </li>
                     <li className="side-nav__items">
-                        <NavLink to='/analysis' exact className={`side-nav__link ${propsSidebarOpen ? "open":""}`} activeClassName="side-nav__link--active">
-                            <FontAwesomeIcon icon={faChartLine}  color="#f5a616" className="side-nav__icon"/>
-                            <div className={`side-nav__text ${propsSidebarOpen ? "open":""}`}>
-                                <span>Analysis</span>
-                            </div>
-                        </NavLink>
-                        
-                    </li>
-                    <li className="side-nav__items">
                         <NavLink to='/map' exact className={`side-nav__link ${propsSidebarOpen ? "open":""}`} activeClassName="side-nav__link--active">
                             <FontAwesomeIcon icon={faMapMarkerAlt} color="#6883e6" className="side-nav__icon"/>
                             <div className={`side-nav__text ${propsSidebarOpen ? "open":""}`}>
@@ -42,6 +32,17 @@ const Sidebar = React.memo(props =>{
                             </div>
                         </NavLink>
                     </li>
+                    <li className="side-nav__items">
+                        <NavLink isActive={ (match,location)=>{
+                            return location.pathname.match('/state')
+                        } }  to={`/state/${'allstates'}`} className={`side-nav__link ${propsSidebarOpen ? "open":""}`} activeClassName="side-nav__link--active">
+                            <FontAwesomeIcon icon={faChartLine}  color="#f5a616" className="side-nav__icon"/>
+                            <div className={`side-nav__text ${propsSidebarOpen ? "open":""}`}>
+                                <span>Analysis</span>
+                            </div>
+                        </NavLink> 
+                    </li>
+                    
                     {/* <li className="side-nav__items">
                         <NavLink to='/faq' exact className="side-nav__link"
                         activeClassName="side-nav__link--active">
