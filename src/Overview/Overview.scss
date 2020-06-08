@@ -9,6 +9,7 @@
     justify-content: space-between;
     align-items: center;
     padding:0.125em 1em;
+    
     &__location{
         display: flex;
         align-items: center;
@@ -19,10 +20,16 @@
     }
 
     &__heading{
-        
+        text-decoration: none;
     }
     &__location-save{
-
+        display: flex;
+        align-items: center;
+        & > .svg-inline--fa{
+            width:1.2em;
+            height:.57em;
+            transform: rotate(90deg);
+        }
     }
 
     &__save-text{
@@ -44,4 +51,6 @@
     &__last-update{
 
     }
+
+    
 }

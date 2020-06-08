@@ -160,7 +160,9 @@
     &__suggestion-text{
         color: #9759da;
     }
-
+    &__link{
+        text-decoration: none;
+    }
     @media screen and (min-width: $bp-extralarge) {
         width: 85%;
     }

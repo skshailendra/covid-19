@@ -1,4 +1,4 @@
-import { useReducer, useCallback} from 'react';
+import { useReducer, useCallback,useContext, useEffect} from 'react';
 
 const initialState = {
     data:null,
@@ -6,8 +6,8 @@ const initialState = {
 }
 const  casesType= [
     {
-        type:"all",
-        value:"All"
+      type:"all",
+      value:"All"
     },
     {
       type:"totalconfirmed",
@@ -89,20 +89,6 @@ const month = [
       "value": "December"
     }
   ];
-const monthList = {
-    1:"January",
-    2:"February",
-    3:"March",
-    4:"April",
-    5:"May",
-    6:"June",
-    7:"July",
-    8:"August",
-    9:"September",
-    10:"October",
-    11:"November",
-    12:"December"
-};
 const getCurrentMonth = ()=>{
     let selectedMonth = '';
     
@@ -111,21 +97,29 @@ const getCurrentMonth = ()=>{
     return month.find( val=> val.index === selectedMonth);
 
 };
+
+
+
 const dropDownReducer = (currDropdown , action)=>{
     switch(action.type){
         case "MONTHS":
             return {...currDropdown,data:action.months, selectedValue:getCurrentMonth().value}
         case "CASETYPE":
-            return {...currDropdown,data:action.casesType,selectedValue:'All'}
+            return {...currDropdown,data:action.casesType,selectedValue:'All'};break;
+        case 'STATES':
+            return {...currDropdown,data:action.casesType, selectedValue:action.selectedValue, selectedType:action.selectedType};
+        case 'CUSTOM':
+              return {...currDropdown,data:action.casesType, selectedValue:action.selectedValue, selectedType:action.selectedType};
         default:
             return []
     }
 };
+
+let states = [];
 const useDropdown = ()=>{
 
     const [dropDownType,dispatchDropdown] = useReducer(dropDownReducer, initialState);
-
-    const getDropdownData = useCallback((dpdowntype) => {
+    const getDropdownData =(dpdowntype ,data = null) => {
        
         if(typeof dpdowntype === 'string' && dpdowntype != 'undefined'){
             dpdowntype = dpdowntype.toUpperCase();
@@ -136,14 +130,22 @@ const useDropdown = ()=>{
                 case 'CASETYPE':
                     dispatchDropdown({type:dpdowntype, casesType:casesType});
                     break;
+                case 'CUSTOM':
+                      dispatchDropdown({type:dpdowntype, casesType:data.list, 
+                      selectedValue:data.list[0].value, selectedType:data.list[0].type});
+                      break;
+                case 'STATES':
+                    dispatchDropdown({type:dpdowntype, casesType:data.list, selectedValue:data.list[19].value, selectedType:data.list[19].type});
+                    break;
                 default:
                      dispatchDropdown({type:''});
             }
         }
-    });
+    };
     return {
         data:dropDownType.data,
         selectedValue:dropDownType.selectedValue,
+        selectedType:dropDownType.selectedType,
         getDropdownData:getDropdownData
     }
 };
