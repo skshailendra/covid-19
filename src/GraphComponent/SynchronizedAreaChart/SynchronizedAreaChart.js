@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useReducer, useContext} from 'react';
 import './SynchronizedAreaChart.scss';
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend
   } from 'recharts';
 
 import {FetchDataContext} from '../../context/fetch-data';
@@ -56,7 +56,8 @@ const SynchronizedAreaChart = props =>{
                     <XAxis dataKey="date"/>
                     <YAxis/>
                     <Tooltip/>
-                    <Area type='monotone' dataKey='dailyconfirmed' stroke='#8884d8' fill='#8884d8' />
+                    <Legend />
+                    <Area type='monotone' dataKey='dailyconfirmed' stroke='#8884d8' fill='#ed3833' />
                   </AreaChart>
                   <AreaChart width={chartWidth} height={chartHeight} data={props.latestData} syncId="anyId"
                         margin={{top: 50, right: 20, left: 10, bottom: 0}}>
@@ -64,6 +65,7 @@ const SynchronizedAreaChart = props =>{
                     <XAxis dataKey="date"/>
                     <YAxis/>
                     <Tooltip/>
+                    <Legend />
                     <Area type='monotone' dataKey='dailyrecovered' stroke='#82ca9d' fill='#82ca9d' />
                   </AreaChart>
                   <AreaChart width={chartWidth} height={chartHeight} data={props.latestData} syncId="anyId"
@@ -72,6 +74,7 @@ const SynchronizedAreaChart = props =>{
                     <XAxis dataKey="date"/>
                     <YAxis/>
                     <Tooltip/>
+                    <Legend />
                     <Area type='monotone' dataKey='dailydeceased' stroke='grey' fill='grey' />
                   </AreaChart>     
                 </div>

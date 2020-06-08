@@ -14,7 +14,7 @@ const BarGraph = props =>{
     const {filterCaseType} = props;
     useEffect(()=>{
       if(device && device.isExtraLargeDevice){
-        setChartWidth(600);setChartHeight(400);
+        setChartWidth(600);setChartHeight(600);
       }
       if(device && device.isLargeDevice){
         setChartWidth(600);setChartHeight(400);
@@ -32,17 +32,17 @@ const BarGraph = props =>{
         case 'totalconfirmed':
         case 'Confirmed':
           return (            
-              <Bar  barSize={15} dataKey= {props.dataKey.dailyconfirmed}  fill="red" />
+              <Bar  barSize={15} dataKey= {props.dataKey.dailyconfirmed}  fill="#ef716f" />
             )
         case 'totalrecovered':
         case 'Recovered':
           return (
-            <Bar dataKey={props.dataKey.dailyrecovered}  fill="#206111" />
+            <Bar dataKey={props.dataKey.dailyrecovered}  fill="#78b16b" />
           )
         case 'totaldeceased':
         case 'Deceased':
             return (
-              <Bar dataKey={props.dataKey.dailydeceased} fill="#525050" />
+              <Bar dataKey={props.dataKey.dailydeceased} fill="#b3b3b3" />
             )
         case 'totalactive':
         case 'Active':
@@ -67,8 +67,8 @@ const BarGraph = props =>{
                         <Tooltip />
                        
                         
-                        {props.filterCaseType =='all'&&<Bar dataKey="totalconfirmed" fill="red" />}
-                        {props.filterCaseType =='all' &&<Bar dataKey="totalrecovered" fill="#206111" />}
+                        {props.filterCaseType =='all'&&<Bar dataKey="totalconfirmed" fill="#ef716f" />}
+                        {props.filterCaseType =='all' &&<Bar dataKey="totalrecovered" fill="#78b16b" />}
                         {props.filterCaseType =='all' &&<Bar dataKey="totaldeceased" fill="#525050" /> }
                         {props.filterCaseType != 'all' &&
                           caseType()

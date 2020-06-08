@@ -97,9 +97,9 @@ const AllDistrictState = props =>{
                 <>
                 <div className="all-district">
                         <div className="all-district-bargraph">
-                            <TinyBarGraph latestData= {latestData.districtData.slice(0,4)} filterCaseType = {filterData.caseType} dataKey={dataKey} xDataKey={"district"}/>
+                            <TinyBarGraph latestData= {latestData.districtData.slice(0,5)} filterCaseType = {filterData.caseType} dataKey={dataKey} xDataKey={"district"}/>
                             <div className="all-district__topdata-label">
-                                <p>Top 4 Effected District</p>
+                                <p>Top 5 Effected District</p>
                             </div>
                         </div>
                         <div className="all-district__all-list">
