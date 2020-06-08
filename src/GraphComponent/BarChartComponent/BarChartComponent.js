@@ -50,7 +50,20 @@ const BarChartComponent = props =>{
                     <DropdownComponent type ={"casetype"} selectDropdown = {e=>onSelectDropdown(e)}/>
                     <DropdownComponent type ={"months"} selectDropdown = {e=>onSelectDropdown(e)}/>
                 </div>
-                <BarGraph latestData= {latestData} filterCaseType = {filterData.caseType}  dataKey={dataKey} xDataKey={"date"}/>
+                <div className="bar">
+                    <BarGraph latestData= {latestData} filterCaseType = {filterData.caseType}  dataKey={dataKey} xDataKey={"date"}/>
+                    <div className="bar-description-abbr">
+                        <div className="bar-abbr-status">
+                            <span className="bar-abbr-status__confirmed bar-abbr-status__bar-abbr-color"></span><span>Confirmed</span>
+                        </div>
+                        <div className="bar-abbr-status"> 
+                            <span className="bar-abbr-status__recovered bar-abbr-status__bar-abbr-color"></span><span>Recovered</span>
+                        </div>
+                        <div className="bar-abbr-status">
+                            <span className="bar-abbr-status__deceased bar-abbr-status__bar-abbr-color"></span><span>Deceased</span>
+                        </div>
+                    </div>
+                </div>                
                 <PieChartComponent/>
             </div>
         </>

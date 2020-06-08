@@ -28,3 +28,32 @@
     font-size: 1em;
     line-height: 2em;
 }
+
+.bar-description-abbr{
+    display: flex;
+    justify-content: center;
+}
+
+.bar-abbr-status{
+
+    &__bar-abbr-color{
+        margin: 0 5px 0;
+        width: 8px;
+        height: 8px;
+        display: inline-block;
+    }
+    &__confirmed{
+        background: #ef7170;
+    }
+    &__recovered{
+        background: #78b16b;
+    }
+    &__deceased{
+        background: #b3b3b3;
+    }
+    & > span{
+        font-size: .8em;
+        color: #483f3f;
+        font-weight: 600;
+    }
+}
