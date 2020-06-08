@@ -11,6 +11,11 @@ const BarChartComponent = props =>{
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const [latestData,setLatestData] = useState([]);
     let filterArray = [];
+    const dataKey = {
+        dailyconfirmed: "dailyconfirmed",
+        dailyrecovered: "dailyrecovered",
+        dailydeceased : "dailydeceased"
+    }
     const onSelectDropdown = (value)=>{
         if(value && value.type === "months"){
             value.selectedtype = value.selectedtype === 'All' ? '' : value.selectedtype;
@@ -45,7 +50,7 @@ const BarChartComponent = props =>{
                     <DropdownComponent type ={"casetype"} selectDropdown = {e=>onSelectDropdown(e)}/>
                     <DropdownComponent type ={"months"} selectDropdown = {e=>onSelectDropdown(e)}/>
                 </div>
-                <BarGraph latestData= {latestData} filterCaseType = {filterData.caseType}/>
+                <BarGraph latestData= {latestData} filterCaseType = {filterData.caseType}  dataKey={dataKey} xDataKey={"date"}/>
                 <PieChartComponent/>
             </div>
         </>

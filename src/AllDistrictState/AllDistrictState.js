@@ -6,6 +6,7 @@ import useDatetime from '../hooks/datetime';
 import {withRouter, Link} from 'react-router-dom';
 import {FetchDataContext} from '../context/fetch-data';
 import DropdownComponent from '../UIComponent/DropdownComponent/DropdownComponent';
+import TinyBarGraph from '../GraphComponent/TinyBarGraph/TinyBarGraph';
 const AllDistrictState = props =>{
     console.log(props);
     const [filterData, setFilterData ] = useState({caseType:'all',statecode:'' });
@@ -16,6 +17,12 @@ const AllDistrictState = props =>{
     const [stateList,setStateList] = useState([]);
     const [latestData, setLatestData] = useState([]);
     const statecode = props.match && props.match.params.statecode === 'allstates'? 'All States' : props.match.params.statecode;
+    const dataKey = {
+        confirmed: "confirmed",
+        recovered: "recovered",
+        deceased : "deceased",
+        active: "active"
+    };
     const  casesType= [
         {
           type:"Confirmed",
@@ -41,12 +48,16 @@ const AllDistrictState = props =>{
         }else{
             setFilterData({...filterData,caseType:value.selectedtype})
         }
-        debugger;
     }
+    const sortable = (a, b) =>{
+        return parseInt(b[filterData.caseType.toLowerCase()]) - parseInt(a[filterData.caseType.toLowerCase()]);
+    };
     const createFilterArray = ()=>{
-        if(fetchCovidData.stateDistrict.length > 0){
-         
+        if(fetchCovidData.stateDistrict.length > 0 && filterData.statecode){
+            
             let filterArray = fetchCovidData.stateDistrict.slice(1).filter( (item)=>item.statecode === filterData.statecode)[0];
+            filterArray.districtData = filterArray.districtData.sort(sortable);
+            debugger;
             setLatestData(filterArray);
         }
     }
@@ -72,14 +83,6 @@ const AllDistrictState = props =>{
     useEffect(()=>{
         createFilterArray();
     },[fetchCovidData,filterData]);
-    // useEffect(()=>{
-    //     if(fetchCovidData && 
-    //         fetchCovidData.statewise.length > 0 && 
-    //         fetchCovidData.stateDistrict.length > 0){
-    //       setStateData(fetchCovidData.statewise.slice(1));
-    //       setStateDistrict(fetchCovidData.stateDistrict);
-    //     }
-    // },[fetchCovidData]);
     return (
         <> 
             <div className="all-states-graph">
@@ -92,7 +95,14 @@ const AllDistrictState = props =>{
                    
                 </div>
                 {  latestData && latestData.districtData && 
+                <>
                 <div className="all-district">
+                        <div className="all-district-bargraph">
+                            <TinyBarGraph latestData= {latestData.districtData.slice(0,4)} filterCaseType = {filterData.caseType} dataKey={dataKey} xDataKey={"district"}/>
+                            <div className="all-district__topdata-label">
+                                <p>Top 4 Effected District</p>
+                            </div>
+                        </div>
                         <ul className="all-district__list">
                             {latestData.districtData.map((state,idx)=>(
                                 <li key={idx} className="all-district__list-items"> 
@@ -121,8 +131,10 @@ const AllDistrictState = props =>{
                                 </li>
                             ))
                             }
-                        </ul>
+                        </ul>                        
                 </div>
+               
+                </>
                }
             </div>
          </>
