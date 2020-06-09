@@ -1,16 +1,18 @@
-import React from 'react';
+import React , {Suspense, lazy} from 'react';
 import {Route} from 'react-router-dom';
-import MainContent from '../MainContent/MainContent';
-import Analysis from '../Analysis/Analysis';
-import MainStateContent from '../MainStateContent/MainStateContent';
-import IndiaComponent from '../MapComponent/IndiaComponent';
+const MainContent = lazy(()=> import('../MainContent/MainContent'));
+const MainStateContent = lazy(()=> import ('../MainStateContent/MainStateContent'));
+const IndiaComponent = lazy(()=> import('../MapComponent/IndiaComponent'));
+
 
 const RoutingComponent = props =>{
     return (
-        <>
-            <Route path="/" exact component ={MainContent} />
-            <Route path="/map" exact component ={IndiaComponent} />
-            <Route path="/state/:statecode" component ={MainStateContent} />
+        <>            
+            <Suspense fallback={<div>Loading ...</div>}>
+                <Route path="/" exact component ={MainContent} />
+                <Route path="/map" exact component ={IndiaComponent} />
+                <Route path="/state/:statecode" component ={MainStateContent} />
+            </Suspense>
         </>      
     )
 };
