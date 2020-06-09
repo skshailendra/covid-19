@@ -4,7 +4,9 @@ import {FetchDataContext} from '../../context/fetch-data';
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 import { faSearch,faTimesCircle,faFrown,faFrownOpen, faSadCry,faSadTear } from "@fortawesome/free-solid-svg-icons";
 import './SearchComponent.scss';
-import {Link} from 'react-router-dom';
+import {Link,useHistory} from 'react-router-dom';
+import { findDOMNode } from 'react-dom';
+
 const SearchComponent = props =>{
     const [searchFocus, setSearchFocus] = useState(false);
     const [searchValue, setSearchValue] = useState('');
@@ -15,6 +17,8 @@ const SearchComponent = props =>{
     const [noResult, setNoResult] = useState(false);
     let tempSearchList = [], tempDistrictList= [];
     const searchRef= useRef();
+    const searchResult = useRef();
+    const history = useHistory();
     const onChangeHandler = (event) =>{
         setSearchValue(searchRef.current.value);
         if(searchRef.current.value === ''){
@@ -94,12 +98,26 @@ const SearchComponent = props =>{
             setNoResult(false);
         }
        
-    },[searchList])
+    },[searchList]);
+
+    const selectSearchItem = (e)=>{
+        console.log(e.target.dataset.statecode);
+       
+        let statecode = e.target.dataset.statecode ? e.target.dataset.statecode: e.target.parentNode.parentNode.dataset.statecode;
+        const findEle = e.target.dataset.statename ? findDOMNode(e.target): findDOMNode(e.target.parentNode.parentNode);
+        let statename = findEle.getElementsByClassName("search-result__district-name")[0] ? 
+        findEle.getElementsByClassName("search-result__district-name")[0] : 
+        findEle.getElementsByClassName("search-result__state-name")[0];
+        if (statecode !== undefined ){
+            setSearchValue(statename.innerText);
+            history.push(`/state/${statecode}`);
+        }
+    };
     return (
         <>
             <div className="search-wrap">
                 <div className="search">
-                    <input ref={searchRef} type="text" className="search__input" placeholder="Search Location" value={searchValue} onChange={e => onChangeHandler(e)} onFocus={e=>onFocusHandler(e)}/>
+                    <input ref={searchRef} type="text" className="search__input" placeholder="Search state,city" value={searchValue} onChange={e => onChangeHandler(e)} onFocus={e=>onFocusHandler(e)}/>
                     <button className="search__button">
                         {   !searchFocus &&
                                 <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
@@ -111,12 +129,12 @@ const SearchComponent = props =>{
                     </button>
                     {searchFocus &&
                     <div className="search-result">
-                        <ul className="search-result__list">
+                        <ul className="search-result__list" onClick={selectSearchItem}>
                             {
                             searchList && 
                             searchList.map((search,idx)=>(
-                                <Link key={idx} className="search-result__link" to={`/state/${search.statecode}` }>
-                                <li  className="search-result__item">
+                                // <Link key={idx} className="search-result__link" to={`/state/${search.statecode}` }>
+                                <li key={idx}  className="search-result__item" data-statecode={search.statecode} data-statename={search.state}>
                                     {search.isDistrict && 
                                     <>
                                     <div className="search-result__search-detail-icon">
@@ -162,7 +180,7 @@ const SearchComponent = props =>{
                                     }
                                     
                                 </li>
-                                </Link>
+                                // </Link>
                             ))
                             }
                             {
@@ -176,9 +194,9 @@ const SearchComponent = props =>{
                                 (searchList.length === 0 && !searchValue)
                                 && 
                                 <div className="search-result__suggestion">
-                                    <span className="search-result__suggestion-text">Try Searching for</span>
-                                    <ul className="search-result__list">
-                                        <li className="search-result__item">
+                                    <span className="search-result__suggestion-text">Try Searching for...</span>
+                                    <ul className="search-result__list" onClick={selectSearchItem}>
+                                        <li data-statecode={"MH"} data-statename={"Maharashtra"} className="search-result__suggest-item">
                                             <div className="search-result__search-detail-icon">
                                             <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
                                             </div>
@@ -186,7 +204,7 @@ const SearchComponent = props =>{
                                             Mumbai
                                             </div>
                                         </li>
-                                        <li className="search-result__item">
+                                        <li data-statecode={"TN"} data-statename={"Tamil Nadu"} className="search-result__suggest-item">
                                             <div className="search-result__search-detail-icon">
                                             <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
                                             </div>
@@ -194,12 +212,20 @@ const SearchComponent = props =>{
                                             Tamil Nadu
                                             </div>
                                         </li>
-                                        <li className="search-result__item">
+                                        <li data-statecode={"RJ"} data-statename={"Rajasthan"} className="search-result__suggest-item">
                                             <div className="search-result__search-detail-icon">
                                             <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
                                             </div>
                                             <div className="search-result__state-name">
-                                            Delhi
+                                            Rajasthan
+                                            </div>
+                                        </li>
+                                        <li data-statecode={"UP"} data-statename={"Uttar Pradesh"} className="search-result__suggest-item">
+                                            <div className="search-result__search-detail-icon">
+                                            <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
+                                            </div>
+                                            <div className="search-result__state-name">
+                                            Lucknow
                                             </div>
                                         </li>
                                     </ul>
