@@ -1,14 +1,28 @@
-import React from 'react';
+import React ,{useContext,useEffect,useState}from 'react';
 import './Overview.scss';
 import { faSlash,faSync } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 import useDatetime from '../hooks/datetime';
 import {withRouter, Link} from 'react-router-dom';
-
+import {FetchDataContext} from '../context/fetch-data';
 const Overview = props =>{
     const {lastupdatedTime} = useDatetime();
     console.log(props);
-    const statename = props.match && props.match.params.statecode === 'allstates'? 'All States' : null;
+    const fetchCovidData = useContext(FetchDataContext); 
+    const [statename,setStatename] = useState();
+    //props.match && props.match.params.statecode === 'allstates'? 'All States' : null;
+    useEffect(()=>{
+        if(fetchCovidData && 
+            fetchCovidData.statewise.length > 0 && props.match.params.statecode){
+            if(props.match.params.statecode ===  'allstates'){
+                setStatename('All States');
+            }else{
+                let filterArray = fetchCovidData.statewise.slice(1).filter( (item)=>item.statecode === props.match.params.statecode)[0];
+                setStatename(filterArray.state);
+            }
+            
+        }
+        },[fetchCovidData,props.match.params]);
     return (
         <div className="overview">
             <div className="overview__location">

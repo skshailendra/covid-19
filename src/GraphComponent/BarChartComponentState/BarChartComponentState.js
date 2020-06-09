@@ -28,7 +28,6 @@ const BarChartComponentState = props =>{
         if(stateDistrict.length > 0 && stateData.length > 0){
             if(props.match.params.statecode !=='allstates'){
                 filterArray = stateDistrict.filter( (item)=>item.statecode === props.match.params.statecode)[0];
-                debugger;
                 filterArray = filterArray.districtData.sort(dessortable).slice(0,15);
                 setDatakey('district');
                
