@@ -41,6 +41,7 @@ const DropdownComponent = React.memo(props =>{
     const [dropDownValue, dispatchDropdown] = useReducer(dropDownReducer, initialState);
     const {getDropdownData,data,selectedValue,selectedType} = useDropdown();
     const dropdownList = useRef();
+    let selectedDropdown = '';
     const selectDropdown =(e)=>{
       dispatchDropdown({type:'SET',selected:e.target.innerHTML});
       // Callback Event
@@ -55,13 +56,20 @@ const DropdownComponent = React.memo(props =>{
     });
     useEffect(()=>{
       window.addEventListener("click",clickOutside);
-      getDropdownData(type, {list:props.list});
+      getDropdownData(type, {list:props.list} , props.params);
       return ()=>{
         
         window.removeEventListener("click",clickOutside);
       }
     },[]);
-
+    useEffect(()=>{
+      if(props.params && dropDownValue.traverseDropdown.length > 0){
+        debugger;
+        selectedDropdown  = dropDownValue.traverseDropdown.filter(item=> item.type === props.params)[0];
+        dispatchDropdown({type:'SET',selected:selectedDropdown.value});
+      }
+     
+    },[props.params]);
     useEffect(()=>{
       if(data){
         dispatchDropdown({type:'CREATE',traverseDropdown:data, value:selectedValue,selectedValue:selectedValue});

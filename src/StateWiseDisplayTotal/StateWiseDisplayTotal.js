@@ -50,6 +50,7 @@ const StateWiseDisplayTotal = props =>{
 
     return (
     <>  
+            {props.match.params.statecode ===  'allstates' &&
             <div className="statewise-container">
                 <div className="statewise-display-total">
                     {statewise && 
@@ -125,6 +126,7 @@ const StateWiseDisplayTotal = props =>{
                     <BarChartComponentState/>
                 </div>
             </div>   
+            }
         </>
     );
 };

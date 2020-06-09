@@ -119,7 +119,8 @@ let states = [];
 const useDropdown = ()=>{
 
     const [dropDownType,dispatchDropdown] = useReducer(dropDownReducer, initialState);
-    const getDropdownData =(dpdowntype ,data = null) => {
+    let selectedState = '';
+    const getDropdownData =(dpdowntype ,data = null , params = null) => {
        
         if(typeof dpdowntype === 'string' && dpdowntype != 'undefined'){
             dpdowntype = dpdowntype.toUpperCase();
@@ -135,7 +136,8 @@ const useDropdown = ()=>{
                       selectedValue:data.list[0].value, selectedType:data.list[0].type});
                       break;
                 case 'STATES':
-                    dispatchDropdown({type:dpdowntype, casesType:data.list, selectedValue:data.list[19].value, selectedType:data.list[19].type});
+                    selectedState = params ? data.list.filter(state=>state.type === params)[0] : data.list[19];
+                    dispatchDropdown({type:dpdowntype, casesType:data.list, selectedValue:selectedState.value, selectedType:selectedState.type});
                     break;
                 default:
                      dispatchDropdown({type:''});

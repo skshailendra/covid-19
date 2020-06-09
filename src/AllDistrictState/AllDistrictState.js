@@ -49,12 +49,18 @@ const AllDistrictState = props =>{
             setFilterData({...filterData,caseType:value.selectedtype})
         }
     }
+    const onChangeState = (value)=>{
+        if(value && value.type === "states"){
+            props.history.push(`/state/${value.selectedtype}`);
+        }else{
+            setFilterData({...filterData,caseType:value.selectedtype});
+        }
+    }
     const sortable = (a, b) =>{
         return parseInt(b[filterData.caseType.toLowerCase()]) - parseInt(a[filterData.caseType.toLowerCase()]);
     };
     const createFilterArray = ()=>{
         if(fetchCovidData.stateDistrict.length > 0 && filterData.statecode){
-            
             let filterArray = fetchCovidData.stateDistrict.slice(1).filter( (item)=>item.statecode === filterData.statecode)[0];
             filterArray.districtData = filterArray.districtData.sort(sortable);            
             setLatestData({...filterArray,filterArray});
@@ -82,13 +88,21 @@ const AllDistrictState = props =>{
     useEffect(()=>{
         createFilterArray();
     },[fetchCovidData,filterData]);
+    useEffect(()=>{
+        if(props.match.params.statecode !== 'allstates'){
+            setFilterData({...filterData,statecode:props.match.params.statecode});
+        }
+    },[props.match.params.statecode]);
     return (
         <> 
             <div className="all-states-graph">
                 <div className="all-states-dropdown-container">
                     <h3 className="all-states-graph__caseheading">Statewise Data: </h3>
-                    {stateList.length > 0 &&
+                    {stateList.length > 0 && props.match.params.statecode ===  'allstates' && 
                     <DropdownComponent type ={"states"} list = {stateList} selectDropdown = {e=>onSelectDropdown(e)}/>
+                    }
+                    {stateList.length > 0 && props.match.params.statecode !==  'allstates' && 
+                    <DropdownComponent type ={"states"} list = {stateList} selectDropdown = {e=>onChangeState(e)} params={props.match.params.statecode}/>
                     }
                     <DropdownComponent type ={"custom"} list = {casesType} selectDropdown = {e=>onSelectDropdown(e)}/>
                    
