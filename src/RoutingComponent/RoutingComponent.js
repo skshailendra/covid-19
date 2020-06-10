@@ -10,7 +10,7 @@ const RoutingComponent = props =>{
     return (
         <>            
             
-            <Suspense fallback={<Loading/>}>
+            <Suspense fallback={<div></div>}>
                 <Route path="/" exact component ={MainContent} />
                 <Route path="/map" exact component ={IndiaComponent} />
                 <Route path="/state/:statecode" component ={MainStateContent} />
