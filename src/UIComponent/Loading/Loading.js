@@ -5,7 +5,7 @@ import './Loading.scss';
 const Loading = props =>{
     return (
         <div className="loading">
-            <FontAwesomeIcon icon={faCircleNotch}  color="#a29a9ad4" size="3x"/>
+            <FontAwesomeIcon icon={faCircleNotch}  color="#c3c3c3"  size="3x"/>
         </div>
     )
 

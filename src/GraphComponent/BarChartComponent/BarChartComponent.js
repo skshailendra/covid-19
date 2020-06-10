@@ -4,12 +4,14 @@ import BarGraph from '../BarGraph/BarGraph';
 import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownComponent';
 import {FetchDataContext} from '../../context/fetch-data';
 import PieChartComponent from '../PieChartComponent/PieChartComponent';
+import Loading from '../../UIComponent/Loading/Loading';
 
 const BarChartComponent = props =>{
     const [filterData, setFilterData ] = useState({month:"" , caseType:'all'});
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const [latestData,setLatestData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     let filterArray = [];
     const dataKey = {
         dailyconfirmed: "dailyconfirmed",
@@ -42,6 +44,12 @@ const BarChartComponent = props =>{
     useEffect(()=>{
         createFilterArray();
     },[casesTimeSeries,filterData]);
+    useEffect(()=>{
+        if(latestData && latestData.length > 0){
+            setIsLoading(false);
+        }
+       return(()=>setIsLoading(false))
+    },[latestData]);
     return (
         <> 
             <div className="bar-description-graph">
@@ -50,21 +58,31 @@ const BarChartComponent = props =>{
                     <DropdownComponent type ={"casetype"} selectDropdown = {e=>onSelectDropdown(e)}/>
                     <DropdownComponent type ={"months"} selectDropdown = {e=>onSelectDropdown(e)}/>
                 </div>
-                <div className="bar">
-                    <BarGraph latestData= {latestData} filterCaseType = {filterData.caseType}  dataKey={dataKey} xDataKey={"date"}/>
-                    <div className="bar-description-abbr">
-                        <div className="bar-abbr-status">
-                            <span className="bar-abbr-status__confirmed bar-abbr-status__bar-abbr-color"></span><span>Confirmed</span>
+               
+                <div className="bar-graph-component">
+                {latestData  && 
+                    <>
+                        <BarGraph latestData= {latestData} filterCaseType = {filterData.caseType}  dataKey={dataKey} xDataKey={"date"}/>
+                        <div className="bar-description-abbr">
+                            <div className="bar-abbr-status">
+                                <span className="bar-abbr-status__confirmed bar-abbr-status__bar-abbr-color"></span><span>Confirmed</span>
+                            </div>
+                            <div className="bar-abbr-status"> 
+                                <span className="bar-abbr-status__recovered bar-abbr-status__bar-abbr-color"></span><span>Recovered</span>
+                            </div>
+                            <div className="bar-abbr-status">
+                                <span className="bar-abbr-status__deceased bar-abbr-status__bar-abbr-color"></span><span>Deceased</span>
+                            </div>
                         </div>
-                        <div className="bar-abbr-status"> 
-                            <span className="bar-abbr-status__recovered bar-abbr-status__bar-abbr-color"></span><span>Recovered</span>
-                        </div>
-                        <div className="bar-abbr-status">
-                            <span className="bar-abbr-status__deceased bar-abbr-status__bar-abbr-color"></span><span>Deceased</span>
-                        </div>
-                    </div>
-                </div>                
+                    </>
+                    }
+                    {isLoading &&
+                    <Loading/>
+                    }
+                </div>  
+                         
                 <PieChartComponent/>
+                
             </div>
         </>
     );

@@ -8,7 +8,7 @@ const HeaderComponent = props=>{
     useEffect(()=>{
         setTimeout(()=>{
             setLoadSearch(true);
-        },2300);
+        },3000);
     },[]);
     return (
         <> 
