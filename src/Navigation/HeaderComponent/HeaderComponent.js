@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState , Suspense, lazy, useEffect } from 'react';
 import './HeadingComponent.scss';
-import { faSearch, faBell,faInfoCircle,faShareAlt,faTimesCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 import {NavLink} from 'react-router-dom';
-import SearchComponent from '../../UIComponent/SearchComponent/SearchComponent';
+import LoadingSearch from '../../UIComponent/LoadingSearch/LoadingSearch';
+const SearchComponent = lazy(()=> import('../../UIComponent/SearchComponent/SearchComponent'));
 const HeaderComponent = props=>{
+    const [loadSearch, setLoadSearch ] = useState(false);
+    useEffect(()=>{
+        setTimeout(()=>{
+            setLoadSearch(true);
+        },2300);
+    },[]);
     return (
         <> 
             <header className="header">
@@ -21,7 +26,15 @@ const HeaderComponent = props=>{
                         <span>COVID-19 Tracker</span>
                     </NavLink>
                 </div>
-                <SearchComponent/>
+                {loadSearch &&
+                <Suspense fallback={ <LoadingSearch/>}>
+                    <SearchComponent/>
+                </Suspense>
+                }
+                {!loadSearch &&                 
+                    <LoadingSearch/>
+                }
+                
                 {/* <nav className="user-nav">
                     <div className="user-nav__icon-box">
                         <FontAwesomeIcon icon={faInfoCircle}  size="lg" color="fff" className="user-nav__icon"/>
