@@ -60,15 +60,15 @@ const SearchComponent = props =>{
             if(searchRef.current.value !== ''){
             const filterStateData = stateData.filter( (data)=>{
                 return data.state.toLowerCase().includes((searchRef.current.value.toLowerCase()))
-            });
+            }).slice(0,7); 
             tempSearchList.push(...filterStateData);
-            setSearchList([...tempSearchList]);
+            //setSearchList([...tempSearchList]);
             
             // Searching in District List
             stateDistrict.forEach( (data)=>{
                 const filterDistrictList = data.districtData.filter((dist)=>{
                     return dist.district.toLowerCase().includes((searchRef.current.value.toLowerCase()))
-                });
+                }).slice(0,6);
                 if(filterDistrictList.length > 0){
                     filterDistrictList.map((filDist)=>{
                         filDist.isDistrict = true;
@@ -78,8 +78,9 @@ const SearchComponent = props =>{
                     tempDistrictList.push(...filterDistrictList);
                 }           
             });
-            
-            setSearchList([...tempSearchList,...tempDistrictList]);
+           
+            setSearchList([...tempSearchList,...tempDistrictList].slice(0,7));
+                     
             }else{
                 setSearchList([]);
             }
