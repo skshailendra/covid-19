@@ -43,9 +43,13 @@ const DropdownComponent = React.memo(props =>{
     const dropdownList = useRef();
     let selectedDropdown = '';
     const selectDropdown =(e)=>{
-      dispatchDropdown({type:'SET',selected:e.target.innerHTML});
-      // Callback Event
-      props.selectDropdown({selected:e.target.innerHTML, selectedtype:e.target.dataset.value,type:type,});
+      const containHTML = /<([A-Za-z][A-Za-z0-9]*)\b[^>]*>(.*?)<\/\1>/.test(e.target.innerHTML);
+      if(!containHTML){
+        dispatchDropdown({type:'SET',selected:e.target.innerHTML});
+        // Callback Event
+        props.selectDropdown({selected:e.target.innerHTML, selectedtype:e.target.dataset.value,type:type,});
+      }
+     
     };
 
     const clickOutside = useCallback((e)=>{
