@@ -3,10 +3,11 @@ import './IndiaComponent.scss';
 import { select, selectAll,geoPath, geoMercator, min, max, scaleLinear ,geoTransverseMercator} from "d3";
 import {feature}from "topojson-client";
 import {FetchDataContext} from '../context/fetch-data';
+import useDeviceAgent from '../hooks/device-agent';
 const IndiaComponent = props=>{
     
-    const width = 600;
-    const height = 500;
+    let mapWidth = 300;
+    let mapHeight = 300;
     const fetchCovidData = useContext(FetchDataContext);
     const stateDistrictDataJsonUrl = '../map/';
     const requestOption = {
@@ -19,6 +20,7 @@ const IndiaComponent = props=>{
     const [stateJson,setStateJson] = useState();
     const [hoverState, setHoverState] = useState('');
     const [hoverDistrict, setHoverDistrict] = useState('');
+    const {device} = useDeviceAgent();
     const fetchData = async(dataJsonUrl)=>{
         const response = await fetch(dataJsonUrl,requestOption);
         if(response.ok){
@@ -38,13 +40,24 @@ const IndiaComponent = props=>{
             dataCall();
         }
     },[fetchCovidData]);
-
     useEffect(()=>{
+        let viewBoxWidth ,viewBoxHeight;
         if(indiaJson &&  fetchCovidData.statewise.length>0){
+            
+            if(device && device.isSmallDevice){
+                mapWidth = 300 ;mapHeight = 300 ;
+                viewBoxWidth = 300;viewBoxHeight = 300;
+            }else{
+                mapWidth= 550;mapHeight= 500;
+                viewBoxWidth = 500; viewBoxHeight = 600;
+            }
+            
+        
+        
         indiaSvg = select(indiaSvgRef.current)
-                    .attr("width",500)
-                    .attr("height",500)
-                    .attr("viewBox", `0 0 500 600`);
+                    .attr("width",mapWidth)
+                    .attr("height",mapHeight)
+                    .attr("viewBox", `0 0 ${viewBoxWidth} ${viewBoxHeight}`);
         const indianStates = indiaJson.objects["india-states"];
         var states = feature(indiaJson, indianStates);
         states.features.map((featurestate)=>{
@@ -58,7 +71,7 @@ const IndiaComponent = props=>{
 
         // projects geo-coordinates on a 2D plane
         const projection = geoMercator()
-                            .fitSize([width, height], states);
+                            .fitSize([mapWidth, mapHeight], states);
         const pathGenerator = geoPath().projection(projection);                            
         let prevSelectedState = ''; 
         indiaSvg.selectAll(".states")
@@ -66,7 +79,7 @@ const IndiaComponent = props=>{
             .enter()
             .append('path')
             .on("click",  (feature,i, nodes) => {
-                console.log("----",feature);
+                
                 if(prevSelectedState){
                     select(prevSelectedState).classed("stateselected",false);
                 } 
@@ -76,11 +89,11 @@ const IndiaComponent = props=>{
                 setHoverDistrict('');
             })
             .on("mouseenter", (feature,i, nodes) => {
-                console.log(feature);
+                
                 setHoverState(feature.properties["st_nm"])         
             })
             .on("mouseout", (feature,i, nodes) => {
-                console.log(feature);
+                
                 setHoverState('');
             })
             .attr('class',"state")
@@ -90,9 +103,10 @@ const IndiaComponent = props=>{
             
         }
         return (()=>{
-            // Clean up 
+            
+            selectAll(".indiamap path").remove();
         })
-    },[indiaJson]);
+    },[indiaJson,device]);
     useEffect(()=>{
         const dataCall = async ()=>{
             const stateJsonUrl = `${stateDistrictDataJsonUrl}${selectedState.toLowerCase().split(' ').join("")}.json`;
@@ -106,11 +120,21 @@ const IndiaComponent = props=>{
     },[selectedState]);
     useEffect(()=>{
         if(selectedState && stateJson){
+            let viewBoxWidth ,viewBoxHeight;
             let filterState,filterDistrict;
+            
+            if(device && device.isSmallDevice){
+                mapWidth = 300 ;mapHeight = 300 ;
+                viewBoxWidth = 400;viewBoxHeight = 400;
+            }else{
+                mapWidth= 550;mapHeight= 500;
+                viewBoxWidth = 400; viewBoxHeight = 500;
+            }
+            //400 500
             stateSvg = select(stateSvgRef.current)
-                        .attr("width",500)
-                        .attr("height",500)
-                        .attr("viewBox", `0 0 400 500`);
+                        .attr("width",mapWidth)
+                        .attr("height",mapHeight)
+                        .attr("viewBox", `0 0 ${viewBoxWidth} ${viewBoxHeight}`);
             const statesDistrict = stateJson.objects[`${selectedState.toLowerCase().split(' ').join("")}_district`];
             const featureDistrict = feature(stateJson, statesDistrict);
             featureDistrict.features.map((featurestate)=>{
@@ -124,12 +148,12 @@ const IndiaComponent = props=>{
                 featurestate.properties["active"] = filterDistrict.active;
                 featurestate.properties["deceased"] = filterDistrict.deceased;
             });
-            console.log("featureDistrict",featureDistrict);
+            
 
             const minProp = min(featureDistrict.features, feature => feature.properties['confirmed']);
             const maxProp = max(featureDistrict.features, feature => feature.properties['confirmed']);
-            console.log("minProp",minProp);
-            console.log("maxProp",maxProp);
+            
+            
             const colorScale = scaleLinear().domain([minProp, maxProp]).range(["#ccc", "red"]);
 
            // projects geo-coordinates on a 2D plane
@@ -141,7 +165,7 @@ const IndiaComponent = props=>{
             .enter()
             .append('path')
             .on("mouseenter", feature => {
-                console.log("dis--",feature);
+                
                 setHoverDistrict(feature.properties)         
             })
             .attr('class',"district")
@@ -155,7 +179,7 @@ const IndiaComponent = props=>{
             // Remove old selection before new Useeffect 
             selectAll(".indiastate path").remove();
         })
-    },[stateJson])
+    },[stateJson,device]);
     return (
         <>
             <div className="map">
@@ -185,7 +209,8 @@ const IndiaComponent = props=>{
                     <>
                         <div className="indiastate">
                             <div className="indiamap__heading-container">
-                                <p className="indiamap__heading">District(s) of {selectedState}</p>
+                                <p className="indiamap__heading">Districts of {selectedState}</p>
+                                <p className="indiamap__detail-message">Select a District for more details</p>
                             </div>
                             <svg ref={stateSvgRef}></svg> 
                             {hoverDistrict && 

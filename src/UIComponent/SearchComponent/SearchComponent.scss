@@ -1,14 +1,17 @@
 @import '../../Globals/variables/variables.scss';
 
 .search-wrap{
-    flex: 0 0 40%;
-    margin-right: auto;  // new added
-    align-items: center;
+    //flex: 0 0 40%;
+    //margin-right: auto;  // new added
+    //align-items: center;
     position: relative;
-    @media screen and (max-width: $bp-medium) {
-        order:1;
-        flex: 0 0 90%;
-        margin-left: 1.5em;
+    margin-left: .4em;
+    @media screen and (min-width: $bp-extralarge) {
+        flex: 0 0 40%;
+        margin-right: auto;  // new added
+        align-items: center;
+        position: relative;
+        margin-left: 0;
     }
 }
 .search {
@@ -21,13 +24,15 @@
         background-color: $white;
         border: none;
         padding: .3em 1em;
-        border-radius: 10px;
-        width: 80%;
+        border-radius: 5px;
+        width: 89%;
         transition: width .2s;
         margin-right: -2em;
 
-        box-shadow:  0px 0px rgba(0,0,0,.1);
-        border:2px solid #bda6a6;
+        box-shadow: 0px 1px rgba(0, 0, 0, 0.05);
+        border: 1px solid #efefef;
+        // box-shadow:  0px 0px rgba(0,0,0,.1);
+        // border:2px solid #bda6a6;
         transition: all .4s;
         &:focus{
             outline: none;
@@ -38,8 +43,13 @@
         }
 
         &::-webkit-input-placeholder{
-            font-weight: 400;
+            font-weight: 500;
             color:#bda6a6;
+            font-size: .9em;
+        }
+
+        @media screen and (min-width: $bp-extralarge) {
+            width: 79.6%;
         }
     }
     &__input:focus + &__button{
@@ -67,17 +77,21 @@
 
 .search-result{
     position: absolute;
-    top:2.2em;
+    top:2em;
     left: 0;
-    background-color: #fffdfd;
+    background-color: #fff;
     border-radius: 5px;
     z-index:30;
-    width: 85%;
+    width: 97%;
+    border: 1px solid #efefef;
+    box-shadow:0 2px 3px 0 rgba(32, 33, 36, 0.19);
+    max-height: 18em;
+    overflow: hidden;
+    //box-shadow: 1px 0px rgba(0, 0, 0, 0.05);
     &__list{
         list-style-type: none;
         padding: 1em;
         margin: 0;
-        box-shadow: 3px 5px rgba(0, 0, 0, 0.05);
     }
     &__item{
         padding:0.6em 1em 0.6em 1em;
@@ -95,10 +109,83 @@
         cursor: pointer;
     }
     &__name{
-
+        display: flex;
+        flex-direction: column;
+        margin-right: auto;
+        font-size: 0.9em;
+        font-weight: 500;
+        color: #352f2f;
     }
     &__count{
+        display: flex;
+        flex-direction: column;
+    }
+    &__district-name{
+        font-size: 1em;
 
+    }
+    &__dist-state-name{
+        font-size: .7em;
+    }
+    &__status-text{
+        font-size: .7em;
+        color:red;
+        font-weight: 500;
+    }
+    &__status-count{
+        color: red;
+        font-weight: 500;
+    }
+    &__state-name{
+        margin-right: auto;
+        font-size: 0.9em;
+        font-weight: 500;
+        color: #352f2f;
+    }
+    &__search-detail-icon{
+        margin-right: .7em;
+    }
+    &__noresult{
+        font-size: .8em;
+        font-weight: 500;
+        color: #584646;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__suggestion{
+        font-size: .9em;
+        font-weight: 500;
+        color: #352f2f;
+        padding:0;
+        margin:0;
+    }
+    &__suggestion-text{
+        color: #434048;
+        padding-left: 1em;        
+    }
+    &__suggest-item{
+        padding:0.6em 1em 0.6em 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &:not(:last-child){
+            border-bottom: 1px solid #f7eded;
+        }
+    }
+    &__suggest-item:hover{
+        background-color: #f5f0f0;
+        border-radius: 2px;
+        translate: all .3s;
+        cursor: pointer;
+    }
+    &__link{
+        text-decoration: none;
+    }
+    @media screen and (min-width: $bp-extralarge) {
+        width: 85%;
+        max-height: 30em;
     }
 }
 

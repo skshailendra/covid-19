@@ -1,41 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './Sidebar.scss';
 import {NavLink} from 'react-router-dom';
 import { faHome, faMapMarkerAlt , faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 
 const Sidebar = React.memo(props =>{
-
+    const {propsSidebarOpen} = props;
     return (
         <>
-            <nav className="sidebar">
-                <ul className="side-nav">
-                    <li className="side-nav__items">
-                        <NavLink to='/' exact className="side-nav__link" activeClassName="side-nav__link--active">
+            <nav className={`sidebar ${propsSidebarOpen ? "open": ""}`}>
+                <ul className="side-nav" onClick={props.closeSideBar}>
+                    <li className={`side-nav__mobile-items`}>
+                        <div className={`side-nav__mobile-text`}>
+                            <span>Covid-19 Tracker</span>
+                        </div>
+                    </li>
+                    <li className={`side-nav__items`}>
+                        <NavLink to='/' exact className={`side-nav__link ${propsSidebarOpen ? "open":""}`} activeClassName="side-nav__link--active">
                             <FontAwesomeIcon icon={faHome}  color="#ff8c96" className="side-nav__icon"/>
-                            <div className="side-nav__text">
+                            <div className={`side-nav__text ${propsSidebarOpen ? "open":""}`}>
                                 <span>Home</span>
                             </div>
                         </NavLink>
                         
                     </li>
                     <li className="side-nav__items">
-                        <NavLink to='/analysis' exact className="side-nav__link" activeClassName="side-nav__link--active">
-                            <FontAwesomeIcon icon={faChartLine}  color="#f5a616" className="side-nav__icon"/>
-                            <div className="side-nav__text">
-                                <span>Analysis</span>
-                            </div>
-                        </NavLink>
-                        
-                    </li>
-                    <li className="side-nav__items">
-                        <NavLink to='/map' exact className="side-nav__link" activeClassName="side-nav__link--active">
+                        <NavLink to='/map' exact className={`side-nav__link ${propsSidebarOpen ? "open":""}`} activeClassName="side-nav__link--active">
                             <FontAwesomeIcon icon={faMapMarkerAlt} color="#6883e6" className="side-nav__icon"/>
-                            <div className="side-nav__text">
+                            <div className={`side-nav__text ${propsSidebarOpen ? "open":""}`}>
                                 <span>Map</span>
                             </div>
                         </NavLink>
                     </li>
+                    <li className="side-nav__items">
+                        <NavLink isActive={ (match,location)=>{
+                            return location.pathname.match('/state')
+                        } }  to={`/state/${'allstates'}`} className={`side-nav__link ${propsSidebarOpen ? "open":""}`} activeClassName="side-nav__link--active">
+                            <FontAwesomeIcon icon={faChartLine}  color="#f5a616" className="side-nav__icon"/>
+                            <div className={`side-nav__text ${propsSidebarOpen ? "open":""}`}>
+                                <span>Analysis</span>
+                            </div>
+                        </NavLink> 
+                    </li>
+                    
                     {/* <li className="side-nav__items">
                         <NavLink to='/faq' exact className="side-nav__link"
                         activeClassName="side-nav__link--active">

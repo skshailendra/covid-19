@@ -2,10 +2,9 @@
 import React, { useEffect, useState} from 'react';
 import './BarGraph.scss';
 import {
-  XAxis, YAxis, CartesianGrid, Tooltip,BarChart,Bar,
+  XAxis, YAxis, Tooltip,BarChart,Bar,
   } from 'recharts';
 
-import {FetchDataContext} from '../../context/fetch-data';
 import useDeviceAgent from '../../hooks/device-agent';
 
 const BarGraph = props =>{
@@ -15,13 +14,10 @@ const BarGraph = props =>{
     const {filterCaseType} = props;
     useEffect(()=>{
       if(device && device.isExtraLargeDevice){
-        setChartWidth(530);setChartHeight(400);
+        setChartWidth(600);setChartHeight(600);
       }
       if(device && device.isLargeDevice){
         setChartWidth(600);setChartHeight(400);
-      }
-      if(device && device.isMediumLargeDevice){
-        setChartWidth(600);setChartHeight(300);
       }
       if(device && device.isMediumDevice){
         setChartWidth(600);setChartHeight(400);
@@ -29,25 +25,30 @@ const BarGraph = props =>{
       if(device && device.isSmallDevice){
         setChartWidth(300);setChartHeight(300);
       }
-      console.log(device);
-      console.log("chartwidth",chartWidth);
     },[device]);
     const caseType = ()=>{
-      console.log(filterCaseType);
       switch(filterCaseType) {
 
         case 'totalconfirmed':
+        case 'Confirmed':
           return (            
-              <Bar dataKey="dailyconfirmed" fill="red" />
+              <Bar  barSize={15} dataKey= {props.dataKey.dailyconfirmed}  fill="#ef716f" />
             )
         case 'totalrecovered':
+        case 'Recovered':
           return (
-            <Bar dataKey="dailyrecovered" fill="green" />
+            <Bar dataKey={props.dataKey.dailyrecovered}  fill="#78b16b" />
           )
         case 'totaldeceased':
+        case 'Deceased':
             return (
-              <Bar dataKey="dailydeceased" fill="yellow" />
+              <Bar dataKey={props.dataKey.dailydeceased} fill="#b3b3b3" />
             )
+        case 'totalactive':
+        case 'Active':
+              return (
+                <Bar dataKey={props.dataKey.totalactive} fill="blue" />
+              )
         default:
           return (
            <>
@@ -61,14 +62,14 @@ const BarGraph = props =>{
                 <div className="bar-chart">
                         <BarChart width={chartWidth} height={chartHeight} data={props.latestData}>
                         
-                        <XAxis dataKey="date"/>
+                        <XAxis dataKey={props.xDataKey}/>
                         <YAxis />
                         <Tooltip />
                        
                         
-                        {props.filterCaseType =='all'&&<Bar dataKey="dailyconfirmed" fill="red" />}
-                        {props.filterCaseType =='all' &&<Bar dataKey="dailyrecovered" fill="green" />}
-                        {props.filterCaseType =='all' &&<Bar dataKey="dailydeceased" fill="yellow" /> }
+                        {props.filterCaseType =='all'&&<Bar dataKey="totalconfirmed" fill="#ef716f" />}
+                        {props.filterCaseType =='all' &&<Bar dataKey="totalrecovered" fill="#78b16b" />}
+                        {props.filterCaseType =='all' &&<Bar dataKey="totaldeceased" fill="#525050" /> }
                         {props.filterCaseType != 'all' &&
                           caseType()
                         }

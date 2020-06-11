@@ -1,5 +1,5 @@
 
-import React, { useEffect, useReducer, useCallback} from 'react';
+import React, { useEffect, useReducer, useCallback, useRef} from 'react';
 import './DropdownComponent.scss';
 import { faChevronDown,faChevronUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +9,7 @@ const initialState ={
   showSelectOption:false,
   traverseDropdown:[]
 }
+
 const dropDownReducer = (currentValue, action)=>{
   switch(action.type){
     case 'CREATE':
@@ -27,6 +28,10 @@ const dropDownReducer = (currentValue, action)=>{
         return {
           ...currentValue, showSelectOption:!currentValue.showSelectOption
         }
+    case 'CLOSE':
+          return {
+            ...currentValue, showSelectOption:false
+          }
     default :
       throw new Error("Please select dropdown value");
   }
@@ -34,24 +39,58 @@ const dropDownReducer = (currentValue, action)=>{
 const DropdownComponent = React.memo(props =>{
     const {type}  = props;
     const [dropDownValue, dispatchDropdown] = useReducer(dropDownReducer, initialState);
-    const {getDropdownData,data,selectedValue} = useDropdown();
+    const {getDropdownData,data,selectedValue,selectedType} = useDropdown();
+    const dropdownList = useRef();
+    let selectedDropdown = '';
     const selectDropdown =(e)=>{
-      dispatchDropdown({type:'SET',selected:e.target.innerHTML});
-      // Callback Event
-      props.selectDropdown({selected:e.target.innerHTML, selectedtype:e.target.dataset.value,type:type,});
+      const containHTML = /<([A-Za-z][A-Za-z0-9]*)\b[^>]*>(.*?)<\/\1>/.test(e.target.innerHTML);
+      if(!containHTML){
+        dispatchDropdown({type:'SET',selected:e.target.innerHTML});
+        // Callback Event
+        props.selectDropdown({selected:e.target.innerHTML, selectedtype:e.target.dataset.value,type:type,});
+      }
+     
     };
 
+    const clickOutside = useCallback((e)=>{
+      
+      if(dropdownList.current && !dropdownList.current.contains(e.target)){
+        dispatchDropdown({type:'CLOSE'})
+      }
+    });
     useEffect(()=>{
-      getDropdownData(type);
+      window.addEventListener("click",clickOutside);
+      getDropdownData(type, {list:props.list} , props.params);
+      return ()=>{
+        
+        window.removeEventListener("click",clickOutside);
+      }
     },[]);
-
     useEffect(()=>{
-      dispatchDropdown({type:'CREATE',traverseDropdown:data, value:selectedValue,selectedValue:selectedValue});
+      if(props.params && dropDownValue.traverseDropdown.length > 0){
+        debugger;
+        selectedDropdown  = dropDownValue.traverseDropdown.filter(item=> item.type === props.params)[0];
+        dispatchDropdown({type:'SET',selected:selectedDropdown.value});
+      }
+     
+    },[props.params]);
+    useEffect(()=>{
+      if(data){
+        dispatchDropdown({type:'CREATE',traverseDropdown:data, value:selectedValue,selectedValue:selectedValue});
+        // Callback Event
+       
+        if(type === 'states'){
+          props.selectDropdown({selected:selectedValue, selectedtype:selectedType,type:type});
+        }else{
+          props.selectDropdown({selected:selectedValue, selectedtype:selectedValue,type:type});
+        }
+      }
     },[data]);
     return(
         <>
+            
             <div className="dropdown">
-                <div className="dropdown__wrap">
+                <div ref={dropdownList} className="dropdown__wrap">
                     <ul className="dropdown__default" onClick={e =>dispatchDropdown({type:'TOGGLE'})}>
                         <li className="dropdown__default-option">           
                             <div className="dropdown__value" >{dropDownValue.value}</div>
@@ -63,7 +102,7 @@ const DropdownComponent = React.memo(props =>{
                         </li>
                     </ul>
                     { dropDownValue.showSelectOption &&
-                    <ul className="dropdown__select-list" onClick={e=>selectDropdown(e)}>
+                    <ul  className="dropdown__select-list" onClick={e=>selectDropdown(e)}>
                         {
                             dropDownValue.traverseDropdown.map((item)=>(
                                 <li key={item.type} data-value={item.type} className={`dropdown__option ${item.value === dropDownValue.value?'dropdown__active':''}` }>

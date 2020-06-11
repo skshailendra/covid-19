@@ -5,22 +5,94 @@ import './TableComponent.scss';
 import { faArrowUp,faArrowDown,faChevronDown,faChevronCircleRight, faChevronRight, faChevronCircleDown} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {NavLink} from 'react-router-dom';
-
+import useDeviceAgent from '../../hooks/device-agent';
 const TableComponent = React.memo(props =>{
     //const {type}  = props;
     const fetchCovidData = useContext(FetchDataContext);
     const [stateData,setStateData] = useState([]);
     const [stateDistrict,setStateDistrict] = useState([]);
+    const [sortTable, setSortTable] = useState({asc:true, label:''});
+    const [districtSortTable, setDistrictSortTable] = useState({asc:true, label:'',code:null,state:null});
+    const [mobileTable, setMobileTable] = useState(false);
+    const heading = [
+      {
+        label:'Confirmed'
+      },
+      {
+        label:'Active'
+      },
+      {
+        label:'Recovered'
+      },
+      {
+        label:'Deaths'
+      }
+    ];
+    const districtHeading = [
+      {
+        label:'Confirmed'
+      },
+      {
+        label:'Active'
+      },
+      {
+        label:'Recovered'
+      },
+      {
+        label:'Deceased'
+      }
+    ];
+    const {device} = useDeviceAgent();
     useEffect(()=>{
-      console.log("table data",fetchCovidData);
-      if(fetchCovidData){
+      if(device && (device.isSmallDevice || device.isMediumDevice)){
+        setMobileTable(true);
+      }else{
+        setMobileTable(false);
+      }
+    },[device]);
+    useEffect(()=>{
+      if(fetchCovidData && fetchCovidData.statewise.length > 0 && fetchCovidData.stateDistrict.length ){
+       
         setStateData(fetchCovidData.statewise.slice(1));
         setStateDistrict(fetchCovidData.stateDistrict);
       }
     },[fetchCovidData]);
 
+    useEffect(()=>{
+      if(sortTable && sortTable.label){
+        const tempArr = [...stateData];
+        tempArr.sort(sortable);
+        setStateData(tempArr);
+      }
+    },[sortTable]);
+    useEffect(()=>{
+      if(districtSortTable.label){
+        const tempArr = [...stateData];
+        tempArr[districtSortTable.code].districtList.districtData.sort(districtsortable);
+        setStateData(tempArr);
+      }
+    },[districtSortTable]);
+    const districtsortable = (a, b) =>{
+      return (parseInt(a[districtSortTable.label]) - parseInt(b[districtSortTable.label])) * (districtSortTable.asc ?1 :-1);
+    };
+    const sortable = (a, b) =>{
+      return (parseInt(a[sortTable.label]) - parseInt(b[sortTable.label])) * (sortTable.asc ?1 :-1);
+    };
+    const sortTableHandler = (e, heading)=>{
+      if(sortTable.label.toLowerCase() === heading.label.toLowerCase()){
+        setSortTable({...sortTable, asc:!sortTable.asc});
+      }else{
+        setSortTable({asc:true, label : heading.label.toLowerCase()})
+      }
+    }
+    const districtSortTableHandler = (e, heading,code)=>{
+      if(districtSortTable.label.toLowerCase() === heading.label.toLowerCase()){
+        setDistrictSortTable({...districtSortTable, asc:!districtSortTable.asc , code:code});
+      }else{
+        setDistrictSortTable({asc:true, label : heading.label.toLowerCase(), code:code})
+      }
+    }
     const showDistrict = (e,code,state)=>{
-      console.log("called..",e,code,state);
       state.showExpand = !state.showExpand;
       const tempArr = [...stateData];
       const districtList = stateDistrict.filter(stDst=>stDst.statecode === state.statecode);
@@ -35,32 +107,29 @@ const TableComponent = React.memo(props =>{
                   <div className="table__heading">
                     <div className="table__heading-content">State/UT</div>
                   </div>
-                  <div className="table__heading">
-                    <div className="table__heading-content">Confirmed</div>
-                    <div className="table__icon-container">
-                      <FontAwesomeIcon icon={faArrowUp}  size="sm" className="table__icon"/>
-                      {/* <FontAwesomeIcon icon={faArrowDown}  size="sm" className="table__icon"/> */}
+                  { !mobileTable &&
+                    heading.map((head,key)=>(
+                      <div key={key} className="table__heading" onClick={e=>sortTableHandler(e, head)}>
+                        <div className="table__heading-content" >{head.label}</div>
+                        {head.label.toLowerCase() === sortTable.label.toLowerCase() && 
+                        <div className="table__icon-container">
+                          { sortTable.asc ? 
+                          <FontAwesomeIcon icon={faArrowUp}  size="sm" className="table__icon"/>
+                          :
+                          <FontAwesomeIcon icon={faArrowDown}  size="sm" className="table__icon"/>}
+                        </div>
+                        }
+                      </div>
+                    ))
+                  }
+                  { mobileTable &&
+                    <div className="table__heading">
+                      <div className="table__heading-content">State Data</div>
                     </div>
-                   
-                  </div>
-                  <div className="table__heading">
-                    <div className="table__heading-content">Recovered</div>
-                  </div>
-                  <div className="table__heading">
-                    <div className="table__heading-content">Active</div>
-                  </div>
-                  <div className="table__heading">
-                    <div className="table__heading-content">Deceased</div>
-                  </div>
-                  {/* <div className="table__heading">
-                    <div className="table__heading-content"></div>
-                    <div className="table__icon-container">
-                      Details
-                    </div>
-                  </div> */}
+                  }
                 </div>
                 {
-                  stateData && 
+                  stateData && !mobileTable &&
                   stateData.map((state,code)=>(
                   <React.Fragment key={code}>
                     <div className="table__row" key={code} onClick={e=>showDistrict(e,code,state)} >
@@ -112,29 +181,21 @@ const TableComponent = React.memo(props =>{
                       <div className="table__heading">
                         <div className="table__heading-content">District</div>
                       </div>
-                      <div className="table__heading">
-                        <div className="table__heading-content">Confirmed</div>
-                        <div className="table__icon-container">
-                          <FontAwesomeIcon icon={faArrowUp}  size="sm" className="table__icon"/>
-                          {/* <FontAwesomeIcon icon={faArrowDown}  size="sm" className="table__icon"/> */}
-                        </div>
-                       
-                      </div>
-                      <div className="table__heading">
-                        <div className="table__heading-content">Recovered</div>
-                      </div>
-                      <div className="table__heading">
-                        <div className="table__heading-content">Active</div>
-                      </div>
-                      <div className="table__heading">
-                        <div className="table__heading-content">Deceased</div>
-                      </div>
-                      {/* <div className="table__heading">
-                        <div className="table__heading-content"></div>
-                        <div className="table__icon-container">
-                          Details
-                        </div>
-                      </div> */}
+                      {
+                        districtHeading.map((head,key)=>(
+                          <div key={key} className="table__heading" onClick={e=>districtSortTableHandler(e, head, code)}>
+                            <div className="table__heading-content" >{head.label}</div>
+                            {head.label.toLowerCase() === districtSortTable.label.toLowerCase() && 
+                            <div className="table__icon-container">
+                              { districtSortTable.asc ? 
+                              <FontAwesomeIcon icon={faArrowUp}  size="sm" className="table__icon"/>
+                              :
+                              <FontAwesomeIcon icon={faArrowDown}  size="sm" className="table__icon"/>}
+                            </div>
+                            }
+                          </div>
+                        ))
+                      }
                     </div>
                     }
 
@@ -174,10 +235,66 @@ const TableComponent = React.memo(props =>{
                       ))
                       }
 
+                    </React.Fragment>
+                  ))
+                }
+                {
+                  stateData && mobileTable &&
+                  stateData.map((state,code)=>(
+                  <React.Fragment key={code}>
+                    <div className="table__row" key={code} onClick={e=>showDistrict(e,code,state)} >
+                      <div className="table__column">
+                          <div className="table__body-content-delta">
+                            {state.showExpand ?
+                            <FontAwesomeIcon icon={faChevronCircleDown} size="lg" color="#b8b4e7" className="table__body__icon"/>
+                            : <FontAwesomeIcon icon={faChevronCircleRight} size="lg" color="#b8b4e7" className="table__body__icon"/>
+                            }
+                          </div>
+                          <div className="table__body-content">{state.state}</div>
+                      </div>
+                      <div className="table__column">
+                        <div className="table__data__stats ">
+                          <div className=" table__body-content table__data__confirmed ">{state.confirmed}</div>
+                          <div className="table__body-content table__data__recovered">{state.recovered}</div>
+                          <div className="table__body-content table__data__deceased">{state.deaths}</div>
+                        </div>
+                      </div>
+                    </div>
+                    {state.showExpand && 
+                      <div className="table__row-heading table__row-heading-district">
+                        <div className="table__heading">
+                          <div className="table__heading-content">District</div>
+                        </div>
+                        
+                        <div className="table__heading" >
+                          <div className="table__heading-content">District Data</div>
+                        </div>
+                    </div>
+                    }
+
+                    {
+                      state.districtList  && 
+                      state.districtList.districtData.map((district,index)=>(
+                        <div className="table__row table__row-district" key={index}>
+                          <div className="table__column">
+                            <div className="table__body-content">{district.district}</div>
+                          </div>
+                          <div className="table__column">
+                            <div className="table__data__stats">
+                              <div className="table__body-content table__data__confirmed">{district.confirmed}</div>
+                              <div className="table__body-content table__data__recovered">{district.recovered}</div>
+                              <div className="table__body-content table__data__deceased">{district.deceased}</div>
+                            </div>         
+                          </div>
+                        </div>
+                      ))
+                      }
+
                     </React.Fragment >
                   ))
 
                 }
+
               </div>
           </div>
         </>

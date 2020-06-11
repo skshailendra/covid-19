@@ -9,7 +9,6 @@ const PieChartComponent = props =>{
     const [latestData,setLatesData] = useState();
     let createLatest = [];
     useEffect(()=>{
-        console.log("statewise pie",statewise);
         if(statewise){
             const confirmed = { name : "confirmed", value :   parseInt(statewise["confirmed"])};
             const recovered = { name : "recovered", value :   parseInt(statewise["recovered"])};
