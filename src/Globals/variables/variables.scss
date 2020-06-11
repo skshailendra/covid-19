@@ -21,9 +21,12 @@ $deceased-text:#737171;
 
 
 // Max size of devices 
-$bp-extralarge: 88em;   //1400 px
-$bp-mediumlarge: 87em;   //1399 px
-$bp-large: 64em;   //1024 px
-$bp-medium: 48em;   //768 px
-$bp-small: 26.25em;  // 400 px
-$bp-extrasmall: 20em;  // 320 px
+//$bp-extralarge: 88em;   //1400 px
+$bp-extralarge: 75.0625em;   //1201 px
+
+$bp-large:  64.0625em;   //1025 px
+
+$bp-medium: 48em;   //768 px    
+$bp-small: 23.437.25em;  // 375 px
+
+//$bp-extrasmall: 20em;  // 320 px

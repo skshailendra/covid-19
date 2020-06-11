@@ -3,15 +3,15 @@
 // Description Section
 .description{
     display: flex;
-    padding:0 1em 1em 1em;
+    padding:.6em;
     font-size: 1em;
     background-color: whitesmoke;
     flex-wrap: wrap;
     justify-content: space-between;
-    border-bottom: 1px solid red;
-    margin-bottom: 1em;
-    @media screen and (max-width: $bp-medium) {
-        flex-direction: column;
+    flex-direction: column;
+    @media screen and (min-width: $bp-large) {
+        flex-direction: row;
+        padding:0 1em 1em 1em;
     }
 }
 
@@ -97,24 +97,4 @@
             margin-left: 8px;
         }
     }
-}
-
-.abc{
-    height: 20vh;
-    background-color: grey;
-}
-
-.abc2{
-    height: 20vh;
-    background-color: blue;
-}
-
-.abc3{
-    height: 20vh;
-    background-color: green;
-}
-
-.abc4{
-    height: 20vh;
-    background-color: pink;
 }

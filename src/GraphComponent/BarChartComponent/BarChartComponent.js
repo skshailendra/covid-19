@@ -4,16 +4,23 @@ import BarGraph from '../BarGraph/BarGraph';
 import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownComponent';
 import {FetchDataContext} from '../../context/fetch-data';
 import PieChartComponent from '../PieChartComponent/PieChartComponent';
+import Loading from '../../UIComponent/Loading/Loading';
 
 const BarChartComponent = props =>{
-    const [filterData, setFilterData ] = useState({month:"May" , caseType:'all'});
+    const [filterData, setFilterData ] = useState({month:"" , caseType:'all'});
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const [latestData,setLatestData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     let filterArray = [];
+    const dataKey = {
+        dailyconfirmed: "dailyconfirmed",
+        dailyrecovered: "dailyrecovered",
+        dailydeceased : "dailydeceased"
+    }
     const onSelectDropdown = (value)=>{
-        console.log("value.. ",value);
         if(value && value.type === "months"){
+            value.selectedtype = value.selectedtype === 'All' ? '' : value.selectedtype;
             setFilterData({...filterData,month:value.selectedtype});
         }else{
             setFilterData({...filterData,caseType:value.selectedtype})
@@ -21,18 +28,28 @@ const BarChartComponent = props =>{
     }
     const createFilterArray = ()=>{
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
+        
             filterArray = casesTimeSeries.filter( (item)=>item.date.includes(filterData.month));
+            filterArray.map((item) => {
+                item.dailyconfirmed = parseInt(item.dailyconfirmed);
+                item.dailydeceased = parseInt(item.dailydeceased);
+                item.dailyrecovered = parseInt(item.dailyrecovered);
+                item.totalconfirmed = parseInt(item.totalconfirmed);
+                item.totalconfirmed = parseInt(item.totaldeceased);
+                item.totalconfirmed = parseInt(item.totalrecovered);
+            });
             setLatestData(filterArray);
         }
     }
     useEffect(()=>{
-        console.log("common");
         createFilterArray();
-        //setLatestData(casesTimeSeries);
     },[casesTimeSeries,filterData]);
-    // useEffect(()=>{
-    //     createFilterArray();
-    // },[filterData]);
+    useEffect(()=>{
+        if(latestData && latestData.length > 0){
+            setIsLoading(false);
+        }
+       return(()=>setIsLoading(false))
+    },[latestData]);
     return (
         <> 
             <div className="bar-description-graph">
@@ -41,8 +58,31 @@ const BarChartComponent = props =>{
                     <DropdownComponent type ={"casetype"} selectDropdown = {e=>onSelectDropdown(e)}/>
                     <DropdownComponent type ={"months"} selectDropdown = {e=>onSelectDropdown(e)}/>
                 </div>
-                <BarGraph latestData= {latestData} filterCaseType = {filterData.caseType}/>
+               
+                <div className="bar-graph-component">
+                {latestData  && 
+                    <>
+                        <BarGraph latestData= {latestData} filterCaseType = {filterData.caseType}  dataKey={dataKey} xDataKey={"date"}/>
+                        <div className="bar-description-abbr">
+                            <div className="bar-abbr-status">
+                                <span className="bar-abbr-status__confirmed bar-abbr-status__bar-abbr-color"></span><span>Confirmed</span>
+                            </div>
+                            <div className="bar-abbr-status"> 
+                                <span className="bar-abbr-status__recovered bar-abbr-status__bar-abbr-color"></span><span>Recovered</span>
+                            </div>
+                            <div className="bar-abbr-status">
+                                <span className="bar-abbr-status__deceased bar-abbr-status__bar-abbr-color"></span><span>Deceased</span>
+                            </div>
+                        </div>
+                    </>
+                    }
+                    {isLoading &&
+                    <Loading/>
+                    }
+                </div>  
+                         
                 <PieChartComponent/>
+                
             </div>
         </>
     );

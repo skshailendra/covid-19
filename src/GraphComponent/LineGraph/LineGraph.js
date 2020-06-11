@@ -13,22 +13,17 @@ const LineGraph = props =>{
   const [chartHeight, setChartHeight] = useState(400);
   useEffect(()=>{
     if(device && device.isExtraLargeDevice){
-      setChartWidth(800);setChartHeight(400);
+      setChartWidth(700);setChartHeight(400);
     }
     if(device && device.isLargeDevice){
-      setChartWidth(600);setChartHeight(400);
-    }
-    if(device && device.isMediumLargeDevice){
-      setChartWidth(600);setChartHeight(300);
+      setChartWidth(700);setChartHeight(400);
     }
     if(device && device.isMediumDevice){
-      setChartWidth(600);setChartHeight(400);
+      setChartWidth(700);setChartHeight(400);
     }
     if(device && device.isSmallDevice){
-      setChartWidth(300);setChartHeight(300);
+      setChartWidth(300);setChartHeight(350);
     }
-    console.log(device);
-    console.log("linewidth",chartWidth);
   },[device]);
     return (
         <>
@@ -36,13 +31,13 @@ const LineGraph = props =>{
             <LineChart width={chartWidth} height={chartHeight} data={props.latestData}
                  scale="auto" >
             <XAxis dataKey="date"/>
-            <YAxis  domain={['auto', 'dataMax + 1000']}/>
+            <YAxis  domain={['auto',  dataMax => {return (dataMax)}]}/>
             <CartesianGrid vertical={false}  strokeDasharray="3 3"/>
             <Tooltip/>
             <Legend />
-            <Line type="monotone" dataKey="dailyconfirmed" stroke="red"/>
-            <Line type="monotone" dataKey="dailyrecovered" stroke="#206111" />
-            <Line type="monotone" dataKey="dailydeceased" stroke="#525050" />
+            <Line type="monotone" dataKey="dailyconfirmed" stroke="red" activeDot={{r: 8}}/>
+            <Line type="monotone" dataKey="dailyrecovered" stroke="#206111" activeDot={{r: 8}}/>
+            <Line type="monotone" dataKey="dailydeceased" stroke="#525050" activeDot={{r: 8}}/>
             </LineChart>        
           </div>
         </>
