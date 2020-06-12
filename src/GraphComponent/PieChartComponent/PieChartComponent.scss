@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: all .3s ease-out;
     @media screen and (max-width: $bp-small) {
         margin-bottom:2em;
     }
