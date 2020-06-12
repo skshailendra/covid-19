@@ -5,10 +5,12 @@ import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 import useDatetime from '../hooks/datetime';
 import {withRouter, Link} from 'react-router-dom';
 import {FetchDataContext} from '../context/fetch-data';
+import {ThemeContext} from '../context/theme';
 const Overview = props =>{
     const {lastupdatedTime} = useDatetime();
     console.log(props);
     const fetchCovidData = useContext(FetchDataContext); 
+    const {thememode} = useContext(ThemeContext);
     const [statename,setStatename] = useState();
     //props.match && props.match.params.statecode === 'allstates'? 'All States' : null;
     useEffect(()=>{
@@ -24,9 +26,9 @@ const Overview = props =>{
         }
         },[fetchCovidData,props.match.params]);
     return (
-        <div className="overview">
+        <div className={`overview ${thememode}`}>
             <div className="overview__location">
-                <Link to='/' className="overview__heading">  
+                <Link to='/' className={`overview__heading ${thememode}`}>
                     <h3>
                         India
                     </h3>

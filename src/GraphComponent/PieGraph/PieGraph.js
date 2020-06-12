@@ -1,12 +1,12 @@
 
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState,useContext} from 'react';
 import './PieGraph.scss';
 import {
   PieChart, Pie, Sector, Cell
   } from 'recharts';
 
 import useDeviceAgent from '../../hooks/device-agent';
-
+import {ThemeContext} from '../../context/theme';
 const PieGraph = props =>{
     const {device} = useDeviceAgent();
     const [chartWidth, setChartWidth] = useState(800);
@@ -16,7 +16,7 @@ const PieGraph = props =>{
     const [chartCy, setChartCy] = useState(180);
     const totcx = 170,totcy = 50;
     const COLORS = ['#ea8888', '#00C49F', '#989898'];
-
+    const {thememode} = useContext(ThemeContext);
     const onPieEnter = (data, index) =>{
       setActiveIndex(index);
     };
@@ -68,11 +68,11 @@ const PieGraph = props =>{
           <circle cx={ex} cy={ey} r={1.5} fill={fill} stroke="none"/>
           {
             (device && !device.isSmallDevice) &&
-            <text x={ex} y={ey} textAnchor={textAnchor} fill="#333">{`Total ${value}`}</text>
+            <text x={ex} y={ey} textAnchor={textAnchor} className={`total ${thememode}`}>{`Total ${value}`}</text>
           }
           {
           (device && device.isSmallDevice) &&
-          <text x={totcx} y={totcy} textAnchor={textAnchor} className="total" fill="#333">{`Total: ${value}`}</text>
+          <text x={totcx} y={totcy} textAnchor={textAnchor} className={`total ${thememode}`}>{`Total: ${value}`}</text>
           }
             <text x={ex} y={ey} dy={18} textAnchor={textAnchor} fill="green">
             {`(${(percent * 100).toFixed(2)}%)`}
@@ -110,7 +110,7 @@ const PieGraph = props =>{
     
     return (
         <>
-             <div className="pie-chart">
+             <div className={`pie-chart ${thememode}`}>
              <PieChart width={chartWidth} height={chartHeight}>
         <Pie 
           activeIndex={activeIndex}

@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import FetchDataProvider from './context/fetch-data';
+import ThemeModeProvider from './context/theme';
 ReactDOM.render(
   <React.StrictMode>
     <FetchDataProvider>
+      <ThemeModeProvider>
       <App />
+      </ThemeModeProvider>
     </FetchDataProvider>
   </React.StrictMode>,
   document.getElementById('root')

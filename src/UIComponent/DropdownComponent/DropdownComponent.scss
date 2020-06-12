@@ -21,6 +21,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        &.nightmode{
+            background-color: $black;
+            color: $white;
+            border-bottom: none;
+        }
     }
     &__icon{
         height:0.8em;
@@ -32,6 +37,11 @@
         border-radius: 6px;
         background-color: #fff;
         border-bottom: 1px solid #c1c1c1;
+        &.nightmode{
+            background-color: $black;
+            color: $white;
+            border-bottom: none;
+        }
     }
     // efefef
     &__select-list{
@@ -53,6 +63,12 @@
             top: 25px;
             max-height:14em;
         }
+        &.nightmode{
+            background-color: $black;
+            color: $white;
+            box-shadow: none;
+            border:none
+        }
     }
 
     &__option{
@@ -60,11 +76,17 @@
     }
     &__active{
         background-color: #f5f0f0;
+        &.nightmode{
+            background-color: $nightmode-active;
+        }
     }
     &__option:hover{
         background-color: #f5f0f0;
         translate: all .3s;
         cursor: pointer;
+        &.nightmode{
+            background-color: $nightmode-active;
+        }
     }
    
 }

@@ -3,12 +3,13 @@ import './SyncAreaComponent.scss';
 import SynchronizedAreaChart from '../SynchronizedAreaChart/SynchronizedAreaChart';
 import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownComponent';
 import {FetchDataContext} from '../../context/fetch-data';
-
+import {ThemeContext} from '../../context/theme';
 const SyncAreaComponent = props =>{
     const [filterData, setFilterData ] = useState({month:"June"});
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const [latestData,setLatestData] = useState([]);
+    const {thememode} = useContext(ThemeContext);
     let filterArray = [];
     const onSelectDropdown = (value)=>{
         if(value && value.type === "months"){
@@ -32,8 +33,8 @@ const SyncAreaComponent = props =>{
     },[casesTimeSeries,filterData]);
     return (
         <> 
-            <div className="sync-description-graph">
-                <div className="sync-dropdown-container">
+            <div className={`sync-description-graph ${thememode}`}>
+                <div className={`sync-dropdown-container ${thememode}`}>
                     <h3 className="sync-caseheading">Daily Cases </h3>
                     <DropdownComponent type ={"months"} selectDropdown = {e=>onSelectDropdown(e)}/>
                 </div>
