@@ -4,8 +4,8 @@ import {FetchDataContext} from '../../context/fetch-data';
 import './TableComponent.scss';
 import { faArrowUp,faArrowDown,faChevronDown,faChevronCircleRight, faChevronRight, faChevronCircleDown} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {NavLink} from 'react-router-dom';
 import useDeviceAgent from '../../hooks/device-agent';
+import {ThemeContext} from '../../context/theme';
 const TableComponent = React.memo(props =>{
     //const {type}  = props;
     const fetchCovidData = useContext(FetchDataContext);
@@ -14,6 +14,7 @@ const TableComponent = React.memo(props =>{
     const [sortTable, setSortTable] = useState({asc:true, label:''});
     const [districtSortTable, setDistrictSortTable] = useState({asc:true, label:'',code:null,state:null});
     const [mobileTable, setMobileTable] = useState(false);
+    const {thememode} = useContext(ThemeContext);
     const heading = [
       {
         label:'Confirmed'
@@ -101,15 +102,15 @@ const TableComponent = React.memo(props =>{
     }
     return(
         <>
-          <div className="table">
-            <div className="table__body">
-                <div className="table__row-heading">
-                  <div className="table__heading">
+          <div className={`table ${thememode}`}>
+            <div className={`table__body ${thememode}`}>
+                <div className={`table__row-heading ${thememode}`}>
+                  <div className={`table__heading ${thememode}`}>
                     <div className="table__heading-content">State/UT</div>
                   </div>
                   { !mobileTable &&
                     heading.map((head,key)=>(
-                      <div key={key} className="table__heading" onClick={e=>sortTableHandler(e, head)}>
+                      <div key={key} className={`table__heading ${thememode}`} onClick={e=>sortTableHandler(e, head)}>
                         <div className="table__heading-content" >{head.label}</div>
                         {head.label.toLowerCase() === sortTable.label.toLowerCase() && 
                         <div className="table__icon-container">
@@ -123,7 +124,7 @@ const TableComponent = React.memo(props =>{
                     ))
                   }
                   { mobileTable &&
-                    <div className="table__heading">
+                    <div className={`table__heading ${thememode}`}>
                       <div className="table__heading-content">State Data</div>
                     </div>
                   }
@@ -132,7 +133,7 @@ const TableComponent = React.memo(props =>{
                   stateData && !mobileTable &&
                   stateData.map((state,code)=>(
                   <React.Fragment key={code}>
-                    <div className="table__row" key={code} onClick={e=>showDistrict(e,code,state)} >
+                    <div className={`table__row ${thememode}`} key={code} onClick={e=>showDistrict(e,code,state)} >
                       <div className="table__column">
                           <div className="table__body-content-delta">
                             {state.showExpand ?
@@ -177,13 +178,13 @@ const TableComponent = React.memo(props =>{
                       </div>*/}
                     </div>
                     {state.showExpand && 
-                      <div className="table__row-heading table__row-heading-district">
-                      <div className="table__heading">
+                      <div className={`table__row-heading table__row-heading-district ${thememode}`}>
+                      <div className={`table__heading ${thememode}`}>
                         <div className="table__heading-content">District</div>
                       </div>
                       {
                         districtHeading.map((head,key)=>(
-                          <div key={key} className="table__heading" onClick={e=>districtSortTableHandler(e, head, code)}>
+                          <div key={key} className={`table__heading ${thememode}`} onClick={e=>districtSortTableHandler(e, head, code)}>
                             <div className="table__heading-content" >{head.label}</div>
                             {head.label.toLowerCase() === districtSortTable.label.toLowerCase() && 
                             <div className="table__icon-container">
@@ -202,7 +203,7 @@ const TableComponent = React.memo(props =>{
                     {
                       state.districtList  && 
                       state.districtList.districtData.map((district,index)=>(
-                        <div className="table__row table__row-district" key={index}>
+                        <div className={`table__row table__row-district ${thememode}`} key={index}>
                           <div className="table__column">
                             <div className="table__body-content">{district.district}</div>
                           </div>
@@ -242,7 +243,7 @@ const TableComponent = React.memo(props =>{
                   stateData && mobileTable &&
                   stateData.map((state,code)=>(
                   <React.Fragment key={code}>
-                    <div className="table__row" key={code} onClick={e=>showDistrict(e,code,state)} >
+                    <div className={`table__row ${thememode}`} key={code} onClick={e=>showDistrict(e,code,state)} >
                       <div className="table__column">
                           <div className="table__body-content-delta">
                             {state.showExpand ?
@@ -261,7 +262,7 @@ const TableComponent = React.memo(props =>{
                       </div>
                     </div>
                     {state.showExpand && 
-                      <div className="table__row-heading table__row-heading-district">
+                      <div className={`table__row-heading table__row-heading-district ${thememode}`}>
                         <div className="table__heading">
                           <div className="table__heading-content">District</div>
                         </div>
@@ -275,7 +276,7 @@ const TableComponent = React.memo(props =>{
                     {
                       state.districtList  && 
                       state.districtList.districtData.map((district,index)=>(
-                        <div className="table__row table__row-district" key={index}>
+                        <div className={`table__row table__row-district ${thememode}`} key={index}>
                           <div className="table__column">
                             <div className="table__body-content">{district.district}</div>
                           </div>
