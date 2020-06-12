@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: all .3s ease-out;
     @media screen and (min-width: $bp-large) {
         flex:0 0 58%;
         margin-right:.5em;
@@ -28,6 +29,7 @@
     align-items: center;
     padding: 0em 1em;
     margin-bottom:2em;
+    transition: all .3s ease-out;
     &.nightmode{
         background-color: $nightmode-border3;
         color: $white;       
