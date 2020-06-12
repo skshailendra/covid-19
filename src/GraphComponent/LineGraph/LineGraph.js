@@ -1,16 +1,17 @@
 
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState,useContext} from 'react';
 import './LineGraph.scss';
 import {
   XAxis, YAxis, CartesianGrid, Tooltip,LineChart, Line,Legend
   } from 'recharts';
 
 import useDeviceAgent from '../../hooks/device-agent';
-
+import {ThemeContext} from '../../context/theme';
 const LineGraph = props =>{
   const {device} = useDeviceAgent();
   const [chartWidth, setChartWidth] = useState(800);
   const [chartHeight, setChartHeight] = useState(400);
+  const {thememode} = useContext(ThemeContext);
   useEffect(()=>{
     if(device && device.isExtraLargeDevice){
       setChartWidth(700);setChartHeight(400);
@@ -27,7 +28,7 @@ const LineGraph = props =>{
   },[device]);
     return (
         <>
-          <div className="line-chart">
+          <div className={`line-chart ${thememode}`}>
             <LineChart width={chartWidth} height={chartHeight} data={props.latestData}
                  scale="auto" >
             <XAxis dataKey="date"/>

@@ -7,7 +7,7 @@ import {
 
 import {FetchDataContext} from '../../context/fetch-data';
 import useDeviceAgent from '../../hooks/device-agent';
-
+import {ThemeContext} from '../../context/theme';
 const SynchronizedAreaChart = props =>{
   const [latestData,setLatestData] = useState([]);
   const fetchCovidData = useContext(FetchDataContext);
@@ -16,7 +16,7 @@ const SynchronizedAreaChart = props =>{
   const [chartWidth, setChartWidth] = useState(800);
   const [chartHeight, setChartHeight] = useState(400);
   const [filterData,setFilterData] = useState('');
-
+  const {thememode} = useContext(ThemeContext);
   //let chartHeight = 250;
   let filterArray = [];
   useEffect(()=>{
@@ -49,7 +49,7 @@ const SynchronizedAreaChart = props =>{
     return (
         <>
             <div className="sync-area-chart-container">
-                <div className="sync-area-chart">
+                <div className={`sync-area-chart ${thememode}`}>
                   <AreaChart width={chartWidth} height={chartHeight} data={props.latestData} syncId="anyId"
                         margin={{top: 10, right: 20, left: 10, bottom: 0}}>
                     <CartesianGrid strokeDasharray="3 3"/>

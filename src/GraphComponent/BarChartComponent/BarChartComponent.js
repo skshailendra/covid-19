@@ -5,13 +5,14 @@ import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownCompo
 import {FetchDataContext} from '../../context/fetch-data';
 import PieChartComponent from '../PieChartComponent/PieChartComponent';
 import Loading from '../../UIComponent/Loading/Loading';
-
+import {ThemeContext} from '../../context/theme';
 const BarChartComponent = props =>{
     const [filterData, setFilterData ] = useState({month:"" , caseType:'all'});
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const [latestData,setLatestData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const {thememode} = useContext(ThemeContext);
     let filterArray = [];
     const dataKey = {
         dailyconfirmed: "dailyconfirmed",
@@ -52,8 +53,8 @@ const BarChartComponent = props =>{
     },[latestData]);
     return (
         <> 
-            <div className="bar-description-graph">
-                <div className="bar-dropdown-container">
+            <div className={`bar-description-graph ${thememode}`}>
+                <div className={`bar-dropdown-container ${thememode}`}>
                     <h3 className="bar-caseheading">Total Cases: </h3>
                     <DropdownComponent type ={"casetype"} selectDropdown = {e=>onSelectDropdown(e)}/>
                     <DropdownComponent type ={"months"} selectDropdown = {e=>onSelectDropdown(e)}/>
@@ -63,15 +64,15 @@ const BarChartComponent = props =>{
                 {latestData  && 
                     <>
                         <BarGraph latestData= {latestData} filterCaseType = {filterData.caseType}  dataKey={dataKey} xDataKey={"date"}/>
-                        <div className="bar-description-abbr">
-                            <div className="bar-abbr-status">
-                                <span className="bar-abbr-status__confirmed bar-abbr-status__bar-abbr-color"></span><span>Confirmed</span>
+                        <div className={`bar-description-abbr `}>
+                            <div className={`bar-abbr-status ${thememode}`}>
+                                <span className={`bar-abbr-status__confirmed bar-abbr-status__bar-abbr-color`}></span><span>Confirmed</span>
                             </div>
-                            <div className="bar-abbr-status"> 
-                                <span className="bar-abbr-status__recovered bar-abbr-status__bar-abbr-color"></span><span>Recovered</span>
+                            <div className={`bar-abbr-status ${thememode}`}> 
+                                <span className={`bar-abbr-status__confirmed bar-abbr-status__bar-abbr-color`}></span><span>Recovered</span>
                             </div>
-                            <div className="bar-abbr-status">
-                                <span className="bar-abbr-status__deceased bar-abbr-status__bar-abbr-color"></span><span>Deceased</span>
+                            <div className={`bar-abbr-status ${thememode}`}>
+                                <span className={`bar-abbr-status__confirmed bar-abbr-status__bar-abbr-color`}></span><span>Deceased</span>
                             </div>
                         </div>
                     </>

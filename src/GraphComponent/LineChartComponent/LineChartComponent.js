@@ -4,6 +4,7 @@ import LineGraph from '../LineGraph/LineGraph';
 import {FetchDataContext} from '../../context/fetch-data';
 import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownComponent';
 import Loading from '../../UIComponent/Loading/Loading';
+import {ThemeContext} from '../../context/theme';
 const LineChartComponent = props =>{
 
     const [filterData, setFilterData ] = useState({month:""});
@@ -11,6 +12,7 @@ const LineChartComponent = props =>{
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const [latestData,setLatestData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const {thememode} = useContext(ThemeContext);
     let filterArray = [];
     const onSelectDropdown = useCallback((value)=>{
         if(value && value.type === "months"){
@@ -41,9 +43,9 @@ const LineChartComponent = props =>{
     },[latestData]);
     return (
         <> 
-            <div className="line-description-graph">
+            <div className={`line-description-graph ${thememode}`}>
                
-                <div className="line-dropdown-container">
+                <div className={`line-dropdown-container ${thememode}`}>
                     <h3 className="line-caseheading">Daily Cases: </h3>
                     <DropdownComponent type ={"months"} selectDropdown = {e=>onSelectDropdown(e)}/>
                 </div>

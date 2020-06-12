@@ -5,11 +5,16 @@
     justify-content: center;
     align-items:center;
     flex-wrap: wrap;
+    
 }
 
 .total{
     font-size: 1em;
     font-weight: 500;
+    fill: #333;
+    &.nightmode{
+        fill: $white;
+    }
 }
 .payloadName{
     text-transform:capitalize;

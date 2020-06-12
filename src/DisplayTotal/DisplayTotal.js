@@ -4,15 +4,16 @@ import { faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {FetchDataContext} from '../context/fetch-data';
 import LineChartComponent from '../GraphComponent/LineChartComponent/LineChartComponent';
-
-
 import TinyAreaGraph from '../GraphComponent/TinyAreaGraph/TinyAreaGraph';
+import {ThemeContext} from '../context/theme';
+
 const DisplayTotal = props =>{
 
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const statewise = fetchCovidData.statewise[0];
     const [latestData,setLatestData] = useState([]);
+    const {thememode} = useContext(ThemeContext);
     let filterArray = [];
     const monthList = {
         1:"January",
@@ -51,11 +52,11 @@ const DisplayTotal = props =>{
 
     return (
     <>  
-            <div className="container">
-                <div className="display-total">
+            <div className={`container ${thememode}`}>
+                <div className={`display-total ${thememode}`}>
                     {statewise && 
                         <>
-                        <div className={`display-total__block`}>
+                        <div className={`display-total__block ${thememode}`}>
                             <div className={`display-total__text`}>
                                 {"Confirmed"}
                             </div>
@@ -73,7 +74,7 @@ const DisplayTotal = props =>{
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyconfirmed"} fillcolor={"red"}/>
                         </div>
 
-                        <div className={`display-total__block`}>
+                        <div className={`display-total__block ${thememode}`}>
                             <div className={`display-total__text`}>
                                 {"Recovered"}
                             </div>
@@ -102,7 +103,7 @@ const DisplayTotal = props =>{
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyactive"} fillcolor={"green"}/>
                         </div>     */}
 
-                        <div className={`display-total__block`}>
+                        <div className={`display-total__block ${thememode}`}>
                             <div className={`display-total__text`}>
                                 {"Deaths"}
                             </div>

@@ -1,17 +1,18 @@
 
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import './BarGraph.scss';
 import {
   XAxis, YAxis, Tooltip,BarChart,Bar,
   } from 'recharts';
 
 import useDeviceAgent from '../../hooks/device-agent';
-
+import {ThemeContext} from '../../context/theme';
 const BarGraph = props =>{
     const {device} = useDeviceAgent();
     const [chartWidth, setChartWidth] = useState(800);
     const [chartHeight, setChartHeight] = useState(400);
     const {filterCaseType} = props;
+    const {thememode} = useContext(ThemeContext);
     useEffect(()=>{
       if(device && device.isExtraLargeDevice){
         setChartWidth(600);setChartHeight(600);
@@ -59,7 +60,7 @@ const BarGraph = props =>{
     return (
         <>
             <div className="bar-chart-container">
-                <div className="bar-chart">
+                <div className={`bar-chart ${thememode}`}>
                         <BarChart width={chartWidth} height={chartHeight} data={props.latestData}>
                         
                         <XAxis dataKey={props.xDataKey}/>
