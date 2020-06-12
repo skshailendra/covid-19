@@ -24,7 +24,7 @@
         text-decoration: none;
         transition: all .3s ease-out;
         &.nightmode{
-            background-color: $nightmode-blackelectro;
+            background-color: $nightmode-blackpr;
             color: $white;
         }    
     }
@@ -59,7 +59,7 @@
     }
 
     &.nightmode{
-        background-color: $nightmode-blackelectro;
+        background-color: $nightmode-blackpr;
         color: $white;
         border:1px solid $nightmode-border3;
       

@@ -16,7 +16,7 @@
         margin-right:.5em;
     }
     &.nightmode{
-        background-color: $black;
+        background-color: $nightmode-blackpr;
         color: $white;
         box-shadow: none;
     }
@@ -29,7 +29,7 @@
     padding: 0em 1em;
     margin-bottom:2em;
     &.nightmode{
-        background-color: $nightmode-bg2;
+        background-color: $nightmode-border3;
         color: $white;       
     }
 }
