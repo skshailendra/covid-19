@@ -87,7 +87,9 @@
         @media screen and (min-width:$bp-large){
             display: block;
         }
-        
+        &.nightmode{
+            color: $white;
+        }
     }
     &__hoverlabel{
         font-size: .7em;
