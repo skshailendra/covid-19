@@ -202,7 +202,7 @@ const IndiaComponent = props=>{
                     }
                     <svg ref={indiaSvgRef} className={`indiamap__svg ${thememode}`}></svg>
                     { hoverState &&
-                    <div className="indiamap__hoverstate">
+                    <div className={`indiamap__hoverstate ${thememode}`}>
                         <p className="indiamap__hoverlabel">{"You are on"}</p>
                         <p>{hoverState}</p>
                     </div>
