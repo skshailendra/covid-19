@@ -17,4 +17,8 @@
         flex-wrap: wrap;
         margin-left: 3em;
     }
+    &.nightmode{
+        background-color: $nightmode-blackpr;
+        color: $white;
+    }
 }

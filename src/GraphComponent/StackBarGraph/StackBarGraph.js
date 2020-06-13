@@ -1,15 +1,16 @@
 
-import React, { useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState, useRef,useContext} from 'react';
 import './StackBarGraph.scss';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import useDeviceAgent from '../../hooks/device-agent';
-
+import {ThemeContext} from '../../context/theme';
 const StackBarGraph = props =>{
     const {device} = useDeviceAgent();
     const [chartWidth, setChartWidth] = useState(300);
     const [chartHeight, setChartHeight] = useState(550);
     const [barSize, setBarSize] = useState(15);
     const stackBarGraph = useRef();
+    const {thememode,nightMode} = useContext(ThemeContext);
     useEffect(()=>{
       if(device && (device.isExtraLargeDevice || device.isLargeDevice)){
         setChartWidth(700);setChartHeight(700);
@@ -28,7 +29,7 @@ const StackBarGraph = props =>{
     return (
         <>
             <div className="stack-bar-chart-container">
-                <div className="stack-bar-chart">  
+                <div className={`stack-bar-chart ${thememode}`}>  
                       {device && (device.isExtraLargeDevice || device.isLargeDevice) && 
                         <BarChart ref={stackBarGraph}
                             width={700} 
@@ -38,7 +39,7 @@ const StackBarGraph = props =>{
                             margin={{top: 5, right: 0, left: 20, bottom: 5}}
                           >
                             <XAxis type="number"/>
-                            <YAxis type="category" dataKey={props.datakey} />
+                            <YAxis type="category" dataKey={props.datakey} stroke={nightMode? "#fff":"initial"}/>
                             <Tooltip/>
                             <Legend />
                             <Bar  barSize={20} dataKey="confirmed" stackId="a" fill="#e26868" />

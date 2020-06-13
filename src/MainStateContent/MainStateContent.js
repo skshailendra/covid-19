@@ -1,16 +1,17 @@
-import React from 'react';
+import React,{useContext}from 'react';
 import './MainStateContent.scss';
 import BarChartComponentState from '../GraphComponent/BarChartComponentState/BarChartComponentState';
 import Overview from '../Overview/Overview';
 import StateWiseDisplayTotal from '../StateWiseDisplayTotal/StateWiseDisplayTotal';
 import AllDistrictState from '../AllDistrictState/AllDistrictState';
+import {ThemeContext} from '../context/theme';
 const MainStateContent = props =>{
-    
+    const {thememode} = useContext(ThemeContext);
     return (
         <>
             <Overview/>
             <StateWiseDisplayTotal/>
-            <div className="description">
+            <div className={`description ${thememode}`}>
                 <AllDistrictState/>
             </div>
         </>

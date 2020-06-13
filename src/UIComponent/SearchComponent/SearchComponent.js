@@ -136,7 +136,7 @@ const SearchComponent = props =>{
                             searchList && 
                             searchList.map((search,idx)=>(
                                 // <Link key={idx} className="search-result__link" to={`/state/${search.statecode}` }>
-                                <li key={idx}  className="search-result__item" data-statecode={search.statecode} data-statename={search.state}>
+                                <li key={idx}  className={`search-result__item ${thememode}`} data-statecode={search.statecode} data-statename={search.state}>
                                     {search.isDistrict && 
                                     <>
                                     <div className="search-result__search-detail-icon">
@@ -198,7 +198,7 @@ const SearchComponent = props =>{
                                 <div className="search-result__suggestion">
                                     <span className={`search-result__suggestion-text ${thememode}`}>Try Searching for...</span>
                                     <ul className="search-result__list" onClick={selectSearchItem}>
-                                        <li data-statecode={"MH"} data-statename={"Maharashtra"} className="search-result__suggest-item">
+                                        <li data-statecode={"MH"} data-statename={"Maharashtra"} className={`search-result__suggest-item ${thememode}`}>
                                             <div className="search-result__search-detail-icon">
                                             <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
                                             </div>
@@ -206,7 +206,7 @@ const SearchComponent = props =>{
                                             Mumbai
                                             </div>
                                         </li>
-                                        <li data-statecode={"TN"} data-statename={"Tamil Nadu"} className="search-result__suggest-item">
+                                        <li data-statecode={"TN"} data-statename={"Tamil Nadu"} className={`search-result__suggest-item ${thememode}`}>
                                             <div className="search-result__search-detail-icon">
                                             <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
                                             </div>
@@ -214,7 +214,7 @@ const SearchComponent = props =>{
                                             Tamil Nadu
                                             </div>
                                         </li>
-                                        <li data-statecode={"RJ"} data-statename={"Rajasthan"} className="search-result__suggest-item">
+                                        <li data-statecode={"RJ"} data-statename={"Rajasthan"} className={`search-result__suggest-item ${thememode}`}>
                                             <div className="search-result__search-detail-icon">
                                             <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
                                             </div>
@@ -222,7 +222,7 @@ const SearchComponent = props =>{
                                             Rajasthan
                                             </div>
                                         </li>
-                                        <li data-statecode={"UP"} data-statename={"Uttar Pradesh"} className="search-result__suggest-item">
+                                        <li data-statecode={"UP"} data-statename={"Uttar Pradesh"} className={`search-result__suggest-item ${thememode}`}>
                                             <div className="search-result__search-detail-icon">
                                             <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
                                             </div>

@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    color: #6b5f5f;
     @media screen and (min-width: $bp-large) {
         flex:0 0 58%;
         margin-right:.5em;
@@ -19,12 +20,16 @@
     &__caseheading{
         font-size: .8em;
         line-height: 2em;
-        color: #6b5f5f;
         font-weight: 600;
         @media screen and (min-width: $bp-large) {
             font-size: 1em;
         }
 
+    }
+    &.nightmode{
+        background-color: $nightmode-blackpr;
+        color: $white;
+        box-shadow: none;
     }
 }
 .all-states-dropdown-container{
@@ -34,6 +39,11 @@
     align-items: center;
     padding: 0em 1em;
     margin-bottom:2em;
+    &.nightmode{
+        background-color: $nightmode-border3;
+        color: $white;
+        box-shadow: none;
+    }
 }
 .all-district{
     padding:0;
@@ -41,6 +51,7 @@
     color:$font-light-black;
     display: flex;
     flex-direction: column;
+    color: #6b5f5f;
     @media screen and (min-width: $bp-large) {
        flex-direction: row;
     }
@@ -58,7 +69,6 @@
         padding-left: 1.4em;
         display: flex;
         font-size: .9em;
-        color: #6b5f5f;
         font-weight: 600;
         @media screen and (min-width: $bp-medium) {
             font-size: .9em;
@@ -79,13 +89,13 @@
         align-items: center;
         flex: 0 0 85%;
         & > .active{
-            color:blue;
+            color:#7e78f7;
         }
         & > .recovered{
-            color:green;
+            color:#78b16b;
         }
         & > .confirmed{
-            color:red;
+            color:#e26868;
         }
 
         & > .deceased{
@@ -122,10 +132,13 @@
         display: flex;
         justify-content: center;
         font-size: .7em;
-        color: #6b5f5f;
         font-weight: 600;
         @media screen and (min-width: $bp-medium) {
             font-size: .9em;
         }
+    }
+
+    &.nightmode{        
+        color: $white;
     }
 }

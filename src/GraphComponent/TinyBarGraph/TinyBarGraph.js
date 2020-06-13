@@ -1,14 +1,15 @@
 
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState,useContext} from 'react';
 import './TinyBarGraph.scss';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LabelList, Legend}from 'recharts';
 
 import useDeviceAgent from '../../hooks/device-agent';
-
+import {ThemeContext} from '../../context/theme';
 const TinyBarGraph = props =>{
     const {device} = useDeviceAgent();
     const [chartWidth, setChartWidth] = useState(800);
     const [chartHeight, setChartHeight] = useState(400);
+    const {thememode,nightMode} = useContext(ThemeContext);
     const {filterCaseType} = props;
     const radius = 30;
     useEffect(()=>{
@@ -41,7 +42,7 @@ const TinyBarGraph = props =>{
         
          return (
           <g transform={`translate(${x},${y})`}>
-            <text x={0} y={0} dy={16} className="xaxis-label" textAnchor="middle" fill="#666" transform="rotate(0)">{`${payload.value.slice(0,7)}${payload.value.length > 7 ?'...':''}`}</text>
+            <text x={0} y={0} dy={16} className="xaxis-label" textAnchor="middle" fill={nightMode? "#fff":"#666"} transform="rotate(0)">{`${payload.value.slice(0,7)}${payload.value.length > 7 ?'...':''}`}</text>
           </g>
         );
     }
@@ -49,13 +50,13 @@ const TinyBarGraph = props =>{
       switch(filterCaseType) {
         case 'Confirmed':
           return (            
-              <Bar barSize={25} dataKey= {props.dataKey.confirmed} fill="red" >
+              <Bar barSize={25} dataKey= {props.dataKey.confirmed} fill="#e26868" >
                 <LabelList dataKey= {props.dataKey.confirmed} content={renderCustomizedLabel}/>
               </Bar>
             )
         case 'Recovered':
           return (
-            <Bar barSize={25} dataKey= {props.dataKey.recovered} fill="green" >
+            <Bar barSize={25} dataKey= {props.dataKey.recovered} fill="#78b16b" >
                 <LabelList dataKey= {props.dataKey.recovered} content={renderCustomizedLabel} />
               </Bar>
           )
@@ -67,7 +68,7 @@ const TinyBarGraph = props =>{
             )
         case 'Active':
               return (
-                <Bar barSize={25} dataKey= {props.dataKey.active} fill="blue" >
+                <Bar barSize={25} dataKey= {props.dataKey.active} fill="#7e78f7" >
                 <LabelList dataKey= {props.dataKey.active} content={renderCustomizedLabel} />
               </Bar>
               )
