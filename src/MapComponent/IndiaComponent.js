@@ -217,6 +217,7 @@ const IndiaComponent = props=>{
                             
                         </div> */}
                     </div>
+                   
                     <div className="indiamap__container">
                         {selectedState && 
                         <div className="indiamap__selectedstate">
@@ -233,7 +234,6 @@ const IndiaComponent = props=>{
                         }
                         {filterData && 
                         <ul className="indiamap__type">
-                            {/* <li className={`indiamap-filter ${thememode}`}>Filter By:</li> */}
                             <li className={`indiamap__type-pins ${filterdMap === 'confirmed' ? 'indiamap__highlight':''} confirmed ${thememode}`} onClick={()=>setFilterMap("confirmed")}>
                                 <span>Confirmed</span>
                                 <span>{filterData.confirmed}</span>
@@ -261,34 +261,50 @@ const IndiaComponent = props=>{
                                 <p className="indiamap__heading">Districts of {selectedState}</p>
                                 <p className="indiamap__detail-message">Select a District for more details</p>
                             </div>
-                            <svg ref={stateSvgRef} className={`indiastate__svg ${thememode}`}></svg> 
-                            {hoverDistrict && 
-                            <>
-                            <div className="indiastate__hoverdistrict">
-                                <span>{"District:  "}</span>
-                                <span className="indiastate__hoverdistrictname">{hoverDistrict.district}</span>
-                            </div>
-                            <div className="district-stats">
-                                
-                                <div className="district-stats__confirmed">
-                                    <p>Confirmed</p>
-                                    <p>{hoverDistrict.confirmed}</p>
+                            {
+                                hoverDistrict && 
+                                <>
+                                <div className="indiastate__hoverdistrict">
+                                    <span>{"District:  "}</span>
+                                    <span className="indiastate__hoverdistrictname">{hoverDistrict.district}</span>
                                 </div>
-                                <div className="district-stats__active">
-                                    <p>Active</p>
-                                    <p>{hoverDistrict.active}</p>
-                                </div>
-                                <div className="district-stats__recovered">
-                                    <p>Recovered</p>
-                                    <p>{hoverDistrict.recovered}</p>
-                                </div>
-                                <div className="district-stats__deceased">
-                                    <p>Deceased</p>
-                                    <p>{hoverDistrict.deaths}</p>
-                                </div>
-                            </div>
-                            </>
-                            }                   
+                                <ul className="indiamap__type">
+                                    <li className={`indiamap__type-pins ${filterdMap === 'confirmed' ? 'indiamap__highlight':''} confirmed ${thememode}`} onClick={()=>setFilterMap("confirmed")}>
+                                        <span>Confirmed</span>
+                                        <span>{hoverDistrict.confirmed}</span>
+                                    </li>
+                                    <li className={`indiamap__type-pins recovered ${filterdMap === 'recovered' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("recovered")}> 
+                                    <span>Recovered</span>
+                                    <span>{hoverDistrict.recovered}</span>
+                                    </li>
+                                    <li className={`indiamap__type-pins active ${filterdMap === 'active' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("active")}> 
+                                        <span>Active</span>
+                                        <span>{hoverDistrict.active}</span>
+                                    </li>
+                                    <li className={`indiamap__type-pins deaths ${filterdMap === 'deaths' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("deaths")}>
+                                        <span>Deaths</span>
+                                        <span>{hoverDistrict.deaths}</span>
+                                    </li>
+                                    {/* <div className="district-stats__confirmed">
+                                        <p>Confirmed</p>
+                                        <p>{hoverDistrict.confirmed}</p>
+                                    </div>
+                                    <div className="district-stats__active">
+                                        <p>Active</p>
+                                        <p>{hoverDistrict.active}</p>
+                                    </div>
+                                    <div className="district-stats__recovered">
+                                        <p>Recovered</p>
+                                        <p>{hoverDistrict.recovered}</p>
+                                    </div>
+                                    <div className="district-stats__deceased">
+                                        <p>Deceased</p>
+                                        <p>{hoverDistrict.deaths}</p>
+                                    </div> */}
+                                </ul>
+                                </>
+                            }      
+                            <svg ref={stateSvgRef} className={`indiastate__svg ${thememode}`}></svg>              
                         </div>
                        
                     </>
