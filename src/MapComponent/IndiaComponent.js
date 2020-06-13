@@ -4,6 +4,8 @@ import { select, selectAll,geoPath, geoMercator, min, max, scaleLinear ,geoTrans
 import {feature}from "topojson-client";
 import {FetchDataContext} from '../context/fetch-data';
 import useDeviceAgent from '../hooks/device-agent';
+import {ThemeContext} from '../context/theme';
+
 const IndiaComponent = props=>{
     
     let mapWidth = 300;
@@ -21,6 +23,7 @@ const IndiaComponent = props=>{
     const [hoverState, setHoverState] = useState('');
     const [hoverDistrict, setHoverDistrict] = useState('');
     const {device} = useDeviceAgent();
+    const {thememode} = useContext(ThemeContext);
     const fetchData = async(dataJsonUrl)=>{
         const response = await fetch(dataJsonUrl,requestOption);
         if(response.ok){
@@ -182,8 +185,8 @@ const IndiaComponent = props=>{
     },[stateJson,device]);
     return (
         <>
-            <div className="map">
-                <div className="indiamap">
+            <div className={`map ${thememode}`}>
+                <div className={`indiamap ${thememode}`}>
                     <div className="indiamap__heading-container">
                             <p className="indiamap__heading">India Map</p>
                             <p className="indiamap__detail-message">Select a State for more details</p>
@@ -197,7 +200,7 @@ const IndiaComponent = props=>{
                         <p className="indiamap__selectedtext">{selectedState}</p>
                     </div>
                     }
-                    <svg ref={indiaSvgRef}></svg>
+                    <svg ref={indiaSvgRef} className={`indiamap__svg ${thememode}`}></svg>
                     { hoverState &&
                     <div className="indiamap__hoverstate">
                         <p className="indiamap__hoverlabel">{"You are on"}</p>
@@ -207,12 +210,12 @@ const IndiaComponent = props=>{
                 </div>
                 {selectedState &&
                     <>
-                        <div className="indiastate">
+                        <div className={`indiastate ${thememode}`}>
                             <div className="indiamap__heading-container">
                                 <p className="indiamap__heading">Districts of {selectedState}</p>
                                 <p className="indiamap__detail-message">Select a District for more details</p>
                             </div>
-                            <svg ref={stateSvgRef}></svg> 
+                            <svg ref={stateSvgRef} className={`indiastate__svg ${thememode}`}></svg> 
                             {hoverDistrict && 
                             <>
                             <div className="indiastate__hoverdistrict">
@@ -245,7 +248,7 @@ const IndiaComponent = props=>{
                     </>
                 }
                 {!selectedState && 
-                    <div className="blankmessage">
+                    <div className={`blankmessage ${thememode}`}>
                         Select a state from map
                     </div>
                 }      

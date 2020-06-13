@@ -9,6 +9,10 @@
         flex-direction: row;
         padding: 1em;
     }
+    &.nightmode{
+        background-color: $nightmode-blackpr;
+        color: $white;
+    }
 }
 .indiamap{
     flex:0 0 40%;
@@ -18,17 +22,22 @@
     border-radius: 5px;
     border: 1px solid #dedede;
     position: relative;
+    color:$deceased-text;
     @media screen and (min-width:$bp-large){
         margin-right: 1em;
     }
-    > svg{
+    &__svg{
         //width:100%;
         background-color: #fff;
+        &.nightmode{
+            background-color: $nightmode-blackpr;
+        }
     }
+    
     &__heading-container{
         margin-bottom: 1em;
         font-family: inherit;
-        color:$deceased-text;
+       
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -57,7 +66,7 @@
         font-size: .6em;
     }
     &__selectedtext{
-        color: #ed3833;
+        color: #c36764;
         margin: 0;
         text-decoration: underline;
     }
@@ -87,9 +96,13 @@
     &__detail-message{
         font-size: .8em;
         font-family: inherit;
-        color:$deceased-text;
         margin: 0;
         font-weight: 500;
+    }
+    &.nightmode{
+        background-color: $nightmode-blackpr;
+        color: $white;
+        border: 1px solid #545453;
     }
 }
 
@@ -114,9 +127,13 @@
     padding: 1em;
     background-color: #fff;
     border-radius: 5px;
-    > svg{
+    color: #564c50;
+    &__svg{
         //width:100%;
         background-color: #fff;
+        &.nightmode{
+            background-color: $nightmode-blackpr;
+        }
     }
 
     &__hoverdistrict{
@@ -124,13 +141,17 @@
         justify-content: flex-start;
         align-items: center;
         font-size: 1em;
-        color: #564c50;
         font-weight: 500;
     }
 
     &__hoverdistrictname{
         font-size: 1.2em;
         margin-left: 5px;
+    }
+    &.nightmode{
+        background-color: $nightmode-blackpr;
+        color: $white;
+        border: 1px solid #545453;
     }
 }
 
@@ -183,5 +204,9 @@
         margin-right: 1em;
         font-size: 1.8em;
         margin-top: 0;
+    }
+    &.nightmode{
+        background-color: $nightmode-blackpr;
+        color: $white;
     }
 }

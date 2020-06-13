@@ -7,6 +7,7 @@ import {withRouter, Link} from 'react-router-dom';
 import {FetchDataContext} from '../context/fetch-data';
 import DropdownComponent from '../UIComponent/DropdownComponent/DropdownComponent';
 import TinyBarGraph from '../GraphComponent/TinyBarGraph/TinyBarGraph';
+import {ThemeContext} from '../context/theme';
 const AllDistrictState = props =>{
     console.log(props);
     const [filterData, setFilterData ] = useState({caseType:'all',statecode:'' });
@@ -17,6 +18,7 @@ const AllDistrictState = props =>{
     const [stateList,setStateList] = useState([]);
     const [latestData, setLatestData] = useState([]);
     const statecode = props.match && props.match.params.statecode === 'allstates'? 'All States' : props.match.params.statecode;
+    const {thememode} = useContext(ThemeContext);
     const dataKey = {
         confirmed: "confirmed",
         recovered: "recovered",
@@ -95,8 +97,8 @@ const AllDistrictState = props =>{
     },[props.match.params.statecode]);
     return (
         <> 
-            <div className="all-states-graph">
-                <div className="all-states-dropdown-container">
+            <div className={`all-states-graph ${thememode}`}>
+                <div className={`all-states-dropdown-container ${thememode}`}>
                     <h3 className="all-states-graph__caseheading">Statewise Data: </h3>
                     {stateList.length > 0 && props.match.params.statecode ===  'allstates' && 
                     <DropdownComponent type ={"states"} list = {stateList} selectDropdown = {e=>onSelectDropdown(e)}/>
@@ -109,7 +111,7 @@ const AllDistrictState = props =>{
                 </div>
                 {  latestData && latestData.districtData && 
                 <>
-                <div className="all-district">
+                <div className={`all-district ${thememode}`}>
                         <div className="all-district-bargraph">
                             <TinyBarGraph latestData= {latestData.districtData.slice(0,5)} filterCaseType = {filterData.caseType} dataKey={dataKey} xDataKey={"district"}/>
                             <div className="all-district__topdata-label">

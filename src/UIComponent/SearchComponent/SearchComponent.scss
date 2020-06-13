@@ -118,6 +118,9 @@
         align-items: center;
         &:not(:last-child){
             border-bottom: 1px solid #f7eded;
+            &.nightmode{
+                border-bottom: 1px solid$nightmode-border2;
+            }            
         }
     }
     &__item:hover{
@@ -125,6 +128,9 @@
         border-radius: 2px;
         translate: all .3s;
         cursor: pointer;
+        &.nightmode{
+            background: $nightmode-gdblack;
+        }
     }
     &__name{
         display: flex;
@@ -204,6 +210,9 @@
         align-items: center;
         &:not(:last-child){
             border-bottom: 1px solid #f7eded;
+            &.nightmode{
+                border-bottom: 1px solid$nightmode-border2;
+            }
         }
     }
     &__suggest-item:hover{
@@ -211,6 +220,9 @@
         border-radius: 2px;
         translate: all .3s;
         cursor: pointer;
+        &.nightmode{
+            background: $nightmode-gdblack;
+        }
     }
     &__link{
         text-decoration: none;
