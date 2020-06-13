@@ -234,19 +234,19 @@ const IndiaComponent = props=>{
                         }
                         {filterData && 
                         <ul className="indiamap__type">
-                            <li className={`indiamap__type-pins ${filterdMap === 'confirmed' ? 'indiamap__highlight':''} confirmed ${thememode}`} onClick={()=>setFilterMap("confirmed")}>
+                            <li className={`indiamap__type-pins mapconfirmed ${filterdMap === 'confirmed' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("confirmed")}>
                                 <span>Confirmed</span>
                                 <span>{filterData.confirmed}</span>
                             </li>
-                            <li className={`indiamap__type-pins recovered ${filterdMap === 'recovered' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("recovered")}> 
+                            <li className={`indiamap__type-pins maprecovered ${filterdMap === 'recovered' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("recovered")}> 
                                 <span>Recovered</span>
                                 <span>{filterData.recovered}</span>
                             </li>
-                            <li className={`indiamap__type-pins active ${filterdMap === 'active' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("active")}> 
+                            <li className={`indiamap__type-pins mapactive ${filterdMap === 'active' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("active")}> 
                                 <span>Active</span>
                                 <span>{filterData.active}</span>
                             </li>
-                            <li className={`indiamap__type-pins deaths ${filterdMap === 'deaths' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("deaths")}>
+                            <li className={`indiamap__type-pins mapdeaths ${filterdMap === 'deaths' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("deaths")}>
                                 <span>Deaths</span>
                                 <span>{filterData.deaths}</span>
                             </li>
@@ -269,19 +269,19 @@ const IndiaComponent = props=>{
                                     <span className="indiastate__hoverdistrictname">{hoverDistrict.district}</span>
                                 </div>
                                 <ul className="indiamap__type">
-                                    <li className={`indiamap__type-pins ${filterdMap === 'confirmed' ? 'indiamap__highlight':''} confirmed ${thememode}`} onClick={()=>setFilterMap("confirmed")}>
+                                    <li className={`indiamap__type-pins mapconfirmed ${filterdMap === 'confirmed' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("confirmed")}>
                                         <span>Confirmed</span>
                                         <span>{hoverDistrict.confirmed}</span>
                                     </li>
-                                    <li className={`indiamap__type-pins recovered ${filterdMap === 'recovered' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("recovered")}> 
+                                    <li className={`indiamap__type-pins maprecovered ${filterdMap === 'recovered' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("recovered")}> 
                                     <span>Recovered</span>
                                     <span>{hoverDistrict.recovered}</span>
                                     </li>
-                                    <li className={`indiamap__type-pins active ${filterdMap === 'active' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("active")}> 
+                                    <li className={`indiamap__type-pins mapactive ${filterdMap === 'active' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("active")}> 
                                         <span>Active</span>
                                         <span>{hoverDistrict.active}</span>
                                     </li>
-                                    <li className={`indiamap__type-pins deaths ${filterdMap === 'deaths' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("deaths")}>
+                                    <li className={`indiamap__type-pins mapdeaths ${filterdMap === 'deaths' ? 'indiamap__highlight':''} ${thememode}`} onClick={()=>setFilterMap("deaths")}>
                                         <span>Deaths</span>
                                         <span>{hoverDistrict.deaths}</span>
                                     </li>
