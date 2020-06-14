@@ -54,6 +54,11 @@ const Faq = () => {
           <div className={`qn-content ${thememode}`}>
             <h2>Commonly Asked Question on COVID-19</h2>
             {questionAnswerList.map((questionAnswer, idx) => <FAQRow questionAnswer={questionAnswer} />)}
+
+            <span className={`${thememode}`}>
+              <a rel="noopener noreferrer" href='https://www.investindia.gov.in/bip?utm_source=MyGovutm_medium=campaignBanner' target='_blank'>Sources
+              </a>
+            </span>
           </div>
 
           <div className={`qn-content qn-media-content ${thememode}`}>
@@ -62,7 +67,6 @@ const Faq = () => {
                 <img src="https://www.mygov.in/sites/all/themes/mygov/images/covid/video_2.jpg" alt="" title=""/>
               </a>
               <p>#COVID-19: Watch Mr. Amitabh Bachchan sharing his thoughts on Coronavirus</p>
-              <span>Sources from : </span>
             </div>
 
             <div className='faq-link'>
@@ -70,18 +74,18 @@ const Faq = () => {
                 <img src="https://www.mygov.in/sites/all/themes/mygov/images/covid/video_2.jpg" alt="" title=""/>
               </a>
               <p>#COVID-19: Watch Mr. Amitabh Bachchan sharing his thoughts on Coronavirus</p>
-              <span>Sources from : </span>
             </div>
 
             <div className='faq-link'>
-              <a  rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=OFFg21KhOV0&amp;t=1s">
+              <a rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=OFFg21KhOV0&amp;t=1s">
                 <img src="https://www.mygov.in/sites/all/themes/mygov/images/covid/video_2.jpg" alt="" title=""/>
               </a>
               <p>#COVID-19: Watch Mr. Amitabh Bachchan sharing his thoughts on Coronavirus</p>
-              <span>Sources from : </span>
             </div>
           </div>
+          
         </div>
+        
       </div>
     </>
   );
