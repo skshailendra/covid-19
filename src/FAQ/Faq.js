@@ -1,6 +1,7 @@
 import React from "react";
 import "./Faq.scss";
 import FAQRow from "./FAQRow";
+import Overview from "../Overview/Overview";
 
 const questionAnswerList = [
   {
@@ -44,11 +45,9 @@ const questionAnswerList = [
 
 const Faq = () => {
   return (
-    <div>
+    <>
+      <Overview/>
       <div className="main-faq-content">
-        <div className="faq-header">
-          <h4>The central helpline number: 011-23978046</h4>
-        </div>
         <div className="faq-content">
           <div className="qn-content">
             {questionAnswerList.map((questionAnswer, idx) => <FAQRow questionAnswer={questionAnswer} />)}
@@ -80,7 +79,7 @@ const Faq = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

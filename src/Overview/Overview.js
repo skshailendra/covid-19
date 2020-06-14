@@ -44,10 +44,17 @@ const Overview = props =>{
                     </div>
                 }
             </div>
+            {  !props.match.url.includes('/faq') && 
             <div className="overview__refresh">
                 <FontAwesomeIcon icon={faSync}  color="grey" className="overview__icon"/>
                 <span className="overview__last-update">Last updated about {lastupdatedTime} ago</span>
             </div>
+            }
+            { props.match.url.includes('/faq') && 
+              <div className="faq-header">
+                <h4>The central helpline number: 011-23978046</h4>
+              </div>
+            }
         </div>
     )
 };
