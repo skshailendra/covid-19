@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Faq.scss";
 import FAQRow from "./FAQRow";
 import Overview from "../Overview/Overview";
+import { ThemeContext } from '../context/theme';
 
 const questionAnswerList = [
   {
@@ -44,12 +45,13 @@ const questionAnswerList = [
 ];
 
 const Faq = () => {
+  const { thememode } = useContext(ThemeContext);
   return (
     <>
       <Overview/>
       <div className="main-faq-content">
-        <div className="faq-content">
-          <div className="qn-content">
+        <div className={`faq-content ${thememode}`}>
+          <div className={`qn-content ${thememode}`}>
             {questionAnswerList.map((questionAnswer, idx) => <FAQRow questionAnswer={questionAnswer} />)}
           </div>
           <div className="qn-content qn-media-content">

@@ -15,6 +15,15 @@
       background-color: $white;
       box-shadow: 0px 3px 10px #e4e4e4;
       margin: 1em;
+
+        
+      &.nightmode{
+        background-color: $nightmode-blackpr;
+        // color: $white;
+        border:1px solid $nightmode-border3; 
+        box-shadow: none;
+      }
+
     }
 
     .accord-content {
@@ -61,7 +70,14 @@
         width: 100%;
         //border: 1px solid pink;
       }
+    }  
+    
+    &.nightmode{
+      background-color: $nightmode-blackelectro;
+      color: $white;
+      border:1px solid $nightmode-border3; 
     }
+
   }
 
   @media screen and (min-width: $bp-medium) {
@@ -91,4 +107,7 @@
       }
     }
   }
+
 }
+
+
