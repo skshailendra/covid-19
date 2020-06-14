@@ -66,7 +66,7 @@ const Sidebar = React.memo(props =>{
                     <li onClick={toggleTheme} className="side-nav__items">
                         <div className="side-nav__link">
                         {!nightMode &&
-                        <FontAwesomeIcon icon={faMoon} size="lg"  color="#f5a616"/>
+                        <FontAwesomeIcon icon={faMoon} size="lg"  color="#8e8e8e"/>
                         }
                         { nightMode && 
                         <FontAwesomeIcon icon={faSun} size="lg"  color="#f5a616"/>
