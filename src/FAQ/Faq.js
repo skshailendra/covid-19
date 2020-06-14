@@ -1,8 +1,6 @@
-import React, { useState, useCallback } from "react";
-import classNames from 'classnames';
+import React from "react";
 import "./Faq.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+import FAQRow from "./FAQRow";
 
 const questionAnswerList = [
   {
@@ -44,13 +42,7 @@ const questionAnswerList = [
   },
 ];
 
-const Faq = (props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const expandRow = (nextActiveIndex) => {
-    setActiveIndex(nextActiveIndex);
-  };
-
+const Faq = () => {
   return (
     <div>
       <div className="main-faq-content">
@@ -59,21 +51,33 @@ const Faq = (props) => {
         </div>
         <div className="faq-content">
           <div className="qn-content">
-            {questionAnswerList.map((questionAnswer, idx) => (
-              <div className={classNames('accord-content', { open: activeIndex === idx })}>
-                <h3>{questionAnswer.qn}</h3>
-                <span onClick={() => expandRow(idx)}>
-                  <FontAwesomeIcon
-                    icon={activeIndex === idx ? faPlusCircle : faPlusCircle}
-                    size="sm"
-                  />
-                </span>
-               
-                <p>{questionAnswer.ans}</p>
-              </div>
-            ))}
+            {questionAnswerList.map((questionAnswer, idx) => <FAQRow questionAnswer={questionAnswer} />)}
           </div>
-          <div className="qn-content qn-media-content"></div>
+          <div className="qn-content qn-media-content">
+            <div className='faq-link'>
+              <a  rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=OFFg21KhOV0&amp;t=1s">
+                <img src="https://www.mygov.in/sites/all/themes/mygov/images/covid/video_2.jpg" alt="" title=""/>
+              </a>
+              <p>#COVID-19: Watch Mr. Amitabh Bachchan sharing his thoughts on Coronavirus</p>
+              <span>Sources from : </span>
+            </div>
+
+            <div className='faq-link'>
+              <a  rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=OFFg21KhOV0&amp;t=1s">
+                <img src="https://www.mygov.in/sites/all/themes/mygov/images/covid/video_2.jpg" alt="" title=""/>
+              </a>
+              <p>#COVID-19: Watch Mr. Amitabh Bachchan sharing his thoughts on Coronavirus</p>
+              <span>Sources from : </span>
+            </div>
+
+            <div className='faq-link'>
+              <a  rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=OFFg21KhOV0&amp;t=1s">
+                <img src="https://www.mygov.in/sites/all/themes/mygov/images/covid/video_2.jpg" alt="" title=""/>
+              </a>
+              <p>#COVID-19: Watch Mr. Amitabh Bachchan sharing his thoughts on Coronavirus</p>
+              <span>Sources from : </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
