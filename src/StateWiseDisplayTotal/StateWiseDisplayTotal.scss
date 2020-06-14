@@ -9,6 +9,11 @@
     @media screen and (min-width: $bp-extralarge) {
         flex-direction: row;
     }
+    &.nightmode{
+        background-color: $nightmode-blackelectro;
+        color: $white;
+        border-bottom:$nightmode-border2;
+    }
 }
 .statewise-display-total{
     display: flex;
@@ -49,7 +54,11 @@
             padding:1em;
             flex:initial;
         }
-
+        &.nightmode{
+            //background-color: $nightmode-border2;
+            background-color: $nightmode-blackpr;
+            color: $white;
+        }
     }
 
     &__text{
@@ -87,6 +96,10 @@
     }
     &__deceased-case{
         color: #989898;
+    }
+    &.nightmode{
+        background-color: $nightmode-blackelectro;
+        color: $white;
     }
 }
 

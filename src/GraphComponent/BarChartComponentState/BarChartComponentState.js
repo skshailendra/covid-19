@@ -4,13 +4,14 @@ import StackBarGraph from '../StackBarGraph/StackBarGraph';
 import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownComponent';
 import {FetchDataContext} from '../../context/fetch-data';
 import {withRouter} from 'react-router-dom';
-
+import {ThemeContext} from '../../context/theme';
 const BarChartComponentState = props =>{
     const [filterData, setFilterData ] = useState({month:"" , caseType:'all'});
     const fetchCovidData = useContext(FetchDataContext);
     const stateData = fetchCovidData.statewise || [];
     const stateDistrict = fetchCovidData.stateDistrict || [];
     const [latestData,setLatestData] = useState([]);
+    const {thememode} = useContext(ThemeContext);
     let filterArray = [];
     const[datakey,setDatakey] = useState('state');
     // const onSelectDropdown = (value)=>{
@@ -54,8 +55,8 @@ const BarChartComponentState = props =>{
     },[stateData,stateDistrict]);
     return (
         <> 
-            <div className="state-bar-description-graph">
-                <div className="state-bar-dropdown-container">
+            <div className={`state-bar-description-graph ${thememode}`}>
+                <div className={`state-bar-dropdown-container ${thememode}`}>
                     <h3 className="state-bar-caseheading">Top 15 Regions by Total Cases: </h3>
                     {/* <DropdownComponent type ={"casetype"} selectDropdown = {e=>onSelectDropdown(e)}/>
                     <DropdownComponent type ={"months"} selectDropdown = {e=>onSelectDropdown(e)}/> */}

@@ -11,6 +11,11 @@
     @media screen and (min-width: $bp-large) {
         margin-bottom:0;
     }
+    &.nightmode{
+        background-color: $nightmode-blackpr;
+        color: $white;
+        box-shadow: none;
+    }
 }
 .sync-dropdown-container{
     background-color: ghostwhite;
@@ -18,6 +23,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 0em 1em;
+    &.nightmode{
+        background-color: $nightmode-border3;
+        color: $white;
+    }
 }
 .sync-caseheading{
     font-size: 1em;

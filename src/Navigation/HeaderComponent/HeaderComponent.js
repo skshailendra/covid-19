@@ -1,10 +1,13 @@
-import React, { useState , Suspense, lazy, useEffect } from 'react';
+import React, { useState , Suspense, lazy, useEffect, useContext } from 'react';
 import './HeadingComponent.scss';
 import {NavLink} from 'react-router-dom';
 import LoadingSearch from '../../UIComponent/LoadingSearch/LoadingSearch';
+import {ThemeContext} from '../../context/theme';
 const SearchComponent = lazy(()=> import('../../UIComponent/SearchComponent/SearchComponent'));
+
 const HeaderComponent = props=>{
     const [loadSearch, setLoadSearch ] = useState(false);
+    const {thememode} = useContext(ThemeContext);
     useEffect(()=>{
         setTimeout(()=>{
             setLoadSearch(true);
@@ -12,17 +15,17 @@ const HeaderComponent = props=>{
     },[]);
     return (
         <> 
-            <header className="header">
+            <header className={`header ${thememode}`}>
                 
                 <div className="logo">
                     <div onClick={props.clickSideDrawer} className="toggle-button-div">
                         <button className="toggle-button" >
-                            <div className="toggle-button__line"></div>
-                            <div className="toggle-button__line"></div>
-                            <div className="toggle-button__line"></div>
+                            <div className={`toggle-button__line ${thememode}`}></div>
+                            <div className={`toggle-button__line ${thememode}`}></div>
+                            <div className={`toggle-button__line ${thememode}`}></div>
                         </button>
                     </div>
-                    <NavLink to='/' exact className="header__logo">
+                    <NavLink to='/' exact className={`header__logo ${thememode}`}>
                         <span>COVID-19 Tracker</span>
                     </NavLink>
                 </div>

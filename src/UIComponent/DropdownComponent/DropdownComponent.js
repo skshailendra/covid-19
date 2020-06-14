@@ -1,9 +1,11 @@
 
-import React, { useEffect, useReducer, useCallback, useRef} from 'react';
+import React, { useEffect, useReducer, useCallback, useRef, useContext} from 'react';
 import './DropdownComponent.scss';
 import { faChevronDown,faChevronUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useDropdown from '../../hooks/dropdown-type';
+import {ThemeContext} from '../../context/theme';
+
 const initialState ={
   value:'',
   showSelectOption:false,
@@ -40,6 +42,7 @@ const DropdownComponent = React.memo(props =>{
     const {type}  = props;
     const [dropDownValue, dispatchDropdown] = useReducer(dropDownReducer, initialState);
     const {getDropdownData,data,selectedValue,selectedType} = useDropdown();
+    const {thememode } = useContext(ThemeContext);
     const dropdownList = useRef();
     let selectedDropdown = '';
     const selectDropdown =(e)=>{
@@ -91,8 +94,8 @@ const DropdownComponent = React.memo(props =>{
             
             <div className="dropdown">
                 <div ref={dropdownList} className="dropdown__wrap">
-                    <ul className="dropdown__default" onClick={e =>dispatchDropdown({type:'TOGGLE'})}>
-                        <li className="dropdown__default-option">           
+                    <ul className={`dropdown__default ${thememode}`} onClick={e =>dispatchDropdown({type:'TOGGLE'})}>
+                        <li className={`dropdown__default-option ${thememode}`}>           
                             <div className="dropdown__value" >{dropDownValue.value}</div>
                             {/* <span className="verticle-line"></span> */}
                             {dropDownValue.showSelectOption ? 
@@ -102,10 +105,10 @@ const DropdownComponent = React.memo(props =>{
                         </li>
                     </ul>
                     { dropDownValue.showSelectOption &&
-                    <ul  className="dropdown__select-list" onClick={e=>selectDropdown(e)}>
+                    <ul  className={`dropdown__select-list ${thememode}`} onClick={e=>selectDropdown(e)}>
                         {
                             dropDownValue.traverseDropdown.map((item)=>(
-                                <li key={item.type} data-value={item.type} className={`dropdown__option ${item.value === dropDownValue.value?'dropdown__active':''}` }>
+                                <li key={item.type} data-value={item.type} className={`dropdown__option ${thememode} ${item.value === dropDownValue.value?`dropdown__active ${thememode}`:''}` }>
                                     {item.value}
                                 </li>
                             ))

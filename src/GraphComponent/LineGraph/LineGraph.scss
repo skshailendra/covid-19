@@ -9,8 +9,13 @@
     margin-bottom: 2em;
     border-radius: 5px;
     position: relative;
+    transition: all .3s ease-out;
     @media screen and (max-width: $bp-medium) {
         padding: 0;
         flex-wrap: wrap;
+    }
+    &.nightmode{
+        background-color: $nightmode-blackpr;
+        color: $white;
     }
 }

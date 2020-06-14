@@ -6,12 +6,14 @@ import {FetchDataContext} from '../context/fetch-data';
 import BarChartComponentState from '../GraphComponent/BarChartComponentState/BarChartComponentState';
 import {withRouter} from 'react-router-dom';
 import TinyAreaGraph from '../GraphComponent/TinyAreaGraph/TinyAreaGraph';
+import {ThemeContext} from '../context/theme';
 const StateWiseDisplayTotal = props =>{
 
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const statewise = fetchCovidData.statewise[0];
     const [latestData,setLatestData] = useState([]);
+    const {thememode} = useContext(ThemeContext);
     let filterArray = [];
     const monthList = {
         1:"January",
@@ -51,11 +53,11 @@ const StateWiseDisplayTotal = props =>{
     return (
     <>  
             {props.match.params.statecode ===  'allstates' &&
-            <div className="statewise-container">
-                <div className="statewise-display-total">
+            <div className={`statewise-container ${thememode}`}>
+                <div className={`statewise-display-total ${thememode}`}>
                     {statewise && 
                         <>
-                        <div className={`statewise-display-total__block`}>
+                        <div className={`statewise-display-total__block ${thememode}`}>
                             <div className={`statewise-display-total__text`}>
                                 {"Confirmed"}
                             </div>
@@ -73,7 +75,7 @@ const StateWiseDisplayTotal = props =>{
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyconfirmed"} fillcolor={"red"}/>
                         </div>
 
-                        <div className={`statewise-display-total__block`}>
+                        <div className={`statewise-display-total__block ${thememode}`}>
                             <div className={`statewise-display-total__text`}>
                                 {"Recovered"}
                             </div>
@@ -90,7 +92,7 @@ const StateWiseDisplayTotal = props =>{
                             </div>
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyrecovered"} fillcolor={"green"}/>
                         </div>
-                        <div className={`statewise-display-total__block`}>
+                        <div className={`statewise-display-total__block ${thememode}`}>
                             <div className={`statewise-display-total__text`}>
                                 {"Active"}
                             </div>
@@ -101,7 +103,7 @@ const StateWiseDisplayTotal = props =>{
                             </div>
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyactive"} fillcolor={"blue"}/>
                         </div>    
-                        <div className={`statewise-display-total__block`}>
+                        <div className={`statewise-display-total__block ${thememode}`}>
                             <div className={`statewise-display-total__text`}>
                                 {"Deaths"}
                             </div>

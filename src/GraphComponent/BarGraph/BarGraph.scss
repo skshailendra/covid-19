@@ -13,8 +13,13 @@
     //margin-bottom: 2em;
     border-radius: 5px;
     position: relative;
+    transition: all .3s ease-out;
     @media screen and (min-width: $bp-medium) {
         flex-wrap: wrap;
         padding:2em;
+    }
+    &.nightmode{
+        background-color: $nightmode-blackpr;
+        color: $white;
     }
 }

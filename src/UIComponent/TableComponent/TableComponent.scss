@@ -1,14 +1,13 @@
 @import '../../Globals//variables/variables.scss';
 .table{
    // display: flex;
-    background-color: #fff;
     width: 100%;
     box-shadow: 0px 6px 16px #e4e4e4;
     font-family:  "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
     font-size: inherit;
     margin: 0;
     border-radius: 13px;
-    overflow: hidden; 
+    overflow: hidden;
     @media screen and (min-width:$bp-large){
         margin-top: 1em;
         border-radius: 5px;
@@ -16,6 +15,10 @@
     &__body{
         background-color: #fff;
         padding:1em;
+        transition: all .3s ease-out;
+        &.nightmode{
+            background-color: $nightmode-blackpr;
+        }
     }
     &__row-heading{
         display: flex;
@@ -26,6 +29,10 @@
         font-weight: 600;
         color:#525151;
         //color: #737171;
+        &.nightmode{
+            color:$white;
+            border-bottom: 2px solid #403f3f;
+        }
     }
     &__row-heading-district{
         //color:#b59595;
@@ -45,13 +52,22 @@
         &:not(:last-child){
             border-bottom: 1px solid #efecec;
         }
+        &.nightmode{
+            color: $white;
+        }
     }
     &__row:hover{
         background-color: whitesmoke;
+        &.nightmode{
+            background-color: $nightmode-gdblack;
+        }
     }
     &__row-district{
         background-color: #fbfffb;
         margin: 0 1.4em;
+        &.nightmode{
+            background-color: $nightmode-blackelectro;
+        }
     }
     &__column{
         display: flex;
@@ -68,6 +84,9 @@
     }
     &__heading:hover{
         background-color: whitesmoke;
+        &.nightmode{
+            background-color: $nightmode-gdblack;
+        }
     }
     &__icon{
         width:1em;
@@ -99,6 +118,9 @@
         font-size: .9em;
         margin-right: 9px;
     }
+    &.nightmode{
+        box-shadow: none;
+    }
 }
 .show-button{
     border: none;
@@ -111,7 +133,8 @@
     &:active{
         transform:translateY(1px);
     }
-}   
+
+}
 .btn-inline2{
     border:none;
     padding: 0;

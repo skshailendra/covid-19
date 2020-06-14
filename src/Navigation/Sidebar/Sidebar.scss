@@ -26,6 +26,10 @@
     transform:none;
     transition: width 500ms cubic-bezier(.57,.57,.83,.67);
    }
+
+   &.nightmode{
+    background-color: $nightmode-blackpr;
+   }
 }
 .sidebar.open{
     transform: translateX(0.001%);
@@ -59,7 +63,9 @@
                 margin-bottom: 0.5em;
             }
         }
-       
+        &:last-child{
+            margin-top: auto;
+        }
     }
     &__link{
         display: flex;
@@ -95,7 +101,9 @@
         // @media screen and (min-width: $bp-extralarge) {
         //     background-color : #ce5c5c;
         // }
-       
+        &.nightmode{
+            background-color : #5a5a5a;
+        }
     }
     &__text{
         //display: none;

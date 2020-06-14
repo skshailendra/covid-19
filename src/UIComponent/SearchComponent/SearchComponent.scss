@@ -51,9 +51,18 @@
         @media screen and (min-width: $bp-extralarge) {
             width: 79.6%;
         }
+        &.nightmode{
+            background-color: $nightmode-border3;
+            color: $white;
+            border: 1px solid $nightmode-border2;
+        }
     }
     &__input:focus + &__button{
         background-color: #fff;
+        &.nightmode{
+            background-color: $nightmode-border3;
+            color: $white;       
+        }
     }
 
     &__button{
@@ -66,6 +75,10 @@
         }
         &:active{
             transform:translateY(1px);
+        }
+        &.nightmode{
+            background-color: $nightmode-border3;
+            color: $white;
         }
     }   
 
@@ -85,13 +98,18 @@
     width: 97%;
     border: 1px solid #efefef;
     box-shadow:0 2px 3px 0 rgba(32, 33, 36, 0.19);
-    max-height: 18em;
+    //max-height: 18em;
     overflow: hidden;
     //box-shadow: 1px 0px rgba(0, 0, 0, 0.05);
     &__list{
         list-style-type: none;
         padding: 1em;
         margin: 0;
+        &.nightmode{
+            background-color: $nightmode-border3;
+            color: $white;
+            border: 1px solid $nightmode-border2;
+        }
     }
     &__item{
         padding:0.6em 1em 0.6em 1em;
@@ -100,6 +118,9 @@
         align-items: center;
         &:not(:last-child){
             border-bottom: 1px solid #f7eded;
+            &.nightmode{
+                border-bottom: 1px solid$nightmode-border2;
+            }            
         }
     }
     &__item:hover{
@@ -107,6 +128,9 @@
         border-radius: 2px;
         translate: all .3s;
         cursor: pointer;
+        &.nightmode{
+            background: $nightmode-gdblack;
+        }
     }
     &__name{
         display: flex;
@@ -122,10 +146,15 @@
     }
     &__district-name{
         font-size: 1em;
-
+        &.nightmode{
+            color: $white;
+        }
     }
     &__dist-state-name{
         font-size: .7em;
+        &.nightmode{
+            color: $white;
+        }
     }
     &__status-text{
         font-size: .7em;
@@ -141,6 +170,9 @@
         font-size: 0.9em;
         font-weight: 500;
         color: #352f2f;
+        &.nightmode{
+            color: $white;
+        }
     }
     &__search-detail-icon{
         margin-right: .7em;
@@ -153,6 +185,9 @@
         justify-content: center;
         flex-direction: column;
         align-items: center;
+        &.nightmode{
+            color: $white;
+        }
     }
     &__suggestion{
         font-size: .9em;
@@ -163,7 +198,10 @@
     }
     &__suggestion-text{
         color: #434048;
-        padding-left: 1em;        
+        padding-left: 1em;
+        &.nightmode{
+            color: $white;
+        }     
     }
     &__suggest-item{
         padding:0.6em 1em 0.6em 0;
@@ -172,6 +210,9 @@
         align-items: center;
         &:not(:last-child){
             border-bottom: 1px solid #f7eded;
+            &.nightmode{
+                border-bottom: 1px solid$nightmode-border2;
+            }
         }
     }
     &__suggest-item:hover{
@@ -179,6 +220,9 @@
         border-radius: 2px;
         translate: all .3s;
         cursor: pointer;
+        &.nightmode{
+            background: $nightmode-gdblack;
+        }
     }
     &__link{
         text-decoration: none;
@@ -186,6 +230,12 @@
     @media screen and (min-width: $bp-extralarge) {
         width: 85%;
         max-height: 30em;
+    }
+    &.nightmode{
+        background-color: $nightmode-border3;
+        color: $white;
+        border: 1px solid $nightmode-border3;
+        box-shadow:none;
     }
 }
 

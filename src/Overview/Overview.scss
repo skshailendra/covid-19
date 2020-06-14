@@ -9,7 +9,7 @@
     justify-content: space-between;
     align-items: center;
     padding:0.125em 1em;
-    
+    transition: all .3s ease-out;
     &__location{
         display: flex;
         align-items: center;
@@ -22,6 +22,11 @@
 
     &__heading{
         text-decoration: none;
+        transition: all .3s ease-out;
+        &.nightmode{
+            background-color: $nightmode-blackpr;
+            color: $white;
+        }    
     }
     &__location-save{
         display: flex;
@@ -53,5 +58,11 @@
 
     }
 
+    &.nightmode{
+        background-color: $nightmode-blackpr;
+        color: $white;
+        border:1px solid $nightmode-border3;
+      
+    }
     
 }

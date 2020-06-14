@@ -12,6 +12,7 @@
     font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", "-apple-system", "BlinkMacSystemFont", "Roboto", "Helvetica Neue", sans-serif;
     flex-wrap: wrap;
     flex-direction: column;
+    transition: all .3s ease-out;
     &__logo{
         text-decoration: none;
         color:$white;
@@ -22,6 +23,9 @@
             color:#827a7a;
             font-weight: 500;
             font-size: 1em;
+            &.nightmode{
+                color: $white;
+            }
         }
 
     }
@@ -47,7 +51,11 @@
             font-weight: 500;
         }
     }
-   
+    &.nightmode{
+        background-color: #2f3640;
+        color: $white;
+        border-bottom:$nightmode-border2;
+    }
 }
 
 // Logo
@@ -102,9 +110,14 @@
         background: #fff;
         height:3px;
         width:20px;
+        transition: all 1s ease-out;
         @media screen and (min-width: $bp-extralarge) {
             background: #7a7979;
+            &.nightmode{
+                background: $white;
+            }
         }
+        
     }
 }
 .toggle-button:focus{

@@ -15,6 +15,11 @@
         flex:0 0 60%;
         margin-right:.5em;
     }
+    &.nightmode{
+        background-color: $nightmode-blackpr;
+        color: $white;
+        box-shadow: none;
+    }
 }
 .state-bar-dropdown-container{
     background-color: ghostwhite;
@@ -23,11 +28,16 @@
     align-items: center;
     padding: 0em 1em;
     margin-bottom:2em;
+    color: #6b5f5f;
+    &.nightmode{
+        background-color: $nightmode-border3;
+        color: $white;
+        box-shadow: none;
+    }
 }
 .state-bar-caseheading{
     font-size: .8em;
     line-height: 2em;
-    color: #6b5f5f;
     font-weight: 600;
     @media screen and (min-width: $bp-large) {
         font-size: 1em;

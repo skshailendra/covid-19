@@ -6,8 +6,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: all .3s ease-out;
     @media screen and (max-width: $bp-small) {
         margin-bottom:2em;
+    }
+    &.nightmode{
+        background-color: $nightmode-blackpr;
+        color: $white;
+        box-shadow: none;
     }
 }
 .pie-dropdown-container{
@@ -16,6 +22,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 0em 1em;
+    &.nightmode{
+        background-color: $nightmode-border3;
+        color: $white;
+    }
 }
 .pie-caseheading{
     font-size: 1em;
