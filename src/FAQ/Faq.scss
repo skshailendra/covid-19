@@ -23,6 +23,7 @@
       margin: 1em;
 
       h2 {
+        font-size: 0.9em;
         margin-left: 1em;
       }
 
@@ -110,6 +111,10 @@
       display: flex;
       justify-content: center;
       flex-wrap: nowrap;
+
+      h2 {
+        font-size: 1em;
+      }
     }
 
     img {
