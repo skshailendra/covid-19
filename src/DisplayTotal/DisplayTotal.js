@@ -4,8 +4,6 @@ import { faArrowUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {FetchDataContext} from '../context/fetch-data';
 import LineChartComponent from '../GraphComponent/LineChartComponent/LineChartComponent';
-
-
 import TinyAreaGraph from '../GraphComponent/TinyAreaGraph/TinyAreaGraph';
 const DisplayTotal = props =>{
 
