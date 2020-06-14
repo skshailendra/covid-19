@@ -54,7 +54,7 @@ const Faq = () => {
           <div className={`qn-content ${thememode}`}>
             {questionAnswerList.map((questionAnswer, idx) => <FAQRow questionAnswer={questionAnswer} />)}
           </div>
-          <div className="qn-content qn-media-content">
+          <div className={`qn-content qn-media-content ${thememode}`}>
             <div className='faq-link'>
               <a  rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=OFFg21KhOV0&amp;t=1s">
                 <img src="https://www.mygov.in/sites/all/themes/mygov/images/covid/video_2.jpg" alt="" title=""/>
