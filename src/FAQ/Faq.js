@@ -61,29 +61,21 @@ const Faq = () => {
             </span>
           </div>
 
-          <div className={`qn-content qn-media-content ${thememode}`}>
+          <div className={`qn-media-content ${thememode}`}>
             <div className='faq-link'>
-              <a  rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=OFFg21KhOV0&amp;t=1s">
-                <img src="https://www.mygov.in/sites/all/themes/mygov/images/covid/video_2.jpg" alt="" title=""/>
+              <a rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=oBSkHZPu2xU">
+                <img src="https://img.youtube.com/vi/oBSkHZPu2xU/0.jpg" alt="" title=""/>
               </a>
-              <p>#COVID-19: Watch Mr. Amitabh Bachchan sharing his thoughts on Coronavirus</p>
+              <p>#COVID-19: Symptoms</p>
             </div>
 
             <div className='faq-link'>
-              <a  rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=OFFg21KhOV0&amp;t=1s">
-                <img src="https://www.mygov.in/sites/all/themes/mygov/images/covid/video_2.jpg" alt="" title=""/>
+              <a rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=mOV1aBVYKGA">
+                <img src="https://img.youtube.com/vi/mOV1aBVYKGA/0.jpg" alt="" title=""/>
               </a>
-              <p>#COVID-19: Watch Mr. Amitabh Bachchan sharing his thoughts on Coronavirus</p>
+              <p>#COVID-19: WHO explained</p>
             </div>
-
-            <div className='faq-link'>
-              <a rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=OFFg21KhOV0&amp;t=1s">
-                <img src="https://www.mygov.in/sites/all/themes/mygov/images/covid/video_2.jpg" alt="" title=""/>
-              </a>
-              <p>#COVID-19: Watch Mr. Amitabh Bachchan sharing his thoughts on Coronavirus</p>
-            </div>
-          </div>
-          
+          </div>        
         </div>
         
       </div>
