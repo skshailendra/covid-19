@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Sidebar.scss';
 import {NavLink} from 'react-router-dom';
-import { faHome, faMapMarkerAlt , faChartLine } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faMapMarkerAlt , faChartLine, faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 
 const Sidebar = React.memo(props =>{
@@ -39,6 +39,15 @@ const Sidebar = React.memo(props =>{
                             <FontAwesomeIcon icon={faChartLine}  color="#f5a616" className="side-nav__icon"/>
                             <div className={`side-nav__text ${propsSidebarOpen ? "open":""}`}>
                                 <span>Analysis</span>
+                            </div>
+                        </NavLink> 
+                    </li>
+
+                    <li className="side-nav__items">
+                        <NavLink to='/faq' className={`side-nav__link ${propsSidebarOpen ? "open":""}`} activeClassName="side-nav__link--active">
+                            <FontAwesomeIcon icon={faQuestionCircle}  color="#f5a616" className="side-nav__icon"/>
+                            <div className={`side-nav__text ${propsSidebarOpen ? "open":""}`}>
+                                <span>FAQ</span>
                             </div>
                         </NavLink> 
                     </li>
