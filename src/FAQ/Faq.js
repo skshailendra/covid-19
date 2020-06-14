@@ -52,8 +52,10 @@ const Faq = () => {
       <div className="main-faq-content">
         <div className={`faq-content ${thememode}`}>
           <div className={`qn-content ${thememode}`}>
+            <h2>Commonly Asked Question on COVID-19</h2>
             {questionAnswerList.map((questionAnswer, idx) => <FAQRow questionAnswer={questionAnswer} />)}
           </div>
+
           <div className={`qn-content qn-media-content ${thememode}`}>
             <div className='faq-link'>
               <a  rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=OFFg21KhOV0&amp;t=1s">
