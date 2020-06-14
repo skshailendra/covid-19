@@ -87,7 +87,6 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-self: flex-start;
 
       .faq-link {
         margin: 1em;
@@ -124,8 +123,10 @@
       .qn-content {
         flex: 0 0 70%;
       }
-    }
+
+      .qn-media-content {
+        align-self: flex-start;
+      }
+    }   
   }
 }
-
-
