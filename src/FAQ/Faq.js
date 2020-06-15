@@ -66,14 +66,14 @@ const Faq = () => {
               <a rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=oBSkHZPu2xU">
                 <img src="https://img.youtube.com/vi/oBSkHZPu2xU/0.jpg" alt="" title=""/>
               </a>
-              <p>#COVID-19: Symptoms</p>
+              <p className={`video-header ${thememode}`}>COVID-19: Symptoms</p>
             </div>
 
             <div className='faq-link'>
               <a rel="noopener noreferrer" target="_blank" href="https://www.youtube.com/watch?v=mOV1aBVYKGA">
                 <img src="https://img.youtube.com/vi/mOV1aBVYKGA/0.jpg" alt="" title=""/>
               </a>
-              <p>#COVID-19: WHO explained</p>
+              <p className={`video-header ${thememode}`}>COVID-19: WHO explained</p>
             </div>
           </div>        
         </div>

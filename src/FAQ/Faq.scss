@@ -142,6 +142,15 @@
 
       .qn-media-content {
         align-self: flex-start;
+
+        .video-header {
+          color: #a0175c;
+          font-weight: 500;
+
+          &.nightmode {
+            color: $white;
+          }
+        }
       }
     
     }   
