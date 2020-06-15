@@ -52,7 +52,7 @@ const Overview = props =>{
             }
             { props.match.url.includes('/faq') && 
               <div className="faq-header">
-                <h4>The central helpline number: 011-23978046</h4>
+                <p>The central helpline number: 011-23978046</p>
               </div>
             }
         </div>
