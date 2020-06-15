@@ -26,12 +26,17 @@
         font-size: 0.9em;
         margin-left: 1.5em;
         color: #525151;
+
+        &.nightmode {
+          color: $white;
+        }
       }
 
       &.nightmode{
         background-color: $nightmode-blackpr;
         border:1px solid $nightmode-border3; 
         box-shadow: none;
+        color: $white;
       }
 
       span {

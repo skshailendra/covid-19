@@ -52,7 +52,7 @@ const Faq = () => {
       <div className="main-faq-content">
         <div className={`faq-content ${thememode}`}>
           <div className={`qn-content ${thememode}`}>
-            <h2>Commonly Asked Question on COVID-19</h2>
+            <h2 className={`${thememode}`}>Commonly Asked Question on COVID-19</h2>
             {questionAnswerList.map((questionAnswer, idx) => <FAQRow questionAnswer={questionAnswer} />)}
 
             <span className={`${thememode}`}>

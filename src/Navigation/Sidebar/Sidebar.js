@@ -38,7 +38,7 @@ const Sidebar = React.memo(props =>{
                         <NavLink isActive={ (match,location)=>{
                             return location.pathname.match('/state')
                         } }  to={`/state/${'allstates'}`} className={`side-nav__link ${propsSidebarOpen ? "open":""}`} activeClassName={`side-nav__link--active ${thememode}`}>
-                            <FontAwesomeIcon icon={faChartLine}  color="#f5a616" className="side-nav__icon"/>
+                            <FontAwesomeIcon icon={faChartLine}  color="#a23d83" className="side-nav__icon"/>
                             <div className={`side-nav__text ${propsSidebarOpen ? "open":""}`}>
                                 <span>Analysis</span>
                             </div>
@@ -46,8 +46,8 @@ const Sidebar = React.memo(props =>{
                     </li>
 
                     <li className="side-nav__items">
-                        <NavLink to='/faq' className={`side-nav__link ${propsSidebarOpen ? "open":""}`} activeClassName="side-nav__link--active">
-                            <FontAwesomeIcon icon={faQuestionCircle}  color="#f5a616" className="side-nav__icon"/>
+                        <NavLink to='/faq' className={`side-nav__link ${propsSidebarOpen ? "open":""}`} activeClassName={`side-nav__link--active ${thememode}`}>
+                            <FontAwesomeIcon icon={faQuestionCircle}  color="#28c1c1" className="side-nav__icon"/>
                             <div className={`side-nav__text ${propsSidebarOpen ? "open":""}`}>
                                 <span>FAQ</span>
                             </div>
