@@ -24,7 +24,8 @@
 
       h2 {
         font-size: 0.9em;
-        margin-left: 1em;
+        margin-left: 1.5em;
+        color: #525151;
       }
 
       &.nightmode{
@@ -127,11 +128,17 @@
       flex-direction: row;
       .qn-content {
         flex: 0 0 70%;
+
+        h2 {
+          font-size: 1.2em;
+          font-weight: 500;
+        }
       }
 
       .qn-media-content {
         align-self: flex-start;
       }
+    
     }   
   }
 }
