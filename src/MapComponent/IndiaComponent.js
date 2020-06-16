@@ -49,14 +49,12 @@ const IndiaComponent = props=>{
         };
         if(fetchCovidData && fetchCovidData.statewise){
             dataCall();
-            console.log("filterData called");
             setFilterData(fetchCovidData.statewise[0]);
         }
     },[fetchCovidData]);
     
     // India Map Effect
     useEffect(()=>{
-        console.log("effect called");
         let viewBoxWidth ,viewBoxHeight;
         if(indiaJson &&  fetchCovidData.statewise.length>0){
             

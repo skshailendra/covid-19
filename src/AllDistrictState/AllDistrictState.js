@@ -9,7 +9,6 @@ import DropdownComponent from '../UIComponent/DropdownComponent/DropdownComponen
 import TinyBarGraph from '../GraphComponent/TinyBarGraph/TinyBarGraph';
 import {ThemeContext} from '../context/theme';
 const AllDistrictState = props =>{
-    console.log(props);
     const [filterData, setFilterData ] = useState({caseType:'all',statecode:'' });
 
     const fetchCovidData = useContext(FetchDataContext); 

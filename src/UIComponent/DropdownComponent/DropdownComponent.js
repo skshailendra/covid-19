@@ -71,7 +71,6 @@ const DropdownComponent = React.memo(props =>{
     },[]);
     useEffect(()=>{
       if(props.params && dropDownValue.traverseDropdown.length > 0){
-        debugger;
         selectedDropdown  = dropDownValue.traverseDropdown.filter(item=> item.type === props.params)[0];
         dispatchDropdown({type:'SET',selected:selectedDropdown.value});
       }
