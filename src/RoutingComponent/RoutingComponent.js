@@ -1,11 +1,10 @@
 import React , {Suspense, lazy} from 'react';
 import {Route} from 'react-router-dom';
 import MainContent from '../MainContent/MainContent';
+import FaqComponent from '../FAQ/Faq';
+import InfoComponent from '../Info/Info';
 const MainStateContent = lazy(()=> import ('../MainStateContent/MainStateContent'));
 const IndiaComponent = lazy(()=> import('../MapComponent/IndiaComponent'));
-const FaqComponent = lazy(() => import('../FAQ/Faq'));
-const InfoComponent = lazy(() => import('../Info/Info'));
-
 
 const RoutingComponent = props =>{
   return (
