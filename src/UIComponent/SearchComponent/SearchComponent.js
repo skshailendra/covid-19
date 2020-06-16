@@ -102,17 +102,11 @@ const SearchComponent = props =>{
        
     },[searchList]);
 
-    const selectSearchItem = (e)=>{
-        console.log(e.target.dataset.statecode);
-       
-        let statecode = e.target.dataset.statecode ? e.target.dataset.statecode: e.target.parentNode.parentNode.dataset.statecode;
-        const findEle = e.target.dataset.statename ? findDOMNode(e.target): findDOMNode(e.target.parentNode.parentNode);
-        let statename = findEle.getElementsByClassName("search-result__district-name")[0] ? 
-        findEle.getElementsByClassName("search-result__district-name")[0] : 
-        findEle.getElementsByClassName("search-result__state-name")[0];
-        if (statecode !== undefined ){
-            setSearchValue(statename.innerText);
-            history.push(`/state/${statecode}`);
+    const selectSearchItem = (e,state)=>{
+        const innerText = state.isDistrict ?  state.district: state.state ;   
+        if (innerText !== undefined ){
+            setSearchValue(innerText);
+            history.push(`/state/${state.statecode}`);
         }
     };
     return (
@@ -131,12 +125,12 @@ const SearchComponent = props =>{
                     </button>
                     {searchFocus &&
                     <div className={`search-result ${thememode}`}>
-                        <ul className={`search-result__list ${thememode}`} onClick={selectSearchItem}>
+                        <ul className={`search-result__list ${thememode}`}>
                             {
                             searchList && 
                             searchList.map((search,idx)=>(
                                 // <Link key={idx} className="search-result__link" to={`/state/${search.statecode}` }>
-                                <li key={idx}  className={`search-result__item ${thememode}`} data-statecode={search.statecode} data-statename={search.state}>
+                                <li key={idx}  onClick={e=>selectSearchItem(e,search)} className={`search-result__item ${thememode}`} data-statecode={search.statecode} data-statename={search.state}>
                                     {search.isDistrict && 
                                     <>
                                     <div className="search-result__search-detail-icon">
@@ -197,8 +191,9 @@ const SearchComponent = props =>{
                                 && 
                                 <div className="search-result__suggestion">
                                     <span className={`search-result__suggestion-text ${thememode}`}>Try Searching for...</span>
-                                    <ul className="search-result__list" onClick={selectSearchItem}>
-                                        <li data-statecode={"MH"} data-statename={"Maharashtra"} className={`search-result__suggest-item ${thememode}`}>
+                                    <ul className="search-result__list">
+                                        <li onClick={e=>selectSearchItem(e,{state: "Maharashtra",
+                                            statecode: "MH"})} data-statecode={"MH"} data-statename={"Maharashtra"} className={`search-result__suggest-item ${thememode}`}>
                                             <div className="search-result__search-detail-icon">
                                             <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
                                             </div>
@@ -206,7 +201,8 @@ const SearchComponent = props =>{
                                             Mumbai
                                             </div>
                                         </li>
-                                        <li data-statecode={"TN"} data-statename={"Tamil Nadu"} className={`search-result__suggest-item ${thememode}`}>
+                                        <li onClick={e=>selectSearchItem(e,{state: "Tamil Nadu",
+                                            statecode: "TN"})} data-statecode={"TN"} data-statename={"Tamil Nadu"} className={`search-result__suggest-item ${thememode}`}>
                                             <div className="search-result__search-detail-icon">
                                             <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
                                             </div>
@@ -214,7 +210,8 @@ const SearchComponent = props =>{
                                             Tamil Nadu
                                             </div>
                                         </li>
-                                        <li data-statecode={"RJ"} data-statename={"Rajasthan"} className={`search-result__suggest-item ${thememode}`}>
+                                        <li onClick={e=>selectSearchItem(e,{state: "Rajasthan",
+                                            statecode: "RJ"})} data-statecode={"RJ"} data-statename={"Rajasthan"} className={`search-result__suggest-item ${thememode}`}>
                                             <div className="search-result__search-detail-icon">
                                             <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
                                             </div>
@@ -222,7 +219,8 @@ const SearchComponent = props =>{
                                             Rajasthan
                                             </div>
                                         </li>
-                                        <li data-statecode={"UP"} data-statename={"Uttar Pradesh"} className={`search-result__suggest-item ${thememode}`}>
+                                        <li onClick={e=>selectSearchItem(e,{state: "Uttar Pradesh",
+                                            statecode: "UP", isDistrict: true,district: "Lucknow"})} data-statecode={"UP"} data-statename={"Uttar Pradesh"} className={`search-result__suggest-item ${thememode}`}>
                                             <div className="search-result__search-detail-icon">
                                             <FontAwesomeIcon icon={faSearch}  color="#a29a9ad4" size="1x" className="search__icon"/>
                                             </div>
