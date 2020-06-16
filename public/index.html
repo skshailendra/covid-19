@@ -62,7 +62,7 @@
     var time = new Date().getHours();
     if (typeof window === 'object') {
       window.localStorage.clear();
-      time > 18 ? 
+      ( time > 17 || time < 7 )?  
       localStorage.setItem('nightmode', true) : 
       localStorage.setItem('nightmode', false) 
     } 
