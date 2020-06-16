@@ -174,14 +174,13 @@ const IndiaComponent = props=>{
                 featurestate.properties["active"] = filterDistrict.active;
                 featurestate.properties["deaths"] = filterDistrict.deceased;
             });
-            
-
+            setHoverDistrict(featureDistrict.features[0].properties);
             const minProp = min(featureDistrict.features, feature => feature.properties[filterdMap]);
             const maxProp = max(featureDistrict.features, feature => feature.properties[filterdMap]);
             
             
             const colorScale = scaleLinear().domain([minProp, maxProp]).range(color[filterdMap]);
-
+            let prevSelectedDistrict = '';
            // projects geo-coordinates on a 2D plane
             const projection = geoMercator()
                                 .fitSize([400, 400], featureDistrict);
@@ -190,8 +189,12 @@ const IndiaComponent = props=>{
             .data(featureDistrict.features)
             .enter()
             .append('path')
-            .on("mouseenter", feature => {
-                
+            .on("mouseenter", (feature,i, nodes)  => {
+                if(prevSelectedDistrict){
+                    select(prevSelectedDistrict).classed("districtselected",false)
+                }
+                select(nodes[i]).classed("districtselected",true)               
+                prevSelectedDistrict = nodes[i];
                 setHoverDistrict(feature.properties)         
             })
             .attr('class',"district")
