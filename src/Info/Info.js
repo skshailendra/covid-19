@@ -13,7 +13,7 @@ const questionAnswerList = [
   {
     id: 2,
     qn: "What are your sources for data?",
-    ans: `The data used in this project are part of this <a target='_blank' href="http://patientdb.covid19india.org/">API</a> and may varies with the actual data. Thanks to all the people around the globe for this open source API. Inspired by this <a target='_blank' href="https://covid19india.org/>COVID App</a>.`,
+    ans: `The data used in this project are part of this <a class='a-tag' target='_blank' href="http://patientdb.covid19india.org/">API</a> and may varies with the actual data. Thanks to all the people around the globe for this open source API. Inspired by this <a class='a-tag' target='_blank' href="https://covid19india.org">COVID App</a>.`,
   },
   {
     id: 3,
