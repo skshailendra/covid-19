@@ -17,7 +17,7 @@ const questionAnswerList = [
   },
   {
     id: 3,
-    qn: "Who are you?",
+    qn: "About Us",
     ans: `We are couple of volunteers came together to build this COVID tracking App.`,
   }
 
