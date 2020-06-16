@@ -3,13 +3,11 @@
 .main-info-content {
   height: 100vh;
 
-
   .faq-content {
     height: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    padding: 0 15% 0 15%;
 
     .qn-content {
       background-color: $white;
@@ -30,7 +28,14 @@
         p {
           margin-top: 0;
           line-height: 1.5em;
-      
+          border-bottom: 1px solid #00000052;  
+          padding-bottom: 1em;   
+        }
+      }
+
+      .qn-cont:last-child {
+        p {
+          border-bottom: none;     
         }
       }
 
@@ -52,21 +57,9 @@
 
   }
 
-  @media screen and (min-width: $bp-medium) {
-
-  }
-
   @media screen and (min-width: $bp-large) {
-    // .faq-content {
-    //   flex-direction: row;
-    //   .qn-content {
-    //     flex: 0 0 70%;
-
-    //     h2 {
-    //       font-size: 1.2em;
-    //       font-weight: 500;
-    //     }
-    //   }
-    // }   
+    .faq-content {
+      padding: 0 15% 0 15%;
+    }   
   }
 }

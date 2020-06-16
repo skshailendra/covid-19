@@ -7,7 +7,7 @@ export default function InfoRow({ questionAnswer }) {
       <div className='qn-cont'>
         <h4>{questionAnswer.qn}</h4>
         <p dangerouslySetInnerHTML={ { __html: questionAnswer.ans } }/>
-      </div><hr/>
+      </div>
     </>
   );
 }

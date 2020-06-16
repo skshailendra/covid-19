@@ -31,11 +31,10 @@ const Info = () => {
       <div className="main-info-content">
         <div className={`faq-content ${thememode}`}>
           <div className={`qn-content ${thememode}`}>
-
             {questionAnswerList.map((questionAnswer, idx) => 
               <InfoRow key={idx} questionAnswer={questionAnswer} />)
             }
-          </div>      
+          </div>   
         </div>     
       </div>
     </>
