@@ -53,6 +53,15 @@ const Sidebar = React.memo(props =>{
                             </div>
                         </NavLink> 
                     </li>
+
+                    <li className="side-nav__items">
+                      <NavLink to='/info' className={`side-nav__link ${propsSidebarOpen ? "open":""}`} activeClassName={`side-nav__link--active ${thememode}`}>
+                          <FontAwesomeIcon icon={faQuestionCircle}  color="#28c1c1" className="side-nav__icon"/>
+                          <div className={`side-nav__text ${propsSidebarOpen ? "open":""}`}>
+                            <span>Info</span>
+                          </div>
+                      </NavLink> 
+                    </li>
                     
                     {/* <li className="side-nav__items">
                         <NavLink to='/faq' exact className="side-nav__link"
