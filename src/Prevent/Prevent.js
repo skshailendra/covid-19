@@ -11,90 +11,90 @@ const Prevent = () => {
   return (
     <>
       <Overview/>
-      <div className='prev-content'>
+      <div className={`prev-content ${thememode}`}>
         <div className='prev-section'>
-          <div class='box sec1'>
+          <div class={`box sec1 ${thememode}`}>
             <h3>SYMPTOMS</h3>
             <p>The most common symptoms of COVID-19</p>
-            <div className='img-section'>
+            <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faHeadSideCough}  color="#a23d83" className="icon"/>
               </span>
               <span class='main-content'>DRY COUGH</span>
             </div>
-            <div className='img-section'>
+            <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faThermometerFull}  color="#a23d83" className="icon"/>
               </span>
               <span class='main-content'>HIGH FEVER</span>
             </div>
-            <div className='img-section'>
+            <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faHeadSideCoughSlash}  color="#a23d83" className="icon"/>
               </span>
               <span class='main-content'>SORE THROAT</span>
             </div>
-            <div className='img-section'>
+            <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faLungsVirus}  color="#a23d83" className="icon"/>
               </span>
               <span class='main-content'>DIFFICULTY IN BREATHING</span>
             </div>
           </div>
-          <div class='box sec2'>
+          <div class={`box sec2 ${thememode}`}>
             <h3>HOW IT SPREADS</h3>
             <p>Common medium of disease transmission</p>
-            <div className='img-section'>
+            <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faHeadSideCough}  color="#a23d83" className="icon"/>
               </span>
               <span class='main-content'>AIR BY COUGH OR SNEEZE</span>
             </div>
-            <div className='img-section'>
+            <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faHandshakeSlash}  color="#a23d83" className="icon"/>
               </span>
-              <span class='main-content'>PERSONAL CONTACT</span>
+              <span className='main-content'>PERSONAL CONTACT</span>
             </div>
-            <div className='img-section'>
+            <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faPrescriptionBottle}  color="#a23d83" className="icon"/>
               </span>
-              <span class='main-content'>CONTAMINTATED OBJECTS</span>
+              <span className='main-content'>CONTAMINTATED OBJECTS</span>
             </div>
-            <div className='img-section'>
+            <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faUsers}  color="#a23d83" className="icon"/>
               </span>
-              <span class='main-content'>MASS GATHERING</span>
+              <span className='main-content'>MASS GATHERING</span>
             </div>
           </div>
-          <div class='box sec3'>
+          <div class={`box sec3 ${thememode}`}>
             <h3>PREVENTION</h3>
             <p>Key messages to spread for prevention of COVID-19</p>
-            <div className='img-section'>
+            <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <img src='./img/handwash.jpg' alt='wash hand'/>
               </span>
-              <span class='main-content'>WASH YOUR HANDS OFTEN</span>
+              <span className='main-content'>WASH YOUR HANDS OFTEN</span>
             </div>
-            <div className='img-section'>
+            <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <img src='./img/mask.jpg' alt='wash hand'/>
               </span>
-              <span class='main-content'>WEAR A FACE MASK</span>
+              <span className='main-content'>WEAR A FACE MASK</span>
             </div>
-            <div className='img-section'>
+            <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <img src='./img/tm.jpg' alt='wash hand'/>
               </span>
-              <span class='main-content'>AVOID CONTACT WITH SICK PEOPLE</span>
+              <span className='main-content'>AVOID CONTACT WITH SICK PEOPLE</span>
             </div>
-            <div className='img-section'>
+            <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <img src='./img/cough.jpg' alt='wash hand'/>
               </span>
-              <span class='main-content'>ALWAYS COVER YOUR COUGH AND SNEEZE</span>
+              <span className='main-content'>ALWAYS COVER YOUR COUGH AND SNEEZE</span>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 @import '../Globals//variables/variables.scss';
 
 .prev-content {
+  min-height: 100vh;
   .prev-section {
     margin: 1em;
     display: flex;
@@ -55,6 +56,16 @@
           margin-top: 6%;
           font-weight: 600;
         }
+        &.nightmode {
+         .main-content {
+          color: $white;
+         }       
+        }
+      }
+
+      &.nightmode {
+        background-color: $nightmode-blackelectro;
+        color: $white;
       }
     }
 
@@ -92,5 +103,11 @@
         margin: 15px;
       }    
     } 
+  }
+
+  &.nightmode{
+    background-color: $nightmode-blackpr;
+    color: $white;
+    border:1px solid $nightmode-border3;
   }
 }
