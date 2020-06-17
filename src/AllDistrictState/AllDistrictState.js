@@ -68,11 +68,12 @@ const AllDistrictState = props =>{
 
     const getAllStates = () =>{
         let states = [];
-        fetchCovidData.stateDistrict.slice(1).map((state)=>{
+        fetchCovidData.stateDistrict.slice(1).map(state=>{
           states.push({
             type:state.statecode,
             value:state.state
           });
+          return state;
         });
        
         setStateList(states);

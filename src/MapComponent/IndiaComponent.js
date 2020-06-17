@@ -1,6 +1,6 @@
 import React, {useRef, useEffect, useState,useContext} from 'react';
 import './IndiaComponent.scss';
-import { select, selectAll,geoPath, geoMercator, min, max, scaleLinear ,geoTransverseMercator} from "d3";
+import { select, selectAll,geoPath, geoMercator, min, max, scaleLinear } from "d3";
 import {feature}from "topojson-client";
 import {FetchDataContext} from '../context/fetch-data';
 import useDeviceAgent from '../hooks/device-agent';
