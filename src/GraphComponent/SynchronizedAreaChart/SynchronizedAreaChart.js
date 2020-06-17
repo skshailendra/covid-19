@@ -12,12 +12,7 @@ const SynchronizedAreaChart = props =>{
   const {device} = useDeviceAgent();
   const [chartWidth, setChartWidth] = useState(800);
   const [chartHeight, setChartHeight] = useState(400);
-  const [filterData,setFilterData] = useState('');
   const {thememode} = useContext(ThemeContext);
-  useEffect(()=>{
-
-      
-  },[filterData]); 
   useEffect(()=>{
     if(device && device.isExtraLargeDevice){
       setChartWidth(400);setChartHeight(400);
