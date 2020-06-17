@@ -13,42 +13,42 @@ const Prevent = () => {
       <Overview/>
       <div className={`prev-content ${thememode}`}>
         <div className='prev-section'>
-          <div class={`box sec1 ${thememode}`}>
+          <div className={`box sec1 ${thememode}`}>
             <h3>SYMPTOMS</h3>
             <p>The most common symptoms of COVID-19</p>
             <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faHeadSideCough}  color="#1d6abd" className="icon"/>
               </span>
-              <span class='main-content'>DRY COUGH</span>
+              <span className='main-content'>DRY COUGH</span>
             </div>
             <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faThermometerFull}  color="#1d6abd" className="icon"/>
               </span>
-              <span class='main-content'>HIGH FEVER</span>
+              <span className='main-content'>HIGH FEVER</span>
             </div>
             <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faHeadSideCoughSlash}  color="#1d6abd" className="icon"/>
               </span>
-              <span class='main-content'>SORE THROAT</span>
+              <span className='main-content'>SORE THROAT</span>
             </div>
             <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faLungsVirus}  color="#1d6abd" className="icon"/>
               </span>
-              <span class='main-content'>DIFFICULTY IN BREATHING</span>
+              <span className='main-content'>DIFFICULTY IN BREATHING</span>
             </div>
           </div>
-          <div class={`box sec2 ${thememode}`}>
+          <div className={`box sec2 ${thememode}`}>
             <h3>HOW IT SPREADS</h3>
             <p>Common medium of disease transmission</p>
             <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faHeadSideCough}  color="#a23d83" className="icon"/>
               </span>
-              <span class='main-content'>AIR BY COUGH OR SNEEZE</span>
+              <span className='main-content'>AIR BY COUGH OR SNEEZE</span>
             </div>
             <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
@@ -69,7 +69,7 @@ const Prevent = () => {
               <span className='main-content'>MASS GATHERING</span>
             </div>
           </div>
-          <div class={`box sec3 ${thememode}`}>
+          <div className={`box sec3 ${thememode}`}>
             <h3>PREVENTION</h3>
             <p>Key messages to spread for prevention of COVID-19</p>
             <div className={`img-section ${thememode}`}>
