@@ -2,8 +2,7 @@ import React, { useContext } from 'react';
 import './Sidebar.scss';
 import {NavLink} from 'react-router-dom';
 import { faHome, faMapMarkerAlt , faChartLine, 
-  faQuestionCircle,faMoon, faSun, faInfoCircle,
-  faVirusSlash } from "@fortawesome/free-solid-svg-icons";
+  faQuestionCircle,faMoon, faSun, faInfoCircle, faShieldVirus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 import {ThemeContext} from '../../context/theme';
 const Sidebar = React.memo(props =>{
@@ -58,7 +57,7 @@ const Sidebar = React.memo(props =>{
 
                     <li className="side-nav__items">
                       <NavLink to='/prevention' className={`side-nav__link ${propsSidebarOpen ? "open":""}`} activeClassName={`side-nav__link--active ${thememode}`}>
-                          <FontAwesomeIcon icon={faVirusSlash}  color="#ff0c0c" className="side-nav__icon"/>
+                          <FontAwesomeIcon icon={faShieldVirus}  color="#ff0c0c" className="side-nav__icon"/>
                           <div className={`side-nav__text ${propsSidebarOpen ? "open":""}`}>
                             <span>Prevention</span>
                           </div>
