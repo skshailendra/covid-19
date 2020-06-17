@@ -13,7 +13,6 @@ const BarChartComponent = props =>{
     const [latestData,setLatestData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const {thememode} = useContext(ThemeContext);
-    let filterArray = [];
     const dataKey = {
         dailyconfirmed: "dailyconfirmed",
         dailyrecovered: "dailyrecovered",
@@ -28,6 +27,7 @@ const BarChartComponent = props =>{
         }
     }
     const createFilterArray = ()=>{
+        let filterArray = [];
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
         
             filterArray = casesTimeSeries.filter( (item)=>item.date.includes(filterData.month));
@@ -38,6 +38,7 @@ const BarChartComponent = props =>{
                 item.totalconfirmed = parseInt(item.totalconfirmed);
                 item.totalconfirmed = parseInt(item.totaldeceased);
                 item.totalconfirmed = parseInt(item.totalrecovered);
+                return item;
             });
             setLatestData(filterArray);
         }

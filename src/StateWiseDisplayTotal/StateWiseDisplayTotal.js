@@ -14,7 +14,6 @@ const StateWiseDisplayTotal = props =>{
     const statewise = fetchCovidData.statewise[0];
     const [latestData,setLatestData] = useState([]);
     const {thememode} = useContext(ThemeContext);
-    let filterArray = [];
     const monthList = {
         1:"January",
         2:"February",
@@ -34,6 +33,7 @@ const StateWiseDisplayTotal = props =>{
         return monthList[selectedMonth];
     };
     useEffect(()=>{
+        let filterArray = [];
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
             filterArray = casesTimeSeries.filter( (item)=>item.date.includes(getCurrentMonth() ));
             filterArray.map((item) => {
@@ -45,6 +45,7 @@ const StateWiseDisplayTotal = props =>{
                 item.totaldeceased = parseInt(item.totaldeceased);
                 item.totalrecovered = parseInt(item.totalrecovered);
                 item.totalactive =    item.totalconfirmed - (item.totalrecovered + item.totaldeceased);
+                return item;
             });
             setLatestData(filterArray);
         }
