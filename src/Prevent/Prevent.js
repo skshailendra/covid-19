@@ -15,7 +15,7 @@ const Prevent = () => {
         <div className='prev-section'>
           <div class='box sec1'>
             <h3>SYMPTOMS</h3>
-            <p>The most common symptoms of COVID-19.</p>
+            <p>The most common symptoms of COVID-19</p>
             <div className='img-section'>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faHeadSideCough}  color="#a23d83" className="icon"/>
@@ -43,7 +43,7 @@ const Prevent = () => {
           </div>
           <div class='box sec2'>
             <h3>HOW IT SPREADS</h3>
-            <p>put some content</p>
+            <p>Common medium of disease transmission</p>
             <div className='img-section'>
               <span className='icon-sec'>
                 <FontAwesomeIcon icon={faHeadSideCough}  color="#a23d83" className="icon"/>
@@ -71,7 +71,7 @@ const Prevent = () => {
           </div>
           <div class='box sec3'>
             <h3>PREVENTION</h3>
-            <p>put some content</p>
+            <p>Key messages to spread for prevention of COVID-19</p>
             <div className='img-section'>
               <span className='icon-sec'>
                 <img src='./img/handwash.jpg' alt='wash hand'/>

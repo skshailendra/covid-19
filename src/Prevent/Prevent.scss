@@ -53,20 +53,31 @@
           left: 8%;
           font-size: 0.9em;
           margin-top: 6%;
+          font-weight: 600;
         }
       }
     }
 
     .sec1 {
       background-color: #ff253a7a;
+
+      .main-content {
+        color: #395b80;
+      }
     }
     .sec2 {
       background-color: #fff1b0;
-     //  background-image: url('img_girl.jpg');
+
+      .main-content {
+        color: #da2f2f;
+      }
     }
     .sec3 {
-      background-color: #c925ff47
-      // background-image: url('img_girl.jpg');
+      background-color: #c925ff47;
+
+      .main-content {
+        color: #800d82;
+      }
     }
   }
 
@@ -79,7 +90,6 @@
         flex-basis: 0;
         flex-grow: 1;
         margin: 15px;
-        border: 1px soild red;
       }    
     } 
   }
