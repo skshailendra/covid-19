@@ -1,18 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useState , Suspense, lazy, useEffect, useContext } from 'react';
 import './HeadingComponent.scss';
 import {NavLink} from 'react-router-dom';
-//import LoadingSearch from '../../UIComponent/LoadingSearch/LoadingSearch';
+import LoadingSearch from '../../UIComponent/LoadingSearch/LoadingSearch';
 import {ThemeContext} from '../../context/theme';
-import SearchComponent from '../../UIComponent/SearchComponent/SearchComponent';
+const SearchComponent = lazy(()=> import('../../UIComponent/SearchComponent/SearchComponent'));
 
 const HeaderComponent = props=>{
-    //const [loadSearch, setLoadSearch ] = useState(false);
+    const [loadSearch, setLoadSearch ] = useState(false);
     const {thememode} = useContext(ThemeContext);
-    // useEffect(()=>{
-    //     setTimeout(()=>{
-    //         setLoadSearch(true);
-    //     });
-    // },[]);
+    useEffect(()=>{
+        setTimeout(()=>{
+            setLoadSearch(true);
+        },1000);
+    },[]);
     return (
         <> 
             <header className={`header ${thememode}`}>
@@ -29,7 +29,15 @@ const HeaderComponent = props=>{
                         <span>COVID-19 Tracker</span>
                     </NavLink>
                 </div>
-                <SearchComponent/>
+                {loadSearch &&
+                <Suspense fallback={ <LoadingSearch/>}>
+                    <SearchComponent/>
+                </Suspense>
+                }
+                {!loadSearch &&                 
+                    <LoadingSearch/>
+                }
+                
                 {/* <nav className="user-nav">
                     <div className="user-nav__icon-box">
                         <FontAwesomeIcon icon={faInfoCircle}  size="lg" color="fff" className="user-nav__icon"/>
