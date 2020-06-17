@@ -53,7 +53,7 @@ const Faq = () => {
         <div className={`faq-content ${thememode}`}>
           <div className={`qn-content ${thememode}`}>
             <h2 className={`${thememode}`}>Commonly Asked Question on COVID-19</h2>
-            {questionAnswerList.map((questionAnswer, idx) => <FAQRow questionAnswer={questionAnswer} />)}
+            {questionAnswerList.map((questionAnswer, idx) => <FAQRow key={idx} questionAnswer={questionAnswer} />)}
 
             <span className={`${thememode}`}>
               <a rel="noopener noreferrer" href='https://www.investindia.gov.in/bip?utm_source=MyGovutm_medium=campaignBanner' target='_blank'>Sources
