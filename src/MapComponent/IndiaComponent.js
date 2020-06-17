@@ -162,9 +162,7 @@ const IndiaComponent = props=>{
                         .attr("viewBox", `0 0 ${viewBoxWidth} ${viewBoxHeight}`);
             statesDistrict = stateJson.objects[`${selectedState.toLowerCase().split(' ').join("")}_district`];
             if(statesDistrict){
-                console.log("statesDistrict---",statesDistrict);
                 featureDistrict = feature(stateJson, statesDistrict);
-                console.log("featureDistrict ---",featureDistrict);
                 featureDistrict.features.map((featurestate)=>{
                     filterState = fetchCovidData.stateDistrict.filter((data)=> data.state === featurestate.properties["st_nm"])[0];
     
@@ -178,35 +176,34 @@ const IndiaComponent = props=>{
                 });
             
             
-            setHoverDistrict(featureDistrict.features[0].properties);
-            const minProp = min(featureDistrict.features, feature => feature.properties[filterdMap]);
-            const maxProp = max(featureDistrict.features, feature => feature.properties[filterdMap]);
-            
-            
-            const colorScale = scaleLinear().domain([minProp, maxProp]).range(color[filterdMap]);
-            let prevSelectedDistrict = '';
-           // projects geo-coordinates on a 2D plane
-            const projection = geoMercator()
-                                .fitSize([400, 400], featureDistrict);
-            const pathGenerator = geoPath().projection(projection);    
-            var svgdistrict = stateSvg.selectAll(".district")
-            .data(featureDistrict.features)
-            .enter()
-            .append('path')
-            .on("mouseenter", (feature,i, nodes)  => {
-                if(prevSelectedDistrict){
-                    select(prevSelectedDistrict).classed("districtselected",false)
-                }
-                select(nodes[i]).classed("districtselected",true)               
-                prevSelectedDistrict = nodes[i];
-                setHoverDistrict(feature.properties)         
-            })
-            .attr('class',"district")
-            .transition()   
-            .attr("fill",feature=>colorScale(feature.properties[filterdMap]))
-            .attr('d',d=>pathGenerator(d));
+                setHoverDistrict(featureDistrict.features[0].properties);
+                const minProp = min(featureDistrict.features, feature => feature.properties[filterdMap]);
+                const maxProp = max(featureDistrict.features, feature => feature.properties[filterdMap]);
+                
+                
+                const colorScale = scaleLinear().domain([minProp, maxProp]).range(color[filterdMap]);
+                let prevSelectedDistrict = '';
+                // projects geo-coordinates on a 2D plane
+                const projection = geoMercator()
+                                    .fitSize([400, 400], featureDistrict);
+                const pathGenerator = geoPath().projection(projection);    
+                var svgdistrict = stateSvg.selectAll(".district")
+                .data(featureDistrict.features)
+                .enter()
+                .append('path')
+                .on("mouseenter", (feature,i, nodes)  => {
+                    if(prevSelectedDistrict){
+                        select(prevSelectedDistrict).classed("districtselected",false)
+                    }
+                    select(nodes[i]).classed("districtselected",true)               
+                    prevSelectedDistrict = nodes[i];
+                    setHoverDistrict(feature.properties)         
+                })
+                .attr('class',"district")
+                .transition()   
+                .attr("fill",feature=>colorScale(feature.properties[filterdMap]))
+                .attr('d',d=>pathGenerator(d));
             }
-
         }
         return(()=>{
             // Remove old selection before new Useeffect 
