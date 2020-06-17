@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './FooterComponent.scss';
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';

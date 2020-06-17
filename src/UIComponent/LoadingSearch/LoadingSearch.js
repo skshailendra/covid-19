@@ -1,8 +1,6 @@
 import React from 'react';
-
-import {FetchDataContext} from '../../context/fetch-data';
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
-import { faSearch,faTimesCircle,faFrown,faFrownOpen, faSadCry,faSadTear } from "@fortawesome/free-solid-svg-icons";
+import { faSearch} from "@fortawesome/free-solid-svg-icons";
 import './LoadingSearch.scss';
 
 const LoadingSearch = props =>{

@@ -1,4 +1,4 @@
-import {useReducer,useEffect, useCallback} from 'react';
+import {useReducer,useEffect} from 'react';
 
 const deviceAgentReducer = (currDevice , action)=>{
     switch(action.type){

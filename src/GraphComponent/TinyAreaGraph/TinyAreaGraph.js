@@ -5,14 +5,12 @@ import {
   AreaChart, Area
   } from 'recharts';
 
-import {FetchDataContext} from '../../context/fetch-data';
 import useDeviceAgent from '../../hooks/device-agent';
 
 const TinyAreaGraph = props =>{
     const {device} = useDeviceAgent();
     const [chartWidth, setChartWidth] = useState(200);
     const [chartHeight, setChartHeight] = useState(60);
-    const {filterCaseType} = props;
     useEffect(()=>{     
       if(device && (device.isLargeDevice || device.isExtraLargeDevice)){
         setChartWidth(300);setChartHeight(60);

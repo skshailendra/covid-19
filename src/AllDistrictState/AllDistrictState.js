@@ -1,23 +1,20 @@
 import React,{useState,useEffect, useContext} from 'react';
 import './AllDistrictState.scss';
-import { faSlash,faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
-import useDatetime from '../hooks/datetime';
-import {withRouter, Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {FetchDataContext} from '../context/fetch-data';
 import DropdownComponent from '../UIComponent/DropdownComponent/DropdownComponent';
 import TinyBarGraph from '../GraphComponent/TinyBarGraph/TinyBarGraph';
 import {ThemeContext} from '../context/theme';
 const AllDistrictState = props =>{
-    console.log(props);
     const [filterData, setFilterData ] = useState({caseType:'all',statecode:'' });
 
     const fetchCovidData = useContext(FetchDataContext); 
-    const [stateData,setStateData] = useState([]);
-    const [stateDistrict,setStateDistrict] = useState([]);
+    
     const [stateList,setStateList] = useState([]);
     const [latestData, setLatestData] = useState([]);
-    const statecode = props.match && props.match.params.statecode === 'allstates'? 'All States' : props.match.params.statecode;
+   // const statecode = props.match && props.match.params.statecode === 'allstates'? 'All States' : props.match.params.statecode;
     const {thememode} = useContext(ThemeContext);
     const dataKey = {
         confirmed: "confirmed",
@@ -71,11 +68,12 @@ const AllDistrictState = props =>{
 
     const getAllStates = () =>{
         let states = [];
-        fetchCovidData.stateDistrict.slice(1).map((state)=>{
+        fetchCovidData.stateDistrict.slice(1).map(state=>{
           states.push({
             type:state.statecode,
             value:state.state
           });
+          return state;
         });
        
         setStateList(states);

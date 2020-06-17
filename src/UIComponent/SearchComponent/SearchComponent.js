@@ -2,10 +2,9 @@ import React ,{ useState , useRef, useContext, useEffect}from 'react';
 
 import {FetchDataContext} from '../../context/fetch-data';
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
-import { faSearch,faTimesCircle,faFrown,faFrownOpen, faSadCry,faSadTear } from "@fortawesome/free-solid-svg-icons";
+import { faSearch,faTimesCircle,faSadTear } from "@fortawesome/free-solid-svg-icons";
 import './SearchComponent.scss';
-import {Link,useHistory} from 'react-router-dom';
-import { findDOMNode } from 'react-dom';
+import {useHistory} from 'react-router-dom';
 import {ThemeContext} from '../../context/theme';
 const SearchComponent = props =>{
     const [searchFocus, setSearchFocus] = useState(false);
@@ -17,7 +16,6 @@ const SearchComponent = props =>{
     const [noResult, setNoResult] = useState(false);
     let tempSearchList = [], tempDistrictList= [];
     const searchRef= useRef();
-    const searchResult = useRef();
     const history = useHistory();
     const {thememode} = useContext(ThemeContext);
     const onChangeHandler = (event) =>{

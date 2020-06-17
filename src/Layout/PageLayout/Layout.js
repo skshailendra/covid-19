@@ -3,7 +3,6 @@ import Sidebar from '../../Navigation/Sidebar/Sidebar';
 import RoutingComponent from '../../RoutingComponent/RoutingComponent';
 import HeaderComponent from '../../Navigation/HeaderComponent/HeaderComponent';
 import './Layout.scss';
-import FooterComponent from '../../Navigation/FooterComponent/FooterComponent';
 import Backdrop from '../../UIComponent/Backdrop/Backdrop';
 
 const Layout = props =>{

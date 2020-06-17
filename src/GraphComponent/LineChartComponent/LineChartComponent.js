@@ -1,4 +1,4 @@
-import React, {useEffect, useState,useContext, useCallback} from 'react';
+import React, {useEffect, useState,useContext} from 'react';
 import './LineChartComponent.scss';
 import LineGraph from '../LineGraph/LineGraph';
 import {FetchDataContext} from '../../context/fetch-data';
@@ -14,12 +14,12 @@ const LineChartComponent = props =>{
     const [isLoading, setIsLoading] = useState(true);
     const {thememode} = useContext(ThemeContext);
     let filterArray = [];
-    const onSelectDropdown = useCallback((value)=>{
+    const onSelectDropdown = (value)=>{
         if(value && value.type === "months"){
             value.selectedtype = value.selectedtype === 'All' ? '' : value.selectedtype;
             setFilterData({...filterData,month:value.selectedtype});
         }
-    });
+    };
     const createFilterArray = ()=>{
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
             filterArray = casesTimeSeries.filter( (item)=>item.date.includes(filterData.month));
@@ -27,11 +27,12 @@ const LineChartComponent = props =>{
                 item.dailyconfirmed = parseInt(item.dailyconfirmed);
                 item.dailydeceased = parseInt(item.dailydeceased);
                 item.dailyrecovered = parseInt(item.dailyrecovered);
+                return item;
             });
            
             setLatestData(filterArray);
         }
-    }
+    };
     useEffect(()=>{
         createFilterArray();
     },[casesTimeSeries,filterData]);

@@ -8,7 +8,6 @@ import {FetchDataContext} from '../context/fetch-data';
 import {ThemeContext} from '../context/theme';
 const Overview = props =>{
     const {lastupdatedTime} = useDatetime();
-    console.log(props);
     const fetchCovidData = useContext(FetchDataContext); 
     const {thememode} = useContext(ThemeContext);
     const [statename,setStatename] = useState();

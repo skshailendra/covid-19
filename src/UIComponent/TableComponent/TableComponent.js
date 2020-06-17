@@ -2,7 +2,7 @@
 import React, { useEffect, useState,useContext} from 'react';
 import {FetchDataContext} from '../../context/fetch-data';
 import './TableComponent.scss';
-import { faArrowUp,faArrowDown,faChevronDown,faChevronCircleRight, faChevronRight, faChevronCircleDown} from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp,faArrowDown,faChevronCircleRight, faChevronCircleDown} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useDeviceAgent from '../../hooks/device-agent';
 import {ThemeContext} from '../../context/theme';
