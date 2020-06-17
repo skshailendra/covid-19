@@ -18,25 +18,25 @@ const Prevent = () => {
             <p>The most common symptoms of COVID-19</p>
             <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
-                <FontAwesomeIcon icon={faHeadSideCough}  color="#a23d83" className="icon"/>
+                <FontAwesomeIcon icon={faHeadSideCough}  color="#1d6abd" className="icon"/>
               </span>
               <span class='main-content'>DRY COUGH</span>
             </div>
             <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
-                <FontAwesomeIcon icon={faThermometerFull}  color="#a23d83" className="icon"/>
+                <FontAwesomeIcon icon={faThermometerFull}  color="#1d6abd" className="icon"/>
               </span>
               <span class='main-content'>HIGH FEVER</span>
             </div>
             <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
-                <FontAwesomeIcon icon={faHeadSideCoughSlash}  color="#a23d83" className="icon"/>
+                <FontAwesomeIcon icon={faHeadSideCoughSlash}  color="#1d6abd" className="icon"/>
               </span>
               <span class='main-content'>SORE THROAT</span>
             </div>
             <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
-                <FontAwesomeIcon icon={faLungsVirus}  color="#a23d83" className="icon"/>
+                <FontAwesomeIcon icon={faLungsVirus}  color="#1d6abd" className="icon"/>
               </span>
               <span class='main-content'>DIFFICULTY IN BREATHING</span>
             </div>
@@ -88,13 +88,13 @@ const Prevent = () => {
               <span className='icon-sec'>
                 <img src='./img/tm.jpg' alt='wash hand'/>
               </span>
-              <span className='main-content'>AVOID CONTACT WITH SICK PEOPLE</span>
+              <span className='main-content'>KEEP SOCIAL DISTANCING</span>
             </div>
             <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <img src='./img/cough.jpg' alt='wash hand'/>
               </span>
-              <span className='main-content'>ALWAYS COVER YOUR COUGH AND SNEEZE</span>
+              <span className='main-content'>COVER MOUTH WHILE SNEEZING</span>
             </div>
           </div>
         </div>
