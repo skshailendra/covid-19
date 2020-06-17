@@ -6,8 +6,8 @@ This dashboard project is showing the analysis and Data about the spread of COVI
 
 
 <p>
-<img src="/public/screenshot/trackcovid19india-1.png"  height="200px">
-<img src="/public/screenshot/trackcovid19india-2.png"  height="200px">
+<img src="/screenshot/trackcovid19india-1.png"  height="200px">
+<img src="/screenshot/trackcovid19india-2.png"  height="200px">
 </p>
 
 
