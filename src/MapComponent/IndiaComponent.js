@@ -143,6 +143,7 @@ const IndiaComponent = props=>{
         
     },[selectedState]);
     useEffect(()=>{
+        let featureDistrict, statesDistrict ;
         if(selectedState && stateJson){
             let viewBoxWidth ,viewBoxHeight;
             let filterState,filterDistrict;
@@ -159,19 +160,24 @@ const IndiaComponent = props=>{
                         .attr("width",mapWidth)
                         .attr("height",mapHeight)
                         .attr("viewBox", `0 0 ${viewBoxWidth} ${viewBoxHeight}`);
-            const statesDistrict = stateJson.objects[`${selectedState.toLowerCase().split(' ').join("")}_district`];
-            const featureDistrict = feature(stateJson, statesDistrict);
-            featureDistrict.features.map((featurestate)=>{
-                filterState = fetchCovidData.stateDistrict.filter((data)=> data.state === featurestate.properties["st_nm"])[0];
-
-                filterDistrict = filterState["districtData"].filter((distrctname)=>
-                    distrctname.district === featurestate.properties["district"]
-                )[0];
-                featurestate.properties["confirmed"] = filterDistrict.confirmed;
-                featurestate.properties["recovered"] = filterDistrict.recovered;
-                featurestate.properties["active"] = filterDistrict.active;
-                featurestate.properties["deaths"] = filterDistrict.deceased;
-            });
+            statesDistrict = stateJson.objects[`${selectedState.toLowerCase().split(' ').join("")}_district`];
+            if(statesDistrict){
+                console.log("statesDistrict---",statesDistrict);
+                featureDistrict = feature(stateJson, statesDistrict);
+                console.log("featureDistrict ---",featureDistrict);
+                featureDistrict.features.map((featurestate)=>{
+                    filterState = fetchCovidData.stateDistrict.filter((data)=> data.state === featurestate.properties["st_nm"])[0];
+    
+                    filterDistrict = filterState["districtData"].filter((distrctname)=>
+                        distrctname.district === featurestate.properties["district"]
+                    )[0];
+                    featurestate.properties["confirmed"] = filterDistrict.confirmed;
+                    featurestate.properties["recovered"] = filterDistrict.recovered;
+                    featurestate.properties["active"] = filterDistrict.active;
+                    featurestate.properties["deaths"] = filterDistrict.deceased;
+                });
+            
+            
             setHoverDistrict(featureDistrict.features[0].properties);
             const minProp = min(featureDistrict.features, feature => feature.properties[filterdMap]);
             const maxProp = max(featureDistrict.features, feature => feature.properties[filterdMap]);
@@ -199,7 +205,7 @@ const IndiaComponent = props=>{
             .transition()   
             .attr("fill",feature=>colorScale(feature.properties[filterdMap]))
             .attr('d',d=>pathGenerator(d));
-
+            }
 
         }
         return(()=>{
