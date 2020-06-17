@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { ThemeContext } from '../context/theme';
 import './Prevent.scss';
 import Overview from "../Overview/Overview";
-import { faHeadSideCough, faThermometerFull, faClinicMedical, faPrescriptionBottle, faUsers,
-  faHeadSideCoughSlash, faHeadSideMask, faLungsVirus, faHandshakeSlash} from "@fortawesome/free-solid-svg-icons";
+import { faHeadSideCough, faThermometerFull, faPrescriptionBottle, faUsers,
+  faHeadSideCoughSlash, faLungsVirus, faHandshakeSlash} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 
 const Prevent = () => {
