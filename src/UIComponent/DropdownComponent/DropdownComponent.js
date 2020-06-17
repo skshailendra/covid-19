@@ -44,7 +44,7 @@ const DropdownComponent = React.memo(props =>{
     const {getDropdownData,data,selectedValue,selectedType} = useDropdown();
     const {thememode } = useContext(ThemeContext);
     const dropdownList = useRef();
-    let selectedDropdown = '';
+    
     const selectDropdown =(e)=>{
       const containHTML = /<([A-Za-z][A-Za-z0-9]*)\b[^>]*>(.*?)<\/\1>/.test(e.target.innerHTML);
       if(!containHTML){
@@ -68,6 +68,7 @@ const DropdownComponent = React.memo(props =>{
       
     },[]);
     useEffect(()=>{
+      let selectedDropdown = '';
       if(props.params && dropDownValue.traverseDropdown.length > 0){
         selectedDropdown  = dropDownValue.traverseDropdown.filter(item=> item.type === props.params)[0];
         dispatchDropdown({type:'SET',selected:selectedDropdown.value});

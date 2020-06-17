@@ -73,6 +73,7 @@ const SearchComponent = props =>{
                         filDist.isDistrict = true;
                         filDist.state = data.state;
                         filDist.statecode = data.statecode;
+                        return filDist;
                     })
                     tempDistrictList.push(...filterDistrictList);
                 }           
