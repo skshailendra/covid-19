@@ -1,4 +1,4 @@
-import { useReducer, useCallback,useContext, useEffect} from 'react';
+import { useReducer} from 'react';
 
 const initialState = {
     data:null,
@@ -105,7 +105,7 @@ const dropDownReducer = (currDropdown , action)=>{
         case "MONTHS":
             return {...currDropdown,data:action.months, selectedValue:getCurrentMonth().value}
         case "CASETYPE":
-            return {...currDropdown,data:action.casesType,selectedValue:'All'};break;
+            return {...currDropdown,data:action.casesType,selectedValue:'All'};
         case 'STATES':
             return {...currDropdown,data:action.casesType, selectedValue:action.selectedValue, selectedType:action.selectedType};
         case 'CUSTOM':
@@ -115,14 +115,13 @@ const dropDownReducer = (currDropdown , action)=>{
     }
 };
 
-let states = [];
 const useDropdown = ()=>{
 
     const [dropDownType,dispatchDropdown] = useReducer(dropDownReducer, initialState);
     let selectedState = '';
     const getDropdownData =(dpdowntype ,data = null , params = null) => {
        
-        if(typeof dpdowntype === 'string' && dpdowntype != 'undefined'){
+        if(typeof dpdowntype === 'string' && dpdowntype !== 'undefined'){
             dpdowntype = dpdowntype.toUpperCase();
             switch (dpdowntype){
                 case 'MONTHS':

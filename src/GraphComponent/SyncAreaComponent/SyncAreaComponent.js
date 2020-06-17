@@ -24,6 +24,7 @@ const SyncAreaComponent = props =>{
                 item.dailyconfirmed = parseInt(item.dailyconfirmed);
                 item.dailydeceased = parseInt(item.dailydeceased);
                 item.dailyrecovered = parseInt(item.dailyrecovered);
+                return item;
             });
             setLatestData(filterArray);
         }

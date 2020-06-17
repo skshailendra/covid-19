@@ -1,33 +1,19 @@
 
-import React, { useEffect, useState, useReducer, useContext} from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import './SynchronizedAreaChart.scss';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend
   } from 'recharts';
 
-import {FetchDataContext} from '../../context/fetch-data';
+//import {FetchDataContext} from '../../context/fetch-data';
 import useDeviceAgent from '../../hooks/device-agent';
 import {ThemeContext} from '../../context/theme';
 const SynchronizedAreaChart = props =>{
-  const [latestData,setLatestData] = useState([]);
-  const fetchCovidData = useContext(FetchDataContext);
-  const casesTimeSeries = fetchCovidData.casesTimeSeries;
   const {device} = useDeviceAgent();
   const [chartWidth, setChartWidth] = useState(800);
   const [chartHeight, setChartHeight] = useState(400);
   const [filterData,setFilterData] = useState('');
   const {thememode} = useContext(ThemeContext);
-  //let chartHeight = 250;
-  let filterArray = [];
-  useEffect(()=>{
-    if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
-      filterArray = casesTimeSeries.filter( (data)=>data.date.includes("May"));
-      setLatestData(filterArray);
-    }
-    return ()=>{
-
-    }
-  },[casesTimeSeries,chartWidth]); 
   useEffect(()=>{
 
       

@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, { useContext } from 'react';
 import './Sidebar.scss';
 import {NavLink} from 'react-router-dom';
 import { faHome, faMapMarkerAlt , faChartLine, faQuestionCircle,faMoon, faSun, faInfoCircle } from "@fortawesome/free-solid-svg-icons";

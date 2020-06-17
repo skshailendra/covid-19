@@ -12,15 +12,15 @@ const useDatetime = ()=>{
         let min = Math.abs(new Date().getMinutes() - parseInt(extracttime[1]));
         let sec = Math.abs(new Date().getSeconds() - parseInt(extracttime[2]));
         lastUpdatedTime = hr > 0 ? hr+" hr" : '';
-        lastUpdatedTime+= (hr == 0 && min >0) ? min + " min":'';
-        lastUpdatedTime+= (hr == 0 && min == 0) ? sec + " sec":'';
+        lastUpdatedTime+= (hr === 0 && min >0) ? min + " min":'';
+        lastUpdatedTime+= (hr === 0 && min === 0) ? sec + " sec":'';
         setLastUpdatedTime(lastUpdatedTime);
     }
     useEffect(()=>{
         if(statewise){
             formatDateTime();
         }
-    },[statewise])
+    },[statewise]);
     return {
         lastupdatedTime:lastupdatedTime
     }

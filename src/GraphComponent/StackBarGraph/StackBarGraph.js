@@ -1,28 +1,28 @@
 
-import React, { useEffect, useState, useRef,useContext} from 'react';
+import React, { useEffect, useRef,useContext} from 'react';
 import './StackBarGraph.scss';
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import useDeviceAgent from '../../hooks/device-agent';
 import {ThemeContext} from '../../context/theme';
 const StackBarGraph = props =>{
     const {device} = useDeviceAgent();
-    const [chartWidth, setChartWidth] = useState(300);
-    const [chartHeight, setChartHeight] = useState(550);
-    const [barSize, setBarSize] = useState(15);
+    // const [chartWidth, setChartWidth] = useState(300);
+    // const [chartHeight, setChartHeight] = useState(550);
+    // const [barSize, setBarSize] = useState(15);
     const stackBarGraph = useRef();
     const {thememode,nightMode} = useContext(ThemeContext);
     useEffect(()=>{
       if(device && (device.isExtraLargeDevice || device.isLargeDevice)){
-        setChartWidth(700);setChartHeight(700);
+        //setChartWidth(700);setChartHeight(700);
         stackBarGraph.current.container.firstElementChild.setAttribute("viewBox","-45 0 700 700");
       }
       if(device && device.isMediumDevice){
-        setChartWidth(650);setChartHeight(650);
+        //setChartWidth(650);setChartHeight(650);
         stackBarGraph.current.container.firstElementChild.setAttribute("viewBox","-40 0 500 700");
       }
       if(device && device.isSmallDevice){
-        setBarSize(5);
-        setChartWidth(300);setChartHeight(550);
+        //setBarSize(5);
+        //setChartWidth(300);setChartHeight(550);
         stackBarGraph.current.container.firstElementChild.setAttribute("viewBox","0 0 250 700");
       }
     },[device]);

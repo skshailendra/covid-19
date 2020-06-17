@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState,useContext} from 'react';
 import './TinyBarGraph.scss';
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LabelList, Legend}from 'recharts';
+import {BarChart, Bar, XAxis, Tooltip, LabelList}from 'recharts';
 
 import useDeviceAgent from '../../hooks/device-agent';
 import {ThemeContext} from '../../context/theme';
@@ -9,9 +9,8 @@ const TinyBarGraph = props =>{
     const {device} = useDeviceAgent();
     const [chartWidth, setChartWidth] = useState(800);
     const [chartHeight, setChartHeight] = useState(400);
-    const {thememode,nightMode} = useContext(ThemeContext);
+    const {nightMode} = useContext(ThemeContext);
     const {filterCaseType} = props;
-    const radius = 30;
     useEffect(()=>{
       if(device && device.isExtraLargeDevice){
         setChartWidth(600);setChartHeight(400);
@@ -27,7 +26,7 @@ const TinyBarGraph = props =>{
       }
     },[device]);
     const renderCustomizedLabel = (props) => {
-      const { x, y, width, height, value } = props;
+      const { x, y, width, value } = props;
       return (
         <g>
           <text x={x + width / 2} y={y - 10} fill="green" textAnchor="middle" dominantBaseline="central" className="count-label">
@@ -38,7 +37,7 @@ const TinyBarGraph = props =>{
     };
     const CustomizedAxisTick = (props) =>{
 
-        const {x, y, stroke, payload} = props;
+        const {x, y, payload} = props;
         
          return (
           <g transform={`translate(${x},${y})`}>

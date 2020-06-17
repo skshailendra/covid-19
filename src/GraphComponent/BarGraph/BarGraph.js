@@ -68,10 +68,10 @@ const BarGraph = props =>{
                         <Tooltip />
                        
                         
-                        {props.filterCaseType =='all'&&<Bar dataKey="totalconfirmed" fill="#ef716f" />}
-                        {props.filterCaseType =='all' &&<Bar dataKey="totalrecovered" fill="#78b16b" />}
-                        {props.filterCaseType =='all' &&<Bar dataKey="totaldeceased" fill="#525050" /> }
-                        {props.filterCaseType != 'all' &&
+                        {props.filterCaseType === 'all'&&<Bar dataKey="totalconfirmed" fill="#ef716f" />}
+                        {props.filterCaseType === 'all' &&<Bar dataKey="totalrecovered" fill="#78b16b" />}
+                        {props.filterCaseType === 'all' &&<Bar dataKey="totaldeceased" fill="#525050" /> }
+                        {props.filterCaseType !== 'all' &&
                           caseType()
                         }
                         </BarChart>

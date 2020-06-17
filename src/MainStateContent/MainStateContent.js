@@ -1,6 +1,5 @@
 import React,{useContext}from 'react';
 import './MainStateContent.scss';
-import BarChartComponentState from '../GraphComponent/BarChartComponentState/BarChartComponentState';
 import Overview from '../Overview/Overview';
 import StateWiseDisplayTotal from '../StateWiseDisplayTotal/StateWiseDisplayTotal';
 import AllDistrictState from '../AllDistrictState/AllDistrictState';

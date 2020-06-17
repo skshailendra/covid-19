@@ -1,12 +1,11 @@
 import React, {useEffect, useState,useContext} from 'react';
 import './BarChartComponentState.scss';
 import StackBarGraph from '../StackBarGraph/StackBarGraph';
-import DropdownComponent from '../../UIComponent/DropdownComponent/DropdownComponent';
 import {FetchDataContext} from '../../context/fetch-data';
 import {withRouter} from 'react-router-dom';
 import {ThemeContext} from '../../context/theme';
 const BarChartComponentState = props =>{
-    const [filterData, setFilterData ] = useState({month:"" , caseType:'all'});
+    const [filterData] = useState({month:"" , caseType:'all'});
     const fetchCovidData = useContext(FetchDataContext);
     const stateData = fetchCovidData.statewise || [];
     const stateDistrict = fetchCovidData.stateDistrict || [];
@@ -14,14 +13,6 @@ const BarChartComponentState = props =>{
     const {thememode} = useContext(ThemeContext);
     let filterArray = [];
     const[datakey,setDatakey] = useState('state');
-    // const onSelectDropdown = (value)=>{
-    //     if(value && value.type === "months"){
-    //         value.selectedtype = value.selectedtype === 'All' ? '' : value.selectedtype;
-    //         setFilterData({...filterData,month:value.selectedtype});
-    //     }else{
-    //         setFilterData({...filterData,caseType:value.selectedtype})
-    //     }
-    // }
     const dessortable = (a, b) =>{
         return parseInt(b["confirmed"]) - parseInt(a["confirmed"]);
       };

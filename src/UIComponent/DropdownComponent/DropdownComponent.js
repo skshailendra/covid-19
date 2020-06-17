@@ -60,14 +60,12 @@ const DropdownComponent = React.memo(props =>{
       if(dropdownList.current && !dropdownList.current.contains(e.target)){
         dispatchDropdown({type:'CLOSE'})
       }
-    });
+    },[dropdownList]);
     useEffect(()=>{
       window.addEventListener("click",clickOutside);
       getDropdownData(type, {list:props.list} , props.params);
-      return ()=>{
-        
-        window.removeEventListener("click",clickOutside);
-      }
+      return ()=>window.removeEventListener("click",clickOutside);
+      
     },[]);
     useEffect(()=>{
       if(props.params && dropDownValue.traverseDropdown.length > 0){
