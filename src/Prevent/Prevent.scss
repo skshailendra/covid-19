@@ -1,0 +1,46 @@
+@import '../Globals//variables/variables.scss';
+
+.prev-content {
+  .prev-section {
+    margin: 1em;
+   // background: $white;  
+    display: flex;
+    flex-direction: column;
+
+    .box {
+      height: 400px;
+      width: 100%;
+      margin: 15px;
+    }
+
+    .sec1 {
+      // background-image: url('covid.jpg');
+      // // background-image: url('img_girl.jpg');
+      // background-repeat: no-repeat;
+      // background-attachment: fixed;
+      // background-size: cover;
+      background-color: #ff253a7a;
+    }
+    .sec2 {
+      background-color: #fff1b0;
+     //  background-image: url('img_girl.jpg');
+    }
+    .sec3 {
+      background-color: #c925ff47
+      // background-image: url('img_girl.jpg');
+    }
+  }
+
+  @media screen and (min-width: $bp-large) {
+    .prev-section {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .box {
+        flex-basis: 0;
+        flex-grow: 1;
+        border: 1px soild red;
+      }    
+    } 
+  }
+}
