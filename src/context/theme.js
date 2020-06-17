@@ -5,11 +5,13 @@ export const ThemeContext = React.createContext({
   thememode:'',
   toggleTheme: () => {}
 });
-
+const isNightTheme = ()=>{
+  const time = new Date().getHours();
+  return ( time > 17 || time < 7 ) ? true :  false;
+};
 const ThemeModeProvider = props => {
-  const initNightMode = localStorage.getItem('nightmode') === 'true';
-  const initThemeMode = initNightMode ? 'nightmode' : 'daymode';
-  const [nightMode,setNightMode] = useState(initNightMode);
+  const initThemeMode = isNightTheme() ? 'nightmode' : 'daymode';
+  const [nightMode,setNightMode] = useState(isNightTheme());
   const [thememode,setThememode] = useState(initThemeMode);
 
   const toggleTheme = () => {
