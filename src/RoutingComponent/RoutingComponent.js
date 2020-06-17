@@ -6,6 +6,7 @@ import InfoComponent from '../Info/Info';
 import Loading from '../UIComponent/Loading/Loading';
 const MainStateContent = lazy(()=> import ('../MainStateContent/MainStateContent'));
 const IndiaComponent = lazy(()=> import('../MapComponent/IndiaComponent'));
+const preventComponent = lazy(() => import('../Prevent/Prevent.js'));
 
 const RoutingComponent = props =>{
   return (
@@ -16,6 +17,7 @@ const RoutingComponent = props =>{
         <Route path="/state/:statecode" component ={MainStateContent} />
         <Route path="/faq" component={FaqComponent}/>
         <Route path="/info" component={InfoComponent}/>
+        <Route path="/prevention" component={preventComponent}/>
       </Suspense>
     </>
   )
