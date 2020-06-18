@@ -1,4 +1,4 @@
-import React,{useState,useEffect, useContext} from 'react';
+import React,{useState,useEffect, useContext, useCallback} from 'react';
 import './AllDistrictState.scss';
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
@@ -55,44 +55,46 @@ const AllDistrictState = props =>{
             setFilterData({...filterData,caseType:value.selectedtype});
         }
     }
-    const sortable = (a, b) =>{
+    const sortable = useCallback((a, b) =>{
         return parseInt(b[filterData.caseType.toLowerCase()]) - parseInt(a[filterData.caseType.toLowerCase()]);
-    };
-    const createFilterArray = ()=>{
-        if(fetchCovidData.stateDistrict.length > 0 && filterData.statecode){
-            let filterArray = fetchCovidData.stateDistrict.slice(1).filter( (item)=>item.statecode === filterData.statecode)[0];
-            filterArray.districtData = filterArray.districtData.sort(sortable);            
-            setLatestData({...filterArray,filterArray});
-        }
-    }
-
-    const getAllStates = () =>{
-        let states = [];
-        fetchCovidData.stateDistrict.slice(1).map(state=>{
-          states.push({
-            type:state.statecode,
-            value:state.state
-          });
-          return state;
-        });
-       
-        setStateList(states);
-    }
+    },[filterData.caseType]);
+    
+   
+    
     useEffect(()=>{
-    if(fetchCovidData && 
-        fetchCovidData.statewise.length > 0 && 
-        fetchCovidData.stateDistrict.length > 0){
-        getAllStates();
-    }
+        const getAllStates = () =>{
+            let states = [];
+            fetchCovidData.stateDistrict.slice(1).map(state=>{
+              states.push({
+                type:state.statecode,
+                value:state.state
+              });
+              return state;
+            });
+           
+            setStateList(states);
+        }
+        if(fetchCovidData && 
+            fetchCovidData.statewise.length > 0 && 
+            fetchCovidData.stateDistrict.length > 0){
+            getAllStates();
+        }
     },[fetchCovidData]);
     useEffect(()=>{
+        const createFilterArray = ()=>{
+            if(fetchCovidData.stateDistrict.length > 0 && filterData.statecode){
+                let filterArray = fetchCovidData.stateDistrict.slice(1).filter( (item)=>item.statecode === filterData.statecode)[0];
+                filterArray.districtData = filterArray.districtData.sort(sortable);            
+                setLatestData({...filterArray,filterArray});
+            }
+        }
         createFilterArray();
-    },[fetchCovidData,filterData]);
+    },[fetchCovidData,filterData,sortable]);
     useEffect(()=>{
         if(props.match.params.statecode !== 'allstates'){
-            setFilterData({...filterData,statecode:props.match.params.statecode});
+            setFilterData({caseType:filterData.caseType,statecode:props.match.params.statecode});
         }
-    },[props.match.params.statecode]);
+    },[props.match.params.statecode,filterData.caseType]);
     return (
         <> 
             <div className={`all-states-graph ${thememode}`}>

@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect} from "react";
 import "./Info.scss";
 import InfoRow from "./InfoRow";
 import Overview from "../Overview/Overview";
 import { ThemeContext } from '../context/theme';
-
+import ReactGa from 'react-ga';
 const questionAnswerList = [
   {
     id: 1,
@@ -25,6 +25,10 @@ const questionAnswerList = [
 
 const Info = () => {
   const { thememode } = useContext(ThemeContext);
+  useEffect(()=>{
+    ReactGa.initialize('UA-169939716-1');
+    ReactGa.pageview(window.location.pathname + window.location.search);
+  });
   return (
     <>
       <Overview/>

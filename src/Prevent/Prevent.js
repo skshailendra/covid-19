@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext , useEffect} from "react";
 import { ThemeContext } from '../context/theme';
 import './Prevent.scss';
 import Overview from "../Overview/Overview";
 import { faHeadSideCough, faThermometerFull, faPrescriptionBottle, faUsers,
   faHeadSideCoughSlash, faLungsVirus, faHandshakeSlash} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
-
+import ReactGa from 'react-ga';
 const Prevent = () => {
   const { thememode } = useContext(ThemeContext);
+  useEffect(()=>{
+    ReactGa.initialize('UA-169939716-1');
+    ReactGa.pageview(window.location.pathname + window.location.search);
+  });
   return (
     <>
       <Overview/>

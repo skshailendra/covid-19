@@ -5,7 +5,7 @@ import {feature}from "topojson-client";
 import {FetchDataContext} from '../context/fetch-data';
 import useDeviceAgent from '../hooks/device-agent';
 import {ThemeContext} from '../context/theme';
-
+import ReactGa from 'react-ga';
 const IndiaComponent = props=>{
     
     let mapWidth = 300;
@@ -52,7 +52,10 @@ const IndiaComponent = props=>{
             setFilterData(fetchCovidData.statewise[0]);
         }
     },[fetchCovidData]);
-    
+    useEffect(()=>{
+        ReactGa.initialize('UA-169939716-1');
+        ReactGa.pageview(window.location.pathname + window.location.search);
+    });
     // India Map Effect
     useEffect(()=>{
         let viewBoxWidth ,viewBoxHeight;
