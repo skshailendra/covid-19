@@ -42,7 +42,7 @@ const Prevent = () => {
             <p>We must follow these to prevent from COVID-19</p>
             <PreSectionRow key='9' content='WASH YOUR HANDS OFTEN' imgName='./img/handwash.jpg'/>
             <PreSectionRow key='10' content='WEAR A FACE MASK' imgName='./img/mask.jpg'/>
-            <PreSectionRow key='11' content='KEEP SOCIAL DISTANCING' imgName='../img/tm.jpg'/>
+            <PreSectionRow key='11' content='KEEP SOCIAL DISTANCING' imgName='../img/sd.jpg'/>
             <PreSectionRow key='12' content='COVER MOUTH WHILE SNEEZING' imgName='./img/cough.jpg'/>
           </div>
         </div>
