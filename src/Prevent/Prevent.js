@@ -75,7 +75,7 @@ const Prevent = () => {
           </div>
           <div className={`box sec3 ${thememode}`}>
             <h3>PREVENTION</h3>
-            <p>Key messages to spread for prevention of COVID-19</p>
+            <p>We must follow these to prevent from COVID-19</p>
             <div className={`img-section ${thememode}`}>
               <span className='icon-sec'>
                 <img src='./img/handwash.jpg' alt='wash hand'/>
