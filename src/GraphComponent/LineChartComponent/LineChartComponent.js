@@ -13,14 +13,16 @@ const LineChartComponent = props =>{
     const [latestData,setLatestData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const {thememode} = useContext(ThemeContext);
-    let filterArray = [];
+    
     const onSelectDropdown = (value)=>{
         if(value && value.type === "months"){
             value.selectedtype = value.selectedtype === 'All' ? '' : value.selectedtype;
             setFilterData({...filterData,month:value.selectedtype});
         }
     };
-    const createFilterArray = ()=>{
+    
+    useEffect(()=>{
+        let filterArray = [];
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
             filterArray = casesTimeSeries.filter( (item)=>item.date.includes(filterData.month));
             filterArray.map((item) => {
@@ -32,9 +34,6 @@ const LineChartComponent = props =>{
            
             setLatestData(filterArray);
         }
-    };
-    useEffect(()=>{
-        createFilterArray();
     },[casesTimeSeries,filterData]);
     useEffect(()=>{
         if(latestData && latestData.length > 0){

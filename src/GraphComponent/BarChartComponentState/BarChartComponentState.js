@@ -11,12 +11,13 @@ const BarChartComponentState = props =>{
     const stateDistrict = fetchCovidData.stateDistrict || [];
     const [latestData,setLatestData] = useState([]);
     const {thememode} = useContext(ThemeContext);
-    let filterArray = [];
+    
     const[datakey,setDatakey] = useState('state');
     const dessortable = (a, b) =>{
         return parseInt(b["confirmed"]) - parseInt(a["confirmed"]);
       };
-    const createFilterArray = ()=>{
+    useEffect(()=>{
+        let filterArray = [];
         if(stateDistrict.length > 0 && stateData.length > 0){
             if(props.match.params.statecode !=='allstates'){
                 filterArray = stateDistrict.filter( (item)=>item.statecode === props.match.params.statecode)[0];
@@ -30,20 +31,8 @@ const BarChartComponentState = props =>{
             }
             
             setLatestData(filterArray);
-
-            // filterArray.map((item) => {
-            //     item.dailyconfirmed = parseInt(item.dailyconfirmed);
-            //     item.dailydeceased = parseInt(item.dailydeceased);
-            //     item.dailyrecovered = parseInt(item.dailyrecovered);
-            //     item.totalconfirmed = parseInt(item.totalconfirmed);
-            //     item.totalconfirmed = parseInt(item.totaldeceased);
-            //     item.totalconfirmed = parseInt(item.totalrecovered);
-            // });
         }
-    }
-    useEffect(()=>{
-        createFilterArray();
-    },[stateData,stateDistrict]);
+    },[stateData,stateDistrict, props.match.params.statecode]);
     return (
         <> 
             <div className={`state-bar-description-graph ${thememode}`}>
