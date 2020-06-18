@@ -5,18 +5,20 @@ const useDatetime = ()=>{
     const [lastupdatedTime,setLastUpdatedTime] = useState('0');
     const fetchCovidData = useContext(FetchDataContext);
     const statewise = fetchCovidData.statewise[0];
-    let lastUpdatedTime = '';
-    const formatDateTime = ()=>{
-        let extracttime = statewise.lastupdatedtime.split(" ")[1].split(":");
-        let hr = Math.abs(new Date().getHours() - parseInt(extracttime[0]));
-        let min = Math.abs(new Date().getMinutes() - parseInt(extracttime[1]));
-        let sec = Math.abs(new Date().getSeconds() - parseInt(extracttime[2]));
-        lastUpdatedTime = hr > 0 ? hr+" hr" : '';
-        lastUpdatedTime+= (hr === 0 && min >0) ? min + " min":'';
-        lastUpdatedTime+= (hr === 0 && min === 0) ? sec + " sec":'';
-        setLastUpdatedTime(lastUpdatedTime);
-    }
+    
+    
     useEffect(()=>{
+        let lastUpdatedTime = '';
+        const formatDateTime = ()=>{
+            let extracttime = statewise.lastupdatedtime.split(" ")[1].split(":");
+            let hr = Math.abs(new Date().getHours() - parseInt(extracttime[0]));
+            let min = Math.abs(new Date().getMinutes() - parseInt(extracttime[1]));
+            let sec = Math.abs(new Date().getSeconds() - parseInt(extracttime[2]));
+            lastUpdatedTime = hr > 0 ? hr+" hr" : '';
+            lastUpdatedTime+= (hr === 0 && min >0) ? min + " min":'';
+            lastUpdatedTime+= (hr === 0 && min === 0) ? sec + " sec":'';
+            setLastUpdatedTime(lastUpdatedTime);
+        }
         if(statewise){
             formatDateTime();
         }
