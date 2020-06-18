@@ -4,8 +4,10 @@ import './Prevent.scss';
 import Overview from "../Overview/Overview";
 import { faHeadSideCough, faThermometerFull, faPrescriptionBottle, faUsers,
   faHeadSideCoughSlash, faLungsVirus, faHandshakeSlash} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
+
 import ReactGa from 'react-ga';
+import PreventRow from "./PreventRow/PreventRow";
+import PreSectionRow from "./PreventRow/PreSectionRow";
 const Prevent = () => {
   const { thememode } = useContext(ThemeContext);
   useEffect(()=>{
@@ -20,86 +22,28 @@ const Prevent = () => {
           <div className={`box sec1 ${thememode}`}>
             <h3>SYMPTOMS</h3>
             <p>The most common symptoms of COVID-19</p>
-            <div className={`img-section ${thememode}`}>
-              <span className='icon-sec'>
-                <FontAwesomeIcon icon={faHeadSideCough}  color="#1d6abd" className="icon"/>
-              </span>
-              <span className='main-content'>DRY COUGH</span>
-            </div>
-            <div className={`img-section ${thememode}`}>
-              <span className='icon-sec'>
-                <FontAwesomeIcon icon={faThermometerFull}  color="#1d6abd" className="icon"/>
-              </span>
-              <span className='main-content'>HIGH FEVER</span>
-            </div>
-            <div className={`img-section ${thememode}`}>
-              <span className='icon-sec'>
-                <FontAwesomeIcon icon={faHeadSideCoughSlash}  color="#1d6abd" className="icon"/>
-              </span>
-              <span className='main-content'>SORE THROAT</span>
-            </div>
-            <div className={`img-section ${thememode}`}>
-              <span className='icon-sec'>
-                <FontAwesomeIcon icon={faLungsVirus}  color="#1d6abd" className="icon"/>
-              </span>
-              <span className='main-content'>DIFFICULTY IN BREATHING</span>
-            </div>
+            <PreventRow key='1' content='DRY COUGH' color='#1d6abd' iconName={faHeadSideCough} />
+            <PreventRow key='2' content='HIGH FEVER' color='#1d6abd' iconName={faThermometerFull} />
+            <PreventRow key='3' content='SORE THROAT' color='#1d6abd' iconName={faHeadSideCoughSlash} />
+            <PreventRow key='4' content='DIFFICULTY IN BREATHING' color='#1d6abd' iconName={faLungsVirus} />
           </div>
+
           <div className={`box sec2 ${thememode}`}>
             <h3>HOW IT SPREADS</h3>
             <p>Common medium of disease transmission</p>
-            <div className={`img-section ${thememode}`}>
-              <span className='icon-sec'>
-                <FontAwesomeIcon icon={faHeadSideCough}  color="#a23d83" className="icon"/>
-              </span>
-              <span className='main-content'>AIR BY COUGH OR SNEEZE</span>
-            </div>
-            <div className={`img-section ${thememode}`}>
-              <span className='icon-sec'>
-                <FontAwesomeIcon icon={faHandshakeSlash}  color="#a23d83" className="icon"/>
-              </span>
-              <span className='main-content'>PERSONAL CONTACT</span>
-            </div>
-            <div className={`img-section ${thememode}`}>
-              <span className='icon-sec'>
-                <FontAwesomeIcon icon={faPrescriptionBottle}  color="#a23d83" className="icon"/>
-              </span>
-              <span className='main-content'>CONTAMINTATED OBJECTS</span>
-            </div>
-            <div className={`img-section ${thememode}`}>
-              <span className='icon-sec'>
-                <FontAwesomeIcon icon={faUsers}  color="#a23d83" className="icon"/>
-              </span>
-              <span className='main-content'>MASS GATHERING</span>
-            </div>
+            <PreventRow key='5' content='AIR BY COUGH OR SNEEZE' color='#a23d83' iconName={faHeadSideCough} />
+            <PreventRow key='6' content='PERSONAL CONTACT' color='#a23d83' iconName={faHandshakeSlash} />
+            <PreventRow key='7' content='CONTAMINTATED OBJECTS' color='#a23d83' iconName={faPrescriptionBottle} />
+            <PreventRow key='8' content='MASS GATHERING' color='#a23d83' iconName={faUsers} />
           </div>
+
           <div className={`box sec3 ${thememode}`}>
             <h3>PREVENTION</h3>
             <p>We must follow these to prevent from COVID-19</p>
-            <div className={`img-section ${thememode}`}>
-              <span className='icon-sec'>
-                <img src='./img/handwash.jpg' alt='wash hand'/>
-              </span>
-              <span className='main-content'>WASH YOUR HANDS OFTEN</span>
-            </div>
-            <div className={`img-section ${thememode}`}>
-              <span className='icon-sec'>
-                <img src='./img/mask.jpg' alt='wash hand'/>
-              </span>
-              <span className='main-content'>WEAR A FACE MASK</span>
-            </div>
-            <div className={`img-section ${thememode}`}>
-              <span className='icon-sec'>
-                <img src='./img/tm.jpg' alt='wash hand'/>
-              </span>
-              <span className='main-content'>KEEP SOCIAL DISTANCING</span>
-            </div>
-            <div className={`img-section ${thememode}`}>
-              <span className='icon-sec'>
-                <img src='./img/cough.jpg' alt='wash hand'/>
-              </span>
-              <span className='main-content'>COVER MOUTH WHILE SNEEZING</span>
-            </div>
+            <PreSectionRow key='9' content='WASH YOUR HANDS OFTEN' imgName='./img/handwash.jpg'/>
+            <PreSectionRow key='10' content='WEAR A FACE MASK' imgName='./img/mask.jpg'/>
+            <PreSectionRow key='11' content='KEEP SOCIAL DISTANCING' imgName='../img/tm.jpg'/>
+            <PreSectionRow key='12' content='COVER MOUTH WHILE SNEEZING' imgName='./img/cough.jpg'/>
           </div>
         </div>
       </div>
