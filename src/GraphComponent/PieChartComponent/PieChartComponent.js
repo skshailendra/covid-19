@@ -8,8 +8,9 @@ const PieChartComponent = props =>{
     const statewise = fetchCovidData.statewise[0];
     const [latestData,setLatesData] = useState();
     const {thememode} = useContext(ThemeContext);
-    let createLatest = [];
+    
     useEffect(()=>{
+        let createLatest = [];
         if(statewise){
             const confirmed = { name : "confirmed", value :   parseInt(statewise["confirmed"])};
             const recovered = { name : "recovered", value :   parseInt(statewise["recovered"])};
