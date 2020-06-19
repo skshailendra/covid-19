@@ -60,7 +60,7 @@ const StateWiseDisplayTotal = props =>{
                     {statewise && 
                         <>
                         <div className={`statewise-display-total__block ${thememode}`}>
-                            <div className={`statewise-display-total__text`}>
+                            <div className={`statewise-display-total__text confirmed`}>
                                 {"Confirmed"}
                             </div>
                             <div className={`statewise-display-total__count-block`}>
@@ -83,7 +83,7 @@ const StateWiseDisplayTotal = props =>{
                         </div>
 
                         <div className={`statewise-display-total__block ${thememode}`}>
-                            <div className={`statewise-display-total__text`}>
+                            <div className={`statewise-display-total__text recovered`}>
                                 {"Recovered"}
                             </div>
                             <div className={`statewise-display-total__count-block`}>
@@ -105,7 +105,7 @@ const StateWiseDisplayTotal = props =>{
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyrecovered"} fillcolor={"green"}/>
                         </div>
                         <div className={`statewise-display-total__block ${thememode}`}>
-                            <div className={`statewise-display-total__text`}>
+                            <div className={`statewise-display-total__text active`}>
                                 {"Active"}
                             </div>
                             <div className={`statewise-display-total__count-block`}>
@@ -121,7 +121,7 @@ const StateWiseDisplayTotal = props =>{
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyactive"} fillcolor={"blue"}/>
                         </div>    
                         <div className={`statewise-display-total__block ${thememode}`}>
-                            <div className={`statewise-display-total__text`}>
+                            <div className={`statewise-display-total__text deaths`}>
                                 {"Deaths"}
                             </div>
                             <div className={`statewise-display-total__count-block`}>

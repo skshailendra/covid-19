@@ -61,7 +61,8 @@
 
     &__text{
         margin-right: 2em;
-       
+        font-size: 1.175em;
+        font-weight: 500;
     }
 
     &__count-block{
@@ -98,6 +99,15 @@
     &.nightmode{
         background-color: $nightmode-blackelectro;
         color: $white;
+    }
+    .confirmed{
+        color: #da4747;
+    }
+    .recovered{
+        color: green;
+    }
+    .deaths{
+        color:grey
     }
 }
 

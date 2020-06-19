@@ -58,7 +58,7 @@ const DisplayTotal = props =>{
                     {statewise && 
                         <>
                         <div className={`display-total__block ${thememode}`}>
-                            <div className={`display-total__text`}>
+                            <div className={`display-total__text confirmed`}>
                                 {"Confirmed"}
                             </div>
                             <div className={`display-total__count-block`}>
@@ -81,7 +81,7 @@ const DisplayTotal = props =>{
                         </div>
 
                         <div className={`display-total__block ${thememode}`}>
-                            <div className={`display-total__text`}>
+                            <div className={`display-total__text recovered`}>
                                 {"Recovered"}
                             </div>
                             <div className={`display-total__count-block`}>
@@ -113,7 +113,7 @@ const DisplayTotal = props =>{
                         </div>     */}
 
                         <div className={`display-total__block ${thememode}`}>
-                            <div className={`display-total__text`}>
+                            <div className={`display-total__text deaths`}>
                                 {"Deaths"}
                             </div>
                             <div className={`display-total__count-block`}>
