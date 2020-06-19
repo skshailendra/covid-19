@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { ThemeContext } from '../../context/theme';
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+import ChildRow from "./MythChildRow/ChildRow";
 
 const MythRow = (props) => {
   const { thememode } = useContext(ThemeContext);
@@ -13,11 +14,10 @@ const MythRow = (props) => {
           <FontAwesomeIcon className='icon-size' icon={faTimes} color='red'/>
           <FontAwesomeIcon className='icon-size' icon={faCheck} color='green'/>
         </div>
-        <div className='sec-content'>
-          <span>sajhg</span>
-          <span className='icon-content'><FontAwesomeIcon className='icon-size' icon={faCheck}/></span>
-          <span>hsdghj</span>
-        </div>           
+        {
+          props.mythList.map((obj, idx) => 
+          <ChildRow key={idx} mythList={obj} />)
+        }
       </div>
     </>
   );

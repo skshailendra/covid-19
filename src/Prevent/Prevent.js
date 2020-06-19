@@ -112,15 +112,15 @@ const Prevent = () => {
         <div className='prev-section'>
 
           <div className={`myth-box sec1 ${thememode}`}>
-            <MythRow/>
+            <MythRow mythList={mythList1}/>
           </div>
 
           <div className={`myth-box sec2 ${thememode}`}>
-            <MythRow/>
+            <MythRow mythList={mythList2}/>
           </div>
 
           <div className={`myth-box sec3 ${thememode}`}>
-            <MythRow/>
+            <MythRow mythList={mythList3}/>
           </div>
 
           { // <div className={`myth-box sec4 ${thememode}`}>
