@@ -3,11 +3,73 @@ import { ThemeContext } from '../context/theme';
 import './Prevent.scss';
 import Overview from "../Overview/Overview";
 import { faHeadSideCough, faThermometerFull, faPrescriptionBottle, faUsers,
-  faHeadSideCoughSlash, faLungsVirus, faHandshakeSlash} from "@fortawesome/free-solid-svg-icons";
+  faHeadSideCoughSlash, faLungsVirus, faHandshakeSlash, faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 
 import ReactGa from 'react-ga';
 import PreventRow from "./PreventRow/PreventRow";
 import PreSectionRow from "./PreventRow/PreSectionRow";
+import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
+import MythRow from "./PreventRow/MythRow";
+
+const mythList1 = [
+  {
+    myth: 'Sunlight can kill the new Coronavirus',
+    fact: 'According to WHO, there is no evidence to prove that Sunlight kills the new Coronavirus',
+    img: ''
+  },
+  {
+    myth: 'Coronavirus gets automatically destroyed in High Temperature',
+    fact: 'Given its novelty, it has not been proven yet if it gets destroyed in high temperature or not.  ',
+    img: ''
+  },
+  {
+    myth: 'The virus survives a few hours',
+    fact: 'Studies suggest that coronaviruses may persist on surfaces for a few hours or up to several days. This may vary under diffrent condition',
+    img: ''
+  },
+]
+
+const mythList2 = [
+  {
+    myth: "If you can hold your breath for 10 seconds without discomfort, you don't have COVID-19",
+    fact: "Holding your breath for more than 10 seconds without discomfort does not prove whether you are infected or not",
+    img: ''
+  },
+  {
+    myth: 'The incubation period is up to 5 days',
+    fact: 'The "incubation period" means the time between catching the virus and beginning to have symptoms of the disease. Most estimates range from 1-14 days',
+    img: ''
+  },
+  {
+    myth: 'Inhaling steam from hot water kills the Coronavirus',
+    fact: "No, inhaling steam doesn't kill the the Coronavirus",
+    img: ''
+  },
+];
+
+const mythList3 = [
+  {
+    myth: 'COVID-19 spreads through consumption of chicken, eggs and meat',
+    fact: 'There is no conclusive evidence that cooked food transmits the disease',
+    img: ''
+  },
+  {
+    myth: 'COVID-19 spread through pets',
+    fact: 'The transmission of disease has not been seen through pets',
+    img: ''
+  },
+  {
+    myth: 'Dead body of a person infected with Corona Virus transmit the infection',
+    fact: 'No transmission of Corona Virus infection from the dead body of the the person',
+    img: ''
+  },
+  {
+    myth: 'Antibiotics effective in preventing and treating the new coronavirus',
+    fact: 'No, antibiotics do not work against viruses, only bacteria',
+    img: ''
+  }
+];
+
 const Prevent = () => {
   const { thememode } = useContext(ThemeContext);
   useEffect(()=>{
@@ -45,6 +107,34 @@ const Prevent = () => {
             <PreSectionRow key='11' content='KEEP SOCIAL DISTANCING' imgName='../img/sd.jpg'/>
             <PreSectionRow key='12' content='COVER MOUTH WHILE SNEEZING' imgName='./img/cough.jpg'/>
           </div>
+        </div>
+
+        <div className='prev-section'>
+
+          <div className={`myth-box sec1 ${thememode}`}>
+            <MythRow/>
+          </div>
+
+          <div className={`myth-box sec2 ${thememode}`}>
+            <MythRow/>
+          </div>
+
+          <div className={`myth-box sec3 ${thememode}`}>
+            <MythRow/>
+          </div>
+
+          { // <div className={`myth-box sec4 ${thememode}`}>
+            //   <MythRow/>
+            // </div>
+
+            // <div className={`myth-box sec5 ${thememode}`}>
+            //   <MythRow/>
+            // </div>
+
+            // <div className={`myth-box sec6 ${thememode}`}>
+            //   <MythRow/>
+            // </div>
+          }
         </div>
       </div>
     </>
