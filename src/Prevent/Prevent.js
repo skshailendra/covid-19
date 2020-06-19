@@ -21,7 +21,7 @@ const mythList1 = [
   {
     myth: 'Coronavirus gets automatically destroyed in High Temperature',
     fact: 'Given its novelty, it has not been proven yet if it gets destroyed in high temperature or not.',
-    img: './img/corona_2.jpg'
+    img: './img/ht.jpg'
   },
   {
     myth: 'The virus survives a few hours',

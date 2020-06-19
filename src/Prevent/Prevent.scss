@@ -99,7 +99,7 @@
       @extend .box;
       flex: 1;
       background: white;
-      border: 15px solid #ff5200d1;
+      // border: 15px solid #ff5200d1;
 
       .myth-header {
         display: flex;
@@ -151,11 +151,11 @@
         .icon-content {
           width: 60px;
           height: 60px;
-          border-radius: 50%;
+          // border-radius: 50%;
           // flex: 0 0 10%;
-          flex: 1;
+          // flex: 1;
           margin: 0 6%;
-          background: #ff5200d1;
+          // background: #ff5200d1;
 
           .icon-size {
             width: 100%;
@@ -197,6 +197,10 @@
         margin: 15px;
       }    
     } 
+
+    .myth-box {
+      border: 15px solid #ff5200d1;
+    }
   }
 
   &.nightmode{
