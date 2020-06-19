@@ -85,19 +85,19 @@ const Prevent = () => {
           <div className={`box sec1 ${thememode}`}>
             <h3>SYMPTOMS</h3>
             <p>The most common symptoms of COVID-19</p>
-            <PreventRow key='1' content='DRY COUGH' color='#1d6abd' iconName={faHeadSideCough} />
-            <PreventRow key='2' content='HIGH FEVER' color='#1d6abd' iconName={faThermometerFull} />
-            <PreventRow key='3' content='SORE THROAT' color='#1d6abd' iconName={faHeadSideCoughSlash} />
-            <PreventRow key='4' content='DIFFICULTY IN BREATHING' color='#1d6abd' iconName={faLungsVirus} />
+            <PreSectionRow key='1' content='DRY COUGH' imgName='./img/cou.jpg' />
+            <PreSectionRow key='2' content='HIGH FEVER' imgName='./img/fever.png' />
+            <PreSectionRow key='3' content='SORE THROAT' imgName='./img/sr.jpg' />
+            <PreSectionRow key='4' content='DIFFICULTY IN BREATHING' imgName='./img/br.png' />
           </div>
 
           <div className={`box sec2 ${thememode}`}>
             <h3>HOW IT SPREADS</h3>
             <p>Common medium of disease transmission</p>
-            <PreventRow key='5' content='AIR BY COUGH OR SNEEZE' color='#a23d83' iconName={faHeadSideCough} />
-            <PreventRow key='6' content='PERSONAL CONTACT' color='#a23d83' iconName={faHandshakeSlash} />
-            <PreventRow key='7' content='CONTAMINTATED OBJECTS' color='#a23d83' iconName={faPrescriptionBottle} />
-            <PreventRow key='8' content='MASS GATHERING' color='#a23d83' iconName={faUsers} />
+            <PreSectionRow key='5' content='AIR BY COUGH OR SNEEZE' imgName='./img/sz.jpg' />
+            <PreSectionRow key='6' content='PERSONAL CONTACT' imgName='./img/sk.jpg' />
+            <PreSectionRow key='7' content='CONTAMINTATED OBJECTS' imgName='./img/co.jpg' />
+            <PreSectionRow key='8' content='MASS GATHERING' imgName='./img/mg.jpg' />
           </div>
 
           <div className={`box sec3 ${thememode}`}>
@@ -105,7 +105,7 @@ const Prevent = () => {
             <p>We must follow these to prevent from COVID-19</p>
             <PreSectionRow key='9' content='WASH YOUR HANDS OFTEN' imgName='./img/handwash.jpg'/>
             <PreSectionRow key='10' content='WEAR A FACE MASK' imgName='./img/mask.jpg'/>
-            <PreSectionRow key='11' content='KEEP SOCIAL DISTANCING' imgName='../img/sd.jpg'/>
+            <PreSectionRow key='11' content='KEEP SOCIAL DISTANCING' imgName='../img/sdd.jpg'/>
             <PreSectionRow key='12' content='COVER MOUTH WHILE SNEEZING' imgName='./img/cough.jpg'/>
           </div>
         </div>
@@ -124,18 +124,6 @@ const Prevent = () => {
             <MythRow mythList={mythList3}/>
           </div>
 
-          { // <div className={`myth-box sec4 ${thememode}`}>
-            //   <MythRow/>
-            // </div>
-
-            // <div className={`myth-box sec5 ${thememode}`}>
-            //   <MythRow/>
-            // </div>
-
-            // <div className={`myth-box sec6 ${thememode}`}>
-            //   <MythRow/>
-            // </div>
-          }
         </div>
       </div>
     </>

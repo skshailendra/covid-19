@@ -106,7 +106,8 @@
         justify-content: center;
 
         span {
-          background: #ff5200d1;
+          // background: #ff5200d1;
+          background: #ff253a7a;
           align-self: center;
           color: white;
           font-weight: 500;
@@ -126,8 +127,8 @@
         margin: 1.5em 0;
 
         .icon-size {
-          width: 30px;
-          height: 30px;
+          width: 40px;
+          height: 40px;
         }
       }
 
@@ -177,12 +178,31 @@
         .fact {
           flex: 2;
         }
-
       }
-
-      // .content-border {
-      //   border: 15px solid #ff5200d1;
-      // }
+    }
+    .sec1 {
+      .myth-header {
+        span {
+          // background: #ff5200d1;
+          background: #ff253a7a;
+        }
+      }
+    }
+    .sec2 {
+      .myth-header {
+        span {
+          // background: #ff5200d1;
+          background: #fff1b0;
+        }
+      }
+    }
+    .sec3 {
+      .myth-header {
+        span {
+          // background: #ff5200d1;
+          background: #c925ff47;
+        }
+      }
     }
   }
 
@@ -198,8 +218,28 @@
       }    
     } 
 
-    .myth-box {
-      border: 15px solid #ff5200d1;
+    .myth-box { 
+      // border: 15px solid #ff5200d1;
+      border: 15px solid #ff253a7a;
+    }
+
+    .sec1 {
+      .myth-box { 
+        // border: 15px solid #ff5200d1;
+        border: 15px solid #ff253a7a;
+      }
+    }
+    .sec2 {
+      .myth-box { 
+        // border: 15px solid #ff5200d1;
+        border: 15px solid #fff1b0;
+      }
+    }
+    .sec3 {
+      .myth-box { 
+        // border: 15px solid #ff5200d1;
+        border: 15px solid #c925ff47;
+      }
     }
   }
 
