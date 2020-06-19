@@ -105,14 +105,19 @@
         display: flex;
         justify-content: center;
 
+        &.nightmode{
+          span {
+            background: $nightmode-blackpr;    
+          }
+        }
+
         span {
-          // background: #ff5200d1;
-          background: #ff253a7a;
+          background: #f58b59;
           align-self: center;
           color: white;
           font-weight: 500;
           padding: 5px 1em 1em 1em;
-          border-radius: 0 0 10px 10px;
+          border-radius: 0 0 10px 10px;        
         }
       }
 
@@ -156,7 +161,7 @@
           // flex: 0 0 10%;
           // flex: 1;
           margin: 0 6%;
-          // background: #ff5200d1;
+          // background: #f58b59;
 
           .icon-size {
             width: 100%;
@@ -178,30 +183,7 @@
         .fact {
           flex: 2;
         }
-      }
-    }
-    .sec1 {
-      .myth-header {
-        span {
-          // background: #ff5200d1;
-          background: #ff253a7a;
-        }
-      }
-    }
-    .sec2 {
-      .myth-header {
-        span {
-          // background: #ff5200d1;
-          background: #fff1b0;
-        }
-      }
-    }
-    .sec3 {
-      .myth-header {
-        span {
-          // background: #ff5200d1;
-          background: #c925ff47;
-        }
+
       }
     }
   }
@@ -219,26 +201,10 @@
     } 
 
     .myth-box { 
-      // border: 15px solid #ff5200d1;
-      border: 15px solid #ff253a7a;
-    }
+      border: 15px solid #f58b59;
 
-    .sec1 {
-      .myth-box { 
-        // border: 15px solid #ff5200d1;
-        border: 15px solid #ff253a7a;
-      }
-    }
-    .sec2 {
-      .myth-box { 
-        // border: 15px solid #ff5200d1;
-        border: 15px solid #fff1b0;
-      }
-    }
-    .sec3 {
-      .myth-box { 
-        // border: 15px solid #ff5200d1;
-        border: 15px solid #c925ff47;
+      &.nightmode{
+        border:15px solid $nightmode-border3;
       }
     }
   }
