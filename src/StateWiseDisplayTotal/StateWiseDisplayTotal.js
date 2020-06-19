@@ -7,31 +7,32 @@ import BarChartComponentState from '../GraphComponent/BarChartComponentState/Bar
 import {withRouter} from 'react-router-dom';
 import TinyAreaGraph from '../GraphComponent/TinyAreaGraph/TinyAreaGraph';
 import {ThemeContext} from '../context/theme';
+import CountUp from 'react-countup';
+const monthList = {
+    1:"January",
+    2:"February",
+    3:"March",
+    4:"April",
+    5:"May",
+    6:"June",
+    7:"July",
+    8:"August",
+    9:"September",
+    10:"October",
+    11:"November",
+    12:"December"
+};
+const getCurrentMonth = ()=>{
+    let selectedMonth = new Date().getDate() < 10 ? new Date().getMonth() : new Date().getMonth() + 1;
+    return monthList[selectedMonth];
+};
 const StateWiseDisplayTotal = props =>{
-
     const fetchCovidData = useContext(FetchDataContext);
     const casesTimeSeries = fetchCovidData.casesTimeSeries;
     const statewise = fetchCovidData.statewise[0];
     const [latestData,setLatestData] = useState([]);
     const {thememode} = useContext(ThemeContext);
-    const monthList = {
-        1:"January",
-        2:"February",
-        3:"March",
-        4:"April",
-        5:"May",
-        6:"June",
-        7:"July",
-        8:"August",
-        9:"September",
-        10:"October",
-        11:"November",
-        12:"December"
-    };
-    const getCurrentMonth = ()=>{
-        let selectedMonth = new Date().getDate() < 10 ? new Date().getMonth() : new Date().getMonth() + 1;
-        return monthList[selectedMonth];
-    };
+
     useEffect(()=>{
         let filterArray = [];
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
@@ -59,12 +60,17 @@ const StateWiseDisplayTotal = props =>{
                     {statewise && 
                         <>
                         <div className={`statewise-display-total__block ${thememode}`}>
-                            <div className={`statewise-display-total__text`}>
+                            <div className={`statewise-display-total__text confirmed`}>
                                 {"Confirmed"}
                             </div>
                             <div className={`statewise-display-total__count-block`}>
                                 <div className="statewise-display-total__count">
-                                    {statewise.confirmed}
+                                    <CountUp
+                                    start={200000}
+                                    end={parseInt(statewise.confirmed)}
+                                    duration={2}
+                                    separator=","
+                                    />
                                 </div>
                                 
                                 <div className="statewise-display-total__increase">
@@ -77,12 +83,17 @@ const StateWiseDisplayTotal = props =>{
                         </div>
 
                         <div className={`statewise-display-total__block ${thememode}`}>
-                            <div className={`statewise-display-total__text`}>
+                            <div className={`statewise-display-total__text recovered`}>
                                 {"Recovered"}
                             </div>
                             <div className={`statewise-display-total__count-block`}>
                                 <div className="statewise-display-total__count">
-                                    {statewise.recovered}
+                                    <CountUp
+                                    start={200000}
+                                    end={parseInt(statewise.recovered)}
+                                    duration={2}
+                                    separator=","
+                                    />
                                 </div>
                                 
                                 <div className="statewise-display-total__increase">
@@ -94,23 +105,33 @@ const StateWiseDisplayTotal = props =>{
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyrecovered"} fillcolor={"green"}/>
                         </div>
                         <div className={`statewise-display-total__block ${thememode}`}>
-                            <div className={`statewise-display-total__text`}>
+                            <div className={`statewise-display-total__text active`}>
                                 {"Active"}
                             </div>
                             <div className={`statewise-display-total__count-block`}>
                                 <div className="statewise-display-total__count">
-                                    {statewise.active}
+                                    <CountUp
+                                    start={0}
+                                    end={parseInt(statewise.active)}
+                                    duration={2}
+                                    separator=","
+                                    />
                                 </div>
                             </div>
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyactive"} fillcolor={"blue"}/>
                         </div>    
                         <div className={`statewise-display-total__block ${thememode}`}>
-                            <div className={`statewise-display-total__text`}>
+                            <div className={`statewise-display-total__text deaths`}>
                                 {"Deaths"}
                             </div>
                             <div className={`statewise-display-total__count-block`}>
                                 <div className="statewise-display-total__count">
-                                    {statewise.deaths}
+                                    <CountUp
+                                    start={0}
+                                    end={parseInt(statewise.deaths)}
+                                    duration={2}
+                                    separator=","
+                                    />
                                 </div>
                                 
                                 <div className="statewise-display-total__increase">

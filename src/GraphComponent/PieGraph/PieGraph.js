@@ -14,7 +14,7 @@ const PieGraph = props =>{
     const [activeIndex, setActiveIndex] = useState(0);
     const [chartCx, setChartCx] = useState(200);
     const [chartCy, setChartCy] = useState(180);
-    const totcx = 170,totcy = 50;
+    const totcx = 170,totcy = 75;
     const COLORS = ['#ea8888', '#00C49F', '#989898'];
     const {thememode} = useContext(ThemeContext);
     const onPieEnter = (data, index) =>{
@@ -24,20 +24,21 @@ const PieGraph = props =>{
       const RADIAN = Math.PI / 180;
       const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
         fill, payload, percent, value } = props;
+      let sx, sy, mx, my,ex;
       const sin = Math.sin(-RADIAN * midAngle);
       const cos = Math.cos(-RADIAN * midAngle);
-      const sx = cx + (outerRadius + 5) * cos;
-      const sy = cy + (outerRadius + 5) * sin;
-      const mx = cx + (outerRadius + 5) * cos;
-      const my = cy + (outerRadius + 20) * sin;
-      const ex = mx + (cos >= 0 ? 1 : -1) * 15;
+      sx = cx + (outerRadius + 5) * cos;
+      sy = cy + (outerRadius + 5) * sin;
+      mx = cx + (outerRadius + 5) * cos;
+      my = cy + (outerRadius + 20) * sin;
+      ex = mx + (cos >= 0 ? 1 : -1) * 15;
 
       if(device && !device.isSmallDevice){
-        const sx = cx + (outerRadius + 10) * cos;
-        const sy = cy + (outerRadius + 10) * sin;
-        const mx = cx + (outerRadius + 30) * cos;
-        const my = cy + (outerRadius + 30) * sin;
-        const ex = mx + (cos >= 0 ? 1 : -1) * 22;
+        sx = cx + (outerRadius + 10) * cos;
+        sy = cy + (outerRadius + 10) * sin;
+        mx = cx + (outerRadius + 30) * cos;
+        my = cy + (outerRadius + 30) * sin;
+        ex = mx + (cos >= 0 ? 1 : -1) * 22;
       }
       const ey = my ;
       const textAnchor = cos >= 0 ? 'start' : 'end';
@@ -80,7 +81,7 @@ const PieGraph = props =>{
         </g>
       );
     };
-    const RADIAN = Math.PI / 180;
+
     useEffect(()=>{
       if(device && device.isExtraLargeDevice){
         setChartWidth(530);setChartHeight(400);
