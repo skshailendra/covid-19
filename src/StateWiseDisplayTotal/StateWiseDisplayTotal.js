@@ -7,6 +7,7 @@ import BarChartComponentState from '../GraphComponent/BarChartComponentState/Bar
 import {withRouter} from 'react-router-dom';
 import TinyAreaGraph from '../GraphComponent/TinyAreaGraph/TinyAreaGraph';
 import {ThemeContext} from '../context/theme';
+import CountUp from 'react-countup';
 const monthList = {
     1:"January",
     2:"February",
@@ -64,7 +65,12 @@ const StateWiseDisplayTotal = props =>{
                             </div>
                             <div className={`statewise-display-total__count-block`}>
                                 <div className="statewise-display-total__count">
-                                    {statewise.confirmed}
+                                    <CountUp
+                                    start={200000}
+                                    end={parseInt(statewise.confirmed)}
+                                    duration={2}
+                                    separator=","
+                                    />
                                 </div>
                                 
                                 <div className="statewise-display-total__increase">
@@ -82,7 +88,12 @@ const StateWiseDisplayTotal = props =>{
                             </div>
                             <div className={`statewise-display-total__count-block`}>
                                 <div className="statewise-display-total__count">
-                                    {statewise.recovered}
+                                    <CountUp
+                                    start={200000}
+                                    end={parseInt(statewise.recovered)}
+                                    duration={2}
+                                    separator=","
+                                    />
                                 </div>
                                 
                                 <div className="statewise-display-total__increase">
@@ -99,7 +110,12 @@ const StateWiseDisplayTotal = props =>{
                             </div>
                             <div className={`statewise-display-total__count-block`}>
                                 <div className="statewise-display-total__count">
-                                    {statewise.active}
+                                    <CountUp
+                                    start={0}
+                                    end={parseInt(statewise.active)}
+                                    duration={2}
+                                    separator=","
+                                    />
                                 </div>
                             </div>
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyactive"} fillcolor={"blue"}/>
@@ -110,7 +126,12 @@ const StateWiseDisplayTotal = props =>{
                             </div>
                             <div className={`statewise-display-total__count-block`}>
                                 <div className="statewise-display-total__count">
-                                    {statewise.deaths}
+                                    <CountUp
+                                    start={0}
+                                    end={parseInt(statewise.deaths)}
+                                    duration={2}
+                                    separator=","
+                                    />
                                 </div>
                                 
                                 <div className="statewise-display-total__increase">

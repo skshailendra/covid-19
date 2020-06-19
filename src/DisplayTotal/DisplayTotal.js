@@ -6,6 +6,7 @@ import {FetchDataContext} from '../context/fetch-data';
 import LineChartComponent from '../GraphComponent/LineChartComponent/LineChartComponent';
 import TinyAreaGraph from '../GraphComponent/TinyAreaGraph/TinyAreaGraph';
 import {ThemeContext} from '../context/theme';
+import CountUp from 'react-countup';
 const monthList = {
     1:"January",
     2:"February",
@@ -62,7 +63,12 @@ const DisplayTotal = props =>{
                             </div>
                             <div className={`display-total__count-block`}>
                                 <div className="display-total__count">
-                                    {statewise.confirmed}
+                                    <CountUp
+                                    start={200000}
+                                    end={parseInt(statewise.confirmed)}
+                                    duration={2.1}
+                                    separator=","
+                                    />                              
                                 </div>
                                 
                                 <div className="display-total__increase">
@@ -80,14 +86,17 @@ const DisplayTotal = props =>{
                             </div>
                             <div className={`display-total__count-block`}>
                                 <div className="display-total__count">
-                                    {statewise.recovered}
+                                    <CountUp
+                                    start={200000}
+                                    end={parseInt(statewise.recovered)}
+                                    duration={2.1}
+                                    separator=","
+                                    />
                                 </div>
-                                
                                 <div className="display-total__increase">
                                     <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
                                     [+{statewise.deltarecovered}]
                                 </div>
-                                
                             </div>
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyrecovered"} fillcolor={"green"}/>
                         </div>
@@ -109,14 +118,17 @@ const DisplayTotal = props =>{
                             </div>
                             <div className={`display-total__count-block`}>
                                 <div className="display-total__count">
-                                    {statewise.deaths}
-                                </div>
-                                
+                                    <CountUp
+                                    start={0}
+                                    end={parseInt(statewise.deaths)}
+                                    duration={2.1}
+                                    separator=","
+                                    />
+                                </div>                                
                                 <div className="display-total__increase">
                                     <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
                                     [+{statewise.deltadeaths}]
                                 </div>
-                                
                             </div>
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailydeceased"} fillcolor={"grey"}/>
                         </div>
