@@ -26,7 +26,8 @@ const BarChartComponent = props =>{
             setFilterData({...filterData,caseType:value.selectedtype})
         }
     }
-    const createFilterArray = ()=>{
+    
+    useEffect(()=>{
         let filterArray = [];
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
         
@@ -42,9 +43,6 @@ const BarChartComponent = props =>{
             });
             setLatestData(filterArray);
         }
-    }
-    useEffect(()=>{
-        createFilterArray();
     },[casesTimeSeries,filterData]);
     useEffect(()=>{
         if(latestData && latestData.length > 0){

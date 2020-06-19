@@ -6,7 +6,24 @@ import {FetchDataContext} from '../context/fetch-data';
 import LineChartComponent from '../GraphComponent/LineChartComponent/LineChartComponent';
 import TinyAreaGraph from '../GraphComponent/TinyAreaGraph/TinyAreaGraph';
 import {ThemeContext} from '../context/theme';
-
+const monthList = {
+    1:"January",
+    2:"February",
+    3:"March",
+    4:"April",
+    5:"May",
+    6:"June",
+    7:"July",
+    8:"August",
+    9:"September",
+    10:"October",
+    11:"November",
+    12:"December"
+};
+const getCurrentMonth = ()=>{
+    let selectedMonth = new Date().getDate() < 10 ? new Date().getMonth() : new Date().getMonth() + 1;
+    return monthList[selectedMonth];
+};
 const DisplayTotal = props =>{
 
     const fetchCovidData = useContext(FetchDataContext);
@@ -14,24 +31,6 @@ const DisplayTotal = props =>{
     const statewise = fetchCovidData.statewise[0];
     const [latestData,setLatestData] = useState([]);
     const {thememode} = useContext(ThemeContext);
-    const monthList = {
-        1:"January",
-        2:"February",
-        3:"March",
-        4:"April",
-        5:"May",
-        6:"June",
-        7:"July",
-        8:"August",
-        9:"September",
-        10:"October",
-        11:"November",
-        12:"December"
-    };
-    const getCurrentMonth = ()=>{
-        let selectedMonth = new Date().getDate() < 10 ? new Date().getMonth() : new Date().getMonth() + 1;
-        return monthList[selectedMonth];
-    };
     useEffect(()=>{
         let filterArray = [];
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
@@ -40,11 +39,12 @@ const DisplayTotal = props =>{
                 item.dailyconfirmed = parseInt(item.dailyconfirmed);
                 item.dailydeceased  = parseInt(item.dailydeceased);
                 item.dailyrecovered = parseInt(item.dailyrecovered);
-                item.dailyactive    = item.dailyconfirmed - (item.dailyrecovered + item.dailydeceased);   
+                item.dailyactive    = item.dailyconfirmed - (item.dailyrecovered + item.dailydeceased);
                 item.totalconfirmed = parseInt(item.totalconfirmed);
                 item.totaldeceased = parseInt(item.totaldeceased);
                 item.totalrecovered = parseInt(item.totalrecovered);
                 item.totalactive =    item.totalconfirmed - (item.totalrecovered + item.totaldeceased);
+                return item;
             });
             setLatestData(filterArray);
         }
