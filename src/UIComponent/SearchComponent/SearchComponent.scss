@@ -239,6 +239,13 @@
     }
 }
 
+.recent-search{
+    display: flex;
+    justify-content: space-between;
+}
+.clear-recent{
+    cursor: pointer;
+}
 .btn-inline{
     border:none;
     padding: 0;
@@ -263,4 +270,4 @@
             margin-left: 8px;
         }
     }
-} 
+}
