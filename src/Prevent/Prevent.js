@@ -2,14 +2,8 @@ import React, { useContext , useEffect} from "react";
 import { ThemeContext } from '../context/theme';
 import './Prevent.scss';
 import Overview from "../Overview/Overview";
-import { faHeadSideCough, faThermometerFull, faPrescriptionBottle, faUsers,
-  faHeadSideCoughSlash, faLungsVirus, faHandshakeSlash
-} from "@fortawesome/free-solid-svg-icons";
-
 import ReactGa from 'react-ga';
-import PreventRow from "./PreventRow/PreventRow";
 import PreSectionRow from "./PreventRow/PreSectionRow";
-import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 import MythRow from "./PreventRow/MythRow";
 
 const mythList1 = [

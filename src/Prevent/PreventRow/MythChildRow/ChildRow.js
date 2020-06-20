@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
-import { ThemeContext } from '../../../context/theme';
+import React from "react";
 import { FontAwesomeIcon, } from '@fortawesome/react-fontawesome';
 import { faHandPointRight } from "@fortawesome/free-solid-svg-icons";
 
 const ChildRow = (props) => {
-  const { thememode } = useContext(ThemeContext);
   return (
     <>
       <div className="sec-content">
