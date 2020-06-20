@@ -125,6 +125,10 @@ const Prevent = () => {
           </div>
 
         </div>
+        <span className={`sources ${thememode}`}>
+          <a rel="noopener noreferrer" href='https://transformingindia.mygov.in/covid-19/?sector=myth-busters&type=en#scrolltothis' target='_blank'>Sources
+          </a>
+        </span>
       </div>
     </>
   )

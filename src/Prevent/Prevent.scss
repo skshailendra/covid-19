@@ -214,4 +214,16 @@
     color: $white;
     border:1px solid $nightmode-border3;
   }
+
+  .sources {
+    // margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    font-size: .7em;
+    a {
+      margin: 10px;
+      font-style: italic;  
+      color: inherit;     
+    }      
+  }
 }
