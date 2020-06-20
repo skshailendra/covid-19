@@ -8,6 +8,7 @@ import {withRouter} from 'react-router-dom';
 import TinyAreaGraph from '../GraphComponent/TinyAreaGraph/TinyAreaGraph';
 import {ThemeContext} from '../context/theme';
 import CountUp from 'react-countup';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 const monthList = {
     1:"January",
     2:"February",
@@ -54,103 +55,115 @@ const StateWiseDisplayTotal = props =>{
 
     return (
     <>  
-            {props.match.params.statecode ===  'allstates' &&
-            <div className={`statewise-container ${thememode}`}>
-                <div className={`statewise-display-total ${thememode}`}>
-                    {statewise && 
-                        <>
-                        <div className={`statewise-display-total__block ${thememode}`}>
-                            <div className={`statewise-display-total__text confirmed`}>
-                                {"Confirmed"}
-                            </div>
-                            <div className={`statewise-display-total__count-block`}>
-                                <div className="statewise-display-total__count">
-                                    <CountUp
-                                    start={200000}
-                                    end={parseInt(statewise.confirmed)}
-                                    duration={2}
-                                    separator=","
-                                    />
-                                </div>
-                                
-                                <div className="statewise-display-total__increase">
-                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" className="statewise-display-total__icon"/>
-                                    [+{statewise.deltaconfirmed}]
-                                </div>
-                                
-                            </div>
-                            <TinyAreaGraph latestData= {latestData} dataKey={"dailyconfirmed"} fillcolor={"red"}/>
+        <HelmetProvider>
+            <Helmet>
+                <meta
+                name="title"
+                content="COVID-19 Tracker India All states district cases count"
+                />
+                <meta
+                name="description"
+                content="COVID-19 Tracker India All states district cases confirmed recovered active"
+                />
+            </Helmet>
+        </HelmetProvider>
+        {props.match.params.statecode ===  'allstates' &&
+        <div className={`statewise-container ${thememode}`}>
+            <div className={`statewise-display-total ${thememode}`}>
+                {statewise && 
+                    <>
+                    <div className={`statewise-display-total__block ${thememode}`}>
+                        <div className={`statewise-display-total__text confirmed`}>
+                            {"Confirmed"}
                         </div>
+                        <div className={`statewise-display-total__count-block`}>
+                            <div className="statewise-display-total__count">
+                                <CountUp
+                                start={200000}
+                                end={parseInt(statewise.confirmed)}
+                                duration={2}
+                                separator=","
+                                />
+                            </div>
+                            
+                            <div className="statewise-display-total__increase">
+                                <FontAwesomeIcon icon={faArrowUp}  size="lg" className="statewise-display-total__icon"/>
+                                [+{statewise.deltaconfirmed}]
+                            </div>
+                            
+                        </div>
+                        <TinyAreaGraph latestData= {latestData} dataKey={"dailyconfirmed"} fillcolor={"red"}/>
+                    </div>
 
-                        <div className={`statewise-display-total__block ${thememode}`}>
-                            <div className={`statewise-display-total__text recovered`}>
-                                {"Recovered"}
-                            </div>
-                            <div className={`statewise-display-total__count-block`}>
-                                <div className="statewise-display-total__count">
-                                    <CountUp
-                                    start={200000}
-                                    end={parseInt(statewise.recovered)}
-                                    duration={2}
-                                    separator=","
-                                    />
-                                </div>
-                                
-                                <div className="statewise-display-total__increase">
-                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" className="statewise-display-total__icon"/>
-                                    [+{statewise.deltarecovered}]
-                                </div>
-                                
-                            </div>
-                            <TinyAreaGraph latestData= {latestData} dataKey={"dailyrecovered"} fillcolor={"green"}/>
+                    <div className={`statewise-display-total__block ${thememode}`}>
+                        <div className={`statewise-display-total__text recovered`}>
+                            {"Recovered"}
                         </div>
-                        <div className={`statewise-display-total__block ${thememode}`}>
-                            <div className={`statewise-display-total__text active`}>
-                                {"Active"}
+                        <div className={`statewise-display-total__count-block`}>
+                            <div className="statewise-display-total__count">
+                                <CountUp
+                                start={200000}
+                                end={parseInt(statewise.recovered)}
+                                duration={2}
+                                separator=","
+                                />
                             </div>
-                            <div className={`statewise-display-total__count-block`}>
-                                <div className="statewise-display-total__count">
-                                    <CountUp
-                                    start={0}
-                                    end={parseInt(statewise.active)}
-                                    duration={2}
-                                    separator=","
-                                    />
-                                </div>
+                            
+                            <div className="statewise-display-total__increase">
+                                <FontAwesomeIcon icon={faArrowUp}  size="lg" className="statewise-display-total__icon"/>
+                                [+{statewise.deltarecovered}]
                             </div>
-                            <TinyAreaGraph latestData= {latestData} dataKey={"dailyactive"} fillcolor={"blue"}/>
-                        </div>    
-                        <div className={`statewise-display-total__block ${thememode}`}>
-                            <div className={`statewise-display-total__text deaths`}>
-                                {"Deaths"}
-                            </div>
-                            <div className={`statewise-display-total__count-block`}>
-                                <div className="statewise-display-total__count">
-                                    <CountUp
-                                    start={0}
-                                    end={parseInt(statewise.deaths)}
-                                    duration={2}
-                                    separator=","
-                                    />
-                                </div>
-                                
-                                <div className="statewise-display-total__increase">
-                                    <FontAwesomeIcon icon={faArrowUp}  size="lg" className="statewise-display-total__icon"/>
-                                    [+{statewise.deltadeaths}]
-                                </div>
-                                
-                            </div>
-                            <TinyAreaGraph latestData= {latestData} dataKey={"dailydeceased"} fillcolor={"grey"}/>
+                            
                         </div>
-                        </>   
-                    }
-                    
-                </div>
-                <div className="display-line-chart-container">
-                    <BarChartComponentState/>
-                </div>
-            </div>   
-            }
+                        <TinyAreaGraph latestData= {latestData} dataKey={"dailyrecovered"} fillcolor={"green"}/>
+                    </div>
+                    <div className={`statewise-display-total__block ${thememode}`}>
+                        <div className={`statewise-display-total__text active`}>
+                            {"Active"}
+                        </div>
+                        <div className={`statewise-display-total__count-block`}>
+                            <div className="statewise-display-total__count">
+                                <CountUp
+                                start={0}
+                                end={parseInt(statewise.active)}
+                                duration={2}
+                                separator=","
+                                />
+                            </div>
+                        </div>
+                        <TinyAreaGraph latestData= {latestData} dataKey={"dailyactive"} fillcolor={"blue"}/>
+                    </div>    
+                    <div className={`statewise-display-total__block ${thememode}`}>
+                        <div className={`statewise-display-total__text deaths`}>
+                            {"Deaths"}
+                        </div>
+                        <div className={`statewise-display-total__count-block`}>
+                            <div className="statewise-display-total__count">
+                                <CountUp
+                                start={0}
+                                end={parseInt(statewise.deaths)}
+                                duration={2}
+                                separator=","
+                                />
+                            </div>
+                            
+                            <div className="statewise-display-total__increase">
+                                <FontAwesomeIcon icon={faArrowUp}  size="lg" className="statewise-display-total__icon"/>
+                                [+{statewise.deltadeaths}]
+                            </div>
+                            
+                        </div>
+                        <TinyAreaGraph latestData= {latestData} dataKey={"dailydeceased"} fillcolor={"grey"}/>
+                    </div>
+                    </>   
+                }
+                
+            </div>
+            <div className="display-line-chart-container">
+                <BarChartComponentState/>
+            </div>
+        </div>   
+        }
         </>
     );
 };

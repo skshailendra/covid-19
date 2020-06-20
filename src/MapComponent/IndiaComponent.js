@@ -6,6 +6,7 @@ import {FetchDataContext} from '../context/fetch-data';
 import useDeviceAgent from '../hooks/device-agent';
 import {ThemeContext} from '../context/theme';
 import ReactGa from 'react-ga';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 const IndiaComponent = props=>{
     
     let mapWidth = 300;
@@ -215,6 +216,18 @@ const IndiaComponent = props=>{
     },[stateJson,device,filterdMap]);
     return (
         <>
+        <HelmetProvider>
+            <Helmet>
+                <meta
+                name="title"
+                content="COVID-19 Tracker India All states Map district cases count"
+                />
+                <meta
+                name="description"
+                content="COVID-19 Tracker India All states Map district cases confirmed recovered active"
+                />
+            </Helmet>
+        </HelmetProvider>
             <div className={`map ${thememode}`}>
                 <div className={`indiamap ${thememode}`}>
                     <div className="indiamap__heading-container">

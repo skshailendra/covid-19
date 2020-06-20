@@ -4,6 +4,7 @@ import InfoRow from "./InfoRow";
 import Overview from "../Overview/Overview";
 import { ThemeContext } from '../context/theme';
 import ReactGa from 'react-ga';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 const questionAnswerList = [
   {
     id: 1,
@@ -31,6 +32,18 @@ const Info = () => {
   });
   return (
     <>
+      <HelmetProvider>
+        <Helmet>
+            <meta
+              name="title"
+              content="COVID-19 Tracker India Info"
+            />
+            <meta
+              name="description"
+              content="COVID-19 Tracker India Info"
+            />
+        </Helmet>
+      </HelmetProvider>
       <Overview/>
       <div className="main-info-content">
         <div className={`faq-content ${thememode}`}>

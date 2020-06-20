@@ -7,6 +7,7 @@ import {FetchDataContext} from '../context/fetch-data';
 import DropdownComponent from '../UIComponent/DropdownComponent/DropdownComponent';
 import TinyBarGraph from '../GraphComponent/TinyBarGraph/TinyBarGraph';
 import {ThemeContext} from '../context/theme';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 const AllDistrictState = props =>{
     const [filterData, setFilterData ] = useState({caseType:'all',statecode:'' });
 
@@ -97,6 +98,18 @@ const AllDistrictState = props =>{
     },[props.match.params.statecode,filterData.caseType]);
     return (
         <> 
+            <HelmetProvider>
+                <Helmet>
+                    <meta
+                    name="title"
+                    content="COVID-19 Tracker India All states district cases count"
+                    />
+                    <meta
+                    name="description"
+                    content="COVID-19 Tracker India All states district cases confirmed recovered active"
+                    />
+                </Helmet>
+            </HelmetProvider>
             <div className={`all-states-graph ${thememode}`}>
                 <div className={`all-states-dropdown-container ${thememode}`}>
                     <h3 className="all-states-graph__caseheading">Statewise Data: </h3>

@@ -6,6 +6,7 @@ import DisplayTotal from '../DisplayTotal/DisplayTotal';
 import SyncAreaComponent from '../GraphComponent/SyncAreaComponent/SyncAreaComponent';
 import {ThemeContext} from '../context/theme';
 import ReactGa from 'react-ga';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 const TableComponent = lazy(()=>import('../UIComponent/TableComponent/TableComponent'));
 
 const MainContent = props =>{
@@ -23,6 +24,18 @@ const MainContent = props =>{
     });
     return (
         <>
+            <HelmetProvider>
+                <Helmet>
+                    <meta
+                    name="title"
+                    content="COVID-19 Tracker India"
+                    />
+                    <meta
+                    name="description"
+                    content="COVID-19 Tracker India"
+                    />
+                </Helmet>
+            </HelmetProvider>
             <Overview/>
             <DisplayTotal/>
             <div className={`description ${thememode}`}>

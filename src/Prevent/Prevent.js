@@ -5,7 +5,7 @@ import Overview from "../Overview/Overview";
 import ReactGa from 'react-ga';
 import PreSectionRow from "./PreventRow/PreSectionRow";
 import MythRow from "./PreventRow/MythRow";
-
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 const mythList1 = [
   {
     myth: 'Sunlight can kill the new Coronavirus',
@@ -73,6 +73,18 @@ const Prevent = () => {
   });
   return (
     <>
+      <HelmetProvider>
+        <Helmet>
+            <meta
+              name="title"
+              content="COVID-19 Tracker Prevention"
+            />
+            <meta
+              name="description"
+              content="COVID-19 Tracker Prevention"
+            />
+        </Helmet>
+      </HelmetProvider>
       <Overview/>
       <div className={`prev-content ${thememode}`}>
         <div className='prev-section'>
