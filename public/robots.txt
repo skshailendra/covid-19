@@ -1,3 +1,4 @@
+Sitemap: https://trackcovid19india.web.app/sitemap.xml
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
