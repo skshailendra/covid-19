@@ -3,7 +3,6 @@ import React, {
   useRef,
   useContext,
   useEffect,
-  useCallback,
 } from "react";
 
 import { FetchDataContext } from "../../context/fetch-data";
