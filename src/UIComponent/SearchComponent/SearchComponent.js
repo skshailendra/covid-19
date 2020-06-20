@@ -58,6 +58,7 @@ const SearchComponent = (props) => {
       // Saving the search in localstorage.
       saveRecentSearch(state);
       setSearchValue(innerText);
+      setSearchFocus(false);
       history.push(`/state/${state.statecode}`);
     }
   };
