@@ -112,7 +112,7 @@
         }
 
         span {
-          background: #f58b59;
+          background: #ff7636;
           align-self: center;
           color: white;
           font-weight: 500;
@@ -161,7 +161,7 @@
           // flex: 0 0 10%;
           // flex: 1;
           margin: 0 6%;
-          // background: #f58b59;
+          // background: #ff7636;
 
           .icon-size {
             width: 100%;
@@ -201,7 +201,7 @@
     } 
 
     .myth-box { 
-      border: 15px solid #f58b59;
+      border: 15px solid #ff7636;
 
       &.nightmode{
         border:15px solid $nightmode-border3;
