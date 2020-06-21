@@ -232,8 +232,8 @@ const IndiaComponent = props=>{
             <div className={`map ${thememode}`}>
                 <div className={`indiamap ${thememode}`}>
                     <div className="indiamap__heading-container">
-                            <p className="indiamap__heading">India Map</p>
-                            <p className="indiamap__detail-message">Select a State for more details</p>
+                            <h1 className="indiamap__heading">India Map</h1>
+                            <h3 className="indiamap__detail-message">Select a State for more details</h3>
                         {/* <div className="indiamap__detail-message">
                             
                         </div> */}
@@ -279,8 +279,8 @@ const IndiaComponent = props=>{
                     <>
                         <div className={`indiastate ${thememode}`}>
                             <div className="indiamap__heading-container">
-                                <p className="indiamap__heading">Districts of {selectedState}</p>
-                                <p className="indiamap__detail-message">Select a District for more details</p>
+                                <h2 className="indiamap__heading">Districts of {selectedState}</h2>
+                                <h3 className="indiamap__detail-message">Select a District for more details</h3>
                             </div>
                             {
                                 hoverDistrict && 
