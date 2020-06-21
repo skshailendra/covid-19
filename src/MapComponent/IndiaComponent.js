@@ -7,7 +7,7 @@ import useDeviceAgent from '../hooks/device-agent';
 import {ThemeContext} from '../context/theme';
 import ReactGa from 'react-ga';
 import {Helmet, HelmetProvider} from 'react-helmet-async';
-let prevSelectedStateId, prevSelectedDistrictId ;
+
 const IndiaComponent = props=>{
     
     let mapWidth = 300;
@@ -26,6 +26,8 @@ const IndiaComponent = props=>{
     const [hoverDistrict, setHoverDistrict] = useState('');
     const {device} = useDeviceAgent();
     const {thememode} = useContext(ThemeContext); 
+    const [prevSelectedStateId, setPrevSelectedStateId] = useState('');
+    const [prevSelectedDistrictId, setPrevSelectedDistrictId] = useState('');
     const color = {
         confirmed : ["#ccc", "#da4d4d"],
         recovered : ["#e6fff2", "#66CC00"],
@@ -107,11 +109,11 @@ const IndiaComponent = props=>{
                     if(prevSelectedStateId){
                         var selectedStateId = document.getElementById(prevSelectedStateId)
                         selectedStateId.classList.remove("stateselected");
-                        prevSelectedDistrictId = null;
+                        setPrevSelectedDistrictId(null);
                     }
                     select(nodes[i]).classed("stateselected",true);
                     prevSelectedState = nodes[i];
-                    prevSelectedStateId = feature["properties"].st_code;
+                    setPrevSelectedStateId(feature["properties"].st_code);
                     setSelectedState(feature["id"] );
                     setHoverDistrict('');
                     selectedState = {
@@ -222,7 +224,7 @@ const IndiaComponent = props=>{
                         selectedStateId.classList.remove("districtselected");
                     }
                     select(nodes[i]).classed("districtselected",true)
-                    prevSelectedDistrictId = feature["properties"].dt_code; // added        
+                    setPrevSelectedDistrictId(feature["properties"].dt_code); // added        
                     prevSelectedDistrict = nodes[i];
                     setHoverDistrict(feature.properties)         
                 })
