@@ -38,7 +38,7 @@ const SynchronizedAreaChart = props =>{
                     <YAxis/>
                     <Tooltip/>
                     <Legend />
-                    <Area type='monotone' dataKey='dailyconfirmed' stroke='#8884d8' fill='#ed3833' />
+                    <Area type='monotone' dataKey='dailyconfirmed' stroke='#ed3833' fill='#ed3833' />
                   </AreaChart>
                   <AreaChart width={chartWidth} height={chartHeight} data={props.latestData} syncId="anyId"
                         margin={{top: 50, right: 20, left: 10, bottom: 0}}>
@@ -47,7 +47,7 @@ const SynchronizedAreaChart = props =>{
                     <YAxis/>
                     <Tooltip/>
                     <Legend />
-                    <Area type='monotone' dataKey='dailyrecovered' stroke='#82ca9d' fill='#82ca9d' />
+                    <Area type='monotone' dataKey='dailyrecovered' stroke='#206111' fill='#82ca9d' />
                   </AreaChart>
                   <AreaChart width={chartWidth} height={chartHeight} data={props.latestData} syncId="anyId"
                         margin={{top: 50, right: 20, left: 10, bottom: 0}}>
@@ -56,7 +56,7 @@ const SynchronizedAreaChart = props =>{
                     <YAxis/>
                     <Tooltip/>
                     <Legend />
-                    <Area type='monotone' dataKey='dailydeceased' stroke='grey' fill='grey' />
+                    <Area type='monotone' dataKey='dailydeceased' stroke='#525050' fill='grey' />
                   </AreaChart>     
                 </div>
             </div>

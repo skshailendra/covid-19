@@ -38,12 +38,12 @@ const BarGraph = props =>{
         case 'totalrecovered':
         case 'Recovered':
           return (
-            <Bar dataKey={props.dataKey.dailyrecovered}  fill="#78b16b" />
+            <Bar dataKey={props.dataKey.dailyrecovered}  fill="#206111" />
           )
         case 'totaldeceased':
         case 'Deceased':
             return (
-              <Bar dataKey={props.dataKey.dailydeceased} fill="#b3b3b3" />
+              <Bar dataKey={props.dataKey.dailydeceased} fill="#525050" />
             )
         case 'totalactive':
         case 'Active':
@@ -69,7 +69,7 @@ const BarGraph = props =>{
                        
                         
                         {props.filterCaseType === 'all'&&<Bar dataKey="totalconfirmed" fill="#ef716f" />}
-                        {props.filterCaseType === 'all' &&<Bar dataKey="totalrecovered" fill="#78b16b" />}
+                        {props.filterCaseType === 'all' &&<Bar dataKey="totalrecovered" fill="#206111" />}
                         {props.filterCaseType === 'all' &&<Bar dataKey="totaldeceased" fill="#525050" /> }
                         {props.filterCaseType !== 'all' &&
                           caseType()

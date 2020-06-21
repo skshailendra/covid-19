@@ -20,5 +20,11 @@
     &.nightmode{
         background-color: $nightmode-blackpr;
         color: $white;
+        .recharts-tooltip-wrapper{
+            .recharts-default-tooltip {
+                color: $nightmode-blackpr;
+                background-color: #c1c1be !important;
+            }
+        }
     }
 }
