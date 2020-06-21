@@ -26,7 +26,7 @@ const HeaderComponent = props=>{
                         </button>
                     </div>
                     <NavLink to='/' exact className={`header__logo ${thememode}`}>
-                        <span>COVID-19 Tracker</span>
+                        <h1 className="header__heading">COVID-19 Tracker</h1>
                     </NavLink>
                 </div>
                 {loadSearch &&

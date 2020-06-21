@@ -29,7 +29,10 @@
         }
 
     }
-
+    &__heading{
+        font-size: 1em;
+        font-weight: 500;
+    }
     @media screen and (min-width: $bp-extralarge) {
         background-color: $white;
         position: fixed;
@@ -48,6 +51,10 @@
             color:#827a7a;
             font-size: 1em;
             font-family: inherit;
+            font-weight: 500;
+        }
+        &__heading{
+            font-size: 1em;
             font-weight: 500;
         }
     }
