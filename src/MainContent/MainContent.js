@@ -12,7 +12,6 @@ const TableComponent = lazy(()=>import('../UIComponent/TableComponent/TableCompo
 const MainContent = props =>{
     const [showTable,setShowTable] = useState(false);
     const {thememode} = useContext(ThemeContext);
-  
     useEffect(()=>{
         setTimeout(()=>{
             setShowTable(true);
@@ -25,7 +24,16 @@ const MainContent = props =>{
     return (
         <>
             <HelmetProvider>
-                <Helmet>
+                <Helmet >
+                    <title>COVID-19 Tracker India</title>
+                    <script type="application/ld+json">{`
+                        {
+                            "@context": "http://schema.org",
+                            name: 'COVID-19 Tracker India',
+                            url: 'https://trackcovid19india.web.app/',
+                            alternateName: 'COVID-19 Tracker India',
+                        }
+                    `}</script>
                     <meta
                     name="title"
                     content="COVID-19 Tracker India"
@@ -34,6 +42,7 @@ const MainContent = props =>{
                     name="description"
                     content="COVID-19 Tracker India"
                     />
+                    <link rel="canonical" href="https://trackcovid19india.web.app/"/>
                 </Helmet>
             </HelmetProvider>
             <Overview/>

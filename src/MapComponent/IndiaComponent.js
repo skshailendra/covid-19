@@ -226,6 +226,7 @@ const IndiaComponent = props=>{
                 name="description"
                 content="COVID-19 Tracker India All states Map district cases confirmed recovered active"
                 />
+                <link rel="canonical" href="https://trackcovid19india.web.app/map/"/>
             </Helmet>
         </HelmetProvider>
             <div className={`map ${thememode}`}>

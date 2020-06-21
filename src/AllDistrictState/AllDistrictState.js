@@ -108,6 +108,7 @@ const AllDistrictState = props =>{
                     name="description"
                     content="COVID-19 Tracker India All states district cases confirmed recovered active"
                     />
+                    <link rel="canonical" href={`https://trackcovid19india.web.app/state/${props.match.params.statecode}/`} />
                 </Helmet>
             </HelmetProvider>
             <div className={`all-states-graph ${thememode}`}>
