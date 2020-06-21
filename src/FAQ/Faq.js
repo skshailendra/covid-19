@@ -55,6 +55,7 @@ const Faq = () => {
     <>
       <HelmetProvider>
         <Helmet>
+          <title>COVID-19 Tracker -Faq</title>
             <meta
               name="title"
               content="COVID-19 Tracker India FAQ"
@@ -63,6 +64,7 @@ const Faq = () => {
               name="description"
               content="COVID-19 Tracker India Frequently commonly asked question"
             />
+            <link rel="canonical" href="https://trackcovid19india.web.app/faq/" />
         </Helmet>
       </HelmetProvider>
       <Overview/>
