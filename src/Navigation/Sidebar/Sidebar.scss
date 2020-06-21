@@ -140,7 +140,9 @@
             display: none;
         }
     }
-   
+   &__mobile-heading{
+    font-size: 1em;
+   }
 }
 
 .side-nav__text.open{

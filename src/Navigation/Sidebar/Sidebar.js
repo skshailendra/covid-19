@@ -15,7 +15,7 @@ const Sidebar = React.memo(props =>{
                 <ul className="side-nav" onClick={props.closeSideBar}>
                     <li className={`side-nav__mobile-items`}>
                         <div className={`side-nav__mobile-text`}>
-                            <span>Covid-19 Tracker</span>
+                            <span className="side-nav__mobile-heading">Covid-19 Tracker</span>
                         </div>
                     </li>
                     <li className={`side-nav__items`}>
