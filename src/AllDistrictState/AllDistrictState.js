@@ -95,7 +95,7 @@ const AllDistrictState = props =>{
         if(props.match.params.statecode !== 'allstates'){
             setFilterData({caseType:filterData.caseType,statecode:props.match.params.statecode});
         }
-    },[props.match.params.statecode,filterData.caseType]);
+    },[props.match.params.statecode]);
     return (
         <> 
             <HelmetProvider>
