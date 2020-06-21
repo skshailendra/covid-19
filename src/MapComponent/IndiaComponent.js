@@ -16,8 +16,8 @@ const IndiaComponent = props=>{
     const requestOption = {
         method:"GET"
     };
-    let indiaSvgRef = useRef(),indiaSvg;
-    let stateSvgRef = useRef(),stateSvg;
+    let indiaSvgRef = useRef();
+    let stateSvgRef = useRef();
     const [indiaJson,setIndiaJson] = useState();
     const [selectedState, setSelectedState] = useState('');
     const [stateJson,setStateJson] = useState();
@@ -59,7 +59,7 @@ const IndiaComponent = props=>{
     });
     // India Map Effect
     useEffect(()=>{
-        let viewBoxWidth ,viewBoxHeight;
+        let viewBoxWidth ,viewBoxHeight,indiaSvg;
         if(indiaJson &&  fetchCovidData.statewise.length>0){
             
             if(device && device.isSmallDevice){
@@ -82,7 +82,7 @@ const IndiaComponent = props=>{
                 featurestate.properties["active"] = parseInt(filteredData["active"]);
                 featurestate.properties["recovered"] = parseInt(filteredData["recovered"]);
                 featurestate.properties["deaths"] = parseInt(filteredData["deaths"]);
-                
+                return featurestate;
             });
             const minProp = min(states.features, feature => feature.properties[filterdMap]);
             const maxProp = max(states.features, feature => feature.properties[filterdMap]);
@@ -147,7 +147,7 @@ const IndiaComponent = props=>{
         
     },[selectedState]);
     useEffect(()=>{
-        let featureDistrict, statesDistrict ;
+        let featureDistrict, statesDistrict ,stateSvg;
         if(selectedState && stateJson){
             let viewBoxWidth ,viewBoxHeight;
             let filterState,filterDistrict;

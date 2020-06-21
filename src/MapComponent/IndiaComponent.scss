@@ -190,11 +190,13 @@
 
 .stateselected{
     fill: #7a6aca9c;
-    stroke-width: 1px;
+    stroke: #d63434;
+    stroke-width: 3px;
 }
 .districtselected{
     fill: #4362b89c;
-    stroke-width: 1px;
+    stroke: #d63434;
+    stroke-width: 3px;
 }
 .indiastate{
     border: 1px solid #dedede;
@@ -238,7 +240,7 @@
 .district:hover{
     cursor: pointer;
     stroke-width: 3px;
-    stroke: #e4a98d;
+    stroke: #d63434;
 }
 .district-stats{
     display: flex;
