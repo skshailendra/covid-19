@@ -64,39 +64,39 @@ const TinyBarGraph = props =>{
         }
         </div>
     }
-    const caseType = ()=>{
-      switch(filterCaseType) {
-        case 'Confirmed':
-          return (            
-              <Bar barSize={25} dataKey= {props.dataKey.confirmed} fill="#e26868" >
-                <LabelList dataKey= {props.dataKey.confirmed} content={renderCustomizedLabel}/>
-              </Bar>
-            )
-        case 'Recovered':
-          return (
-            <Bar barSize={25} dataKey= {props.dataKey.recovered} fill="#78b16b" >
-                <LabelList dataKey= {props.dataKey.recovered} content={renderCustomizedLabel} />
-              </Bar>
-          )
-        case 'Deceased':
-            return (
-              <Bar barSize={25} dataKey= {props.dataKey.deceased} fill="grey" >
-                <LabelList dataKey= {props.dataKey.deceased} content={renderCustomizedLabel} />
-              </Bar>
-            )
-        case 'Active':
-              return (
-                <Bar barSize={25} dataKey= {props.dataKey.active} fill="#7e78f7" >
-                <LabelList dataKey= {props.dataKey.active} content={renderCustomizedLabel} />
-              </Bar>
-              )
-        default:
-          return (
-           <>
-            </>
-           )
-      }
-    };
+    // const caseType = ()=>{
+    //   switch(filterCaseType) {
+    //     case 'Confirmed':
+    //       return (            
+    //           <Bar barSize={25} dataKey= {props.dataKey.confirmed} fill="#e26868" >
+    //             <LabelList dataKey= {props.dataKey.confirmed} content={renderCustomizedLabel}/>
+    //           </Bar>
+    //         )
+    //     case 'Recovered':
+    //       return (
+    //         <Bar barSize={25} dataKey= {props.dataKey.recovered} fill="#78b16b" >
+    //             <LabelList dataKey= {props.dataKey.recovered} content={renderCustomizedLabel} />
+    //           </Bar>
+    //       )
+    //     case 'Deceased':
+    //         return (
+    //           <Bar barSize={25} dataKey= {props.dataKey.deceased} fill="grey" >
+    //             <LabelList dataKey= {props.dataKey.deceased} content={renderCustomizedLabel} />
+    //           </Bar>
+    //         )
+    //     case 'Active':
+    //           return (
+    //             <Bar barSize={25} dataKey= {props.dataKey.active} fill="#7e78f7" >
+    //             <LabelList dataKey= {props.dataKey.active} content={renderCustomizedLabel} />
+    //           </Bar>
+    //           )
+    //     default:
+    //       return (
+    //        <>
+    //         </>
+    //        )
+    //   }
+    // };
     
     return (
         <>
