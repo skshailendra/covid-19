@@ -7,6 +7,7 @@ import useDeviceAgent from '../hooks/device-agent';
 import {ThemeContext} from '../context/theme';
 import ReactGa from 'react-ga';
 import {Helmet, HelmetProvider} from 'react-helmet-async';
+let prevSelectedStateId, prevSelectedDistrictId ;
 const IndiaComponent = props=>{
     
     let mapWidth = 300;
@@ -24,7 +25,7 @@ const IndiaComponent = props=>{
     const [hoverState, setHoverState] = useState('');
     const [hoverDistrict, setHoverDistrict] = useState('');
     const {device} = useDeviceAgent();
-    const {thememode} = useContext(ThemeContext);   
+    const {thememode} = useContext(ThemeContext); 
     const color = {
         confirmed : ["#ccc", "#da4d4d"],
         recovered : ["#e6fff2", "#66CC00"],
@@ -98,12 +99,20 @@ const IndiaComponent = props=>{
                 .data(states.features)
                 .enter()
                 .append('path')
-                .on("click",  (feature,i, nodes) => {                    
+                .on("click",  (feature,i, nodes) => {     
+                    debugger;               
                     if(prevSelectedState){
                         select(prevSelectedState).classed("stateselected",false);
-                    } 
+                        
+                    }
+                    if(prevSelectedStateId){
+                        var selectedStateId = document.getElementById(prevSelectedStateId)
+                        selectedStateId.classList.remove("stateselected");
+                        prevSelectedDistrictId = null;
+                    }
                     select(nodes[i]).classed("stateselected",true);
                     prevSelectedState = nodes[i];
+                    prevSelectedStateId = feature["properties"].st_code;
                     setSelectedState(feature["id"] );
                     setHoverDistrict('');
                     selectedState = {
@@ -122,13 +131,22 @@ const IndiaComponent = props=>{
                     
                     setHoverState('');
                 })
-                .attr('class',"state")
+                .attr('class','state')
+                .attr('id',(feature)=>feature["properties"].st_code)               
                 .transition()   
                 .attr("fill",feature=>colorScale(feature.properties[filterdMap]))
-                .attr('d',d=>pathGenerator(d));
-            
-
-          
+                .attr('d',d=>pathGenerator(d));   
+                
+                
+                const colorSelectedStates = () =>{
+                    console.log("color",prevSelectedStateId);
+                    if(prevSelectedStateId){
+                        const selectedStateId = document.getElementById(prevSelectedStateId)
+                        selectedStateId.classList.add("stateselected");
+                    }
+                }
+                //calling colorstates inside d3.json
+                colorSelectedStates();
         }
         return (()=>{
             
@@ -146,6 +164,8 @@ const IndiaComponent = props=>{
         }
         
     },[selectedState]);
+
+    // All States with District
     useEffect(()=>{
         let featureDistrict, statesDistrict ,stateSvg;
         if(selectedState && stateJson){
@@ -196,17 +216,33 @@ const IndiaComponent = props=>{
                 .enter()
                 .append('path')
                 .on("mouseenter", (feature,i, nodes)  => {
+                    debugger
                     if(prevSelectedDistrict){
                         select(prevSelectedDistrict).classed("districtselected",false)
                     }
-                    select(nodes[i]).classed("districtselected",true)               
+                    if(prevSelectedDistrictId){
+                        var selectedStateId = document.getElementById(prevSelectedDistrictId)
+                        selectedStateId.classList.remove("districtselected");
+                    }
+                    select(nodes[i]).classed("districtselected",true)
+                    prevSelectedDistrictId = feature["properties"].dt_code; // added        
                     prevSelectedDistrict = nodes[i];
                     setHoverDistrict(feature.properties)         
                 })
                 .attr('class',"district")
+                .attr('id',(feature)=>feature["properties"].dt_code)   
                 .transition()   
                 .attr("fill",feature=>colorScale(feature.properties[filterdMap]))
                 .attr('d',d=>pathGenerator(d));
+
+                const colorDistrict = () =>{
+                    if(prevSelectedDistrictId){
+                        const selectedDistrictId = document.getElementById(prevSelectedDistrictId)
+                        selectedDistrictId.classList.add("districtselected");
+                    }
+                }
+                //calling colorstates 
+                colorDistrict();
             }
         }
         return(()=>{
