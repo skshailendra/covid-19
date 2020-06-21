@@ -153,13 +153,6 @@ const SearchComponent = (props) => {
       setNoResult(false);
     }
   }, [searchList]);
-  // useEffect(() => {
-  //   if (saveRecentSearchList.length > 0) {
-  //     console.log("calleed", saveRecentSearchList);
-  //     setRecentSearchList([...saveRecentSearchList]);
-  //   }
-  // }, []);
-
   return (
     <>
       <div className="search-wrap">

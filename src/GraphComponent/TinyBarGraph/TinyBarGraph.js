@@ -50,7 +50,6 @@ const TinyBarGraph = props =>{
      
       let payload;
       if(tooltipProps.payload && tooltipProps.payload.length>0){
-        debugger;
         payload = tooltipProps.payload[0];
       }
       return <div className={`custom-tooltip ${thememode}`}>

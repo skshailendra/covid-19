@@ -99,8 +99,7 @@ const IndiaComponent = props=>{
                 .data(states.features)
                 .enter()
                 .append('path')
-                .on("click",  (feature,i, nodes) => {     
-                    debugger;               
+                .on("click",  (feature,i, nodes) => {                 
                     if(prevSelectedState){
                         select(prevSelectedState).classed("stateselected",false);
                         
@@ -139,7 +138,6 @@ const IndiaComponent = props=>{
                 
                 
                 const colorSelectedStates = () =>{
-                    console.log("color",prevSelectedStateId);
                     if(prevSelectedStateId){
                         const selectedStateId = document.getElementById(prevSelectedStateId)
                         selectedStateId.classList.add("stateselected");
@@ -216,7 +214,6 @@ const IndiaComponent = props=>{
                 .enter()
                 .append('path')
                 .on("mouseenter", (feature,i, nodes)  => {
-                    debugger
                     if(prevSelectedDistrict){
                         select(prevSelectedDistrict).classed("districtselected",false)
                     }
