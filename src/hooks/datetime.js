@@ -11,8 +11,8 @@ const useDatetime = ()=>{
         let lastUpdatedTime = '';
         const formatDateTime = ()=>{
             let extracttime = statewise.lastupdatedtime.split(" ")[1].split(":");
-            let hr = Math.abs(new Date().getHours() - parseInt(extracttime[0]));
-            let min = Math.abs(new Date().getMinutes() - parseInt(extracttime[1]));
+            let hr = new Date().getHours() - parseInt(extracttime[0]) >= 0 ? new Date().getHours() - parseInt(extracttime[0]): 23 - Math.abs(new Date().getHours() - parseInt(extracttime[0]));
+            let min = new Date().getMinutes() - parseInt(extracttime[1]) >= 0 ?  Math.abs(new Date().getMinutes() - parseInt(extracttime[1])) : (60 - parseInt(extracttime[1]) +  new Date().getMinutes() );
             let sec = Math.abs(new Date().getSeconds() - parseInt(extracttime[2]));
             lastUpdatedTime = hr > 0 ? hr+" hr" : '';
             lastUpdatedTime+= (hr === 0 && min >0) ? min + " min":'';
