@@ -37,9 +37,9 @@ const DisplayTotal = props =>{
         if(Array.isArray(casesTimeSeries) && casesTimeSeries.length > 0){
             filterArray = casesTimeSeries.filter( (item)=>item.date.includes(getCurrentMonth() ));
             filterArray.map((item) => {
-                item.dailyconfirmed = parseInt(item.dailyconfirmed);
-                item.dailydeceased  = parseInt(item.dailydeceased);
-                item.dailyrecovered = parseInt(item.dailyrecovered);
+                item.dailyconfirmed = Math.abs(parseInt(item.dailyconfirmed));
+                item.dailydeceased  = Math.abs(parseInt(item.dailydeceased));
+                item.dailyrecovered = Math.abs(parseInt(item.dailyrecovered));
                 item.dailyactive    = item.dailyconfirmed - (item.dailyrecovered + item.dailydeceased);
                 item.totalconfirmed = parseInt(item.totalconfirmed);
                 item.totaldeceased = parseInt(item.totaldeceased);
@@ -73,7 +73,7 @@ const DisplayTotal = props =>{
                                 
                                 <div className="display-total__increase">
                                     <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
-                                    [+{statewise.deltaconfirmed}]
+                                    [+{Math.abs(parseInt(statewise.deltaconfirmed))}]
                                 </div>
                                 
                             </div>
@@ -95,7 +95,7 @@ const DisplayTotal = props =>{
                                 </div>
                                 <div className="display-total__increase">
                                     <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
-                                    [+{statewise.deltarecovered}]
+                                    [+{Math.abs(parseInt(statewise.deltarecovered))}]
                                 </div>
                             </div>
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailyrecovered"} fillcolor={"green"}/>
@@ -127,7 +127,7 @@ const DisplayTotal = props =>{
                                 </div>                                
                                 <div className="display-total__increase">
                                     <FontAwesomeIcon icon={faArrowUp}  size="lg" className="display-total__icon"/>
-                                    [+{statewise.deltadeaths}]
+                                    [+{Math.abs(parseInt(statewise.deltadeaths))}]
                                 </div>
                             </div>
                             <TinyAreaGraph latestData= {latestData} dataKey={"dailydeceased"} fillcolor={"grey"}/>

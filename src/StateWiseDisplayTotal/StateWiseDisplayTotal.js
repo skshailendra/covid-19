@@ -88,7 +88,7 @@ const StateWiseDisplayTotal = props =>{
                             
                             <div className="statewise-display-total__increase">
                                 <FontAwesomeIcon icon={faArrowUp}  size="lg" className="statewise-display-total__icon"/>
-                                [+{statewise.deltaconfirmed}]
+                                [+{Math.abs(parseInt(statewise.deltaconfirmed))}]
                             </div>
                             
                         </div>
@@ -111,7 +111,7 @@ const StateWiseDisplayTotal = props =>{
                             
                             <div className="statewise-display-total__increase">
                                 <FontAwesomeIcon icon={faArrowUp}  size="lg" className="statewise-display-total__icon"/>
-                                [+{statewise.deltarecovered}]
+                                [+{Math.abs(parseInt(statewise.deltarecovered))}]
                             </div>
                             
                         </div>
@@ -149,7 +149,7 @@ const StateWiseDisplayTotal = props =>{
                             
                             <div className="statewise-display-total__increase">
                                 <FontAwesomeIcon icon={faArrowUp}  size="lg" className="statewise-display-total__icon"/>
-                                [+{statewise.deltadeaths}]
+                                [+{Math.abs(parseInt(statewise.deltadeaths))}]
                             </div>
                             
                         </div>
