@@ -126,6 +126,9 @@
         @media screen and (min-width: $bp-extralarge) {
             display: none;
         }
+        .nightmode{
+            background: $nightmode-blackelectro;
+        }
     }
     &__mobile-text{
         padding: 1em;
@@ -139,6 +142,7 @@
         @media screen and (min-width: $bp-extralarge) {
             display: none;
         }
+        
     }
    &__mobile-heading{
     font-size: 1em;
