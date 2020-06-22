@@ -32,11 +32,12 @@ const MainContent = props =>{
                             "@type": "SpecialAnnouncement",
                             "name": "COVID-19 Tracker India",
                             "url": "https://trackcovid19india.web.app/",
-                            "text":"COVID-19 Tracker India, Cases count statewise and district wise data",
+                            "text":"COVID-19 Tracker India, Track Cases across states and districts of India",
                             "datePosted": "2020-06-15",
                             "alternateName": "COVID-19 Tracker India",
                             "description":"COVID-19 Tracker India",
-                            "category": "https://www.wikidata.org/wiki/Q81068910"
+                            "category": "https://www.wikidata.org/wiki/Q81068910",
+                            announcementLocation:"https://trackcovid19india.web.app/"
                         }
                     `}</script>
                     <meta
