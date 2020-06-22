@@ -29,12 +29,14 @@ const MainContent = props =>{
                     <script type="application/ld+json">{`
                         {
                             "@context": "https://schema.org/",
-                            "@type": "Covid Tracker",
-                            "name": 'COVID-19 Tracker India',
-                            "url": 'https://trackcovid19india.web.app/',
-                            "datePublished": "2020-06-15",
-                            "alternateName": 'COVID-19 Tracker India',
-                            "description":'COVID-19 Tracker India'
+                            "@type": "SpecialAnnouncement",
+                            "name": "COVID-19 Tracker India",
+                            "url": "https://trackcovid19india.web.app/",
+                            "text":"COVID-19 Tracker India, Cases count statewise and district wise data",
+                            "datePosted": "2020-06-15",
+                            "alternateName": "COVID-19 Tracker India",
+                            "description":"COVID-19 Tracker India",
+                            "category": "https://www.wikidata.org/wiki/Q81068910"
                         }
                     `}</script>
                     <meta
