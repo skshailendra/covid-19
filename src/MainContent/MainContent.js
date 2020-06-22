@@ -28,10 +28,13 @@ const MainContent = props =>{
                     <title>COVID-19 Tracker India</title>
                     <script type="application/ld+json">{`
                         {
-                            "@context": "http://schema.org",
-                            name: 'COVID-19 Tracker India',
-                            url: 'https://trackcovid19india.web.app/',
-                            alternateName: 'COVID-19 Tracker India',
+                            "@context": "https://schema.org/",
+                            "@type": "Covid Tracker",
+                            "name": 'COVID-19 Tracker India',
+                            "url": 'https://trackcovid19india.web.app/',
+                            "datePublished": "2020-06-15",
+                            "alternateName": 'COVID-19 Tracker India',
+                            "description":'COVID-19 Tracker India'
                         }
                     `}</script>
                     <meta
