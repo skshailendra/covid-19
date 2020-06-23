@@ -255,11 +255,20 @@ const TableComponent = React.memo(props =>{
                       </div>
                       <div className="table__column">
                         <div className="table__data__stats ">
-                          <div className=" table__body-content table__data__confirmed ">{state.confirmed}</div>
-                          <span className={`lineseperator ${thememode}`}>{"|"}</span>
-                          <div className="table__body-content table__data__recovered">{state.recovered}</div>
-                          <span className={`lineseperator ${thememode}`}>{"|"}</span>
-                          <div className="table__body-content table__data__deceased">{state.deaths}</div>
+                          <div className="table__body-content table__data__confirmed ">
+                            <span>{state.confirmed}</span>
+                            <span className="table__data-mobile-label">Confirmed</span>
+                          </div>
+                          {/* <span className={`lineseperator ${thememode}`}></span> */}
+                          <div className="table__body-content table__data__recovered">
+                            <span>{state.recovered}</span>
+                            <span className="table__data-mobile-label">Recovered</span>
+                          </div>
+                          {/* <span className={`lineseperator ${thememode}`}></span> */}
+                          <div className="table__body-content table__data__deceased">
+                            <span>{state.deaths}</span>
+                            <span className="table__data-mobile-label">Deaths</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -284,11 +293,20 @@ const TableComponent = React.memo(props =>{
                           </div>
                           <div className="table__column">
                             <div className="table__data__stats">
-                              <div title="Confirmed" className="table__body-content table__data__confirmed">{district.confirmed}</div>
-                              <span className={`lineseperator ${thememode}`}>{"|"}</span>
-                              <div  title="Recovered" className="table__body-content table__data__recovered">{district.recovered}</div>
-                              <span className={`lineseperator ${thememode}`}>{"|"}</span>
-                              <div  title="Deceased" className="table__body-content table__data__deceased">{district.deceased}</div>
+                              <div className="table__body-content table__data__confirmed ">
+                                <span>{district.confirmed}</span>
+                                <span className="table__data-mobile-label">Confirmed</span>
+                              </div>                             
+                              {/* <span className={`lineseperator ${thememode}`}></span> */}
+                              <div className="table__body-content table__data__recovered">
+                                <span>{district.recovered}</span>
+                                <span className="table__data-mobile-label">Recovered</span>
+                              </div>                            
+                              {/* <span className={`lineseperator ${thememode}`}></span> */}
+                              <div className="table__body-content table__data__deceased">
+                                <span>{district.deceased}</span>
+                                <span className="table__data-mobile-label">Deaths</span>
+                              </div>
                             </div>         
                           </div>
                         </div>
