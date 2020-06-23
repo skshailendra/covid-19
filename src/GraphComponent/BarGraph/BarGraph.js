@@ -33,17 +33,17 @@ const BarGraph = props =>{
         case 'totalconfirmed':
         case 'Confirmed':
           return (            
-              <Bar  barSize={15} dataKey= {props.dataKey.dailyconfirmed}  fill="#ef716f" />
+              <Bar  barSize={15} dataKey= {props.dataKey.totalconfirmed}  fill="#ef716f" />
             )
         case 'totalrecovered':
         case 'Recovered':
           return (
-            <Bar dataKey={props.dataKey.dailyrecovered}  fill="#206111" />
+            <Bar dataKey={props.dataKey.totalrecovered}  fill="#206111" />
           )
         case 'totaldeceased':
         case 'Deceased':
             return (
-              <Bar dataKey={props.dataKey.dailydeceased} fill="#525050" />
+              <Bar dataKey={props.dataKey.totaldeceased} fill="#525050" />
             )
         case 'totalactive':
         case 'Active':
@@ -68,9 +68,9 @@ const BarGraph = props =>{
                         <Tooltip />
                        
                         
-                        {props.filterCaseType === 'all'&&<Bar dataKey="totalconfirmed" fill="#ef716f" />}
-                        {props.filterCaseType === 'all' &&<Bar dataKey="totalrecovered" fill="#206111" />}
-                        {props.filterCaseType === 'all' &&<Bar dataKey="totaldeceased" fill="#525050" /> }
+                        {props.filterCaseType === 'all'&&<Bar  barSize={3} dataKey="totalconfirmed" fill="red" />}
+                        {props.filterCaseType === 'all' &&<Bar  barSize={4} dataKey="totalrecovered" fill="#206111" />}
+                        {props.filterCaseType === 'all' &&<Bar  barSize={2} dataKey="totaldeceased" fill="#525050" /> }
                         {props.filterCaseType !== 'all' &&
                           caseType()
                         }

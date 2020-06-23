@@ -14,9 +14,9 @@ const BarChartComponent = props =>{
     const [isLoading, setIsLoading] = useState(true);
     const {thememode} = useContext(ThemeContext);
     const dataKey = {
-        dailyconfirmed: "dailyconfirmed",
-        dailyrecovered: "dailyrecovered",
-        dailydeceased : "dailydeceased"
+        totalconfirmed: "totalconfirmed",
+        totalrecovered: "totalrecovered",
+        totaldeceased : "totaldeceased"
     }
     const onSelectDropdown = (value)=>{
         if(value && value.type === "months"){
@@ -34,11 +34,12 @@ const BarChartComponent = props =>{
             filterArray = casesTimeSeries.filter( (item)=>item.date.includes(filterData.month));
             filterArray.map((item) => {
                 item.dailyconfirmed = parseInt(item.dailyconfirmed);
-                item.dailydeceased = parseInt(item.dailydeceased);
+                item.dailydeceased =  parseInt(item.dailydeceased);
                 item.dailyrecovered = parseInt(item.dailyrecovered);
+
                 item.totalconfirmed = parseInt(item.totalconfirmed);
-                item.totalconfirmed = parseInt(item.totaldeceased);
-                item.totalconfirmed = parseInt(item.totalrecovered);
+                item.totaldeceased = parseInt(item.totaldeceased);
+                item.totalrecovered = parseInt(item.totalrecovered);
                 return item;
             });
             setLatestData(filterArray);
