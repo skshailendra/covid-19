@@ -48,7 +48,6 @@ const SearchComponent = (props) => {
     }
   };
   const onClearSearch = (e) => {
-    setSearchFocus(false);
     setSearchValue("");
     setNoResult(false);
   };
@@ -166,7 +165,7 @@ const SearchComponent = (props) => {
             onChange={(e) => onChangeHandler(e)}
             onFocus={(e) => onFocusHandler(e)}
           />
-          <button className={`search__button ${thememode}`}>
+          <button className={`search__button ${thememode}`} onClick={(e) => onClearSearch(e)}>
             {!searchFocus && (
               <FontAwesomeIcon
                 icon={faSearch}
@@ -178,7 +177,7 @@ const SearchComponent = (props) => {
             {searchFocus && (
               <FontAwesomeIcon
                 icon={faTimesCircle}
-                onClick={(e) => onClearSearch(e)}
+                
                 color="#a29a9ad4"
                 size="lg"
                 className="search__icon"
