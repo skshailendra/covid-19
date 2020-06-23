@@ -7,7 +7,7 @@ export const ThemeContext = React.createContext({
 });
 const isNightTheme = ()=>{
   const time = new Date().getHours();
-  return ( time > 17 || time < 7 ) ? true :  false;
+  return ( time > 19 || time < 7 ) ? true :  false;
 };
 const ThemeModeProvider = props => {
   const initThemeMode = isNightTheme() ? 'nightmode' : 'daymode';
