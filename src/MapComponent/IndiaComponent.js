@@ -222,8 +222,10 @@ const IndiaComponent = props=>{
                         select(prevSelectedDistrict).classed("districtselected",false)
                     }
                     if(prevSelectedDistrictId){
-                        var selectedStateId = document.getElementById(prevSelectedDistrictId)
-                        selectedStateId.classList.remove("districtselected");
+                        const selectedDistrictId = document.getElementById(prevSelectedDistrictId);
+                        if(selectedDistrictId){
+                            selectedDistrictId.classList.remove("districtselected");
+                        }
                     }
                     select(nodes[i]).classed("districtselected",true)
                     //setPrevSelectedDistrictId(feature["properties"].dt_code); // added        
