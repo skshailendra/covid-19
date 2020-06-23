@@ -41,7 +41,7 @@ const Info = () => {
             />
             <meta
               name="description"
-              content="COVID-19 Tracker India Info"
+              content="COVID-19 Tracker India Info Section. COVID-19 API and people involved."
             />
             <link rel="canonical" href="https://trackcovid19india.web.app/info/" />
         </Helmet>
