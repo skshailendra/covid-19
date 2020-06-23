@@ -239,8 +239,10 @@ const IndiaComponent = props=>{
 
                 const colorDistrict = () =>{
                     if(prevSelectedDistrictId){
-                        const selectedDistrictId = document.getElementById(prevSelectedDistrictId)
-                        selectedDistrictId.classList.add("districtselected");
+                        const selectedDistrictId = document.getElementById(prevSelectedDistrictId);
+                        if(selectedDistrictId){
+                            selectedDistrictId.classList.add("districtselected");
+                        }                       
                     }
                 }
                 //calling colorstates 
