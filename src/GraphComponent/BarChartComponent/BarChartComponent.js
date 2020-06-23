@@ -68,10 +68,10 @@ const BarChartComponent = props =>{
                                 <span className={`bar-abbr-status__confirmed bar-abbr-status__bar-abbr-color`}></span><span>Confirmed</span>
                             </div>
                             <div className={`bar-abbr-status ${thememode}`}> 
-                                <span className={`bar-abbr-status__confirmed bar-abbr-status__bar-abbr-color`}></span><span>Recovered</span>
+                                <span className={`bar-abbr-status__recovered bar-abbr-status__bar-abbr-color`}></span><span>Recovered</span>
                             </div>
                             <div className={`bar-abbr-status ${thememode}`}>
-                                <span className={`bar-abbr-status__confirmed bar-abbr-status__bar-abbr-color`}></span><span>Deceased</span>
+                                <span className={`bar-abbr-status__deceased bar-abbr-status__bar-abbr-color`}></span><span>Deceased</span>
                             </div>
                         </div>
                     </>
