@@ -78,11 +78,11 @@ const Prevent = () => {
           <title>COVID-19 Tracker -Prevention</title>
             <meta
               name="title"
-              content="COVID-19 Tracker Prevention"
+              content="COVID-19 Tracker: India Prevention"
             />
             <meta
               name="description"
-              content="COVID-19 Tracker Prevention"
+              content="COVID-19 Tracker: India Prevention"
             />
             <link rel="canonical" href="https://trackcovid19india.web.app/prevention/" />
         </Helmet>

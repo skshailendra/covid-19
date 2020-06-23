@@ -25,7 +25,7 @@ const MainContent = props =>{
         <>
             <HelmetProvider>
                 <Helmet >
-                    <title>COVID-19 Tracker India</title>
+                    <title>COVID-19 Tracker: India Analyse all cases.</title>
                     <script type="application/ld+json">{`
                         {
                             "@context": "https://schema.org/",

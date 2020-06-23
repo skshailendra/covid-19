@@ -5,6 +5,7 @@ import StateWiseDisplayTotal from '../StateWiseDisplayTotal/StateWiseDisplayTota
 import AllDistrictState from '../AllDistrictState/AllDistrictState';
 import {ThemeContext} from '../context/theme';
 import ReactGa from 'react-ga';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 const MainStateContent = props =>{
     const {thememode} = useContext(ThemeContext);
     useEffect(()=>{
@@ -13,6 +14,21 @@ const MainStateContent = props =>{
     });
     return (
         <>
+            <HelmetProvider>
+            <Helmet>
+                <title>COVID-19 Tracker: India -All States Analysis</title>
+                <meta
+                name="title"
+                content="COVID-19 Tracker across India -All States Analysis"
+                />
+                <meta
+                name="description"
+                content="COVID-19 Tracker across India -All States Analysis.
+                Track All confirmed , recovered , active ,deceased/deaths cases in India. States wise and district wise cases "
+                />
+                <link rel="canonical" href="https://trackcovid19india.web.app/state/allstates" />
+            </Helmet>
+            </HelmetProvider>
             <Overview/>
             <StateWiseDisplayTotal/>
             <div className={`description ${thememode}`}>
