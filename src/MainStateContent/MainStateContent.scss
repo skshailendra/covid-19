@@ -9,10 +9,11 @@
     flex-wrap: wrap;
     justify-content: space-between;
     flex-direction: column;
+    min-height: 100vh;
     @media screen and (min-width: $bp-large) {
         flex-direction: row;
         padding:.6em;
-        //padding:1em 1em 1em 1em;
+        min-height: auto;
     }
     &.nightmode{
         background-color: $nightmode-blackelectro;
