@@ -62,7 +62,7 @@ const Faq = () => {
             />
             <meta
               name="description"
-              content="COVID-19 Tracker India, Frequently commonly asked question about COVID-19, its symtoms and how to prevent yourself from COVID-19."
+              content="COVID-19 Tracker India, Frequently asked question about COVID-19, its symtoms and how to prevent yourself from COVID-19. Prevention of COVID-19"
             />
             <link rel="canonical" href="https://trackcovid19india.web.app/faq/" />
         </Helmet>
