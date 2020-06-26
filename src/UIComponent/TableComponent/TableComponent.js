@@ -20,10 +20,10 @@ const TableComponent = React.memo(props =>{
         label:'Confirmed'
       },
       {
-        label:'Active'
+        label:'Recovered'
       },
       {
-        label:'Recovered'
+        label:'Active'
       },
       {
         label:'Deaths'
@@ -34,10 +34,10 @@ const TableComponent = React.memo(props =>{
         label:'Confirmed'
       },
       {
-        label:'Active'
+        label:'Recovered'
       },
       {
-        label:'Recovered'
+        label:'Active'
       },
       {
         label:'Deceased'
