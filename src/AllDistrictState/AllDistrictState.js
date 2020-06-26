@@ -112,6 +112,7 @@ const AllDistrictState = (props) => {
   return (
     <>
       <HelmetProvider>
+        <title>COVID-19 Tracker: India - All States</title>
         <Helmet>
           <meta
             name="title"
