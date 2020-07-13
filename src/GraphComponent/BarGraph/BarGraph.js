@@ -71,9 +71,9 @@ const BarGraph = (props) => {
             {props.filterCaseType === "all" && (
               <Bar barSize={4} dataKey="totalrecovered" fill="#206111" />
             )}
-            {props.filterCaseType === "all" && (
+            {/* {props.filterCaseType === "all" && (
               <Bar barSize={3} dataKey="totalactive" fill="#806bf9" />
-            )}
+            )} */}
             {props.filterCaseType === "all" && (
               <Bar barSize={2} dataKey="totaldeceased" fill="#525050" />
             )}

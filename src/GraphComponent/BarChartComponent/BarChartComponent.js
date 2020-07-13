@@ -16,7 +16,6 @@ const BarChartComponent = (props) => {
   const dataKey = {
     totalconfirmed: "totalconfirmed",
     totalrecovered: "totalrecovered",
-    totalactive: "totalactive",
     totaldeceased: "totaldeceased",
   };
   const onSelectDropdown = (value) => {
@@ -39,11 +38,11 @@ const BarChartComponent = (props) => {
         item.dailyconfirmed = parseInt(item.dailyconfirmed);
         item.dailydeceased = parseInt(item.dailydeceased);
         item.dailyrecovered = parseInt(item.dailyrecovered);
-        item.totalactive = item.totalactive
-          ? parseInt(item.totalactive)
-          : parseInt(item.totalconfirmed) -
-            parseInt(item.totaldeceased) -
-            parseInt(item.totalrecovered);
+        // item.totalactive = item.totalactive
+        //   ? parseInt(item.totalactive)
+        //   : parseInt(item.totalconfirmed) -
+        //     parseInt(item.totaldeceased) -
+        //     parseInt(item.totalrecovered);
         item.totalconfirmed = parseInt(item.totalconfirmed);
         item.totaldeceased = parseInt(item.totaldeceased);
         item.totalrecovered = parseInt(item.totalrecovered);
@@ -95,12 +94,12 @@ const BarChartComponent = (props) => {
                   ></span>
                   <span>Recovered</span>
                 </div>
-                <div className={`bar-abbr-status ${thememode}`}>
+                {/* <div className={`bar-abbr-status ${thememode}`}>
                   <span
                     className={`bar-abbr-status__active bar-abbr-status__bar-abbr-color`}
                   ></span>
                   <span>Active</span>
-                </div>
+                </div> */}
                 <div className={`bar-abbr-status ${thememode}`}>
                   <span
                     className={`bar-abbr-status__deceased bar-abbr-status__bar-abbr-color`}

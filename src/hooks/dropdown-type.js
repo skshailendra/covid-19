@@ -18,10 +18,6 @@ const casesType = [
     value: "Recovered",
   },
   {
-    type: "totalactive",
-    value: "Active",
-  },
-  {
     type: "totaldeceased",
     value: "Deceased",
   },
