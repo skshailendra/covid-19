@@ -1,79 +1,84 @@
-@import '../../Globals/variables/variables.scss';
+@import "../../Globals/variables/variables.scss";
 
-.bar-description-graph{
-    flex:0 0 58%;
-    background-color: #fff;
-    box-shadow: 0px 3px 10px #e4e4e4;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all .3s ease-out;
-    @media screen and (min-width: $bp-large) {
-        flex:0 0 58%;
-        margin-right:.5em;
-    }
-    @media screen and (min-width: $bp-extralarge) {
-        flex:0 0 60%;
-        margin-right:.5em;
-    }
-    &.nightmode{
-        background-color: $nightmode-blackpr;
-        color: $white;
-        box-shadow: none;
-    }
+.bar-description-graph {
+  flex: 0 0 58%;
+  background-color: #fff;
+  box-shadow: 0px 3px 10px #e4e4e4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease-out;
+  @media screen and (min-width: $bp-large) {
+    flex: 0 0 58%;
+    margin-right: 0.5em;
+  }
+  @media screen and (min-width: $bp-extralarge) {
+    flex: 0 0 60%;
+    margin-right: 0.5em;
+  }
+  &.nightmode {
+    background-color: $nightmode-blackpr;
+    color: $white;
+    box-shadow: none;
+  }
 }
-.bar-dropdown-container{
-    background-color: ghostwhite;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0em 1em;
-    margin-bottom:2em;
-    transition: all .3s ease-out;
-    &.nightmode{
-        background-color: $nightmode-border3;
-        color: $white;       
-    }
+.bar-dropdown-container {
+  background-color: ghostwhite;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0em 1em;
+  margin-bottom: 2em;
+  transition: all 0.3s ease-out;
+  &.nightmode {
+    background-color: $nightmode-border3;
+    color: $white;
+  }
 }
-.bar-caseheading{
-    font-size: 1em;
-    line-height: 2em;
-}
-
-.bar-description-abbr{
-    display: flex;
-    justify-content: center;
+.bar-caseheading {
+  font-size: 1em;
+  line-height: 2em;
 }
 
-.bar-abbr-status{
-
-    &__bar-abbr-color{
-        margin: 0 5px 0;
-        width: 8px;
-        height: 8px;
-        display: inline-block;
-    }
-    &__confirmed{
-        background: #ef716f;
-    }
-    &__recovered{
-        background: #206111;
-    }
-    &__deceased{
-        background: #b3b3b3;
-    }
-    & > span{
-        font-size: .8em;
-        color: #483f3f;
-        font-weight: 600;        
-    }
-    &.nightmode{
-        & > span{
-            color: $nightmode-lightwhite;
-        }
-    }
-    
+.bar-description-abbr {
+  display: flex;
+  justify-content: center;
 }
-.bar-graph-component{
-    position: relative;
+
+.bar-abbr-status {
+  &__bar-abbr-color {
+    margin: 0 5px 0;
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+  }
+  &__confirmed {
+    background: #ef716f;
+  }
+  &__recovered {
+    background: #206111;
+  }
+  &__active {
+    background: #806bf9;
+  }
+  &__deceased {
+    background: #b3b3b3;
+  }
+  & > span {
+    font-size: 0.8em;
+    color: #483f3f;
+    font-weight: 600;
+  }
+  &.nightmode {
+    & > span {
+      color: $nightmode-lightwhite;
+    }
+  }
+}
+.bar-graph-component {
+  position: relative;
+  margin-bottom: 2em;
+  @media screen and (min-width: $bp-extralarge) {
+    margin-bottom: 0;
+  }
 }
