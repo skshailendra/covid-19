@@ -89,7 +89,7 @@ const DisplayTotal = (props) => {
                 <TinyAreaGraph
                   latestData={latestData}
                   dataKey={"dailyconfirmed"}
-                  fillcolor={"red"}
+                  fillcolor={"#c83b4c"}
                 />
               </div>
 
