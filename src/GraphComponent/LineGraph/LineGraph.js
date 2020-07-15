@@ -59,7 +59,7 @@ const LineGraph = (props) => {
           <Line
             type="monotone"
             dataKey="dailyconfirmed"
-            stroke="red"
+            stroke="#c83b4c"
             activeDot={{ r: 8 }}
           />
           <Line

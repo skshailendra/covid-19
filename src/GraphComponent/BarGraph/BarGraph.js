@@ -36,7 +36,7 @@ const BarGraph = (props) => {
           <Bar
             barSize={15}
             dataKey={props.dataKey.totalconfirmed}
-            fill="#ef716f"
+            fill="#c83b4c"
           />
         );
       case "totalrecovered":
@@ -66,7 +66,7 @@ const BarGraph = (props) => {
             <Tooltip />
 
             {props.filterCaseType === "all" && (
-              <Bar barSize={3} dataKey="totalconfirmed" fill="red" />
+              <Bar barSize={3} dataKey="totalconfirmed" fill="#c83b4c" />
             )}
             {props.filterCaseType === "all" && (
               <Bar barSize={4} dataKey="totalrecovered" fill="#206111" />
