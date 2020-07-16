@@ -180,7 +180,39 @@ const TableComponent = React.memo((props) => {
                 >
                   <div className="table__heading-content-s">State/UT</div>
                 </div>
-                <div className={`table__heading ${thememode}`}>
+                {heading.map(
+                  (head, key) =>
+                    head.label !== "Active" && (
+                      <div
+                        key={key}
+                        className={`table__heading ${thememode}`}
+                        onClick={(e) => sortTableHandler(e, head)}
+                      >
+                        <div className="table__heading-content">
+                          {head.label}
+                        </div>
+                        {head.label.toLowerCase() ===
+                          sortTable.label.toLowerCase() && (
+                          <div className="table__icon-container">
+                            {sortTable.asc ? (
+                              <FontAwesomeIcon
+                                icon={faArrowUp}
+                                size="sm"
+                                className="table__icon"
+                              />
+                            ) : (
+                              <FontAwesomeIcon
+                                icon={faArrowDown}
+                                size="sm"
+                                className="table__icon"
+                              />
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )
+                )}
+                {/* <div className={`table__heading ${thememode}`}>
                   <div className="table__heading-content">Confirmed</div>
                 </div>
                 <div className={`table__heading ${thememode}`}>
@@ -188,7 +220,7 @@ const TableComponent = React.memo((props) => {
                 </div>
                 <div className={`table__heading ${thememode}`}>
                   <div className="table__heading-content">Deaths</div>
-                </div>
+                </div> */}
               </>
             )}
           </div>

@@ -99,8 +99,8 @@
   }
   &__heading-content {
     font-size: 0.7em;
-    margin: 0 4px;
     @media screen and (min-width: $bp-large) {
+      margin: 0 4px;
       font-size: inherit;
     }
   }
@@ -127,10 +127,19 @@
       background-color: $nightmode-gdblack;
     }
   }
+  &__icon-container {
+    display: flex;
+    align-items: center;
+  }
   &__icon {
-    width: 1em;
-    height: 0.9em;
-    margin-left: 8px;
+    width: 0.7em;
+    height: 0.7em;
+    margin-left: 2px;
+    @media screen and (min-width: $bp-large) {
+      width: 1em;
+      height: 0.9em;
+      margin-left: 8px;
+    }
   }
   &__data__stats {
     display: flex;
