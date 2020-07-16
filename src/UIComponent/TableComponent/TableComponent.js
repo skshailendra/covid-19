@@ -131,6 +131,7 @@ const TableComponent = React.memo((props) => {
     state.showExpand
       ? (tempArr[code].districtList = districtList[0])
       : delete tempArr[code].districtList;
+
     setStateData(tempArr);
   };
   return (
@@ -138,41 +139,57 @@ const TableComponent = React.memo((props) => {
       <div className={`table ${thememode}`}>
         <div className={`table__body ${thememode}`}>
           <div className={`table__row-heading ${thememode}`}>
-            <div className={`table__heading ${thememode}`}>
-              <div className="table__heading-content">State/UT</div>
-            </div>
-            {!mobileTable &&
-              heading.map((head, key) => (
-                <div
-                  key={key}
-                  className={`table__heading ${thememode}`}
-                  onClick={(e) => sortTableHandler(e, head)}
-                >
-                  <div className="table__heading-content">{head.label}</div>
-                  {head.label.toLowerCase() ===
-                    sortTable.label.toLowerCase() && (
-                    <div className="table__icon-container">
-                      {sortTable.asc ? (
-                        <FontAwesomeIcon
-                          icon={faArrowUp}
-                          size="sm"
-                          className="table__icon"
-                        />
-                      ) : (
-                        <FontAwesomeIcon
-                          icon={faArrowDown}
-                          size="sm"
-                          className="table__icon"
-                        />
-                      )}
-                    </div>
-                  )}
+            {!mobileTable && (
+              <>
+                <div className={`table__heading ${thememode}`}>
+                  <div className="table__heading-content">State/UT</div>
                 </div>
-              ))}
+                {heading.map((head, key) => (
+                  <div
+                    key={key}
+                    className={`table__heading ${thememode}`}
+                    onClick={(e) => sortTableHandler(e, head)}
+                  >
+                    <div className="table__heading-content">{head.label}</div>
+                    {head.label.toLowerCase() ===
+                      sortTable.label.toLowerCase() && (
+                      <div className="table__icon-container">
+                        {sortTable.asc ? (
+                          <FontAwesomeIcon
+                            icon={faArrowUp}
+                            size="sm"
+                            className="table__icon"
+                          />
+                        ) : (
+                          <FontAwesomeIcon
+                            icon={faArrowDown}
+                            size="sm"
+                            className="table__icon"
+                          />
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </>
+            )}
             {mobileTable && (
-              <div className={`table__heading ${thememode}`}>
-                <div className="table__heading-content">State Data</div>
-              </div>
+              <>
+                <div
+                  className={`table__heading table__heading-content-state ${thememode}`}
+                >
+                  <div className="table__heading-content-s">State/UT</div>
+                </div>
+                <div className={`table__heading ${thememode}`}>
+                  <div className="table__heading-content">Confirmed</div>
+                </div>
+                <div className={`table__heading ${thememode}`}>
+                  <div className="table__heading-content">Recovered</div>
+                </div>
+                <div className={`table__heading ${thememode}`}>
+                  <div className="table__heading-content">Deaths</div>
+                </div>
+              </>
             )}
           </div>
           {stateData &&
@@ -379,20 +396,37 @@ const TableComponent = React.memo((props) => {
                       <div className="table__body-content table__data__confirmed ">
                         <span>{state.confirmed}</span>
                         <span className="table__data-mobile-label">
-                          Confirmed
+                          <FontAwesomeIcon
+                            icon={faArrowUp}
+                            size="sm"
+                            className="table__body__icon"
+                          />
+                          {state.deltaconfirmed}
                         </span>
                       </div>
                       {/* <span className={`lineseperator ${thememode}`}></span> */}
                       <div className="table__body-content table__data__recovered">
                         <span>{state.recovered}</span>
                         <span className="table__data-mobile-label">
-                          Recovered
+                          <FontAwesomeIcon
+                            icon={faArrowUp}
+                            size="sm"
+                            className="table__body__icon"
+                          />
+                          {state.deltarecovered}
                         </span>
                       </div>
                       {/* <span className={`lineseperator ${thememode}`}></span> */}
                       <div className="table__body-content table__data__deceased">
                         <span>{state.deaths}</span>
-                        <span className="table__data-mobile-label">Deaths</span>
+                        <span className="table__data-mobile-label">
+                          <FontAwesomeIcon
+                            icon={faArrowUp}
+                            size="sm"
+                            className="table__body__icon"
+                          />
+                          {state.deltadeaths}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -401,14 +435,19 @@ const TableComponent = React.memo((props) => {
                   <div
                     className={`table__row-heading table__row-heading-district ${thememode}`}
                   >
-                    <div className="table__heading">
-                      <div className="table__heading-content">District</div>
+                    <div
+                      className={`table__heading table__heading-content-district ${thememode}`}
+                    >
+                      <div className="table__heading-content-s">District</div>
                     </div>
-
-                    <div className="table__heading">
-                      <div className="table__heading-content">
-                        District Data
-                      </div>
+                    <div className={`table__heading ${thememode}`}>
+                      <div className="table__heading-content">Confirmed</div>
+                    </div>
+                    <div className={`table__heading ${thememode}`}>
+                      <div className="table__heading-content">Recovered</div>
+                    </div>
+                    <div className={`table__heading ${thememode}`}>
+                      <div className="table__heading-content">Deaths</div>
                     </div>
                   </div>
                 )}
@@ -428,23 +467,47 @@ const TableComponent = React.memo((props) => {
                         <div className="table__data__stats">
                           <div className="table__body-content table__data__confirmed ">
                             <span>{district.confirmed}</span>
-                            <span className="table__data-mobile-label">
-                              Confirmed
-                            </span>
+                            {Math.abs(parseInt(district.delta.confirmed)) >
+                              0 && (
+                              <span className="table__data-mobile-label">
+                                <FontAwesomeIcon
+                                  icon={faArrowUp}
+                                  size="sm"
+                                  className="table__body__icon"
+                                />
+                                {Math.abs(parseInt(district.delta.confirmed))}
+                              </span>
+                            )}
                           </div>
                           {/* <span className={`lineseperator ${thememode}`}></span> */}
                           <div className="table__body-content table__data__recovered">
                             <span>{district.recovered}</span>
-                            <span className="table__data-mobile-label">
-                              Recovered
-                            </span>
+                            {Math.abs(parseInt(district.delta.recovered)) >
+                              0 && (
+                              <span className="table__data-mobile-label">
+                                <FontAwesomeIcon
+                                  icon={faArrowUp}
+                                  size="sm"
+                                  className="table__body__icon"
+                                />
+                                {district.delta.recovered}
+                              </span>
+                            )}
                           </div>
                           {/* <span className={`lineseperator ${thememode}`}></span> */}
                           <div className="table__body-content table__data__deceased">
                             <span>{district.deceased}</span>
-                            <span className="table__data-mobile-label">
-                              Deaths
-                            </span>
+                            {Math.abs(parseInt(district.delta.deceased)) >
+                              0 && (
+                              <span className="table__data-mobile-label">
+                                <FontAwesomeIcon
+                                  icon={faArrowUp}
+                                  size="sm"
+                                  className="table__body__icon"
+                                />
+                                {district.delta.deceased}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
