@@ -212,15 +212,6 @@ const TableComponent = React.memo((props) => {
                       </div>
                     )
                 )}
-                {/* <div className={`table__heading ${thememode}`}>
-                  <div className="table__heading-content">Confirmed</div>
-                </div>
-                <div className={`table__heading ${thememode}`}>
-                  <div className="table__heading-content">Recovered</div>
-                </div>
-                <div className={`table__heading ${thememode}`}>
-                  <div className="table__heading-content">Deaths</div>
-                </div> */}
               </>
             )}
           </div>
@@ -301,11 +292,6 @@ const TableComponent = React.memo((props) => {
                       </div>
                     </div>
                   </div>
-                  {/* <div className="table__column check">                        
-                        <div className="table__body-content" onClick={e=>showDistrict(e,code,state)}>
-                          <button className="btn-inline2"> Details<span>&rarr;</span></button>
-                        </div>
-                      </div>*/}
                 </div>
                 {state.showExpand && (
                   <div
@@ -384,11 +370,6 @@ const TableComponent = React.memo((props) => {
                             {district.deceased}
                           </div>
                         </div>
-                        {/* <div className="table__column check">                        
-                            <div className="table__body-content">
-                              <button > Show All<span>&rarr;</span></button>
-                            </div>
-                          </div>                       */}
                       </div>
                     </div>
                   ))}
@@ -436,7 +417,6 @@ const TableComponent = React.memo((props) => {
                           {state.deltaconfirmed}
                         </span>
                       </div>
-                      {/* <span className={`lineseperator ${thememode}`}></span> */}
                       <div className="table__body-content table__data__recovered">
                         <span>{state.recovered}</span>
                         <span className="table__data-mobile-label">
@@ -448,7 +428,6 @@ const TableComponent = React.memo((props) => {
                           {state.deltarecovered}
                         </span>
                       </div>
-                      {/* <span className={`lineseperator ${thememode}`}></span> */}
                       <div className="table__body-content table__data__deceased">
                         <span>{state.deaths}</span>
                         <span className="table__data-mobile-label">
@@ -507,15 +486,6 @@ const TableComponent = React.memo((props) => {
                           </div>
                         )
                     )}
-                    {/* <div className={`table__heading ${thememode}`}>
-                      <div className="table__heading-content">Confirmed</div>
-                    </div>
-                    <div className={`table__heading ${thememode}`}>
-                      <div className="table__heading-content">Recovered</div>
-                    </div>
-                    <div className={`table__heading ${thememode}`}>
-                      <div className="table__heading-content">Deaths</div>
-                    </div> */}
                   </div>
                 )}
 
@@ -546,7 +516,6 @@ const TableComponent = React.memo((props) => {
                               </span>
                             )}
                           </div>
-                          {/* <span className={`lineseperator ${thememode}`}></span> */}
                           <div className="table__body-content table__data__recovered">
                             <span>{district.recovered}</span>
                             {Math.abs(parseInt(district.delta.recovered)) >
@@ -561,7 +530,6 @@ const TableComponent = React.memo((props) => {
                               </span>
                             )}
                           </div>
-                          {/* <span className={`lineseperator ${thememode}`}></span> */}
                           <div className="table__body-content table__data__deceased">
                             <span>{district.deceased}</span>
                             {Math.abs(parseInt(district.delta.deceased)) >
