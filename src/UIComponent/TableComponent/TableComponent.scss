@@ -1,189 +1,188 @@
-@import '../../Globals//variables/variables.scss';
-.table{
-   // display: flex;
-    width: 100%;
-    box-shadow: 0px 6px 16px #e4e4e4;
-    font-family:  "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-    font-size: inherit;
-    margin: 0;
-    border-radius: 13px;
-    overflow: hidden;
-    @media screen and (min-width:$bp-large){
-        margin-top: 1em;
-        border-radius: 5px;
-    }
-    &__body{
-        background-color: #fff;
-        padding:1em;
-        transition: all .3s ease-out;
-        &.nightmode{
-            background-color: $nightmode-blackpr;
-        }
-    }
-    &__row-heading{
-        display: flex;
-        padding: 12px 0 3px 0;
-        justify-content: space-between;
-        border-bottom: 2px solid #efeaea;
-        font-size: 1em;
-        font-weight: 600;
-        color:#525151;
-        //color: #737171;
-        &.nightmode{
-            color:$white;
-            border-bottom: 2px solid #403f3f;
-        }
-        @media screen and (min-width:$bp-medium){
-            padding: 12px 2px 3px 2px;
-        }
-    }
-    &__row-heading-district{
-        //color:#b59595;
-        font-size: .9em;
-        margin: 0 .8em;
-        @media screen and (min-width:$bp-medium){
-            margin: 0 1.4em;
-        }
-    }
-    &__row{
-        display: flex;
-        padding:.7em 3px .5em 3px;
-        justify-content: space-between;
-       
-        font-size: .8em;
-        font-weight: 500;
-        color:#656565;
-        //color: #737171;
-        cursor: pointer;
-        &:not(:last-child){
-            border-bottom: 1px solid #efecec;
-        }
-        &.nightmode{
-            color: $white;
-        }
-        @media screen and (min-width:$bp-large){
-            padding:1em 16px 16px 3px;
-        }
-    }
-    &__row:hover{
-        background-color: whitesmoke;
-        &.nightmode{
-            background-color: $nightmode-gdblack;
-        }
-    }
-    &__row-district{
-        background-color: #fbfffb;
-        margin: 0 .8em;
-        &.nightmode{
-            background-color: $nightmode-blackelectro;
-        }
-        @media screen and (min-width:$bp-medium){
-            margin: 0 1.4em;
-        }
-    }
-    &__column{
-        display: flex;
-        flex:1;
-        justify-content: flex-start;
-        align-items: center;
-        cursor: pointer;
-    }
-    &__heading{
-        display: flex;
-        flex:1;
-        padding: .8em 0px;
-        cursor: pointer;
-    }
-    &__heading:hover{
-        background-color: whitesmoke;
-        &.nightmode{
-            background-color: $nightmode-gdblack;
-        }
-    }
-    &__icon{
-        width:1em;
-        height: .9em;
-        margin-left: 8px;
-    }
-    &__data__stats{
-        display: flex;
-        align-items: center;
-        
-    }
-    &__data__confirmed{
-        color:$confirmed-text;
-    }
-    &__data__active{
-        color:$active-text;
-    }
-    &__data__recovered{
-        color:$recovered-text;
-    }
-    &__data__deceased{
-        color:$deceased-text;
-    }
-    &__body-content{
-        font-size: 1.2em;
-        margin-right: 4px;
-        display: flex;
-        flex-direction: column;
-        @media screen and (min-width:$bp-large){
-            display: block;
-        }
-    }
-    &__body-content-delta{
-        font-size: .9em;
-        margin-right: 9px;
-    }
-    &__data-mobile-label{
-        font-size: 0.7em;
-        margin-top: 3px;
-    }
-    &.nightmode{
-        box-shadow: none;
-    }
-    .lineseperator{
-        margin:0 5px;
-        height: 18px;
-        width: 0px;
-        border: 1px solid grey;
-    }
-}
-.show-button{
-    border: none;
+@import "../../Globals//variables/variables.scss";
+.table {
+  // display: flex;
+  width: 100%;
+  box-shadow: 0px 6px 16px #e4e4e4;
+  font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI",
+    -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: inherit;
+  margin: 0;
+  border-radius: 13px;
+  overflow: hidden;
+  @media screen and (min-width: $bp-large) {
+    margin-top: 1em;
+    border-radius: 5px;
+  }
+  &__body {
     background-color: #fff;
-    border-radius:50%;
-    cursor: pointer;
-    &:focus{
-        outline: none;
+    padding: 1em;
+    transition: all 0.3s ease-out;
+    &.nightmode {
+      background-color: $nightmode-blackpr;
     }
-    &:active{
-        transform:translateY(1px);
+  }
+  &__row-heading {
+    display: flex;
+    padding: 12px 0 3px 0;
+    justify-content: space-between;
+    border-bottom: 2px solid #efeaea;
+    font-size: 1em;
+    font-weight: 600;
+    color: #525151;
+    //color: #737171;
+    &.nightmode {
+      color: $white;
+      border-bottom: 2px solid #403f3f;
     }
+    @media screen and (min-width: $bp-medium) {
+      padding: 12px 2px 3px 2px;
+    }
+  }
+  &__row-heading-district {
+    //color:#b59595;
+    font-size: 0.9em;
+    margin: 0 0.8em;
+    @media screen and (min-width: $bp-medium) {
+      margin: 0 1.4em;
+    }
+  }
+  &__row {
+    display: flex;
+    padding: 0.7em 3px 0.5em 3px;
+    justify-content: space-between;
 
+    font-size: 0.8em;
+    font-weight: 500;
+    color: #656565;
+    //color: #737171;
+    cursor: pointer;
+    &:not(:last-child) {
+      border-bottom: 1px solid #efecec;
+    }
+    &.nightmode {
+      color: $white;
+    }
+    @media screen and (min-width: $bp-large) {
+      padding: 1em 16px 16px 3px;
+    }
+  }
+  &__row:hover {
+    background-color: whitesmoke;
+    &.nightmode {
+      background-color: $nightmode-gdblack;
+    }
+  }
+  &__row-district {
+    background-color: #fbfffb;
+    margin: 0 0.8em;
+    &.nightmode {
+      background-color: $nightmode-blackelectro;
+    }
+    @media screen and (min-width: $bp-medium) {
+      margin: 0 1.4em;
+    }
+  }
+  &__column {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+  }
+  &__heading {
+    display: flex;
+    flex: 1;
+    padding: 0.8em 0px;
+    cursor: pointer;
+  }
+  &__heading:hover {
+    background-color: whitesmoke;
+    &.nightmode {
+      background-color: $nightmode-gdblack;
+    }
+  }
+  &__icon {
+    width: 1em;
+    height: 0.9em;
+    margin-left: 8px;
+  }
+  &__data__stats {
+    display: flex;
+    align-items: center;
+  }
+  &__data__confirmed {
+    color: $confirmed-text;
+  }
+  &__data__active {
+    color: $active-text;
+  }
+  &__data__recovered {
+    color: $recovered-text;
+  }
+  &__data__deceased {
+    color: $deceased-text;
+  }
+  &__body-content {
+    font-size: 1.2em;
+    margin-right: 4px;
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: $bp-large) {
+      display: block;
+    }
+  }
+  &__body-content-delta {
+    font-size: 0.9em;
+    margin-right: 9px;
+  }
+  &__data-mobile-label {
+    font-size: 0.7em;
+    margin-top: 3px;
+  }
+  &.nightmode {
+    box-shadow: none;
+  }
+  .lineseperator {
+    margin: 0 5px;
+    height: 18px;
+    width: 0px;
+    border: 1px solid grey;
+  }
 }
-.btn-inline2{
-    border:none;
-    padding: 0;
-    color:red;
-    font-size: inherit;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 2px;
-   // display: inline-block;
-    background-color: transparent;
-    cursor: pointer;
-    //transition: all .2s;
+.show-button {
+  border: none;
+  background-color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+}
+.btn-inline2 {
+  border: none;
+  padding: 0;
+  color: red;
+  font-size: inherit;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  // display: inline-block;
+  background-color: transparent;
+  cursor: pointer;
+  //transition: all .2s;
 
-    // & span{
-    //     margin-left: 3px;
-    //     transition: margin-left .2s;
+  // & span{
+  //     margin-left: 3px;
+  //     transition: margin-left .2s;
+  // }
+
+  &:hover {
+    color: #ff6060;
+
+    // span{
+    //     margin-left: 5px;
     // }
-
-    &:hover{
-        color:#ff6060;
-
-        // span{
-        //     margin-left: 5px;
-        // }
-    }
-} 
+  }
+}
