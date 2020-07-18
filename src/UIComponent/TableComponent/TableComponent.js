@@ -249,14 +249,16 @@ const TableComponent = React.memo((props) => {
                       <div className="table__body-content">
                         {state.confirmed}
                       </div>
-                      <div className="table__body-content-delta">
-                        <FontAwesomeIcon
-                          icon={faArrowUp}
-                          size="sm"
-                          className="table__body__icon"
-                        />
-                        {state.deltaconfirmed}
-                      </div>
+                      {Math.abs(parseInt(state.deltaconfirmed)) > 0 && (
+                        <div className="table__body-content-delta">
+                          <FontAwesomeIcon
+                            icon={faArrowUp}
+                            size="sm"
+                            className="table__body__icon"
+                          />
+                          {state.deltaconfirmed}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="table__column">
@@ -264,14 +266,16 @@ const TableComponent = React.memo((props) => {
                       <div className="table__body-content">
                         {state.recovered}
                       </div>
-                      <div className="table__body-content-delta">
-                        <FontAwesomeIcon
-                          icon={faArrowUp}
-                          size="sm"
-                          className="table__body__icon"
-                        />
-                        {state.deltarecovered}
-                      </div>
+                      {Math.abs(parseInt(state.deltarecovered)) > 0 && (
+                        <div className="table__body-content-delta">
+                          <FontAwesomeIcon
+                            icon={faArrowUp}
+                            size="sm"
+                            className="table__body__icon"
+                          />
+                          {state.deltarecovered}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="table__column">
@@ -282,14 +286,16 @@ const TableComponent = React.memo((props) => {
                   <div className="table__column">
                     <div className="table__data__stats table__data__deceased">
                       <div className="table__body-content">{state.deaths}</div>
-                      <div className="table__body-content-delta">
-                        <FontAwesomeIcon
-                          icon={faArrowUp}
-                          size="sm"
-                          className="table__body__icon"
-                        />
-                        {state.deltadeaths}
-                      </div>
+                      {Math.abs(parseInt(state.deltadeaths)) > 0 && (
+                        <div className="table__body-content-delta">
+                          <FontAwesomeIcon
+                            icon={faArrowUp}
+                            size="sm"
+                            className="table__body__icon"
+                          />
+                          {state.deltadeaths}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
