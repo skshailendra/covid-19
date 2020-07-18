@@ -128,10 +128,17 @@ const TableComponent = React.memo((props) => {
     const districtList = stateDistrict.filter(
       (stDst) => stDst.statecode === state.statecode
     );
-    state.showExpand
-      ? (tempArr[code].districtList = districtList[0])
-      : delete tempArr[code].districtList;
 
+    if (state.showExpand) {
+      tempArr[code].districtList = districtList[0];
+      setDistrictSortTable({
+        label: "confirmed",
+        asc: false,
+        code: code,
+      });
+    } else {
+      delete tempArr[code].districtList;
+    }
     setStateData(tempArr);
   };
   return (
