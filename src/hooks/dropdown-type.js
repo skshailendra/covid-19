@@ -94,7 +94,7 @@ const getCurrentMonth = () => {
 
   const currentDate = new Date().getDate();
   selectedMonth =
-    currentDate < 9 ? new Date().getMonth() : new Date().getMonth() + 1;
+    currentDate < 3 ? new Date().getMonth() : new Date().getMonth() + 1;
   return month.find((val) => val.index === selectedMonth);
 };
 
