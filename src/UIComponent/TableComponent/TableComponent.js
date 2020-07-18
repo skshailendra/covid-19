@@ -408,36 +408,42 @@ const TableComponent = React.memo((props) => {
                     <div className="table__data__stats ">
                       <div className="table__body-content table__data__confirmed ">
                         <span>{state.confirmed}</span>
-                        <span className="table__data-mobile-label">
-                          <FontAwesomeIcon
-                            icon={faArrowUp}
-                            size="sm"
-                            className="table__body__icon"
-                          />
-                          {state.deltaconfirmed}
-                        </span>
+                        {Math.abs(parseInt(state.deltaconfirmed)) > 0 && (
+                          <span className="table__data-mobile-label">
+                            <FontAwesomeIcon
+                              icon={faArrowUp}
+                              size="sm"
+                              className="table__body__icon"
+                            />
+                            {state.deltaconfirmed}
+                          </span>
+                        )}
                       </div>
                       <div className="table__body-content table__data__recovered">
                         <span>{state.recovered}</span>
-                        <span className="table__data-mobile-label">
-                          <FontAwesomeIcon
-                            icon={faArrowUp}
-                            size="sm"
-                            className="table__body__icon"
-                          />
-                          {state.deltarecovered}
-                        </span>
+                        {Math.abs(parseInt(state.deltarecovered)) > 0 && (
+                          <span className="table__data-mobile-label">
+                            <FontAwesomeIcon
+                              icon={faArrowUp}
+                              size="sm"
+                              className="table__body__icon"
+                            />
+                            {state.deltarecovered}
+                          </span>
+                        )}
                       </div>
                       <div className="table__body-content table__data__deceased">
                         <span>{state.deaths}</span>
-                        <span className="table__data-mobile-label">
-                          <FontAwesomeIcon
-                            icon={faArrowUp}
-                            size="sm"
-                            className="table__body__icon"
-                          />
-                          {state.deltadeaths}
-                        </span>
+                        {Math.abs(parseInt(state.deltarecovered)) > 0 && (
+                          <span className="table__data-mobile-label">
+                            <FontAwesomeIcon
+                              icon={faArrowUp}
+                              size="sm"
+                              className="table__body__icon"
+                            />
+                            {state.deltadeaths}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
