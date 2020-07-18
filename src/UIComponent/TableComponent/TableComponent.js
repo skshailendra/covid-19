@@ -348,6 +348,16 @@ const TableComponent = React.memo((props) => {
                           <div className="table__body-content">
                             {district.confirmed}
                           </div>
+                          {Math.abs(parseInt(district.delta.confirmed)) > 0 && (
+                            <span className="table__data-mobile-label">
+                              <FontAwesomeIcon
+                                icon={faArrowUp}
+                                size="sm"
+                                className="table__body__icon"
+                              />
+                              {Math.abs(parseInt(district.delta.confirmed))}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="table__column">
@@ -355,6 +365,16 @@ const TableComponent = React.memo((props) => {
                           <div className="table__body-content">
                             {district.recovered}
                           </div>
+                          {Math.abs(parseInt(district.delta.recovered)) > 0 && (
+                            <span className="table__data-mobile-label">
+                              <FontAwesomeIcon
+                                icon={faArrowUp}
+                                size="sm"
+                                className="table__body__icon"
+                              />
+                              {Math.abs(parseInt(district.delta.recovered))}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="table__column">
@@ -369,6 +389,16 @@ const TableComponent = React.memo((props) => {
                           <div className="table__body-content">
                             {district.deceased}
                           </div>
+                          {Math.abs(parseInt(district.delta.deceased)) > 0 && (
+                            <span className="table__data-mobile-label">
+                              <FontAwesomeIcon
+                                icon={faArrowUp}
+                                size="sm"
+                                className="table__body__icon"
+                              />
+                              {Math.abs(parseInt(district.delta.deceased))}
+                            </span>
+                          )}
                         </div>
                       </div>
                     </div>

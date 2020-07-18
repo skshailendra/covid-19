@@ -185,6 +185,9 @@
   &__data-mobile-label {
     font-size: 0.8em;
     margin-top: 3px;
+    @media screen and (min-width: $bp-large) {
+      font-size: 0.9em;
+    }
   }
   &.nightmode {
     box-shadow: none;
