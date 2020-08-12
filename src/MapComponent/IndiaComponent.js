@@ -384,6 +384,27 @@ const IndiaComponent = (props) => {
             .data(featureDistrict.features)
             .enter()
             .append("path")
+            .on("mouseenter", (feature, i, nodes) => {
+              if (prevSelectedDistrict) {
+                select(prevSelectedDistrict).classed(
+                  "bubbledistrictselected",
+                  false
+                );
+              }
+              if (prevSelectedDistrictId) {
+                const selectedDistrictId = document.getElementById(
+                  prevSelectedDistrictId
+                );
+                if (selectedDistrictId) {
+                  selectedDistrictId.classList.remove("bubbledistrictselected");
+                }
+              }
+              select(nodes[i]).classed("bubbledistrictselected", true);
+              //setPrevSelectedDistrictId(feature["properties"].dt_code); // added
+              prevSelectedDistrictId = feature["properties"].dt_code;
+              prevSelectedDistrict = nodes[i];
+              setHoverDistrict(feature.properties);
+            })
             .attr("class", () => `district ${filterdMap}`)
             .attr("id", (feature) => feature["properties"].dt_code)
             .transition()
