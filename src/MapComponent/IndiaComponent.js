@@ -16,6 +16,9 @@ import useDeviceAgent from "../hooks/device-agent";
 import { ThemeContext } from "../context/theme";
 import ReactGa from "react-ga";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBraille } from "@fortawesome/free-solid-svg-icons";
 let prevSelectedDistrictId;
 const IndiaComponent = (props) => {
   let mapWidth = 300;
@@ -421,22 +424,27 @@ const IndiaComponent = (props) => {
         </Helmet>
       </HelmetProvider>
       <div className={`map ${thememode}`}>
+        <div
+          className={`map__bubble ${thememode} ${
+            enableBubble ? "map__enabled-bubble" : ""
+          }`}
+          onClick={() => setEnableBubble(!enableBubble)}
+        >
+          <FontAwesomeIcon
+            icon={faBraille}
+            color="#6148d8"
+            className="map__icon"
+          />
+        </div>
         <div className={`indiamap ${thememode}`}>
           <div className="indiamap__heading-container">
             <h1 className="indiamap__heading">India Map</h1>
+
             <h3 className="indiamap__detail-message">
               Select a State for more details
             </h3>
-            {/* <div className="indiamap__detail-message">
-                            
-                        </div> */}
           </div>
-          <p
-            onClick={() => setEnableBubble(!enableBubble)}
-            className="indiamap__selectedlabel"
-          >
-            {"Enable Bubble"}
-          </p>
+
           <div className="indiamap__container">
             {selectedState && (
               <div className="indiamap__selectedstate">
