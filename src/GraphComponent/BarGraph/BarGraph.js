@@ -12,7 +12,7 @@ const BarGraph = (props) => {
   const { thememode } = useContext(ThemeContext);
   useEffect(() => {
     if (device && device.isExtraLargeDevice) {
-      setChartWidth(600);
+      setChartWidth(700);
       setChartHeight(600);
     }
     if (device && device.isLargeDevice) {
@@ -60,6 +60,7 @@ const BarGraph = (props) => {
             width={chartWidth}
             height={chartHeight}
             data={props.latestData}
+            margin={{ top: 5, left: 40, bottom: 5 }}
           >
             <XAxis dataKey={props.xDataKey} />
             <YAxis />
