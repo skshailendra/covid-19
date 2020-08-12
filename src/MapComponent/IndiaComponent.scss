@@ -30,9 +30,8 @@
     border-radius: 5px;
     opacity: 0.5;
     @media screen and (min-width: $bp-large) {
-      left: 2em;
-      bottom: 2em;
-      top: auto;
+      left: 41%;
+      top: 1.4em;
     }
     &.nightmode {
       background-color: $nightmode-blackpr;
