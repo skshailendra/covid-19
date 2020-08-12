@@ -270,17 +270,19 @@
     border: 1px solid #545453;
   }
 }
-
+.bubbledistrictselected {
+  stroke-width: 5px !important;
+}
 .district {
   stroke-width: 1px;
   stroke: #8ba8a9;
   cursor: pointer;
 }
-.district:hover {
-  cursor: pointer;
-  stroke-width: 3px;
-  stroke: #d63434;
-}
+// .district:hover {
+//   cursor: pointer;
+//   stroke-width: 3px;
+//   stroke: #d63434;
+// }
 
 .districtselected {
   fill: #4362b89c;

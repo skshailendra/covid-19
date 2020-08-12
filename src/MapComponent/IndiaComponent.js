@@ -285,6 +285,7 @@ const IndiaComponent = (props) => {
       selectAll(".indiamap g").remove();
     };
   }, [indiaJson, device, filterdMap, enableBubble, thememode]);
+
   useEffect(() => {
     const dataCall = async () => {
       const stateJsonUrl = `${stateDistrictDataJsonUrl}${selectedState
@@ -356,49 +357,120 @@ const IndiaComponent = (props) => {
         const colorScale = scaleLinear()
           .domain([minProp, maxProp])
           .range(color[filterdMap]);
+        const circleRadius = scaleSqrt()
+          .domain([minProp, maxProp])
+          .range([0, 25]);
         let prevSelectedDistrict = "";
         // projects geo-coordinates on a 2D plane
         const projection = geoMercator().fitSize([400, 400], featureDistrict);
         const pathGenerator = geoPath().projection(projection);
-        var svgdistrict = stateSvg
-          .selectAll(".district")
-          .data(featureDistrict.features)
-          .enter()
-          .append("path")
-          .on("mouseenter", (feature, i, nodes) => {
-            if (prevSelectedDistrict) {
-              select(prevSelectedDistrict).classed("districtselected", false);
-            }
-            if (prevSelectedDistrictId) {
-              const selectedDistrictId = document.getElementById(
-                prevSelectedDistrictId
-              );
-              if (selectedDistrictId) {
-                selectedDistrictId.classList.remove("districtselected");
-              }
-            }
-            select(nodes[i]).classed("districtselected", true);
-            //setPrevSelectedDistrictId(feature["properties"].dt_code); // added
-            prevSelectedDistrictId = feature["properties"].dt_code;
-            prevSelectedDistrict = nodes[i];
-            setHoverDistrict(feature.properties);
-          })
-          .attr("class", "district")
-          .attr("id", (feature) => feature["properties"].dt_code)
-          .transition()
-          .attr("fill", (feature) => colorScale(feature.properties[filterdMap]))
-          .attr("d", (d) => pathGenerator(d));
-
         const colorDistrict = () => {
           if (prevSelectedDistrictId) {
             const selectedDistrictId = document.getElementById(
               prevSelectedDistrictId
             );
             if (selectedDistrictId) {
-              selectedDistrictId.classList.add("districtselected");
+              if (enableBubble) {
+                selectedDistrictId.classList.remove("bubbledistrictselected");
+              } else {
+                selectedDistrictId.classList.remove("districtselected");
+              }
             }
           }
         };
+        if (enableBubble) {
+          stateSvg
+            .selectAll(".district")
+            .data(featureDistrict.features)
+            .enter()
+            .append("path")
+            .attr("class", () => `district ${filterdMap}`)
+            .attr("id", (feature) => feature["properties"].dt_code)
+            .transition()
+            .attr("fill", (feature) => {
+              if (thememode === "nightmode") {
+                return "#1e272e";
+              } else {
+                return "#fff";
+              }
+            })
+            .attr("d", (d) => pathGenerator(d));
+          //show data as layered bubbles.............
+          stateSvg
+            .append("g")
+            .selectAll("circle")
+            .data(featureDistrict.features) //data
+            .enter()
+            .append("circle")
+            .on("mouseenter", (feature, i, nodes) => {
+              if (prevSelectedDistrict) {
+                select(prevSelectedDistrict).classed(
+                  "bubbledistrictselected",
+                  false
+                );
+              }
+              if (prevSelectedDistrictId) {
+                const selectedDistrictId = document.getElementById(
+                  prevSelectedDistrictId
+                );
+                if (selectedDistrictId) {
+                  selectedDistrictId.classList.remove("bubbledistrictselected");
+                }
+              }
+              select(nodes[i]).classed("bubbledistrictselected", true);
+              //setPrevSelectedDistrictId(feature["properties"].dt_code); // added
+              prevSelectedDistrictId = feature["properties"].dt_code;
+              prevSelectedDistrict = nodes[i];
+              setHoverDistrict(feature.properties);
+            })
+            .attr("transform", function (d) {
+              return "translate(" + pathGenerator.centroid(d) + ")"; //Computes the projected centroid
+            })
+            .attr("fill", (feature) =>
+              colorScale(feature.properties[filterdMap])
+            )
+            .attr("class", () => `bubble ${filterdMap}`)
+            .attr(
+              "id",
+              (feature) => `${feature["properties"].dt_code}_district`
+            )
+            .attr("r", function (feature) {
+              return circleRadius(feature.properties[filterdMap]); //radius var with input (domain) and output (range)
+            });
+        } else {
+          ///
+          stateSvg
+            .selectAll(".district")
+            .data(featureDistrict.features)
+            .enter()
+            .append("path")
+            .on("mouseenter", (feature, i, nodes) => {
+              if (prevSelectedDistrict) {
+                select(prevSelectedDistrict).classed("districtselected", false);
+              }
+              if (prevSelectedDistrictId) {
+                const selectedDistrictId = document.getElementById(
+                  prevSelectedDistrictId
+                );
+                if (selectedDistrictId) {
+                  selectedDistrictId.classList.remove("districtselected");
+                }
+              }
+              select(nodes[i]).classed("districtselected", true);
+              //setPrevSelectedDistrictId(feature["properties"].dt_code); // added
+              prevSelectedDistrictId = feature["properties"].dt_code;
+              prevSelectedDistrict = nodes[i];
+              setHoverDistrict(feature.properties);
+            })
+            .attr("class", "district")
+            .attr("id", (feature) => feature["properties"].dt_code)
+            .transition()
+            .attr("fill", (feature) =>
+              colorScale(feature.properties[filterdMap])
+            )
+            .attr("d", (d) => pathGenerator(d));
+        }
+
         //calling colorstates
         colorDistrict();
       }
@@ -406,8 +478,9 @@ const IndiaComponent = (props) => {
     return () => {
       // Remove old selection before new Useeffect
       selectAll(".indiastate path").remove();
+      selectAll(".indiastate g").remove();
     };
-  }, [stateJson, device, filterdMap]);
+  }, [stateJson, device, filterdMap, enableBubble, thememode]);
   return (
     <>
       <HelmetProvider>
