@@ -20,7 +20,7 @@
     z-index: 10;
     width: 2em;
     height: 2em;
-    border: 0.5px solid #eaeaea;
+    border: 1px solid #5d3ae8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,8 +34,8 @@
       top: 1.4em;
     }
     &.nightmode {
-      background-color: $nightmode-blackpr;
-      border: 0.5px solid #5f5e5e;
+      background-color: #b5bbbf;
+      border: 1px solid #5f5e5e;
     }
     & > .fa-braille {
       width: 1.5em;
@@ -47,7 +47,7 @@
   }
 
   &__enabled-bubble {
-    background-color: #dcdfe2;
+    background-color: #d5ecebbd;
     opacity: 1;
   }
 }

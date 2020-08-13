@@ -48,7 +48,7 @@ const IndiaComponent = (props) => {
   };
   const [filterdMap, setFilterMap] = useState("confirmed");
   const [filterData, setFilterData] = useState(null);
-  const [enableBubble, setEnableBubble] = useState(false);
+  const [enableBubble, setEnableBubble] = useState(true);
   const fetchData = async (dataJsonUrl) => {
     const response = await fetch(dataJsonUrl, requestOption);
     if (response.ok) {
